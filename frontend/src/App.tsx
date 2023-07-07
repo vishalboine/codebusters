@@ -1,4 +1,4 @@
-import Dashboard from "./pages/dashboard/Dashboard"
+import Login from "./pages/auth/login/Login";
 
 type Props = {}
 
@@ -6,7 +6,7 @@ function App({}: Props) {
   // Unlocking Innovation: Where Ideas Meet Code!
   return (
     <div>
-      <Dashboard />
+      <Login />
     </div>
   )
 }
