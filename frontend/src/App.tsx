@@ -1,9 +1,13 @@
+import Dashboard from "./pages/dashboard/Dashboard"
+
 type Props = {}
 
 function App({}: Props) {
   // Unlocking Innovation: Where Ideas Meet Code!
   return (
-    <div>Hello World</div>
+    <div>
+      <Dashboard />
+    </div>
   )
 }
 
