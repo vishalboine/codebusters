@@ -5,6 +5,7 @@ import { BrowserRouter } from "react-router-dom";
 import { store } from "./state/store";
 import { Provider } from "react-redux";
 import "./index.scss";
+import 'devextreme/dist/css/dx.light.css';
 
 const rootEl = document.getElementById("root")!;
 const root = createRoot(rootEl);
