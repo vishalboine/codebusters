@@ -14,14 +14,14 @@ module.exports = {
     },
     devtool: 'inline-source-map',
     devServer: {
-      static: {
-        directory: path.join(__dirname, "build"),
-      },
-      port: 3000,
-      hot: true,
-      open: true,
-      historyApiFallback: true,
-      compress: true
+        static: {
+            directory: path.join(__dirname, "build"),
+        },
+        port: 3000,
+        hot: true,
+        open: true,
+        historyApiFallback: true,
+        compress: true
     },
     plugins: [
         new HtmlWebpackPlugin({
@@ -31,6 +31,12 @@ module.exports = {
     ],
     resolve: {
         extensions: [".js", ".ts", ".tsx", ".jsx"],
+        alias: {
+            globalize$: path.resolve( __dirname, "node_modules/globalize/dist/globalize.js" ),
+            globalize: path.resolve(__dirname, "node_modules/globalize/dist/globalize"),
+            cldr$: path.resolve(__dirname, "node_modules/cldrjs/dist/cldr.js"),
+            cldr: path.resolve(__dirname, "node_modules/cldrjs/dist/cldr")
+          },
     },
     module: {
         rules: [
@@ -47,19 +53,29 @@ module.exports = {
                 },
             },
             {
-                test: /\.(css|scss)$/,
+                test: /\.scss$/,
                 exclude: /node_modules/,
-                use: ["style-loader", "css-loader","sass-loader"],
+                use: [
+                    "style-loader",
+                    "css-loader",
+                    "sass-loader",
+                ],
             },
+            { 
+                test: /\.css$/,
+                use: [
+                  { loader: "style-loader" },
+                  { loader: "css-loader" }]
+              },
             {
                 test: /\.(png|jpe?g|gif|svg)$/i,
                 loader: 'url-loader',
                 options: {
-                  limit: 8192, // Adjust the limit based on your needs
-                  fallback: 'file-loader',
-                  name: 'images/[name].[hash].[ext]' // Output path and filename pattern
+                    limit: 8192, // Adjust the limit based on your needs
+                    fallback: 'file-loader',
+                    name: 'images/[name].[hash].[ext]' // Output path and filename pattern
                 }
-              }
+            },
         ],
     },
 };
