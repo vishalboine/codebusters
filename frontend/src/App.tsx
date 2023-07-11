@@ -1,9 +1,13 @@
+import Login from "./pages/auth/login/Login";
+
 type Props = {}
 
 function App({}: Props) {
   // Unlocking Innovation: Where Ideas Meet Code!
   return (
-    <div>Hello World</div>
+    <div>
+      <Login />
+    </div>
   )
 }
 

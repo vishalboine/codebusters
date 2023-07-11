@@ -11,7 +11,6 @@ module.exports = {
         path: path.resolve(__dirname, "build"),
         filename: "[name].[contenthash].js",
         clean: true,
-        assetModuleFilename: '[name].[ext]'
     },
     devtool: 'inline-source-map',
     devServer: {
@@ -27,6 +26,7 @@ module.exports = {
     plugins: [
         new HtmlWebpackPlugin({
             template: "./public/index.html",
+            favicon: "./public/favicon.ico"
         }),
     ],
     resolve: {
@@ -47,14 +47,19 @@ module.exports = {
                 },
             },
             {
-                test: /\.css$/,
+                test: /\.(css|scss)$/,
                 exclude: /node_modules/,
-                use: ["style-loader", "css-loader"],
+                use: ["style-loader", "css-loader","sass-loader"],
             },
             {
-                test: /\.(png|svg)$/i,
-                type: "asset/resource",
-            },
+                test: /\.(png|jpe?g|gif|svg)$/i,
+                loader: 'url-loader',
+                options: {
+                  limit: 8192, // Adjust the limit based on your needs
+                  fallback: 'file-loader',
+                  name: 'images/[name].[hash].[ext]' // Output path and filename pattern
+                }
+              }
         ],
     },
 };
