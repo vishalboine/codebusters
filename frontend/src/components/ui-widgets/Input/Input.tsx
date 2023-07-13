@@ -23,7 +23,7 @@ const Input: React.FC<InputProps> = ({
   label = '',
   showIcon = false,
   onIconClick,
-  isVisiblePassword = false,
+  isVisiblePassword,
   ...rest
 }) => {
   const inputClassName = `${styles.input} ${styles[variant]} ${styles[inputSize]}`;

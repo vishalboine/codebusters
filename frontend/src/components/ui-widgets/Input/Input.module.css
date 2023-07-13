@@ -61,3 +61,7 @@
 .required {
     color: red;
 }
+
+label {
+    margin-top: 8px;
+}
