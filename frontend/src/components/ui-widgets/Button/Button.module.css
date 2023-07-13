@@ -1,0 +1,79 @@
+/* Button.module.css */
+
+.button {
+    padding: 6px 10px;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+    border: none;
+    text-transform: capitalize;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.primary {
+    background-color: #1a66f3;
+    color: white;
+}
+
+.primary.disabled {
+    background-color: #387dff;
+    cursor: not-allowed;
+}
+
+.primary:hover {
+    background-color: #0649c4;
+}
+
+.secondary {
+    background-color: gray;
+    color: whitesmoke;
+}
+
+.secondary:hover {
+    background-color: rgb(104, 104, 104);
+}
+
+.success {
+    background-color: rgb(3, 135, 3);
+    color: white;
+}
+
+.success:hover {
+    background-color: rgb(2, 101, 2);
+    color: white;
+}
+
+.danger {
+    background-color: rgb(255, 0, 0);
+    color: white;
+}
+
+.danger:hover {
+    background-color: rgb(213, 1, 1);
+}
+
+.outline {
+    background-color: transparent;
+    color: black;
+    border: 2.2px solid black;
+}
+.outline:hover {
+    color: #0649c4;
+    border: 2.2px solid #0649c4;
+}
+
+.small {
+    padding: 8px 10px;
+    font-size: 14px;
+}
+
+.medium {
+    padding: 10px 18px;
+    font-size: 14px;
+}
+
+.large {
+    padding: 12px 24px;
+    font-size: 16px;
+}
