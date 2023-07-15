@@ -14,9 +14,7 @@ const Login = (props: Props) => {
 
   const changePasswordVisibility = () => {
     setTogglePassword((prev) => !prev)
-  }
-  console.log(togglePassword);
-  
+  }  
   return (
     <div className='authBg'>
       <div className="loginWrapper">
