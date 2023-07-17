@@ -1,0 +1,11 @@
+input {
+    outline:none;
+    font-size:1rem; font-weight:400;
+}
+
+button { outline:none;  border:none; cursor:pointer;
+    &.btn { padding:12px 16px; border-radius:.5rem; font-size:1rem; }
+    &.btn-primary { background:$primary-color; color:$white;
+        &:hover { background:$secondary-color; }
+    }
+}

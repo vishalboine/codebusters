@@ -1,10 +1,30 @@
+
+@import "./iwVariables";
+@import "./formElemets";
+
 * {
     margin: 0;
     padding: 0;
     font-family: 'Inter', sans-serif;
     box-sizing: border-box;
     font-weight: 500;
+    &:before,
+    &:after {
+        box-sizing:border-box !important;
+    }
 }
+
+body { box-sizing:border-box; margin:0; padding:0; color:$blue-900 }
+
+h1,h2,h3,h4 { font-weight:600; }
+
+input:-webkit-autofill {
+    &:hover,
+    &:focus,
+    &:active { box-shadow:0 0 0 40px $white inset !important; -webkit-box-shadow:0 0 0 40px $white inset !important; -webkit-text-fill-color:$black-80; }
+}
+
+a { text-decoration:none; }
 
 .authBg {
     background-color: #EDF1FF;
@@ -15,7 +35,7 @@
     content: "";
     width: 50vw;
     height: 100vh;
-    background-color: #4C70FF;
+    background-color:$primary-color;
     position: absolute;
     top: 0;
     left: 0;
