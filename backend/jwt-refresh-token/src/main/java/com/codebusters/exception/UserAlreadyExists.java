@@ -1,4 +1,4 @@
-package com.codebusters;
+package com.codebusters.exception;
 
 public class UserAlreadyExists extends RuntimeException{
     public UserAlreadyExists(){

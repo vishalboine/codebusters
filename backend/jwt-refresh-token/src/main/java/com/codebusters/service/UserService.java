@@ -11,8 +11,6 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class UserService {
-
-
     @Autowired
     private UserInfoRepository repository;
 
@@ -32,5 +30,9 @@ public class UserService {
         userInfo.setPassword(passwordEncoder.encode(userInfo.getPassword()));
         repository.save(userInfo);
         return ResponseEntity.status(HttpStatus.CREATED).body("User Created");
+    }
+
+    public boolean checkIfPresent(String email) {
+       return repository.findByEmail(email).isPresent();
     }
 }

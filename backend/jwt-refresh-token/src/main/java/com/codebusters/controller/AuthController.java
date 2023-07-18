@@ -1,5 +1,6 @@
 package com.codebusters.controller;
 
+import com.codebusters.exception.UserAlreadyExists;
 import com.codebusters.dto.AuthRequest;
 import com.codebusters.dto.JwtResponse;
 import com.codebusters.dto.RefreshTokenRequest;
@@ -36,6 +37,11 @@ public class AuthController {
 
     @PostMapping("/signup")
     public ResponseEntity<String> addNewUser(@RequestBody UserInfo userInfo) {
+        if( service.checkIfPresent(userInfo.getEmail()) || userInfo.getName().isEmpty()){
+            throw new UserAlreadyExists("User with below Email Already Exists");
+        }
+        if(userInfo.getRoles() == null || !userInfo.getRoles().equals("ROLE_ADMIN"))
+            userInfo.setRoles("ROLE_USER");
         return service.addUser(userInfo);
     }
 

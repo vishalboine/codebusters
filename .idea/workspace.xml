@@ -4,14 +4,43 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="202533bf-bbb6-4f29-b81f-f01e7b36422b" name="Changes" comment="" />
+    <list default="true" id="202533bf-bbb6-4f29-b81f-f01e7b36422b" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/jwt-refresh-token/src/main/java/com/codebusters/controller/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/jwt-refresh-token/src/main/java/com/codebusters/controller/AuthController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/jwt-refresh-token/src/main/java/com/codebusters/exception/UserAlreadyExists.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/jwt-refresh-token/src/main/java/com/codebusters/exception/UserAlreadyExists.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/jwt-refresh-token/src/main/java/com/codebusters/repository/UserInfoRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/jwt-refresh-token/src/main/java/com/codebusters/repository/UserInfoRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/jwt-refresh-token/src/main/java/com/codebusters/service/JwtService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/jwt-refresh-token/src/main/java/com/codebusters/service/JwtService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/jwt-refresh-token/src/main/java/com/codebusters/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/jwt-refresh-token/src/main/java/com/codebusters/service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/jwt-refresh-token/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/backend/jwt-refresh-token/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/jwt-refresh-token/src/main/resources/banner.txt" beforeDir="false" afterPath="$PROJECT_DIR$/backend/jwt-refresh-token/src/main/resources/banner.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/jwt-refresh-token/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/backend/jwt-refresh-token/target/classes/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/jwt-refresh-token/target/classes/com/codebusters/controller/AuthController.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/jwt-refresh-token/target/classes/com/codebusters/controller/AuthController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/jwt-refresh-token/target/classes/com/codebusters/repository/UserInfoRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/jwt-refresh-token/target/classes/com/codebusters/repository/UserInfoRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/jwt-refresh-token/target/classes/com/codebusters/service/JwtService.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/jwt-refresh-token/target/classes/com/codebusters/service/JwtService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/jwt-refresh-token/target/classes/com/codebusters/service/UserService.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/jwt-refresh-token/target/classes/com/codebusters/service/UserService.class" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="auth-changes" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="jar://$MAVEN_REPOSITORY$/org/springframework/security/spring-security-core/6.0.1/spring-security-core-6.0.1.jar!/org/springframework/security/authentication/UsernamePasswordAuthenticationToken.class" root0="SKIP_INSPECTION" />
   </component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
@@ -27,8 +56,10 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "master"
+    "git-widget-placeholder": "auth-change",
+    "settings.editor.selected.configurable": "reference.settings.project.maven.importing"
   }
 }]]></component>
   <component name="RunManager">
@@ -37,7 +68,7 @@
       <module name="spring-security-latest" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.codebusters.*" />
+          <option name="PATTERN" value="com.codebusters.exception.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -61,5 +92,43 @@
       <updated>1689053685136</updated>
     </task>
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="RECENT_FILTERS">
+      <map>
+        <entry key="Branch">
+          <value>
+            <list>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="origin/main" />
+                </option>
+              </RecentGroup>
+            </list>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="authentication_feature" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>
