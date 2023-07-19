@@ -1,15 +1,16 @@
-import { useState, useCallback } from "react"
+import { useState } from "react"
 import LongLogo from "../../../assets/images/longLogo.png";
 import image1 from "../../../assets/images/image1.png";
 import { LOGO_ALT } from "../../../constants";
 import "./Login.scss"
 import Input from "../../../components/ui-widgets/Input/Input";
 import Button from "../../../components/ui-widgets/Button/Button";
+import { useLocation } from "react-router-dom";
 
-type Props = {}
-
-const Login = (props: Props) => {
-
+const Login = () => {
+  const location = useLocation();
+  const from = location.state?.from?.pathname || '/';
+  
   const [togglePassword, setTogglePassword] = useState(false);
 
   const changePasswordVisibility = () => {
