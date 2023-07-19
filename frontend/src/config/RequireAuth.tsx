@@ -5,7 +5,7 @@ interface AuthContextType {
   auth?: any;
 }
 interface RequireAuthProps {
-  allowedRoles: number[];
+  allowedRoles: string[];
 }
 
 const RequireAuth = (props: RequireAuthProps) => {
@@ -14,7 +14,7 @@ const RequireAuth = (props: RequireAuthProps) => {
   const location = useLocation();
   
   return (
-    auth?.roles?.find((role: number) => allowedRoles.includes(role))
+    allowedRoles.find((role: string) => role === auth?.role)
     ? <Outlet />
     : auth?.user
         ? <Navigate to='/unauthorized' state={{ from: location }} replace />

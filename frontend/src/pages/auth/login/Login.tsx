@@ -5,7 +5,7 @@ import { LOGO_ALT } from "../../../constants";
 import "./Login.scss"
 import Input from "../../../components/ui-widgets/Input/Input";
 import Button from "../../../components/ui-widgets/Button/Button";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const Login = () => {
   const location = useLocation();
@@ -41,13 +41,17 @@ const Login = () => {
                   isVisiblePassword={togglePassword}
                   onIconClick={changePasswordVisibility}
                 />
+                <div>
+                  <input type="checkbox" name="" id="" />
+                  <span>Remember me</span>
+                </div>
                 <div className="fp">
                   {/* <input type="checkbox" name="forget_password" id="forget_password" */} 
                   <label htmlFor="forget_password">Forget password</label> 
                 </div>
                 <Button title="Login" className="btn btn-primary" />
                 <div className="creatAccount">
-                  Already have an account? <a href="#"> Sign up</a>
+                  Already have an account? <Link to="/register"> Sign up</Link>
                 </div>
               </div>
             </div>

@@ -7,10 +7,11 @@ import RequireAuth from "./config/RequireAuth";
 import Layout from "./components/layouts/Layout";
 import Unauthorized from "./pages/public/Unauthorized";
 import NotFound from "./pages/public/NotFound";
+import PersistLogin from "./config/PersistLogin";
 
 const Roles = {
-  'User': 2001,
-  'Admin': 2002
+  'User': 'ROLE_USER',
+  'Admin': 'ROLE_ADMIN'
 }
 
 function App() {
@@ -24,8 +25,10 @@ function App() {
         <Route path="register" element={<Register />} />
         <Route path="unauthorized" element={<Unauthorized />} />
         {/* private routes */}
-        <Route element={<RequireAuth allowedRoles={[Roles.Admin]} />}>
-          <Route path="/" element={<Dashboard />} />
+        <Route element={<PersistLogin />}>
+          <Route element={<RequireAuth allowedRoles={[Roles.Admin]} />}>
+            <Route path="/" element={<Dashboard />} />
+          </Route>
         </Route>
         {/* catch all */}
         <Route path="*" element={<NotFound />} />
