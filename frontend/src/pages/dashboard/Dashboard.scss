@@ -1,0 +1,88 @@
+@import "../../dxTable";
+@import "../../iwVariables";
+@import "../../formElemets";
+
+.dashboard {
+    display:flex;
+    background:$blue-700;
+    width:100%;
+    height:100vh;
+    padding-top: 1.5rem;
+    .leftNav {
+        display:flex;
+        flex-direction:column;
+        width:4%;
+        min-width:80px;
+        background:$blue-700;
+        padding:1rem 1rem 2rem;
+        .head {
+            .logo {
+
+            }
+        }
+        .navMenu {
+            display:flex;
+            justify-content:center;
+            padding-top:1rem;
+            flex-direction:column;
+            padding-top:2rem;
+            align-items: flex-start;
+            gap: 24px;
+            align-self: stretch;
+            li {
+                display:flex;
+                justify-content:center;
+                align-items:center;
+                width:3rem;
+                height:3rem;
+                background:$blue-800;
+                color:$blue-200;
+                border-radius:.5rem;
+                list-style-type:none;
+                transition: .6s;
+                cursor: pointer;
+                &:hover{
+                    border:1px solid $blue-100;
+                }
+                &.active {
+                    background:$blue-400;
+                    color:$white;
+                }
+                svg { 
+                    stroke:currentColor;
+                }
+            }
+            .topMenu {
+                height:30%;
+                
+            }
+            .bottomMenu {
+                align-items:flex-end;
+            }
+        }
+    }
+    .rightPanel {
+        width:96%;
+        background:$white;
+        border-top-left-radius:2rem;
+        padding: 1.5rem 4rem;
+
+        .topBar {
+            display:flex;
+            flex-direction: row;
+            justify-content:space-between;
+            
+            .btn-import { background:$blue-700; color:$white; transition:background .3s;
+                .svg-icon {
+                    position: relative;
+                    top: .25rem;
+                    margin-right:.5rem;
+                    transition: fill .3s;
+                }
+                &:hover { background:$primary-color; }
+            }
+        }
+
+        section { padding:4rem 0; }
+    }
+}
