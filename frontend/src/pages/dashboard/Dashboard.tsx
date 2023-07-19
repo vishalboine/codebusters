@@ -1,6 +1,5 @@
 import React, { useState, useCallback } from "react"
 import { useDispatch, useSelector } from 'react-redux'
-import { increment, decrement } from '../../state/features/counter/counterSlice';
 import { DataGrid } from 'devextreme-react';
 import { Column, GroupPanel, Grouping, LoadPanel, Pager, Paging, SearchPanel,Selection } from 'devextreme-react/data-grid';
 import "./Dashboard.scss"
@@ -33,12 +32,6 @@ import ODataStore from 'devextreme/data/odata/store';
 //   );
 // }
 
-function customizeTooltip(data) {
-  return {
-    text: `${parseInt(data.value, 10)}%`,
-  };
-}
-
 const dataSourceOptions = {
   store: new ODataStore({
     url: 'https://js.devexpress.com/Demos/SalesViewer/odata/DaySaleDtoes',
@@ -61,7 +54,7 @@ const Dashboard = (props: Props) => {
     const dispatch = useDispatch();
     const [collapsed, setCollapsed] = useState(false);
 
-    const onContentReady =(e) => {
+    const onContentReady =(e: any) => {
       if (!collapsed) {
         e.component.expandRow(['EnviroCare']);
         setCollapsed(true);

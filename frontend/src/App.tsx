@@ -1,6 +1,4 @@
-<<<<<<< Updated upstream
-import Login from "./pages/dashboard/Dashboard";
-=======
+
 import Login from "./pages/auth/login/Login";
 import { Routes, Route } from 'react-router-dom';
 import Register from "./pages/auth/register/Register";
@@ -9,7 +7,6 @@ import RequireAuth from "./config/RequireAuth";
 import Layout from "./components/layouts/Layout";
 import Unauthorized from "./pages/public/Unauthorized";
 import NotFound from "./pages/public/NotFound";
->>>>>>> Stashed changes
 
 const Roles = {
   'User': 2001,
