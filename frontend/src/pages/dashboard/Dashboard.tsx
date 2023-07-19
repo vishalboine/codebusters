@@ -2,7 +2,7 @@ import React, { useState, useCallback } from "react"
 import { useDispatch, useSelector } from 'react-redux'
 import { increment, decrement } from '../../state/features/counter/counterSlice';
 import { DataGrid } from 'devextreme-react';
-import { Column, GroupPanel, Grouping, LoadPanel, Pager, Paging, SearchPanel } from 'devextreme-react/data-grid';
+import { Column, GroupPanel, Grouping, LoadPanel, Pager, Paging, SearchPanel,Selection } from 'devextreme-react/data-grid';
 
 import Bullet, {
   Font, Margin, Size, Tooltip,
@@ -76,11 +76,14 @@ const Dashboard = (props: Props) => {
         showBorders={true}
         onContentReady={onContentReady}
       >
-        <GroupPanel visible={true} />
+        {/* <GroupPanel visible={true} /> */}
         <SearchPanel visible={true} highlightCaseSensitive={true} />
-        <Grouping autoExpandAll={false} />
+        {/* <Grouping autoExpandAll={false} /> */}
+        <Selection
+                    mode="single"
+                    selectAllMode="page" />
 
-        <Column dataField="Product" groupIndex={0} />
+        <Column dataField="Product" />
         <Column
           dataField="Amount"
           caption="Sale Amount"
@@ -94,7 +97,6 @@ const Dashboard = (props: Props) => {
           dataType="number"
           format="percent"
           alignment="right"
-          allowGrouping={false}
           cellRender={DiscountCell}
           cssClass="bullet"
         />
