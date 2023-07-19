@@ -40,10 +40,14 @@ const Login = (props: Props) => {
                   isVisiblePassword={togglePassword}
                   onIconClick={changePasswordVisibility}
                 />
-                <div style={{ marginTop: '10px' }}>
-                  <input type="checkbox" name="forget_password" id="forget_password" /> <label htmlFor="forget_password">Forget password ?</label>
+                <div className="fp">
+                  {/* <input type="checkbox" name="forget_password" id="forget_password" */} 
+                  <label htmlFor="forget_password">Forget password</label> 
                 </div>
-                <Button title="Login" />
+                <Button title="Login" className="btn btn-primary" />
+                <div className="creatAccount">
+                  Already have an account? <a href="#"> Sign up</a>
+                </div>
               </div>
             </div>
           </div>

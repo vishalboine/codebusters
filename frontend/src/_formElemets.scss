@@ -1,0 +1,18 @@
+input {
+    outline:none;
+    font-size:1rem;
+    font-weight:400;
+    background:$blue-50;
+    padding: 10px 12px; 
+    border: 1px solid $blue-100; border-radius:.5rem;
+    &::placeholder { color:$blue-gray; font-size:$medium-font-size; }
+    &:hover { border: 1px solid $blue-300; border-right:none; }
+    &:focus { box-shadow:0 0 0 .15rem rgba($blue-200, .6);}
+}
+
+button { outline:none;  border:none; cursor:pointer;
+    &.btn { padding:10px 16px; border-radius:.5rem; font-size:1rem; }
+    &.btn-primary { background:$primary-color; color:$white;
+        &:hover { background:$secondary-color; }
+    }
+}

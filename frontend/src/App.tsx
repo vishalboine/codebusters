@@ -1,4 +1,4 @@
-import Login from "./pages/auth/login/Login";
+import Login from "./pages/dashboard/Dashboard";
 
 type Props = {}
 
