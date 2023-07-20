@@ -1,12 +1,7 @@
-import React, { useState, useCallback } from "react"
-import { useDispatch, useSelector } from 'react-redux'
+import React, { useState } from "react"
 import { DataGrid } from 'devextreme-react';
-import { Column, GroupPanel, Grouping, LoadPanel, Pager, Paging, SearchPanel,Selection } from 'devextreme-react/data-grid';
+import { Column, Pager, Paging, SearchPanel,Selection } from 'devextreme-react/data-grid';
 import "./Dashboard.scss"
-
-import Bullet, {
-  Font, Margin, Size, Tooltip,
-} from 'devextreme-react/bullet';
 import ODataStore from 'devextreme/data/odata/store';
 
 // export function DiscountCell(cellData) {
@@ -49,9 +44,6 @@ const pageSizes = [10, 25, 50, 100];
 type Props = {}
 
 const Dashboard = (props: Props) => {
-
-    const count = useSelector((state: any) => state.counter.count);
-    const dispatch = useDispatch();
     const [collapsed, setCollapsed] = useState(false);
 
     const onContentReady =(e: any) => {
