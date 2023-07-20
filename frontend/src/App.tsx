@@ -8,11 +8,7 @@ import Layout from "./components/layouts/Layout";
 import Unauthorized from "./pages/public/Unauthorized";
 import NotFound from "./pages/public/NotFound";
 import PersistLogin from "./config/PersistLogin";
-
-const Roles = {
-  'User': 'ROLE_USER',
-  'Admin': 'ROLE_ADMIN'
-}
+import { Roles } from "./constants";
 
 function App() {
   // Unlocking Innovation: Where Ideas Meet Code!
@@ -24,10 +20,10 @@ function App() {
         <Route path="login" element={<Login />} />
         <Route path="register" element={<Register />} />
         <Route path="unauthorized" element={<Unauthorized />} />
+            <Route path="/" element={<Dashboard />} />
         {/* private routes */}
         <Route element={<PersistLogin />}>
           <Route element={<RequireAuth allowedRoles={[Roles.Admin]} />}>
-            <Route path="/" element={<Dashboard />} />
           </Route>
         </Route>
         {/* catch all */}
