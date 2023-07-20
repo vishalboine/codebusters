@@ -89,6 +89,22 @@ const Dashboard = (props: Props) => {
       }
     }
 
+
+    function onToolbarPreparing(e: any) {
+      const items = e.toolbarOptions.items;
+      items.push({
+          location: "after",
+          widget: "dxButton",
+          options: {
+              icon: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/Microsoft_Office_Excel_%282019%E2%80%93present%29.svg/826px-Microsoft_Office_Excel_%282019%E2%80%93present%29.svg.png",
+              onClick: () => {
+                  handleDataGridExportToExcel(e)
+              },
+              hint: 'Export Selected Models',
+          }
+      })
+  }
+
   return (
     <div className="dashboard">
       <div className="leftNav">
@@ -163,6 +179,7 @@ const Dashboard = (props: Props) => {
           showBorders={true}
           onContentReady={onContentReady}
           onExporting={handleDataGridExportToExcel}
+          onToolbarPreparing={onToolbarPreparing}
         >
           {/* <GroupPanel visible={true} /> */}
           <SearchPanel visible={true} highlightCaseSensitive={true} />
@@ -193,7 +210,7 @@ const Dashboard = (props: Props) => {
           <Column dataField="Sector" dataType="string" />
           <Column dataField="Channel" dataType="string" />
           <Column dataField="Customer" dataType="string" width={150} />
-          <Export enabled={true} allowExportSelectedData={false} />
+          <Export enabled={true} />
           <Pager allowedPageSizes={pageSizes} showPageSizeSelector={true} />
           <Paging defaultPageSize={10} />
         </DataGrid>
