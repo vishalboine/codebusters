@@ -49,11 +49,16 @@ const Login = () => {
           <div className="loginWrapper_main">
             <div className="left">
               <img src={image1} alt="" />
+              <caption>
+               Unleash the power of seamless data integration with our cutting-edge import app
+              </caption>
+              <div className="nav-dots">
+
+              </div>
             </div>
             <div className="right">
-
               <div className="input_div">
-                <h2>Login Now</h2>
+                <h3>Login</h3>
                 <Input
                   placeholder="Enter Username"
                   label="Username"
@@ -72,13 +77,14 @@ const Login = () => {
                   onIconClick={changePasswordVisibility}
                   onChange={onChangeHandler}
                 />
-                <div>
-                  <input type="checkbox" name="" id="" />
-                  <span>Remember me</span>
-                </div>
-                <div className="fp">
-                  {/* <input type="checkbox" name="forget_password" id="forget_password" */} 
-                  <label htmlFor="forget_password">Forget password</label> 
+                <div className="loginUtility">
+                  <div>
+                    <label htmlFor="remember" className="container" >Remember me
+                      <input type="checkbox" id="remember"/>
+                      <span className="checkmark"></span>
+                    </label>
+                  </div>
+                  <Link to="/forgetPassword">Forget password?</Link> 
                 </div>
                 <Button title="Login" className="btn btn-primary" />
                 <div className="creatAccount">
