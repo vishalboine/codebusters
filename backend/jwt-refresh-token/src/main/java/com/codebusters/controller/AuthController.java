@@ -87,6 +87,4 @@ public class AuthController {
                 }).orElseThrow(() -> new RuntimeException(
                         "Refresh token is not in database!"));
     }
-
-
 }

@@ -5,12 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="202533bf-bbb6-4f29-b81f-f01e7b36422b" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/backend/jwt-refresh-token/src/main/java/com/codebusters/dto/UserRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/jwt-refresh-token/src/main/java/com/codebusters/config/CorsConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/jwt-refresh-token/src/main/java/com/codebusters/controller/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/jwt-refresh-token/src/main/java/com/codebusters/controller/AuthController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/jwt-refresh-token/src/main/java/com/codebusters/dto/UserResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/jwt-refresh-token/src/main/java/com/codebusters/dto/UserResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/jwt-refresh-token/src/main/java/com/codebusters/entity/UserInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/jwt-refresh-token/src/main/java/com/codebusters/entity/UserInfo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/jwt-refresh-token/src/main/java/com/codebusters/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/jwt-refresh-token/src/main/java/com/codebusters/service/UserService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
