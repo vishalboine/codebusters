@@ -34,7 +34,7 @@ public class AuthController {
     private AuthenticationManager authenticationManager;
 
 
-    @PostMapping("/signup")
+    @PostMapping("/``signup``")
     public ResponseEntity<String> addNewUser(@RequestBody UserInfo userInfo) {
         return service.addUser(userInfo);
     }

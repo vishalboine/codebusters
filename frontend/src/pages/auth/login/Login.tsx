@@ -1,22 +1,21 @@
-import { useState, useCallback } from "react"
+import { useState } from "react"
 import LongLogo from "../../../assets/images/longLogo.png";
 import image1 from "../../../assets/images/image1.png";
 import { LOGO_ALT } from "../../../constants";
 import "./Login.scss"
 import Input from "../../../components/ui-widgets/Input/Input";
 import Button from "../../../components/ui-widgets/Button/Button";
+import { Link, useLocation } from "react-router-dom";
 
-type Props = {}
-
-const Login = (props: Props) => {
-
+const Login = () => {
+  const location = useLocation();
+  const from = location.state?.from?.pathname || '/';
+  
   const [togglePassword, setTogglePassword] = useState(false);
 
   const changePasswordVisibility = () => {
     setTogglePassword((prev) => !prev)
-  }
-  console.log(togglePassword);
-  
+  }  
   return (
     <div className='authBg'>
       <div className="loginWrapper">
@@ -42,13 +41,17 @@ const Login = (props: Props) => {
                   isVisiblePassword={togglePassword}
                   onIconClick={changePasswordVisibility}
                 />
+                <div>
+                  <input type="checkbox" name="" id="" />
+                  <span>Remember me</span>
+                </div>
                 <div className="fp">
                   {/* <input type="checkbox" name="forget_password" id="forget_password" */} 
                   <label htmlFor="forget_password">Forget password</label> 
                 </div>
                 <Button title="Login" className="btn btn-primary" />
                 <div className="creatAccount">
-                  Already have an account? <a href="#"> Sign up</a>
+                  Already have an account? <Link to="/register"> Sign up</Link>
                 </div>
               </div>
             </div>
