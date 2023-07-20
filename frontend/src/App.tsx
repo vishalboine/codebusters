@@ -20,10 +20,10 @@ function App() {
         <Route path="login" element={<Login />} />
         <Route path="register" element={<Register />} />
         <Route path="unauthorized" element={<Unauthorized />} />
+            <Route path="/" element={<Dashboard />} />
         {/* private routes */}
         <Route element={<PersistLogin />}>
           <Route element={<RequireAuth allowedRoles={[Roles.Admin]} />}>
-            <Route path="/" element={<Dashboard />} />
           </Route>
         </Route>
         {/* catch all */}

@@ -1,9 +1,13 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import { DataGrid } from 'devextreme-react';
 import { Column, Pager, Paging, SearchPanel,Selection, Export } from 'devextreme-react/data-grid';
 import "./Dashboard.scss"
 import ODataStore from 'devextreme/data/odata/store';
 import { useDataGridExcelExport } from "../../hooks/useDatagridExcelExport";
+import Modal from "../../components/Modal";
+import Button from "../../components/ui-widgets/Button/Button";
+import DropFileInput from "../../components/DropInputFile";
+import uploadImg from "../../assets/images/upload.svg"
 
 // export function DiscountCell(cellData) {
 //   return (
@@ -46,7 +50,16 @@ type Props = {}
 
 const Dashboard = (props: Props) => {
     const [collapsed, setCollapsed] = useState(false);
-    const handleDataGridExportToExcel = useDataGridExcelExport('Demo')
+    const [isOpen, setisOpen] = useState(false)
+    const handleDataGridExportToExcel = useDataGridExcelExport('Demo');
+    const [selectedFile, setSelectedFile] = useState({});
+    const handleIsOpen = () => {
+      setisOpen(prev => !prev)
+    }
+    useEffect(() => {
+      console.log(selectedFile);
+      
+    },[selectedFile])
 
     const onContentReady =(e: any) => {
       if (!collapsed) {
@@ -54,6 +67,12 @@ const Dashboard = (props: Props) => {
         setCollapsed(true);
       }
     }
+    const onFileChange = (e: any) => {
+      const newFile = e.target.files[0];
+      if (newFile) {
+          setSelectedFile(newFile)
+      }
+  }
   return (
     <div className="dashboard">
       <div className="leftNav">
@@ -113,19 +132,12 @@ const Dashboard = (props: Props) => {
           {/* <div className="globalSearch">
             <input placeholder="Search"></input>
           </div> */}
-            <button className="btn btn-import">
-              <svg xmlns="http://www.w3.org/2000/svg" className="svg-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
-                <g clip-path="url(#clip0_228_9575)">
-                <path d="M13.3333 13.3333L9.99997 10M9.99997 10L6.66663 13.3333M9.99997 10V17.5M16.9916 15.325C17.8044 14.8819 18.4465 14.1807 18.8165 13.3322C19.1866 12.4836 19.2635 11.536 19.0351 10.6389C18.8068 9.74179 18.2862 8.94626 17.5555 8.37787C16.8248 7.80948 15.9257 7.50061 15 7.5H13.95C13.6977 6.52436 13.2276 5.61861 12.5749 4.85082C11.9222 4.08304 11.104 3.47321 10.1817 3.06717C9.25943 2.66113 8.25709 2.46946 7.25006 2.50657C6.24304 2.54367 5.25752 2.80858 4.36761 3.28138C3.47771 3.75419 2.70656 4.42258 2.11215 5.23631C1.51774 6.05005 1.11554 6.98794 0.935783 7.97949C0.756025 8.97104 0.803388 9.99044 1.07431 10.961C1.34523 11.9317 1.83267 12.8282 2.49997 13.5833" stroke="#EDF1FF" stroke-width="1.67" stroke-linecap="round" stroke-linejoin="round"/>
-                </g>
-                <defs>
-                <clipPath id="clip0_228_9575">
-                <rect width="20" height="20" fill="white"/>
-                </clipPath>
-                </defs>
-              </svg>
-              Import
-            </button>
+            <Button onClick={handleIsOpen} className="btn btn-import" title={
+              <>
+                <img src={uploadImg} alt="" />
+                Import
+              </>
+            } />
         </div>
         <section>
           <DataGrid
@@ -171,7 +183,18 @@ const Dashboard = (props: Props) => {
         </DataGrid>
         </section>
       </div>
-      
+      <Modal isOpen={isOpen} handleClose={handleIsOpen}>
+        <select name="" id="" value='Transactions'>
+          <option value="customer">Customer Master Data</option>
+          <option value="transactions">Transations</option>
+        </select>
+        <DropFileInput onFileDrop={onFileChange} />
+        <br />
+        or
+        <br />
+        <input type="file" name="" id="" onChange={onFileChange} />
+        <Button variant="danger" onClick={handleIsOpen} title='Close' />
+      </Modal>
     </div>
   )
 }
