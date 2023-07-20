@@ -1,6 +1,22 @@
 @import "../../../styles/iwVariables";
 @import "../../../styles/formElemets";
 
+.authBg {
+    background: #EDF1FF;
+    width: 100vw;
+    height: 100vh;
+    padding: 6% 12%;
+}
+.authBg::before {
+    content: "";
+    width: 50vw;
+    height: 100vh;
+    background-color:$primary-color;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
 .loginWrapper {
     width: 100%;
     height: 100%;
@@ -9,8 +25,8 @@
     align-items: center;
 
     .loginCard {
-        width:1200px;
-        height:780px;
+        width:100%;
+        height:100%;
         flex-shrink:0;
         backdrop-filter: blur(4px);
         -webkit-backdrop-filter: blur(4px);
@@ -20,7 +36,7 @@
         padding:2.5rem;
 
         .authLogo {
-            width:13rem;
+            width:10rem;
             height:auto;
         }
 
@@ -29,24 +45,34 @@
             width: 100%;
         }
 
-        .left,
-        .right {
-            flex: 1;
-            padding:1.5rem;
+        .left{
+            display:flex;
+            flex:1;
+            flex-direction:column;
+            justify-content:center;
+            align-items:center;
+            width: 50%;
+            padding:2.5rem 1rem;
+            caption { padding:1.5rem 0; font-size:1rem; font-weight:500; color:$blue-800; }
+            img { width:94%; }
         }
 
         .right {
-            display: flex;
+            display:flex;
+            flex:1;
+            padding:1.5rem;
             justify-content: center;
+            width:50%;
             .input_div {
                 display:flow-root;
-                width: 80%;
-                border-radius: 16px;
+                width:80%;
+                height:fit-content;
+                border-radius:16px;
                 background:$white;
                 box-shadow: 0px 6px 12px 0px rgba(0, 0, 0, 0.12);
                 padding: 2rem;
 
-                h2 {
+                h3 {
                     text-align: center;
                 }
 
@@ -55,22 +81,149 @@
                     &::placeholder { color:$blue-gray; font-size:$medium-font-size; }
                     &:hover { border: 1px solid $blue-300; }
                  }
-                .btn { width:21.5rem;
+                .btn { width:100%;
                     
                 }
                 button { 
                     svg { color:$gray-mute; font-size:1rem; }
                 }
 
-                .fp { display:flex; font-size:$default-font-size; justify-content:end; margin:.5rem 0;
-                    label { color:$blue-900; }
+                .loginUtility { display:flex; justify-content:space-between; align-items:center; font-size:$default-font-size; margin:.5rem 0;
+                    a { color:$blue-700; font-weight:400;}
                 }
 
-                .creatAccount { font-size:1rem; color:$blue-900;font-weight:400; text-align:center; margin-top:1rem;
-                    a { color:$blue-700; font-weight:600;}
+                .creatAccount { font-size:1rem; color:$blue-900;font-weight:400; text-align:center; margin-top:1.5rem;
+                    a { color:$blue-700; font-weight:500;}
 
                 }
             }
         }
+    }
+}
+
+/* For Desktop View */
+@media screen and (min-width: 1024px) {
+    .authBg {
+        width: 100vw;
+        height: 100vh;
+        padding: 6% 20%;
+    }
+    .authBg::before {
+        content: "";
+        width: 50vw;
+        height: 100vh;
+
+    }
+    
+    .loginWrapper {
+        width: 100%;
+        height: 100%;
+
+        .loginCard {
+            width:100%;
+            height:100%;
+            padding:2.5rem;
+    
+            .authLogo {
+                width:10rem;
+            }
+    
+            .loginWrapper_main {
+                width: 100%;
+            }
+    
+            .left{
+                width: 50%;
+                padding:2.5rem 1rem;
+            }
+    
+            .right {
+                padding:1.5rem;
+                width:50%;
+                .input_div {
+                    width:80%;
+                    height:fit-content;
+                    padding:2rem;
+                    .loginUtility { margin:.5rem 0;
+                    }
+                    .creatAccount { font-size:1rem; }
+                    }
+                }
+            }
+        }
+    }
+ 
+/* For Tablet View */
+@media screen and (min-device-width: 768px)
+    and (max-device-width: 1024px) {
+    .loginWrapper {
+        .loginCard {
+            height:fit-content;
+            .authLogo {
+                  width:12rem;
+                  display:flex;
+                  margin:0 auto;  
+            }
+            .left {
+                display:none;
+                
+            }
+        }
+    }
+}
+ 
+/* For Mobile Portrait View */
+@media screen and (max-device-width: 480px)
+    and (orientation: portrait) {
+        .authBg{
+            padding:6%;
+        }
+        .loginWrapper {
+            .loginCard {
+                height:fit-content;
+                padding:1rem;
+                .authLogo {
+                    width:10rem;
+                    display:flex;
+                    margin:0 auto;  
+                }
+                .left {
+                    display:none;
+                }
+                .right {
+                    width:100%;
+                    padding: 1.25rem 0.5rem;
+                    .input_div {
+                        width:100%;
+                        padding:.75rem 1rem;
+                        .creatAccount {
+                            font-size:.75rem;
+                            margin-top:1rem;
+                        }
+                    }
+                }
+            }
+        }
+}
+ 
+/* For Mobile Landscape View */
+@media screen and (max-device-width: 640px)
+    and (orientation: landscape) {
+    .gfg-div {
+        width: 400px;
+        height: 200px;
+        background-color: cyan;
+        color: black;
+    }
+}
+ 
+/* For Mobile Phones Portrait or Landscape View */
+@media screen
+    and (max-device-width: 640px) {
+    .gfg-div {
+        width: 400px;
+        height: 200px;
+        background-color: chartreuse;
+        color: black;
     }
 }

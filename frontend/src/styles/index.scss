@@ -20,22 +20,9 @@ h1,h2,h3,h4 { font-weight:600!important; color:$blue-900; }
 input:-webkit-autofill {
     &:hover,
     &:focus,
-    &:active { box-shadow:0 0 0 40px $white inset !important; -webkit-box-shadow:0 0 0 40px $white inset !important; -webkit-text-fill-color:$black-80; }
+    &:active { box-shadow:0 0 0 40px transparent inset !important; -webkit-box-shadow:0 0 0 40px transparent inset !important; -webkit-text-fill-color:$black-80; }
 }
 
 a { text-decoration:none; }
 
-.authBg {
-    background-color: #EDF1FF;
-    width: 100vw;
-    height: 100vh;
-}
-.authBg::before {
-    content: "";
-    width: 50vw;
-    height: 100vh;
-    background-color:$primary-color;
-    position: absolute;
-    top: 0;
-    left: 0;
-}
+
