@@ -8,11 +8,7 @@ import Layout from "./components/layouts/Layout";
 import Unauthorized from "./pages/public/Unauthorized";
 import NotFound from "./pages/public/NotFound";
 import PersistLogin from "./config/PersistLogin";
-
-const Roles = {
-  'User': 'ROLE_USER',
-  'Admin': 'ROLE_ADMIN'
-}
+import { Roles } from "./constants";
 
 function App() {
   // Unlocking Innovation: Where Ideas Meet Code!
