@@ -3,6 +3,7 @@ import { DataGrid } from 'devextreme-react';
 import { Column, Pager, Paging, SearchPanel,Selection, Export } from 'devextreme-react/data-grid';
 import "./Dashboard.scss"
 import ODataStore from 'devextreme/data/odata/store';
+import * as XLSX from "xlsx";
 import { useDataGridExcelExport } from "../../hooks/useDatagridExcelExport";
 import Modal from "../../components/Modal";
 import Button from "../../components/ui-widgets/Button/Button";
@@ -53,13 +54,33 @@ const Dashboard = (props: Props) => {
     const [isOpen, setisOpen] = useState(false)
     const handleDataGridExportToExcel = useDataGridExcelExport('Demo');
     const [selectedFile, setSelectedFile] = useState({});
-    const handleIsOpen = () => {
-      setisOpen(prev => !prev)
-    }
+    const [blotterData, setBlotterData] = useState({});
+
+    useEffect(()=>{
+      setBlotterData(dataSourceOptions)
+    },[dataSourceOptions])
+
     useEffect(() => {
       console.log(selectedFile);
       
     },[selectedFile])
+
+
+    const handleFileUpload = (e: any) => {
+      const reader = new FileReader();
+      reader.readAsBinaryString(e.target.files[0]);
+      reader.onload = (e: any) => {
+        const data = e.target.result;
+        const workbook = XLSX.read(data, { type: "binary" });
+        const sheetName = workbook.SheetNames[0];
+        const sheet = workbook.Sheets[sheetName];
+        const parsedData = XLSX.utils.sheet_to_json(sheet);
+        setBlotterData(parsedData);
+      };
+    }
+    const handleIsOpen = () => {
+      setisOpen(prev => !prev)
+    }
 
     const onContentReady =(e: any) => {
       if (!collapsed) {
@@ -67,12 +88,7 @@ const Dashboard = (props: Props) => {
         setCollapsed(true);
       }
     }
-    const onFileChange = (e: any) => {
-      const newFile = e.target.files[0];
-      if (newFile) {
-          setSelectedFile(newFile)
-      }
-  }
+
   return (
     <div className="dashboard">
       <div className="leftNav">
@@ -141,7 +157,7 @@ const Dashboard = (props: Props) => {
         </div>
         <section>
           <DataGrid
-          dataSource={dataSourceOptions}
+          dataSource={blotterData}
           allowColumnReordering={true}
           rowAlternationEnabled={true}
           showBorders={true}
@@ -188,11 +204,15 @@ const Dashboard = (props: Props) => {
           <option value="customer">Customer Master Data</option>
           <option value="transactions">Transations</option>
         </select>
-        <DropFileInput onFileDrop={onFileChange} />
+        <DropFileInput onFileDrop={handleFileUpload} />
         <br />
         or
         <br />
-        <input type="file" name="" id="" onChange={onFileChange} />
+        <input 
+              type="file" 
+              accept=".xlsx, .xls" 
+              onChange={handleFileUpload} 
+            />
         <Button variant="danger" onClick={handleIsOpen} title='Close' />
       </Modal>
     </div>
