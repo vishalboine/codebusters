@@ -1,8 +1,9 @@
 import React, { useState } from "react"
 import { DataGrid } from 'devextreme-react';
-import { Column, Pager, Paging, SearchPanel,Selection } from 'devextreme-react/data-grid';
+import { Column, Pager, Paging, SearchPanel,Selection, Export } from 'devextreme-react/data-grid';
 import "./Dashboard.scss"
 import ODataStore from 'devextreme/data/odata/store';
+import { useDataGridExcelExport } from "../../hooks/useDatagridExcelExport";
 
 // export function DiscountCell(cellData) {
 //   return (
@@ -45,6 +46,7 @@ type Props = {}
 
 const Dashboard = (props: Props) => {
     const [collapsed, setCollapsed] = useState(false);
+    const handleDataGridExportToExcel = useDataGridExcelExport('Demo')
 
     const onContentReady =(e: any) => {
       if (!collapsed) {
@@ -132,6 +134,7 @@ const Dashboard = (props: Props) => {
           rowAlternationEnabled={true}
           showBorders={true}
           onContentReady={onContentReady}
+          onExporting={handleDataGridExportToExcel}
         >
           {/* <GroupPanel visible={true} /> */}
           <SearchPanel visible={true} highlightCaseSensitive={true} />
@@ -162,7 +165,7 @@ const Dashboard = (props: Props) => {
           <Column dataField="Sector" dataType="string" />
           <Column dataField="Channel" dataType="string" />
           <Column dataField="Customer" dataType="string" width={150} />
-
+          <Export enabled={true} allowExportSelectedData={false} />
           <Pager allowedPageSizes={pageSizes} showPageSizeSelector={true} />
           <Paging defaultPageSize={10} />
         </DataGrid>
