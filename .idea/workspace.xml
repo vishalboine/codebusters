@@ -5,18 +5,32 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="202533bf-bbb6-4f29-b81f-f01e7b36422b" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/backend/jwt-refresh-token/src/main/java/com/codebusters/entity/Role.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/jwt-refresh-token/src/main/java/com/codebusters/exception/ErrorResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/jwt-refresh-token/src/main/java/com/codebusters/advice/AuthExceptionHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/jwt-refresh-token/src/main/java/com/codebusters/advice/AuthExceptionHelper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/jwt-refresh-token/src/main/java/com/codebusters/config/UserInfoUserDetails.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/jwt-refresh-token/src/main/java/com/codebusters/config/UserInfoUserDetails.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/jwt-refresh-token/src/main/java/com/codebusters/config/UserInfoUserDetailsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/jwt-refresh-token/src/main/java/com/codebusters/config/UserInfoUserDetailsService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/jwt-refresh-token/src/main/java/com/codebusters/controller/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/jwt-refresh-token/src/main/java/com/codebusters/controller/AuthController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/jwt-refresh-token/src/main/java/com/codebusters/exception/UserAlreadyExists.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/jwt-refresh-token/src/main/java/com/codebusters/exception/UserAlreadyExists.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/jwt-refresh-token/src/main/java/com/codebusters/dto/AuthRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/jwt-refresh-token/src/main/java/com/codebusters/dto/AuthRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/jwt-refresh-token/src/main/java/com/codebusters/dto/JwtResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/jwt-refresh-token/src/main/java/com/codebusters/dto/JwtResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/jwt-refresh-token/src/main/java/com/codebusters/dto/UserResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/jwt-refresh-token/src/main/java/com/codebusters/dto/UserResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/jwt-refresh-token/src/main/java/com/codebusters/entity/UserInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/jwt-refresh-token/src/main/java/com/codebusters/entity/UserInfo.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/jwt-refresh-token/src/main/java/com/codebusters/repository/UserInfoRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/jwt-refresh-token/src/main/java/com/codebusters/repository/UserInfoRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/jwt-refresh-token/src/main/java/com/codebusters/service/JwtService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/jwt-refresh-token/src/main/java/com/codebusters/service/JwtService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/jwt-refresh-token/src/main/java/com/codebusters/service/RefreshTokenService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/jwt-refresh-token/src/main/java/com/codebusters/service/RefreshTokenService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/jwt-refresh-token/src/main/java/com/codebusters/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/jwt-refresh-token/src/main/java/com/codebusters/service/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/jwt-refresh-token/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/backend/jwt-refresh-token/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/jwt-refresh-token/src/main/resources/banner.txt" beforeDir="false" afterPath="$PROJECT_DIR$/backend/jwt-refresh-token/src/main/resources/banner.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/jwt-refresh-token/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/backend/jwt-refresh-token/target/classes/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/jwt-refresh-token/target/classes/com/codebusters/advice/AuthExceptionHelper.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/jwt-refresh-token/target/classes/com/codebusters/advice/AuthExceptionHelper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/jwt-refresh-token/target/classes/com/codebusters/config/UserInfoUserDetails.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/jwt-refresh-token/target/classes/com/codebusters/config/UserInfoUserDetails.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/jwt-refresh-token/target/classes/com/codebusters/config/UserInfoUserDetailsService.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/jwt-refresh-token/target/classes/com/codebusters/config/UserInfoUserDetailsService.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/jwt-refresh-token/target/classes/com/codebusters/controller/AuthController.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/jwt-refresh-token/target/classes/com/codebusters/controller/AuthController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/jwt-refresh-token/target/classes/com/codebusters/dto/JwtResponse$JwtResponseBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/jwt-refresh-token/target/classes/com/codebusters/dto/JwtResponse$JwtResponseBuilder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/jwt-refresh-token/target/classes/com/codebusters/dto/JwtResponse.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/jwt-refresh-token/target/classes/com/codebusters/dto/JwtResponse.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/jwt-refresh-token/target/classes/com/codebusters/dto/UserResponse$UserResponseBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/jwt-refresh-token/target/classes/com/codebusters/dto/UserResponse$UserResponseBuilder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/jwt-refresh-token/target/classes/com/codebusters/dto/UserResponse.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/jwt-refresh-token/target/classes/com/codebusters/dto/UserResponse.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/jwt-refresh-token/target/classes/com/codebusters/entity/UserInfo.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/jwt-refresh-token/target/classes/com/codebusters/entity/UserInfo.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/jwt-refresh-token/target/classes/com/codebusters/repository/UserInfoRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/jwt-refresh-token/target/classes/com/codebusters/repository/UserInfoRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/jwt-refresh-token/target/classes/com/codebusters/service/JwtService.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/jwt-refresh-token/target/classes/com/codebusters/service/JwtService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/jwt-refresh-token/target/classes/com/codebusters/service/RefreshTokenService.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/jwt-refresh-token/target/classes/com/codebusters/service/RefreshTokenService.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/jwt-refresh-token/target/classes/com/codebusters/service/UserService.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/jwt-refresh-token/target/classes/com/codebusters/service/UserService.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -27,6 +41,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Enum" />
         <option value="Class" />
       </list>
     </option>
@@ -54,14 +69,19 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "auth-change",
-    "settings.editor.selected.configurable": "reference.settings.project.maven.importing"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;auth-change&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.project.maven.importing&quot;
   }
-}]]></component>
+}</component>
+  <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="com.codebusters.entity" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration name="SpringSecurityLatestApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.codebusters.SpringSecurityLatestApplication" />

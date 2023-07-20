@@ -1,6 +1,7 @@
 package com.codebusters.service;
 
 import com.codebusters.dto.UserResponse;
+import com.codebusters.entity.Role;
 import com.codebusters.entity.UserInfo;
 import com.codebusters.repository.UserInfoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,9 +21,9 @@ public class UserService {
 
     public UserResponse getUser(int id) {
         UserInfo userById = repository.findById(id).get();
-        return UserResponse.builder().name(userById.getName())
+        return UserResponse.builder().username(userById.getUsername())
                 .email(userById.getEmail())
-                .roles(userById.getRoles()).build();
+                .roles(userById.getRoles().toString()).build();
     }
 
 
@@ -34,5 +35,14 @@ public class UserService {
 
     public boolean checkIfPresent(String email) {
        return repository.findByEmail(email).isPresent();
+    }
+
+    public UserResponse findUser(String username) {
+        UserInfo userInfo = repository.findByUsername(username).get();
+        UserResponse user = UserResponse.builder()
+                .email(userInfo.getEmail())
+                .username(userInfo.getUsername())
+                .roles(userInfo.getRoles().toString()).build();
+        return user;
     }
 }

@@ -1,5 +1,6 @@
 package com.codebusters.dto;
 
+import com.codebusters.entity.UserInfo;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -13,4 +14,6 @@ public class JwtResponse {
 
     private String accessToken;
     private String token;
+    private UserResponse user;
+
 }

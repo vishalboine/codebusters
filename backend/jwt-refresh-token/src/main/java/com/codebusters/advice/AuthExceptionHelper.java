@@ -1,6 +1,7 @@
 package com.codebusters.advice;
 
 
+import com.codebusters.exception.ErrorResponse;
 import com.codebusters.exception.UserAlreadyExists;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,7 +12,10 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 public class AuthExceptionHelper {
 
     @ExceptionHandler(UserAlreadyExists.class)
-    public ResponseEntity<String> userAlreadyExists(UserAlreadyExists userAlreadyExists){
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("User Already Exists");
+    public ResponseEntity<ErrorResponse> userAlreadyExists(UserAlreadyExists userAlreadyExists){
+
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ErrorResponse.builder()
+                .error(userAlreadyExists.getMessage())
+                .build());
     }
 }
