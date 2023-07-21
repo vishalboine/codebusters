@@ -1,31 +1,49 @@
 @import "./iwVariables";
 // @import "./formElemets";
 
+.dx-datagrid { color:$blue-900!important;  }
 .dx-datagrid-borders > .dx-datagrid-headers, .dx-datagrid-borders > .dx-datagrid-rowsview, .dx-datagrid-borders > .dx-datagrid-total-footer { border:1px solid $white-93!important; }
+.dx-datagrid-borders > .dx-datagrid-header-panel { height:0; }
 
 .dx-datagrid-headers { background:$white; border-bottom:none!important; border-radius:.5rem .5rem 0 0; overflow:hidden; }
 .dx-datagrid .dx-datagrid-headers .dx-header-row { background:$white-98; height:44px; }
 .dx-header-row > td > .dx-datagrid-text-content:not(.dx-sort-indicator):not(.dx-header-filter-indicator) { color:$gray-mute!important; font-weight:600!important;  }
-.dx-datagrid .dx-datagrid-headers .dx-header-row > td { border-left: 1px solid $white-98 !important; border-right:none !important; }
+.dx-datagrid .dx-datagrid-headers .dx-header-row > td { border-left:1px solid $white-98 !important; border-right:none !important; }
 .dx-datagrid-content .dx-datagrid-table .dx-row > td, .dx-datagrid-content .dx-datagrid-table .dx-row > tr > td { vertical-align:middle!important; }
 .dx-datagrid .dx-row > td { padding:10px 12px!important; }
 
-.dx-datagrid-header-panel { display:flex; justify-content: center; }
-.dx-datagrid-header-panel .dx-toolbar { display:flex; justify-content:center; width:30rem!important; }
-.dx-toolbar { position:absolute; background:none!important; top:-6.75rem; }
-.dx-toolbar-items-container { width:30rem!important; }
-.dx-texteditor.dx-editor-outlined { background:none!important; border:none!important; width:30rem!important; border-radius:.5rem!important; }
-.dx-texteditor-input { background:$blue-50!important; border:1px solid $blue-100!important; width:30rem!important; border-radius:.5rem!important;min-height:40px; padding:10px 12px 10px 2rem!important; color:$blue-900; }
+.dx-datagrid-header-panel { display:flex; justify-content:center; }
+.dx-datagrid-header-panel .dx-toolbar { display:flex; justify-content:center; /*width:30%!important;*/ }
+.dx-toolbar { position:relative; background:none!important; top:-6.75rem; }
+.dx-toolbar-after, .dx-toolbar-before { position:relative!important; display:flex!important; width:00%; justify-content:space-between; top:2px!important; margin:0 0; }
+.dx-toolbar-after { width:100%; }
+.dx-toolbar-after .dx-toolbar-item:first-child { display:none; }
+.dx-toolbar-items-container { display:flex; margin:0 7% 0 36%; }
+.dx-toolbar .dx-toolbar-after { padding-left:0!important; }
+.dx-texteditor.dx-editor-outlined { background:$blue-50!important; border:none!important; width:30em!important; border-radius:.5rem!important;
+&:focus { box-shadow:none!important; }
+ }
+ .dx-datagrid-search-panel { margin-left:0!important; }
+.dx-texteditor-input { background:none!important; border:1px solid $blue-100!important; /*width:30rem!important;*/ border-radius:.5rem!important;min-height:40px; padding:12px 12px 12px 2rem!important; color:$blue-900; }
 .dx-searchbox .dx-icon-search { color:$gray-mute!important; font-size:1.25rem!important; }
 .dx-searchbox .dx-icon-search::before,.dx-placeholder { color:$gray-mute!important; }
+.dx-show-clear-button .dx-clear-button-area { right:40px!important; }
 
 .dx-texteditor.dx-state-focused.dx-editor-outlined { border:none!important; border-radius:.5rem; }
 .dx-texteditor.dx-state-hover { border:none!important; border-radius:.5rem; }
 
-.dx-datagrid .dx-row-alt > td, .dx-datagrid .dx-row-alt > tr > td { background:$blue-10!important;}
+.dx-datagrid .dx-row-alt > td, .dx-datagrid .dx-row-alt > tr > td { background:#f0f3ff!important;}
 
 .dx-datagrid-headers .dx-datagrid-table .dx-row > td { border-bottom:none; }
-.dx-datagrid .dx-column-lines > td { border: none!important; }
+.dx-datagrid .dx-column-lines > td { border:none!important; }
 
+.dx-button-mode-contained { border-radius:.5rem; border-color:$blue-700!important; background-color:$white!important; }
+.dx-button-has-text .dx-button-content { padding:12px 16px!important; }
+.dx-button { border-radius:.5rem!important; }
+.dx-button-text { font-weight:500; font-size:1rem; line-height:1rem!important; color:$blue-700; }
+
+.dx-datagrid-borders .dx-datagrid-rowsview, .dx-datagrid-headers + .dx-datagrid-rowsview { overflow-y:auto; height:68vh; }
+
+// Pagination
 .dx-pager .dx-page-sizes .dx-selection, .dx-pager .dx-pages .dx-selection{ background:$secondary-color!important; color:$white!important; }
-.dx-toolbar .dx-toolbar-menu-container { display: none; }
+.dx-toolbar .dx-toolbar-menu-container { display:none; }

@@ -54,7 +54,7 @@ const Register = () => {
             <div className="right">
 
               <div className="input_div">
-                <h2>Register Now</h2>
+                <h2>Create an account</h2>
                 <Input
                   placeholder="Enter Username"
                   label="Username"
@@ -83,7 +83,7 @@ const Register = () => {
                 <br />
                 <Button onClick={onHandleClick} title="Register" className="btn btn-primary" />
                 <div className="creatAccount">
-                  New user? <Link to="/login"> Login</Link>
+                  Already have an account? <Link to="/login"> Login</Link>
                 </div>
               </div>
             </div>

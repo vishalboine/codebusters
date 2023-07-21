@@ -7,7 +7,8 @@
     background:$blue-700;
     width:100%;
     height:100vh;
-    padding-top: 1.5rem;
+    overflow-x:hidden;
+    padding-top:1.5rem;
     .leftNav {
         display:flex;
         flex-direction:column;
@@ -26,9 +27,9 @@
             padding-top:1rem;
             flex-direction:column;
             padding-top:2rem;
-            align-items: flex-start;
-            gap: 24px;
-            align-self: stretch;
+            align-items:flex-start;
+            gap:24px;
+            align-self:stretch;
             li {
                 display:flex;
                 justify-content:center;
@@ -39,8 +40,8 @@
                 color:$blue-200;
                 border-radius:.5rem;
                 list-style-type:none;
-                transition: .6s;
-                cursor: pointer;
+                transition:.6s;
+                cursor:pointer;
                 &:hover{
                     border:1px solid $blue-100;
                 }
@@ -65,24 +66,130 @@
         width:96%;
         background:$white;
         border-top-left-radius:2rem;
-        padding: 1.5rem 4rem;
+        padding:1.5rem 2%;
 
         .topBar {
             display:flex;
-            flex-direction: row;
+            flex-direction:row;
             justify-content:space-between;
+            align-items:end;
+
+            .profileInfo {
+                h2 {}
+            }
             
-            .btn-import { background:$blue-700; color:$white; transition:background .3s;
-                .svg-icon {
-                    position: relative;
-                    top: .25rem;
+            .globalSearch { width:80%; }
+            
+            .btn-import { background:$blue-700; color:$white; transition:ease-in .3s;
+                img {
+                    position:relative;
                     margin-right:.5rem;
-                    transition: fill .3s;
+                    transition:fill .3s;
                 }
+                caption { font-size:1rem; }
                 &:hover { background:$primary-color; }
             }
         }
 
         section { padding:4rem 0; }
     }
+}
+
+/* For Desktop View */
+@media screen and (min-width:1440px)
+    and (max-device-width:1600px) {
+    .dashboard {
+        .rightPanel {
+            .topBar {
+                .profileInfo {
+                    h2 { font-size:1.75rem; }
+                }
+                .btn-import {
+                }
+            }
+        }
+    }
+    .dx-texteditor.dx-editor-outlined {
+        width:32em!important;
+    }
+    .dx-toolbar-items-container { margin:0 10% 0 32%; }
+ }
+
+@media screen and (min-width:1024px)
+    and (max-device-width:1400px) {
+    .dashboard {
+        .rightPanel {
+            .topBar {
+                .profileInfo {
+                    h2 { font-size:1.75rem; }
+                }
+                .btn-import {
+                }
+            }
+        }
+    }
+    .dx-texteditor.dx-editor-outlined {
+        width:28em!important;
+    }
+    .dx-toolbar-items-container { margin:0 14% 0 26%; }
+ }
+
+/* For Tablet View */
+@media screen and (min-device-width:768px)
+    and (max-device-width:1023px) {
+        .dashboard {
+            .rightPanel {
+                .topBar {
+                    .profileInfo {
+                        h2 { font-size:1.75rem; }
+                    }
+                    .btn-import {
+                        img { margin-right:0; }
+                        caption { display:none;}
+                    }
+                }
+            }
+        }
+        .dx-texteditor.dx-editor-outlined {
+            width:24em!important;
+        }
+        .dx-toolbar-items-container { margin:0 10% 0 26%; }
+        .dx-button-has-text .dx-icon { margin-right:0!important; }
+        .dx-button-text { display:none; }
+}
+ 
+/* For Mobile Portrait View */
+@media screen and (max-device-width:480px)
+    and (orientation:portrait) {
+      .dashboard {
+        justify-content:center;
+        position:relative;
+        .rightPanel {
+            section{
+                padding:2% 0;
+                .dx-light-pages {
+                    input.dx-texeditor-input{
+                        padding-left:.5rem;
+                    }
+                }
+            }
+        }
+        .leftNav {
+            display:inline-flex;
+            flex-direction:row;
+            position:fixed;
+            bottom:0;
+            width:100%;
+            height:60px;
+            padding:.5rem;
+            .head { display:none; }
+            .navMenu {
+                display:inline-flex;
+                justify-content:space-between;
+                gap:.75rem;
+                padding-top:0;
+                flex-direction:row;
+            }
+        }
+      }
 }
