@@ -1,4 +1,4 @@
-input {
+input, select {
     outline:none;
     font-size:1rem;
     font-weight:400;
@@ -11,8 +11,17 @@ input {
     &:focus { box-shadow:0 0 0 .15rem rgba($blue-200, .6);}
 }
 
-button { outline:none;  border:none; cursor:pointer;
-    &.btn { padding:10px 16px; border-radius:.5rem; font-size:1rem; }
+option {
+   padding: 10px 12px;
+   color:$blue-800;
+   &:hover{
+    background:$secondary-color;
+    color: $white;
+   }
+}
+
+button { display:flex; outline:none;  border:none; cursor:pointer;
+    &.btn { padding:12px 16px; border-radius:.5rem; font-size:1rem; justify-content:center; }
     &.btn-primary { background:$primary-color; color:$white;
         &:hover { background:$secondary-color; }
     }

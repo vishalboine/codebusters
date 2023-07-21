@@ -9,29 +9,8 @@ import Modal from "../../components/Modal";
 import Button from "../../components/ui-widgets/Button/Button";
 import DropFileInput from "../../components/DropInputFile";
 import uploadImg from "../../assets/images/upload.svg"
+import exportImg from "../../assets/images/export.svg"
 
-// export function DiscountCell(cellData) {
-//   return (
-//     <Bullet
-//       showTarget={false}
-//       showZeroLevel={true}
-//       value={cellData.value * 100}
-//       startScaleValue={0}
-//       endScaleValue={100}
-//     >
-//       <Size width={150} height={35} />
-//       <Margin top={5} bottom={0} left={5} />
-//       <Tooltip
-//         enabled={true}
-//         paddingTopBottom={2}
-//         zIndex={5}
-//         customizeTooltip={customizeTooltip}
-//       >
-//         <Font size={18} />
-//       </Tooltip>
-//     </Bullet>
-//   );
-// }
 
 const dataSourceOptions = {
   store: new ODataStore({
@@ -96,7 +75,8 @@ const Dashboard = (props: Props) => {
           location: "after",
           widget: "dxButton",
           options: {
-              icon: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/Microsoft_Office_Excel_%282019%E2%80%93present%29.svg/826px-Microsoft_Office_Excel_%282019%E2%80%93present%29.svg.png",
+              icon: "https://www.figma.com/file/rmPGhggUM4sQpyfklStGDT/ImportWizard?type=design&node-id=259-16012&mode=design&t=7IWtcna47mDoso80-4",
+              text: "Export",
               onClick: () => {
                   handleDataGridExportToExcel(e)
               },
@@ -161,13 +141,11 @@ const Dashboard = (props: Props) => {
           <div className="profileInfo">
             <h2>Hello,David</h2>
           </div>
-          {/* <div className="globalSearch">
-            <input placeholder="Search"></input>
-          </div> */}
+          <div className="globalSearch"></div>
             <Button onClick={handleIsOpen} className="btn btn-import" title={
               <>
                 <img src={uploadImg} alt="" />
-                Import
+               <caption>Import</caption>
               </>
             } />
         </div>
