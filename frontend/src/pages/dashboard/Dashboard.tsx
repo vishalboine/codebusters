@@ -82,7 +82,10 @@ const Dashboard = (props: Props) => {
   }
 
   return (
-    <div>
+    <div className="dashboardWrapper">
+      <div className="welcome-msg">
+        <h2>Welcome, David</h2>
+      </div>
       <div className="import-btn">
         <Button  onClick={handleIsOpen} title={
           <>
@@ -123,7 +126,7 @@ const Dashboard = (props: Props) => {
             <Column dataField="Channel" dataType="string" />
             <Column dataField="Customer" dataType="string" width={150} />
             <Export enabled={true} />
-            <Pager allowedPageSizes={pageSizes} showPageSizeSelector={true} />
+            <Pager visible={true} allowedPageSizes={pageSizes} showPageSizeSelector={true} />
             <Paging defaultPageSize={10} />
           </DataGrid>
         </section>
