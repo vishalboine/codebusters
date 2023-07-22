@@ -9,7 +9,7 @@ import Modal from "../../components/Modal";
 import Button from "../../components/ui-widgets/Button/Button";
 import DropFileInput from "../../components/DropInputFile";
 import uploadImg from "../../assets/images/upload.svg"
-import exportImg from "../../assets/images/export.svg"
+import Dropdown from "../../components/widgets/DropDown/Dropdown";
 
 
 const dataSourceOptions = {
@@ -32,17 +32,13 @@ const Dashboard = (props: Props) => {
     const [collapsed, setCollapsed] = useState(false);
     const [isOpen, setisOpen] = useState(false)
     const handleDataGridExportToExcel = useDataGridExcelExport('Demo');
-    const [selectedFile, setSelectedFile] = useState({});
     const [blotterData, setBlotterData] = useState({});
-
+    const [isDropDownOpen, setIsDropDownOpen] = useState(false);
+    const list = ['January', 'Feburary', 'March', 'April', 'May'];
+    const [selectedItem, setSelectedItem] = useState('');
     useEffect(()=>{
       setBlotterData(dataSourceOptions)
     },[dataSourceOptions])
-
-    useEffect(() => {
-      console.log(selectedFile);
-      
-    },[selectedFile])
 
 
     const handleFileUpload = (e: any) => {
@@ -58,7 +54,7 @@ const Dashboard = (props: Props) => {
       };
     }
     const handleIsOpen = () => {
-      setisOpen(prev => !prev)
+      setisOpen((prev:any) => !prev)
     }
 
     const onContentReady =(e: any) => {
@@ -195,10 +191,13 @@ const Dashboard = (props: Props) => {
         </section>
       </div>
       <Modal isOpen={isOpen} handleClose={handleIsOpen}>
-        <select name="" id="" value='Transactions'>
-          <option value="customer">Customer Master Data</option>
-          <option value="transactions">Transations</option>
-        </select>
+        <Dropdown 
+          list={list} 
+          isDropDownOpen={isDropDownOpen} 
+          selectedItem={selectedItem}
+          setIsDropDownOpen={setIsDropDownOpen}
+          setSelectedItem={setSelectedItem}
+        />
         <DropFileInput onFileDrop={handleFileUpload} />
         <br />
         or
