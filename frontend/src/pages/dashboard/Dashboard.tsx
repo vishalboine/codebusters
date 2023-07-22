@@ -28,6 +28,19 @@ const pageSizes = [10, 25, 50, 100];
 
 type Props = {}
 
+let initalBlotterColumns:any = ['Product', 'Amount', 'SalesDate', 'Region', 'Sector', 'Channel', 'Customer']
+// const excelColumns:any = ['Abc', 'Xyz', "Pqr"]
+// let columnMap :any = {'Product': 'Abc', 'Amount':'Xyz', 'SalesDate': 'Pqr' }
+// console.log('columnMap',columnMap['Product'])
+
+
+// Object.keys(columnMap).map((data:any)=>{
+  // let temp = initalBlotterColumns.filter((ele:any) => Object.keys(columnMap).includes(ele))
+  // temp = Object.values(columnMap)
+  // initalBlotterColumns = temp
+// })
+// console.log('initalBlotterColumns', initalBlotterColumns)
+
 const Dashboard = (props: Props) => {
     const [collapsed, setCollapsed] = useState(false);
     const [isOpen, setisOpen] = useState(false)
@@ -36,6 +49,8 @@ const Dashboard = (props: Props) => {
     const [isDropDownOpen, setIsDropDownOpen] = useState(false);
     const list = ['January', 'Feburary', 'March', 'April', 'May'];
     const [selectedItem, setSelectedItem] = useState('');
+    const [excelColunms, setExcelColumns] = useState([]);
+    const [blotterColumns, setBlotterColumns] = useState(initalBlotterColumns);
     useEffect(()=>{
       setBlotterData(dataSourceOptions)
     },[dataSourceOptions])
@@ -43,6 +58,7 @@ const Dashboard = (props: Props) => {
 
     const handleFileUpload = (e: any) => {
       const reader = new FileReader();
+      let tempArr : any = []
       reader.readAsBinaryString(e.target.files[0]);
       reader.onload = (e: any) => {
         const data = e.target.result;
@@ -51,6 +67,10 @@ const Dashboard = (props: Props) => {
         const sheet = workbook.Sheets[sheetName];
         const parsedData = XLSX.utils.sheet_to_json(sheet);
         setBlotterData(parsedData);
+        parsedData.forEach((item:any)=>{
+          tempArr = Object.keys(item)
+        })
+        setExcelColumns(tempArr)
       };
     }
     const handleIsOpen = () => {
@@ -108,11 +128,11 @@ const Dashboard = (props: Props) => {
             {/* <GroupPanel visible={true} /> */}
             <SearchPanel visible={true} highlightCaseSensitive={true} />
             {/* <Grouping autoExpandAll={false} /> */}
-            <Selection
+            {/* <Selection
               mode="single"
-              selectAllMode="page" />
+              selectAllMode="page" /> */}
 
-            <Column dataField="Product" />
+            {/* <Column dataField="Product" />
             <Column
               dataField="Amount"
               caption="Sale Amount"
@@ -124,7 +144,9 @@ const Dashboard = (props: Props) => {
             <Column dataField="Region" dataType="string" />
             <Column dataField="Sector" dataType="string" />
             <Column dataField="Channel" dataType="string" />
-            <Column dataField="Customer" dataType="string" width={150} />
+            <Column dataField="Customer" dataType="string" width={150} /> */}
+            {blotterColumns.map((item : any)=>{
+            return <Column dataField={item}/>})}
             <Export enabled={true} />
             <Pager visible={true} allowedPageSizes={pageSizes} showPageSizeSelector={true} />
             <Paging defaultPageSize={10} />
