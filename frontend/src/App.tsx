@@ -9,6 +9,7 @@ import Unauthorized from "./pages/public/Unauthorized";
 import NotFound from "./pages/public/NotFound";
 import PersistLogin from "./config/PersistLogin";
 import { Roles } from "./constants";
+import Settings from "./pages/settings/Settings";
 
 function App() {
   // Unlocking Innovation: Where Ideas Meet Code!
@@ -22,7 +23,7 @@ function App() {
 
           <Route element={<Layout />}>
             <Route path="/" element={<Dashboard />} />
-            <Route path="/settings" element={<Dashboard />} />
+            <Route path="/settings" element={<Settings />} />
           </Route>
         {/* private routes */}
         <Route element={<PersistLogin />}>

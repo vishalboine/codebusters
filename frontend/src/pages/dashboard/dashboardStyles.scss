@@ -41,21 +41,35 @@
     }
     .rightPanel {
         background-color: white;
-        padding-top: 10rem;
         margin-top: 1.5rem;
         width: 96%;
         overflow-y: scroll;
         position: relative;
 
-        .import-btn {
-            width: fit-content;
-            position: absolute;
-            right: 0;
-            top:45px;
+        .dashboardWrapper {
+            padding-top: 7rem;
+
+            .welcome-msg {
+                position: absolute;
+                top: 1.4rem;
+                left: 1rem;
+                
+                h2 {
+                    font-weight: 400;
+                    color: $primary-color;
+                }
+            }
+            .import-btn {
+                width: fit-content;
+                position: absolute;
+                right: 0;
+                top: 0.8rem;
+            }
+    
+            section {
+                padding: 1rem;
+            }
         }
 
-        section {
-            padding: 1rem;
-        }
     }
 }
