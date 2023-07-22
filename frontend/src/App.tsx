@@ -14,13 +14,16 @@ function App() {
   // Unlocking Innovation: Where Ideas Meet Code!
   return (
     <Routes>
-      <Route path="/" element={<Layout />}>
 
         {/* public routes */}
         <Route path="login" element={<Login />} />
         <Route path="register" element={<Register />} />
         <Route path="unauthorized" element={<Unauthorized />} />
+
+          <Route element={<Layout />}>
             <Route path="/" element={<Dashboard />} />
+            <Route path="/settings" element={<Dashboard />} />
+          </Route>
         {/* private routes */}
         <Route element={<PersistLogin />}>
           <Route element={<RequireAuth allowedRoles={[Roles.Admin]} />}>
@@ -28,8 +31,6 @@ function App() {
         </Route>
         {/* catch all */}
         <Route path="*" element={<NotFound />} />
-
-      </Route>
     </Routes>
   )
 }
