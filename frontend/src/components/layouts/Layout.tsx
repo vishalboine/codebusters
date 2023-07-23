@@ -17,19 +17,19 @@ const Layout = () => {
     {
       key: 1,
       logo: <RiHome6Line size={26} />,
-      activeLogo: <RiHome7Fill />,
+      activeLogo: <RiHome7Fill size={26} />,
       to: '/'
     },
     {
       key: 2,
       logo: <RiSettings5Line size={26} />,
-      activeLogo: <RiSettings5Fill />,
+      activeLogo: <RiSettings5Fill size={26} />,
       to: '/settings'
     },
     {
       key: 3,
       logo: <RiAdminLine size={26} />,
-      activeLogo: <RiAdminFill />,
+      activeLogo: <RiAdminFill size={26} />,
       to: '/admin'
     }
   ]
@@ -43,7 +43,7 @@ const Layout = () => {
         <div className="navItems">
           { navItems.map((item: any) => (
             <Link className={`navItem ${item.to === pathname ? 'active' : ''}`} to={item.to} key={item.key}>
-              {item.logo}
+              {item.to === pathname ? item. activeLogo : item.logo}
             </Link>
           ))}
           <IconButton onClick={handleIsOpen} className='navItem' aria-label="logout">
