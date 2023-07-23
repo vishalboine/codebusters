@@ -11,8 +11,6 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class UserService {
-
-
     @Autowired
     private UserInfoRepository repository;
 
@@ -22,9 +20,9 @@ public class UserService {
 
     public UserResponse getUser(int id) {
         UserInfo userById = repository.findById(id).get();
-        return UserResponse.builder().name(userById.getName())
+        return UserResponse.builder().username(userById.getUsername())
                 .email(userById.getEmail())
-                .roles(userById.getRoles()).build();
+                .role(userById.getRoles().toString()).build();
     }
 
 
@@ -32,5 +30,18 @@ public class UserService {
         userInfo.setPassword(passwordEncoder.encode(userInfo.getPassword()));
         repository.save(userInfo);
         return ResponseEntity.status(HttpStatus.CREATED).body("User Created");
+    }
+
+    public boolean checkIfPresent(String email) {
+       return repository.findByEmail(email).isPresent();
+    }
+
+    public UserResponse findUser(String username) {
+        UserInfo userInfo = repository.findByUsername(username).get();
+        UserResponse user = UserResponse.builder()
+                .email(userInfo.getEmail())
+                .username(userInfo.getUsername())
+                .role(userInfo.getRoles().toString()).build();
+        return user;
     }
 }

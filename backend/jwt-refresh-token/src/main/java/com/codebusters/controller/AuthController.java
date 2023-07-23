@@ -1,9 +1,8 @@
 package com.codebusters.controller;
 
-import com.codebusters.dto.AuthRequest;
-import com.codebusters.dto.JwtResponse;
-import com.codebusters.dto.RefreshTokenRequest;
-import com.codebusters.dto.UserResponse;
+import com.codebusters.dto.*;
+import com.codebusters.entity.Role;
+import com.codebusters.exception.UserAlreadyExists;
 import com.codebusters.entity.RefreshToken;
 import com.codebusters.entity.UserInfo;
 import com.codebusters.service.JwtService;
@@ -34,15 +33,27 @@ public class AuthController {
     private AuthenticationManager authenticationManager;
 
 
-    @PostMapping("/``signup``")
-    public ResponseEntity<String> addNewUser(@RequestBody UserInfo userInfo) {
+    @PostMapping("/signup")
+    public ResponseEntity<String> addNewUser(@RequestBody UserRequest userRequest) {
+
+        UserInfo userInfo = UserInfo.builder()
+                .username(userRequest.getUsername())
+                .password(userRequest.getPassword())
+                .email(userRequest.getPassword())
+                .roles(userRequest.getRole()).build();
+
+        if( service.checkIfPresent(userInfo.getEmail()) || userInfo.getUsername().isEmpty()){
+            throw new UserAlreadyExists("User with below Email Already Exists");
+        }
+        if(userInfo.getRoles() == null || userInfo.getRoles() != Role.ROLE_ADMIN)
+            userInfo.setRoles(Role.ROLE_USER);
         return service.addUser(userInfo);
     }
 
 
     @GetMapping("/{id}")
     @PreAuthorize("hasAuthority('ROLE_USER')")
-    public UserResponse getProductById(@PathVariable int id) {
+    public UserResponse getUserById(@PathVariable int id) {
         return service.getUser(id);
     }
 
@@ -52,8 +63,10 @@ public class AuthController {
         Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(authRequest.getUsername(), authRequest.getPassword()));
         if (authentication.isAuthenticated()) {
             RefreshToken refreshToken = refreshTokenService.createRefreshToken(authRequest.getUsername());
+            UserResponse user = service.findUser(authRequest.getUsername());
             return JwtResponse.builder()
                     .accessToken(jwtService.generateToken(authRequest.getUsername()))
+                    .user(user)
                     .token(refreshToken.getToken()).build();
         } else {
             throw new UsernameNotFoundException("invalid user request !");
@@ -66,7 +79,7 @@ public class AuthController {
                 .map(refreshTokenService::verifyExpiration)
                 .map(RefreshToken::getUserInfo)
                 .map(userInfo -> {
-                    String accessToken = jwtService.generateToken(userInfo.getName());
+                    String accessToken = jwtService.generateToken(userInfo.getUsername());
                     return JwtResponse.builder()
                             .accessToken(accessToken)
                             .token(refreshTokenRequest.getToken())
@@ -74,6 +87,4 @@ public class AuthController {
                 }).orElseThrow(() -> new RuntimeException(
                         "Refresh token is not in database!"));
     }
-
-
 }
