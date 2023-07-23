@@ -9,7 +9,7 @@ module.exports = {
     target: "web",
     output: {
         path: path.resolve(__dirname, "build"),
-        filename: "[name].[contenthash].js",
+        filename: "bundle.js",
         clean: true,
     },
     devtool: 'inline-source-map',

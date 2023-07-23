@@ -65,12 +65,14 @@
                 align-items:end;
     
                 .welcome-msg {
+                    width: fit-content;
                     h2 {
                         font-weight:400;
                         color:$blue-800;
                     }
                 }
                 .import-btn {
+                    z-index: 9999;
                     width:fit-content;
                     background:$blue-700; color:$white; transition:ease-in .3s;
                     img {

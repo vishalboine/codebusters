@@ -9,7 +9,7 @@ import Modal from "../../components/Modal";
 import Button from "../../components/ui-widgets/Button/Button";
 import DropFileInput from "../../components/DropInputFile";
 import uploadImg from "../../assets/images/upload.svg"
-import Dropdown from "../../components/widgets/DropDown/Dropdown";
+import { FormControl, Select, MenuItem } from "@mui/material";
 
 
 const dataSourceOptions = {
@@ -46,9 +46,6 @@ const Dashboard = (props: Props) => {
     const [isOpen, setisOpen] = useState(false)
     const handleDataGridExportToExcel = useDataGridExcelExport('Demo');
     const [blotterData, setBlotterData] = useState({});
-    const [isDropDownOpen, setIsDropDownOpen] = useState(false);
-    const list = ['January', 'Feburary', 'March', 'April', 'May'];
-    const [selectedItem, setSelectedItem] = useState('');
     const [excelColunms, setExcelColumns] = useState([]);
     const [blotterColumns, setBlotterColumns] = useState(initalBlotterColumns);
     useEffect(()=>{
@@ -128,26 +125,7 @@ const Dashboard = (props: Props) => {
             onToolbarPreparing={onToolbarPreparing}
             height={450}
           >
-            {/* <GroupPanel visible={true} /> */}
             <SearchPanel visible={true} highlightCaseSensitive={true} />
-            {/* <Grouping autoExpandAll={false} /> */}
-            {/* <Selection
-              mode="single"
-              selectAllMode="page" /> */}
-
-            {/* <Column dataField="Product" />
-            <Column
-              dataField="Amount"
-              caption="Sale Amount"
-              dataType="number"
-              format="currency"
-              alignment="right"
-            />
-            <Column dataField="SaleDate" dataType="date" />
-            <Column dataField="Region" dataType="string" />
-            <Column dataField="Sector" dataType="string" />
-            <Column dataField="Channel" dataType="string" />
-            <Column dataField="Customer" dataType="string" width={150} /> */}
             {blotterColumns.map((item : any)=>{
             return <Column dataField={item}/>})}
             <Export enabled={true} />
@@ -156,23 +134,45 @@ const Dashboard = (props: Props) => {
           </DataGrid>
         </section>
       <Modal isOpen={isOpen} handleClose={handleIsOpen}>
-        <Dropdown 
-          list={list} 
-          isDropDownOpen={isDropDownOpen} 
-          selectedItem={selectedItem}
-          setIsDropDownOpen={setIsDropDownOpen}
-          setSelectedItem={setSelectedItem}
-        />
-        <DropFileInput onFileDrop={handleFileUpload} />
-        <br />
-        or
-        <br />
-        <input 
-              type="file" 
-              accept=".xlsx, .xls" 
-              onChange={handleFileUpload} 
-            />
-        <Button variant="danger" onClick={handleIsOpen} title='Close' />
+        {
+          excelColunms.length <= 0 ? (
+            <>
+              <DropFileInput onFileDrop={handleFileUpload} /> <br /> or <br />
+              <input 
+                type="file" 
+                accept=".xlsx, .xls" 
+                onChange={handleFileUpload} 
+              />
+              <Button variant="danger" onClick={handleIsOpen} title='Close' />
+            </>
+          ) : (
+            <>
+              {
+                ['Product Name', 'Product Id', 'Product Date'].map((item: string, index:number) => (
+                  <div style={{ display: 'flex' }} key={index}>
+                    <h2>{item}</h2> 
+                    <FormControl sx={{ m: 1, minWidth: 120 }}>
+                      <Select
+                        value={['Product Name', 'Product Id', 'Product Date'][0]}
+                        onChange={() => console.log(item)}
+                        displayEmpty
+                        inputProps={{ 'aria-label': 'Without label' }}
+                      >
+                        {/* this can be multiple inputs more then 10 */}
+                        {
+                          ['Product Name', 'Product Id', 'Product Date'].map((ele: string, i: number) => (
+                            <MenuItem value={i}>{ele}</MenuItem>
+                          ))
+                        }
+
+                      </Select>
+                    </FormControl>
+                  </div>
+                ))
+              }
+            </>
+          )
+        }
       </Modal>
     </div>
   )
