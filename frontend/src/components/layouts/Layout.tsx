@@ -1,11 +1,18 @@
+import {useState} from 'react';
 import { Link, Outlet, useLocation } from 'react-router-dom';
 import { RiHome6Line, RiHome7Fill ,RiSettings5Line, RiSettings5Fill, RiAdminLine, RiAdminFill, RiLogoutCircleRLine, RiLogoutCircleRFill } from 'react-icons/ri';
 import logo from '../../assets/images/logo.svg';
+import {IconButton} from '@mui/material'
+import Modal from '../Modal';
 
 const Layout = () => {
 
   const {pathname} = useLocation();
-  
+  const [isLogoutModalOpen, setisLogoutModalOpen] = useState(false);
+  const handleIsOpen = () => {
+    setisLogoutModalOpen((prev:any) => !prev)
+  }
+    
   const navItems = [
     {
       key: 1,
@@ -24,12 +31,6 @@ const Layout = () => {
       logo: <RiAdminLine size={26} />,
       activeLogo: <RiAdminFill />,
       to: '/admin'
-    },
-    {
-      key: 4,
-      logo: <RiLogoutCircleRLine size={26} />,
-      activeLogo: <RiLogoutCircleRFill />,
-      to: '/logout'
     }
   ]
 
@@ -45,11 +46,17 @@ const Layout = () => {
               {item.logo}
             </Link>
           ))}
+          <IconButton onClick={handleIsOpen} className='navItem' aria-label="logout">
+            <RiLogoutCircleRLine size={26} />
+          </IconButton>
         </div>
       </div>
       <div className="rightPanel">
         <Outlet />
       </div>
+      <Modal overlayClick={true} isOpen={isLogoutModalOpen} handleClose={handleIsOpen}>
+        Logout now
+      </Modal>
     </div>
   )
 }

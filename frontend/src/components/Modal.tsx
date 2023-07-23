@@ -1,13 +1,12 @@
 import ReactModal from 'react-modal'
 import './Modal.scss'
 
-const Modal = ({isOpen, handleClose,children}: any) => {
-    console.log(isOpen)
+const Modal = ({isOpen, handleClose,children, overlayClick = false}: any) => {
   return (
     <div className='modal-wrappper'>
         <ReactModal
         isOpen={isOpen} 
-        shouldCloseOnOverlayClick={false}
+        shouldCloseOnOverlayClick={overlayClick}
         shouldCloseOnEsc={true}
         onRequestClose={handleClose}
         className="Modal"

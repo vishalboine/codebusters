@@ -10,6 +10,7 @@ import NotFound from "./pages/public/NotFound";
 import PersistLogin from "./config/PersistLogin";
 import { Roles } from "./constants";
 import Settings from "./pages/settings/Settings";
+import Admin from "./pages/admin/Admin";
 
 function App() {
   // Unlocking Innovation: Where Ideas Meet Code!
@@ -24,6 +25,7 @@ function App() {
           <Route element={<Layout />}>
             <Route path="/" element={<Dashboard />} />
             <Route path="/settings" element={<Settings />} />
+            <Route path="/admin" element={<Admin />} />
           </Route>
         {/* private routes */}
         <Route element={<PersistLogin />}>
