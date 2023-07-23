@@ -2,19 +2,18 @@ import React from "react";
 import { createRoot } from "react-dom/client";
 import App from "./App";
 import { BrowserRouter } from "react-router-dom";
-import { store } from "./state/store";
-import { Provider } from "react-redux";
-import "./index.scss";
+import "./styles/index.scss";
 import 'devextreme/dist/css/dx.light.css';
+import { AuthProvider } from "./context/AuthProvider";
 
 const rootEl = document.getElementById("root")!;
 const root = createRoot(rootEl);
 root.render(
   <React.StrictMode>
-    <Provider store={store}>
+    <AuthProvider>
       <BrowserRouter>
         <App />
       </BrowserRouter>
-    </Provider>
+    </AuthProvider>
   </React.StrictMode>
 );

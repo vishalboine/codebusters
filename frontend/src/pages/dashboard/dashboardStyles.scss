@@ -1,0 +1,75 @@
+@import "../../styles/dxTable";
+@import "../../styles/iwVariables";
+@import "../../styles/formElemets";
+
+.dashboard {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    background:$blue-700;
+    position: relative;
+
+    .leftPanel {
+        position: relative;
+        width: 4%;
+        padding: 5px;
+        margin-top: 1rem;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        .navItems {
+            display: flex;
+            flex-direction: column;
+            margin-top: 4rem;
+
+            .navItem {
+                display: block;
+                margin-top: 1rem;
+                color: $white;
+                padding: 5px 5px 0px 5px;
+                border-radius: 4px;
+
+                &.active {
+                    background:$blue-400;
+                    color: $blue-800;
+                }
+            }
+        }
+
+    }
+    .rightPanel {
+        background-color: white;
+        margin-top: 1.5rem;
+        width: 96%;
+        overflow-y: scroll;
+        position: relative;
+
+        .dashboardWrapper {
+            padding-top: 7rem;
+
+            .welcome-msg {
+                position: absolute;
+                top: 1.4rem;
+                left: 1rem;
+                
+                h2 {
+                    font-weight: 400;
+                    color: $primary-color;
+                }
+            }
+            .import-btn {
+                width: fit-content;
+                position: absolute;
+                right: 0;
+                top: 0.8rem;
+            }
+    
+            section {
+                padding: 1rem;
+            }
+        }
+
+    }
+}

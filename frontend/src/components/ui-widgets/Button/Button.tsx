@@ -3,7 +3,7 @@ import styles from './Button.module.css';
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: 'primary' | 'secondary' | 'success' | 'danger' | 'outline';
-  title?: string;
+  title?: any;
   size?: 'small' | 'medium' | 'large';
   disabled?: boolean;
 }
