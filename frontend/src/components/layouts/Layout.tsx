@@ -1,5 +1,5 @@
 import { Link, Outlet, useLocation } from 'react-router-dom';
-import { RiDashboardLine, RiDashboardFill ,RiSettings5Line, RiSettings5Fill } from 'react-icons/ri';
+import { RiHome6Line, RiHome7Fill ,RiSettings5Line, RiSettings5Fill, RiAdminLine, RiAdminFill, RiLogoutCircleRLine, RiLogoutCircleRFill } from 'react-icons/ri';
 import logo from '../../assets/images/logo.svg';
 
 const Layout = () => {
@@ -9,8 +9,8 @@ const Layout = () => {
   const navItems = [
     {
       key: 1,
-      logo: <RiDashboardLine size={26} />,
-      activeLogo: <RiDashboardFill />,
+      logo: <RiHome6Line size={26} />,
+      activeLogo: <RiHome7Fill />,
       to: '/'
     },
     {
@@ -18,6 +18,18 @@ const Layout = () => {
       logo: <RiSettings5Line size={26} />,
       activeLogo: <RiSettings5Fill />,
       to: '/settings'
+    },
+    {
+      key: 3,
+      logo: <RiAdminLine size={26} />,
+      activeLogo: <RiAdminFill />,
+      to: '/admin'
+    },
+    {
+      key: 4,
+      logo: <RiLogoutCircleRLine size={26} />,
+      activeLogo: <RiLogoutCircleRFill />,
+      to: '/logout'
     }
   ]
 

@@ -103,16 +103,19 @@ const Dashboard = (props: Props) => {
 
   return (
     <div className="dashboardWrapper">
-      <div className="welcome-msg">
-        <h2>Welcome, David</h2>
-      </div>
-      <div className="import-btn">
-        <Button  onClick={handleIsOpen} title={
-          <>
-            <img src={uploadImg} alt="" />
-            <span>Import</span>
-          </>
-        } />
+      <div className="topWrapper">
+        <div className="welcome-msg">
+          <h2>Welcome, David</h2>
+        </div>
+        <div>
+          <Button onClick={handleIsOpen} className="btn import-btn" title={
+            <>
+              <img src={uploadImg} alt="" />
+              <span>Import</span>
+            </>
+            
+          } />
+        </div>
       </div>
         <section>
           <DataGrid
