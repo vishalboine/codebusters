@@ -143,7 +143,6 @@ const Dashboard = (props: Props) => {
                 accept=".xlsx, .xls" 
                 onChange={handleFileUpload} 
               />
-              <Button variant="danger" onClick={handleIsOpen} title='Close' />
             </>
           ) : (
             <>
@@ -173,6 +172,7 @@ const Dashboard = (props: Props) => {
             </>
           )
         }
+        <Button variant="danger" onClick={handleIsOpen} title='Close' />
       </Modal>
     </div>
   )
