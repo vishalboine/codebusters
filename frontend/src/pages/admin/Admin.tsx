@@ -3,6 +3,7 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
+import "./admin.scss";
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -56,7 +57,47 @@ export default function Admin() {
       Update Column
       </CustomTabPanel>
       <CustomTabPanel value={value} index={1}>
-      Update Table
+      <div className="tableSec">
+         Update Table
+         <div className="table">
+          <div className="table-header">
+            <div className="header__item"><a id="tablename" className="filter__link" href="#">Table Name</a></div>
+            <div className="header__item"><a id="wins" className="filter__link filter__link--number" href="#">Action</a></div>
+          </div>
+          <div className="table-content">	
+            <div className="table-row">		
+              <div className="table-data">Balance Sheet</div>
+              <div className="table-data">
+              <ul className='d-flex'>
+                <li>Edit</li>
+                <li>&nbsp; | &nbsp;</li>
+                <li>Delete</li>
+              </ul>
+              </div>
+            </div>
+            <div className="table-row">
+              <div className="table-data">Opening Balance</div>
+              <div className="table-data">
+                <ul className='d-flex'>
+                  <li>Edit</li>
+                  <li>&nbsp; | &nbsp;</li>
+                  <li>Delete</li>
+                </ul>
+              </div>
+            </div>
+            <div className="table-row">
+              <div className="table-data">Weekly Transction</div>
+              <div className="table-data">
+                <ul className='d-flex'>
+                  <li>Edit</li>
+                  <li>&nbsp; | &nbsp;</li>
+                  <li>Delete</li>
+                </ul>
+              </div>
+            </div>
+          </div>	
+        </div>
+      </div>
       </CustomTabPanel>
     </Box>
   );

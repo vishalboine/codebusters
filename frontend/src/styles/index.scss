@@ -57,3 +57,41 @@ a { text-decoration:none; }
 .d-flex { display:flex; }
 
 .wd25 { width:25%!important; }
+
+.table {
+	width:50%;
+	border:1px solid $white-93;
+}
+
+.table-header {
+	display:flex;
+	width:100%;
+	background:$white-98; 
+    height:44px;
+    color:$gray-mute!important; font-weight:600!important; 
+	padding:12px 0;
+}
+
+.table-row {
+	display:flex;
+	width:100%;
+	padding:12px 0;
+	
+	&:nth-of-type(odd) {
+		background:#f0f3ff;
+	}
+}
+
+.table-data, .header__item {
+	flex: 1 1 20%;
+	text-align:center;
+    ul {
+        display:inline-flex;
+        list-style-type:none;
+    }
+}
+
+.header__item {
+	text-transform:uppercase;
+}
+
