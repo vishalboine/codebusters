@@ -43,7 +43,8 @@ body { box-sizing:border-box; margin:0; padding:0; color:$blue-900 }
     }
 }
 
-h1,h2,h3,h4 { font-weight:600!important; color:$blue-900; }
+h1,h2,h3 { font-weight:600!important; color:$blue-900; }
+h4,h5,h6 { font-weight:500!important; color:$blue-900; }
 
 input:-webkit-autofill {
     &:hover,
@@ -55,4 +56,4 @@ a { text-decoration:none; }
 
 .d-flex { display:flex; }
 
-
+.wd25 { width:25%!important; }

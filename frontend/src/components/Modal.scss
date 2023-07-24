@@ -10,11 +10,11 @@
     left: 50%;
     background-color:#fff;
     transform: translate(-50%,-50%);
-    padding: 2rem;
+    padding: 1.5rem;
     box-shadow: 0px 2px 4px rgba(0,0,0,0.2);
-    width: 40%;
+    width: fit-content;
     height:fit-content;
-    border-radius:.75rem;
+    border-radius:.5rem;
     display:flex;
     flex-direction:column;
     justify-content: center;
@@ -35,4 +35,22 @@
     right: 0;
     bottom: 0;
     background-color: rgba(0,0,0,0.7);
+  }
+
+  .logoutWrapper {
+    width:25rem;
+    display:flex;
+    align-items:center;
+    flex-direction:column;
+    h4 {
+      margin-bottom:1.5rem;
+    }
+    p{
+      text-align:center;
+      margin-bottom:1.5rem;
+      font-size:1rem;
+    }
+    button {
+      margin-right:1rem;
+    }
   }
