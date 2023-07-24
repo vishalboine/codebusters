@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import uploadImg from "../assets/images/upload.svg"
+import uploadImg from "../assets/images/upload-big.svg"
 
 import './drop-file-input.scss';
  
@@ -37,7 +37,6 @@ const DropFileInput = ({onFileDrop}: any) => {
             >
                 <div className="drop-file-input__label">
                     <img src={uploadImg} alt="" />
-                    <p>Drag & Drop your files here</p>
                 </div>
                 <input type="file" value="" onChange={onFileDrop}/>
             </div>

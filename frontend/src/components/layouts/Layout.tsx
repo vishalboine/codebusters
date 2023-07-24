@@ -1,6 +1,6 @@
 import {useState} from 'react';
 import { Link, Outlet, useLocation } from 'react-router-dom';
-import { RiHome6Line, RiHome7Fill ,RiSettings5Line, RiSettings5Fill, RiAdminLine, RiAdminFill, RiLogoutCircleRLine, RiLogoutCircleRFill } from 'react-icons/ri';
+import { RiHome6Line, RiHome6Fill ,RiSettings5Line, RiSettings5Fill, RiAdminLine, RiAdminFill, RiLogoutCircleRLine, RiLogoutCircleRFill } from 'react-icons/ri';
 import logo from '../../assets/images/logo.svg';
 import {IconButton} from '@mui/material'
 import Modal from '../Modal';
@@ -17,7 +17,7 @@ const Layout = () => {
     {
       key: 1,
       logo: <RiHome6Line size={26} />,
-      activeLogo: <RiHome7Fill size={26} />,
+      activeLogo: <RiHome6Fill size={26} />,
       to: '/'
     },
     {

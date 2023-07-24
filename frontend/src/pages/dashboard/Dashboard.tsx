@@ -10,7 +10,7 @@ import Button from "../../components/ui-widgets/Button/Button";
 import DropFileInput from "../../components/DropInputFile";
 import uploadImg from "../../assets/images/upload.svg"
 import { FormControl, Select, MenuItem } from "@mui/material";
-
+import { RiCloseLine } from "react-icons/ri";
 
 const dataSourceOptions = {
   store: new ODataStore({
@@ -134,45 +134,57 @@ const Dashboard = (props: Props) => {
           </DataGrid>
         </section>
       <Modal isOpen={isOpen} handleClose={handleIsOpen}>
+        <Button className="closeModal" onClick={handleIsOpen} aria-label="Close"> <RiCloseLine/> </Button>
         {
           excelColunms.length <= 0 ? (
             <>
-              <DropFileInput onFileDrop={handleFileUpload} /> <br /> or <br />
-              <input 
-                type="file" 
-                accept=".xlsx, .xls" 
-                onChange={handleFileUpload} 
-              />
+              <div className="uploadWrapper">
+                <DropFileInput onFileDrop={handleFileUpload} />
+                <p>Drag & drop your files here <br /> or <br /></p>
+                <div className="upload-btn-wrapper">
+                  <button className="btn btn-primary">Browse a file</button>
+                  <input 
+                  type="file" 
+                  accept=".xlsx, .xls" 
+                  onChange={handleFileUpload} 
+                />
+                </div> 
+                
+                
+              </div>
             </>
           ) : (
-            <>
+            <div className="matchCols">
               {
                 ['Product Name', 'Product Id', 'Product Date'].map((item: string, index:number) => (
-                  <div style={{ display: 'flex' }} key={index}>
-                    <h2>{item}</h2> 
-                    <FormControl sx={{ m: 1, minWidth: 120 }}>
-                      <Select
-                        value={['Product Name', 'Product Id', 'Product Date'][0]}
-                        onChange={() => console.log(item)}
-                        displayEmpty
-                        inputProps={{ 'aria-label': 'Without label' }}
-                      >
-                        {/* this can be multiple inputs more then 10 */}
-                        {
-                          ['Product Name', 'Product Id', 'Product Date'].map((ele: string, i: number) => (
-                            <MenuItem value={i}>{ele}</MenuItem>
-                          ))
-                        }
+                  <>
+                    <div className="column" key={index}>
+                      <p>{item}</p> 
+                    
+                      <FormControl sx={{ m: 1, minWidth: 120 }}>
+                        <Select
+                          value={['Product Name', 'Product Id', 'Product Date'][0]}
+                          onChange={() => console.log(item)}
+                          displayEmpty
+                          inputProps={{ 'aria-label': 'Without label' }}
+                        >
+                          {/* this can be multiple inputs more then 10 */}
+                          {
+                            ['Product Name', 'Product Id', 'Product Date'].map((ele: string, i: number) => (
+                              <MenuItem value={i}>{ele}</MenuItem>
+                            ))
+                          }
 
-                      </Select>
-                    </FormControl>
-                  </div>
+                        </Select>
+                      </FormControl>
+                    </div>
+                  </>
                 ))
               }
-            </>
+            </div>
           )
         }
-        <Button variant="danger" onClick={handleIsOpen} title='Close' />
+        
       </Modal>
     </div>
   )

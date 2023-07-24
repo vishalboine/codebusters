@@ -19,8 +19,8 @@
 .dx-toolbar-after { width:100%; }
 .dx-toolbar-after .dx-toolbar-item:first-child { display:none; }
 .dx-toolbar-after .dx-toolbar-item:nth-child(2) { position:absolute!important; right:40%!important; }
-.dx-toolbar-after .dx-toolbar-item:nth-child(3) { position:absolute!important; right:120px!important; }
-.dx-toolbar-items-container { display:flex; }
+.dx-toolbar-after .dx-toolbar-item:nth-child(3) { position:absolute!important; right:0px!important; }
+.dx-toolbar-items-container { display:flex; width:86%!important; }
 .dx-toolbar .dx-toolbar-after { padding-left:0!important; }
 .dx-texteditor.dx-editor-outlined { background:$blue-50!important; border:none!important; width:28em!important; border-radius:.5rem!important;
 &:focus { box-shadow:none!important; }
