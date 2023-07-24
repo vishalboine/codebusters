@@ -9,7 +9,7 @@ import Modal from "../../components/Modal";
 import Button from "../../components/ui-widgets/Button/Button";
 import DropFileInput from "../../components/DropInputFile";
 import uploadImg from "../../assets/images/upload.svg"
-import { FormControl, Select, MenuItem } from "@mui/material";
+import { FormControl, Select, MenuItem, IconButton } from "@mui/material";
 import { RiCloseLine } from "react-icons/ri";
 
 const dataSourceOptions = {
@@ -134,7 +134,10 @@ const Dashboard = (props: Props) => {
           </DataGrid>
         </section>
       <Modal isOpen={isOpen} handleClose={handleIsOpen}>
-        <Button className="closeModal" onClick={handleIsOpen} aria-label="Close"> <RiCloseLine/> </Button>
+        <IconButton onClick={() => setisOpen(false)} className="closeModal">
+          <RiCloseLine/>
+        </IconButton>
+        {/* <Button className="closeModal" onClick={handleIsOpen} aria-label="Close">  </Button> */}
         {
           excelColunms.length <= 0 ? (
             <>
@@ -156,7 +159,7 @@ const Dashboard = (props: Props) => {
           ) : (
             <div className="matchCols">
               {
-                ['Product Name', 'Product Id', 'Product Date'].map((item: string, index:number) => (
+                ['Product Name', 'Product Id', 'Product Date','Product Id', 'Product Date','Product Id', 'Product Date'].map((item: string, index:number) => (
                   <>
                     <div className="column" key={index}>
                       <p>{item}</p> 

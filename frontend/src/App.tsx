@@ -8,7 +8,7 @@ import Layout from "./components/layouts/Layout";
 import Unauthorized from "./pages/public/Unauthorized";
 import NotFound from "./pages/public/NotFound";
 import PersistLogin from "./config/PersistLogin";
-import { Roles } from "./constants";
+import { ROLES } from "./constants";
 import Settings from "./pages/settings/Settings";
 import Admin from "./pages/admin/Admin";
 
@@ -22,14 +22,14 @@ function App() {
         <Route path="register" element={<Register />} />
         <Route path="unauthorized" element={<Unauthorized />} />
 
-          <Route element={<Layout />}>
-            <Route path="/" element={<Dashboard />} />
-            <Route path="/settings" element={<Settings />} />
-            <Route path="/admin" element={<Admin />} />
-          </Route>
         {/* private routes */}
         <Route element={<PersistLogin />}>
-          <Route element={<RequireAuth allowedRoles={[Roles.Admin]} />}>
+          <Route element={<RequireAuth allowedRoles={[ROLES.User]} />}>
+            <Route element={<Layout />}>
+              <Route path="/" element={<Dashboard />} />
+              <Route path="/settings" element={<Settings />} />
+              <Route path="/admin" element={<Admin />} />
+            </Route>
           </Route>
         </Route>
         {/* catch all */}

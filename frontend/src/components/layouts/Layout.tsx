@@ -4,6 +4,7 @@ import { RiHome6Line, RiHome6Fill ,RiSettings5Line, RiSettings5Fill, RiAdminLine
 import logo from '../../assets/images/logo.svg';
 import {IconButton} from '@mui/material'
 import Modal from '../Modal';
+import useLogout from '../../hooks/useLogout';
 
 const Layout = () => {
 
@@ -12,6 +13,7 @@ const Layout = () => {
   const handleIsOpen = () => {
     setisLogoutModalOpen((prev:any) => !prev)
   }
+  const logout = useLogout();
     
   const navItems = [
     {
@@ -59,8 +61,8 @@ const Layout = () => {
           <h4>Are you sure you want to log out?</h4>
           <p>Logging out will end your current session and you'll need to sign in again.</p>
           <div className="d-flex">
-            <button className='btn btn-text'>Cancel</button>
-            <button className='btn btn-primary'>Logout</button>
+            <button onClick={()=> setisLogoutModalOpen(false)} className='btn btn-text'>Cancel</button>
+            <button onClick={logout} className='btn btn-primary'>Logout</button>
           </div>
         </div>
         

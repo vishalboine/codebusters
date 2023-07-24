@@ -222,7 +222,8 @@
     
 }
 
-.matchCols { 
+.matchCols {
+    margin-top: 2rem; 
     display:flex;
     flex-direction:row;
     .column{

@@ -1,7 +1,7 @@
 import { useState } from "react"
 import LongLogo from "../../../assets/images/longLogo.png";
 import image1 from "../../../assets/images/image1.png";
-import { LOGO_ALT, Roles } from "../../../constants";
+import { LOGO_ALT } from "../../../constants";
 import "./Register.scss"
 import Input from "../../../components/ui-widgets/Input/Input";
 import Button from "../../../components/ui-widgets/Button/Button";
@@ -10,10 +10,8 @@ import { axiosPrivate } from "../../../config/axiosInstance";
 
 const Register = () => {
   const [registerForm, setRegisterForm] = useState({
-    name:"",
-    email:"",
-    password:"",
-    role: Roles.User
+    user:"",
+    pwd:"",
   })
   
   const [togglePassword, setTogglePassword] = useState(false);
@@ -24,8 +22,7 @@ const Register = () => {
 
   const onHandleClick = (e: any) => {
     e.preventDefault();
-    console.log(registerForm);
-    axiosPrivate.post('/auth/signup', registerForm, {
+    axiosPrivate.post('/register', registerForm, {
       headers: { 'Content-Type': 'application/json' },
       withCredentials: true
   }).then((res: any) => {
@@ -58,22 +55,15 @@ const Register = () => {
                 <Input
                   placeholder="Enter Username"
                   label="Username"
-                  value={registerForm.name}
-                  name="username"
-                  onChange={onChangeHandler}
-                  />
-                <Input
-                  placeholder="Enter e-mail id"
-                  label="E-mail"
-                  value={registerForm.email}
-                  name="email"
+                  value={registerForm.user}
+                  name="user"
                   onChange={onChangeHandler}
                   />
                 <Input
                   placeholder="Enter password"
                   label="Password"
-                  value={registerForm.password}
-                  name="password"
+                  value={registerForm.pwd}
+                  name="pwd"
                   showIcon
                   type={togglePassword ? 'text' : 'password'}
                   isVisiblePassword={togglePassword}
