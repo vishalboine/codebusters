@@ -8,7 +8,7 @@ input, select,
   padding:10px 12px!important; 
   border:1px solid $blue-100!important; border-radius:.5rem!important;
   &::placeholder { color:$blue-gray!important; font-size:$medium-font-size!important; }
-  &:hover { border:1px solid $blue-300!important; border-right:none!important; }
+  &:hover { border:1px solid $blue-300!important; }
   &:focus { box-shadow:0 0 0 .15rem rgba($blue-200, .6)!important;}
 }
 
@@ -27,8 +27,9 @@ button { display:flex; outline:none;  border:none; cursor:pointer;
         &:hover { background:$secondary-color; }
     }
     &.btn-outline { background:$white; color:$primary-color; }
+    &.btn-text { background:none; font-size:1rem; font-weight:500; color:$secondary-color; }
 }
-.text-btn { background:none; font-size:1rem; font-weight:500; color:$secondary-color; margin:0 auto; }
+
 
 .container {
     display:block;

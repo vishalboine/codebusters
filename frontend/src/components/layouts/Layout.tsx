@@ -54,8 +54,16 @@ const Layout = () => {
       <div className="rightPanel">
         <Outlet />
       </div>
-      <Modal overlayClick={true} isOpen={isLogoutModalOpen} handleClose={handleIsOpen}>
-        Logout now
+      <Modal className="wd25" overlayClick={true} isOpen={isLogoutModalOpen} handleClose={handleIsOpen}>
+        <div className="logoutWrapper">
+          <h4>Are you sure you want to log out?</h4>
+          <p>Logging out will end your current session and you'll need to sign in again.</p>
+          <div className="d-flex">
+            <button className='btn btn-text'>Cancel</button>
+            <button className='btn btn-primary'>Logout</button>
+          </div>
+        </div>
+        
       </Modal>
     </div>
   )

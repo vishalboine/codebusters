@@ -38,9 +38,9 @@
                 cursor:pointer;
                 &:hover{
                     border:2px solid $blue-200;
-                    transition:.6s;
+                    transition:ease-in-out .1s;
                 }
-                &.active {
+                &.active, &:focus, &:focus-visible {
                     background:$primary-color ;
                     color:$white;
                     transition:.6s;
@@ -236,3 +236,24 @@
     
  }
 
+
+ /* For Tablet View */
+@media screen and (min-device-width:768px)
+and (max-device-width:1023px) {
+
+    .dashboard {
+        .rightPanel {
+            .dashboardWrapper {
+                .topWrapper {
+                    .welcome-msg{
+                        h2 { font-size:1.25rem; }
+                    }
+                }
+                .btn-import {
+                    img { margin-right:0; }
+                    caption { display:none;}
+                }
+            }
+        }
+    }
+}
