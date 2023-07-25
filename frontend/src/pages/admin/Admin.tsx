@@ -4,6 +4,8 @@ import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import "./admin.scss";
+import TextField from '@mui/material/TextField';
+import { RiAddCircleFill } from "react-icons/ri";
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -49,54 +51,142 @@ export default function Admin() {
     <Box sx={{ width: '100%' }}>
       <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
         <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
-          <Tab label="Update Column" {...a11yProps(0)} />
+          <Tab label="Add Table" {...a11yProps(0)} />
           <Tab label="Update Table" {...a11yProps(1)} />
+          <Tab label="Column Validation" {...a11yProps(2)} />
         </Tabs>
       </Box>
       <CustomTabPanel value={value} index={0}>
-      Update Column
+        <div className="addTable">
+          <h3>Add Table</h3>
+          <div className="formDiv">
+            <TextField id="tableName" label="Table name" variant="outlined" />
+            <div className="tableColumns">
+              <TextField id="tableName" label="Column 1" placeholder='Add column name' variant="outlined" />
+              <TextField id="tableName" label="Column 2" placeholder='Add column name' variant="outlined" />
+              <TextField id="tableName" label="Column 3" placeholder='Add column name' variant="outlined" />
+              <TextField id="tableName" label="Column 4" placeholder='Add column name' variant="outlined" />
+            </div>
+            <div className="addColumn">
+                <button className='btn btn-outline'>
+                  <RiAddCircleFill/>
+                  <span>Add Column</span>
+                </button>
+              </div>
+            <div className="buttonDiv">
+              <button className='btn btn-text'>Reset</button>
+              <button className='btn btn-primary'>Submit</button>
+            </div>
+          </div>
+        </div>
       </CustomTabPanel>
       <CustomTabPanel value={value} index={1}>
-      <div className="tableSec">
-         Update Table
-         <div className="table">
-          <div className="table-header">
-            <div className="header__item"><a id="tablename" className="filter__link" href="#">Table Name</a></div>
-            <div className="header__item"><a id="wins" className="filter__link filter__link--number" href="#">Action</a></div>
+      <h3>Update Table</h3>
+      <div className="updateTable">
+          <div className="table">
+            <div className="table-header">
+              <div className="header__item">Table Name</div>
+              <div className="header__item">Action</div>
+            </div>
+            <div className="table-content">	
+              <div className="table-row">		
+                <div className="table-data">Balance Sheet</div>
+                <div className="table-data">
+                <ul className='d-flex'>
+                  <li>Edit</li>
+                  <li>&nbsp; | &nbsp;</li>
+                  <li>Delete</li>
+                </ul>
+                </div>
+              </div>
+              <div className="table-row">
+                <div className="table-data">Opening Balance</div>
+                <div className="table-data">
+                  <ul className='d-flex'>
+                    <li>Edit</li>
+                    <li>&nbsp; | &nbsp;</li>
+                    <li>Delete</li>
+                  </ul>
+                </div>
+              </div>
+              <div className="table-row">
+                <div className="table-data">Weekly Transction</div>
+                <div className="table-data">
+                  <ul className='d-flex'>
+                    <li>Edit</li>
+                    <li>&nbsp; | &nbsp;</li>
+                    <li>Delete</li>
+                  </ul>
+                </div>
+              </div>
+            </div>	
           </div>
-          <div className="table-content">	
-            <div className="table-row">		
-              <div className="table-data">Balance Sheet</div>
-              <div className="table-data">
-              <ul className='d-flex'>
-                <li>Edit</li>
-                <li>&nbsp; | &nbsp;</li>
-                <li>Delete</li>
-              </ul>
-              </div>
+          <div className="formDiv">
+            <TextField id="tableName" label="Table name" variant="outlined" />
+            <div className="tableColumns">
+              <TextField id="tableName" label="Column 1" placeholder='Add column name' variant="outlined" />
+              <TextField id="tableName" label="Column 2" placeholder='Add column name' variant="outlined" />
+              <TextField id="tableName" label="Column 3" placeholder='Add column name' variant="outlined" />
+              <TextField id="tableName" label="Column 4" placeholder='Add column name' variant="outlined" />
             </div>
-            <div className="table-row">
-              <div className="table-data">Opening Balance</div>
-              <div className="table-data">
+            <div className="addColumn">
+              <button className='btn btn-outline'>
+                <RiAddCircleFill/>
+                <span>Add Column</span>
+              </button>
+            </div>
+            <div className="buttonDiv">
+              <button className='btn btn-text'>Reset</button>
+              <button className='btn btn-primary'>Submit</button>
+            </div>
+          </div>
+
+      </div>
+      </CustomTabPanel>
+      <CustomTabPanel value={value} index={2}>
+      <div className="tableSec">
+        <h3> Update Table</h3>
+          <div className="table">
+            <div className="table-header">
+              <div className="header__item">Table Name</div>
+              <div className="header__item">Action</div>
+            </div>
+            <div className="table-content">	
+              <div className="table-row">		
+                <div className="table-data">Balance Sheet</div>
+                <div className="table-data">
                 <ul className='d-flex'>
                   <li>Edit</li>
                   <li>&nbsp; | &nbsp;</li>
                   <li>Delete</li>
                 </ul>
+                </div>
               </div>
-            </div>
-            <div className="table-row">
-              <div className="table-data">Weekly Transction</div>
-              <div className="table-data">
-                <ul className='d-flex'>
-                  <li>Edit</li>
-                  <li>&nbsp; | &nbsp;</li>
-                  <li>Delete</li>
-                </ul>
+              <div className="table-row">
+                <div className="table-data">Opening Balance</div>
+                <div className="table-data">
+                  <ul className='d-flex'>
+                    <li>Edit</li>
+                    <li>&nbsp; | &nbsp;</li>
+                    <li>Delete</li>
+                  </ul>
+                </div>
               </div>
-            </div>
-          </div>	
-        </div>
+              <div className="table-row">
+                <div className="table-data">Weekly Transction</div>
+                <div className="table-data">
+                  <ul className='d-flex'>
+                    <li>Edit</li>
+                    <li>&nbsp; | &nbsp;</li>
+                    <li>Delete</li>
+                  </ul>
+                </div>
+              </div>
+            </div>	
+          </div>
+          <div className="updateTable">
+            
+          </div>
       </div>
       </CustomTabPanel>
     </Box>

@@ -1,3 +1,45 @@
+@import '../../styles/iwVariables';
+
+.addTable{
+    display:flex;
+    flex-direction:column;
+   
+}
+.updateTable {
+    display:flex;
+    flex-direction:row;
+    margin-top:1rem;
+    gap:2%;
+}
 .tableSec {
-    padding:2% 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding:1% 10%;
+
+    h3{ margin-bottom:1.5rem;  }
+}
+
+.formDiv {
+    width:fit-content;
+    padding:1rem;
+    border-radius:.5rem;
+    box-shadow:0 0 12px 4px rgba($blue-900, .15);
+    .tableColumns {
+        display:flex;
+        flex-direction:row;
+    }
+    .addColumn {
+        display:flex;
+        justify-content:left;
+        color:$blue-700;
+        margin-bottom:1rem;
+        font-size:20px;
+    }
+    .buttonDiv {
+        display:flex;
+        justify-content:center;
+        button { margin-right:1rem; }
+    }
 }
