@@ -1,20 +1,27 @@
 import { useState } from "react"
 import LongLogo from "../../../assets/images/longLogo.png";
 import image1 from "../../../assets/images/image1.png";
-import { LOGO_ALT, Roles } from "../../../constants";
+import { LOGO_ALT } from "../../../constants";
 import "./Login.scss"
 import Input from "../../../components/ui-widgets/Input/Input";
 import Button from "../../../components/ui-widgets/Button/Button";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { axiosPrivate } from "../../../config/axiosInstance";
+import useAuth from "../../../hooks/useAuth";
 
 const Login = () => {
   const location = useLocation();
+  const navigate = useNavigate();
+  const { setAuth, setPersist, persist } = useAuth();
   const from = location.state?.from?.pathname || '/';
   const [loginForm, setLoginForm] = useState({
     name:"",
     password:"",
   })
+
+  const togglePersist = () => {
+    setPersist((prev: any) => !prev);
+}
   
   const [togglePassword, setTogglePassword] = useState(false);
 
@@ -23,12 +30,22 @@ const Login = () => {
   }  
   const onHandleClick = (e: any) => {
     e.preventDefault();
-    console.log(loginForm);
-    axiosPrivate.post('/auth/signup', loginForm, {
+    axiosPrivate.post('/auth', {
+      user: loginForm.name,
+      pwd: loginForm.password
+    }, {
       headers: { 'Content-Type': 'application/json' },
       withCredentials: true
-  }).then((res: any) => {
-      console.log(res);
+  }).then((response: any) => {
+      const accessToken = response?.data?.accessToken;
+      const roles = response?.data?.roles;
+      setAuth({ user: loginForm.name, pwd: loginForm.password, roles, accessToken });
+      setLoginForm({
+        name:"",
+        password:"",
+      })
+      localStorage.setItem('persist', JSON.stringify(persist))
+      navigate(from, { replace: true });
     }).catch((err: any) => {
       console.log(err);
       
@@ -63,7 +80,7 @@ const Login = () => {
                   placeholder="Enter Username"
                   label="Username"
                   value={loginForm.name}
-                  name="username"
+                  name="name"
                   onChange={onChangeHandler}
                   />
                 <Input
@@ -80,13 +97,14 @@ const Login = () => {
                 <div className="loginUtility">
                   <div>
                     <label htmlFor="remember" className="container" >Remember me
-                      <input type="checkbox" id="remember"/>
+                      <input onChange={togglePersist}
+                        checked={persist} type="checkbox" id="remember"/>
                       <span className="checkmark"></span>
                     </label>
                   </div>
                   <Link to="/forgetPassword">Forget password?</Link> 
                 </div>
-                <Button title="Login" className="btn btn-primary" />
+                <Button onClick={onHandleClick} title="Login" className="btn btn-primary" />
                 <div className="creatAccount">
                   Already have an account? <Link to="/register"> Sign up</Link>
                 </div>

@@ -19,12 +19,15 @@ interface AuthProviderProps {
 }
 
 export const AuthProvider = ({ children }: AuthProviderProps) => {
-  const [auth, setAuth] = useState<any>({});
-  const [persist, setPersist] = useState<any>(JSON.parse(localStorage.getItem("persist") as any) || false)
+    const [auth, setAuth] = useState({});
+    const l: boolean = JSON.parse(localStorage.getItem("persist") || 'false')
+    const [persist, setPersist] = useState(l);
 
-  return (
-    <AuthContext.Provider value={{ auth, setAuth, persist, setPersist }}>
-      {children}
-    </AuthContext.Provider>
-  );
-};
+    return (
+        <AuthContext.Provider value={{ auth, setAuth, persist, setPersist }}>
+            {children}
+        </AuthContext.Provider>
+    )
+}
+
+export default AuthContext;
