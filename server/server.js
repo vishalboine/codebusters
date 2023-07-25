@@ -15,7 +15,6 @@ const PORT = process.env.PORT || 3500;
 
 // Connect to MongoDB
 connectDB();
-mongoose.set('strictQuery', true);
 // custom middleware logger
 app.use(logger);
 
@@ -40,6 +39,7 @@ app.use('/', express.static(path.join(__dirname, '/public')));
 
 // routes
 app.use('/register', require('./routes/register'));
+app.use('/resource', require('./routes/api/icons'));
 app.use('/auth', require('./routes/auth'));
 app.use('/refresh', require('./routes/refresh'));
 app.use('/logout', require('./routes/logout'));
