@@ -1,76 +1,76 @@
-@import "../../../styles/iwVariables";
-@import "../../../styles/formElemets";
+// @import "../../../styles/iwVariables";
+// @import "../../../styles/formElemets";
 
-.loginWrapper {
-    width:100%;
-    height:100%;
-    display:flex;
-    justify-content:center;
-    align-items:center;
+// .loginWrapper {
+//     width:100%;
+//     height:100%;
+//     display:flex;
+//     justify-content:center;
+//     align-items:center;
 
-    .loginCard {
-        width:1200px;
-        height:780px;
-        flex-shrink:0;
-        backdrop-filter:blur(4px);
-        -webkit-backdrop-filter:blur(4px);
-        background:rgba($white, 0.90);
-        border-radius:12px;
-        border:1px solid rgba(125, 149, 185, 0.3);
-        padding:2.5rem;
+//     .loginCard {
+//         width:1200px;
+//         height:780px;
+//         flex-shrink:0;
+//         backdrop-filter:blur(4px);
+//         -webkit-backdrop-filter:blur(4px);
+//         background:rgba($white, 0.90);
+//         border-radius:12px;
+//         border:1px solid rgba(125, 149, 185, 0.3);
+//         padding:2.5rem;
 
-        .authLogo {
-            width:13rem;
-            height:auto;
-        }
+//         .authLogo {
+//             width:13rem;
+//             height:auto;
+//         }
 
-        .loginWrapper_main {
-            display:flex;
-            width:100%;
-        }
+//         .loginWrapper_main {
+//             display:flex;
+//             width:100%;
+//         }
 
-        .left,
-        .right {
-            flex:1;
-            padding:1.5rem;
-        }
+//         .left,
+//         .right {
+//             flex:1;
+//             padding:1.5rem;
+//         }
 
-        .right {
-            display:flex;
-            justify-content:center;
-            .input_div {
-                display:flow-root;
-                width:80%;
-                border-radius:16px;
-                background:$white;
-                box-shadow:0px 6px 12px 0px rgba(0, 0, 0, 0.12);
-                padding:2rem;
+//         .right {
+//             display:flex;
+//             justify-content:center;
+//             .input_div {
+//                 display:flow-root;
+//                 width:80%;
+//                 border-radius:16px;
+//                 background:$white;
+//                 box-shadow:0px 6px 12px 0px rgba(0, 0, 0, 0.12);
+//                 padding:2rem;
 
-                h2 {
-                    text-align:center;
-                }
+//                 h2 {
+//                     text-align:center;
+//                 }
 
-                label { font-size:$default-font-size; color:$gray-mute; margin-bottom:.5rem; }
-                input { background:$blue-50; padding:10px 12px; border:1px solid $blue-100; border-radius:.5rem;
-                    &::placeholder { color:$blue-gray; font-size:$medium-font-size; }
-                    &:hover { border:1px solid $blue-300; }
-                 }
-                .btn { width:100%;
+//                 label { font-size:$default-font-size; color:$gray-mute; margin-bottom:.5rem; }
+//                 input { background:$blue-50; padding:10px 12px; border:1px solid $blue-100; border-radius:.5rem;
+//                     &::placeholder { color:$blue-gray; font-size:$medium-font-size; }
+//                     &:hover { border:1px solid $blue-300; }
+//                  }
+//                 .btn { width:100%;
                     
-                }
-                button { 
-                    svg { color:$gray-mute; font-size:1rem; }
-                }
+//                 }
+//                 button { 
+//                     svg { color:$gray-mute; font-size:1rem; }
+//                 }
 
-                .fp { display:flex; font-size:$default-font-size; justify-content:end; margin:.5rem 0;
-                    label { color:$blue-900; }
-                }
+//                 .fp { display:flex; font-size:$default-font-size; justify-content:end; margin:.5rem 0;
+//                     label { color:$blue-900; }
+//                 }
 
-                .creatAccount { font-size:1rem; color:$blue-900;font-weight:400; text-align:center; margin-top:1rem;
-                    a { color:$blue-700; font-weight:500;}
+//                 .creatAccount { font-size:1rem; color:$blue-900;font-weight:400; text-align:center; margin-top:1rem;
+//                     a { color:$blue-700; font-weight:500;}
 
-                }
-            }
-        }
-    }
-}
+//                 }
+//             }
+//         }
+//     }
+// }
