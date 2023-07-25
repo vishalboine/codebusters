@@ -87,6 +87,15 @@ const Dashboard = (props: Props) => {
 
   }, [])
 
+  useEffect(() => {
+    axiosInstance.get('/table/getAllTables').then((res: any) => {
+      // setResources(res.data)
+      console.log(res);
+      
+    }).catch((err: any) => { })
+
+  }, [])
+
   const onContentReady = (e: any) => {
     if (!collapsed) {
       e.component.expandRow(['EnviroCare']);

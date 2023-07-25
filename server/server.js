@@ -38,6 +38,7 @@ app.use(cookieParser());
 app.use('/', express.static(path.join(__dirname, '/public')));
 
 // routes
+app.use('/table', require('./routes/api/table'));
 app.use('/register', require('./routes/register'));
 app.use('/resource', require('./routes/api/icons'));
 app.use('/auth', require('./routes/auth'));
