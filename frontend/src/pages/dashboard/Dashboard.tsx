@@ -13,6 +13,7 @@ import { FormControl, Select, MenuItem, IconButton } from "@mui/material";
 import { RiCloseLine } from "react-icons/ri";
 import axiosInstance from "../../config/axiosInstance";
 import useAuth from "../../hooks/useAuth";
+import { BillingData, CustomerMasterData, TransactionData, data } from "../../mock/data";
 
 const dataSourceOptions = {
   store: new ODataStore({
@@ -49,7 +50,7 @@ const Dashboard = (props: Props) => {
   const handleDataGridExportToExcel = useDataGridExcelExport('Demo');
   const [blotterData, setBlotterData] = useState({});
   const [excelColunms, setExcelColumns] = useState([]);
-  const [blotterColumns, setBlotterColumns] = useState(initalBlotterColumns);
+  const [blotterColumns, setBlotterColumns] = useState(CustomerMasterData);
   const [resources, setResources]: any = useState([]);
   const [sheetName, setSheetName] = useState('');
   const { auth } = useAuth();
@@ -120,11 +121,38 @@ const Dashboard = (props: Props) => {
     })
   }
 
+  const onHandleChange = (e: any) =>{
+    console.log(e.target.value)
+    if(e.target.value === 'Customer Master Data'){
+      setBlotterColumns(CustomerMasterData)
+    }else if(e.target.value === 'Billing Data'){
+      setBlotterColumns(BillingData)
+    }else if(e.target.value === 'Transaction Data'){
+      setBlotterColumns(TransactionData)
+    }
+  }
+
   return (
     <div className="dashboardWrapper">
       <div className="topWrapper">
         <div className="welcome-msg">
           <h2>Welcome, {auth.user}</h2>
+          <FormControl sx={{ m: 1, minWidth: 120 }}>
+              <Select
+                onChange={(e)=>{onHandleChange(e)}}
+                displayEmpty
+                inputProps={{ 'aria-label': 'Without label' }}
+                defaultValue={'Customer Master Data'}
+              >
+                {/* this can be multiple inputs more then 10 */}
+                {
+                  Object.keys(data).map((ele: string, i: number) => (
+                    <MenuItem value={ele}>{ele}</MenuItem>
+                  ))
+                }
+
+              </Select>
+            </FormControl>
         </div>
         <div>
           <Button onClick={handleIsOpen} className="btn import-btn" title={
@@ -157,11 +185,8 @@ const Dashboard = (props: Props) => {
         </DataGrid>
       </section>
       <Modal isOpen={isOpen} handleClose={handleIsOpen}>
-        <IconButton onClick={() => {
-          setisOpen(false)
-          setExcelColumns([])
-        }} className="closeModal">
-          <RiCloseLine />
+        <IconButton onClick={() =>{ setisOpen(false); setExcelColumns([])}} className="closeModal" >
+          <RiCloseLine/>
         </IconButton>
         {/* <Button className="closeModal" onClick={handleIsOpen} aria-label="Close">  </Button> */}
         {
@@ -187,21 +212,19 @@ const Dashboard = (props: Props) => {
               <div style={{ display: 'flex', gap: '2rem', alignItems: 'center' }}><span>Selected File: {sheetName}</span> <button onClick={() => setExcelColumns([])} className="btn btn-primary">Change file</button></div>
               <div className="matchCols">
                 {
-                  ['Product Name', 'Product Id', 'Product Date', 'Product Id', 'Product Date', 'Product Id', 'Product Date'].map((item: string, index: number) => (
+                  blotterColumns.map((item: string, index: number) => (
                     <>
                       <div className="column" key={index}>
                         <p>{item}</p>
 
                         <FormControl sx={{ m: 1, minWidth: 120 }}>
                           <Select
-                            value={['Product Name', 'Product Id', 'Product Date'][0]}
                             onChange={() => console.log(item)}
-                            displayEmpty
                             inputProps={{ 'aria-label': 'Without label' }}
                           >
                             {/* this can be multiple inputs more then 10 */}
                             {
-                              ['Product Name', 'Product Id', 'Product Date'].map((ele: string, i: number) => (
+                              excelColunms.map((ele: string, i: number) => (
                                 <MenuItem value={i}>{ele}</MenuItem>
                               ))
                             }
