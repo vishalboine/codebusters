@@ -12,6 +12,8 @@ input, select,
   &:focus { box-shadow:0 0 0 .15rem rgba($blue-200, .6)!important;}
 }
 
+label { font-size:$default-font-size; color:$gray-mute; font-weight:500; }
+
 option {
    padding:10px 12px;
    color:$blue-800;
@@ -100,7 +102,21 @@ button { display:flex; outline:none;  border:none; cursor:pointer;
     transform:rotate(45deg);
   }
 
-  /* Form Elements */
+.formGroup {
+  display:flex;
+  flex-direction:column;
+  width:20em;
+  margin:0 1.25rem 1rem 0;
+  .inputTop {
+    display:flex;
+    justify-content:space-between;
+    margin-bottom:.5rem;
+    label { font-size:14px; font-weight:500; line-height:1.25rem; }
+    .rightIcon { color:$red-error; font-size:1.25rem; line-height:1.25rem; }
+  }
+}
+  
+/* Form Elements */
 [class*=-MuiButtonBase-root-MuiTab-root].Mui-selected  { color:$secondary-color!important; font-weight:500; font-family:'Inter', sans-serif!important; }
 [class*=-MuiTabs-indicator] { background-color:$secondary-color!important; }
 
