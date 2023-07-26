@@ -5,8 +5,8 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import "./admin.scss";
 import TextField from '@mui/material/TextField';
-import { RiAddCircleFill } from "react-icons/ri";
 import { axiosPrivate } from '../../config/axiosInstance';
+import { RiAddCircleFill,RiIndeterminateCircleFill } from "react-icons/ri";
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -154,7 +154,13 @@ export default function Admin() {
           <div className="formDiv">
             <TextField id="tableName" label="Table name" variant="outlined" />
             <div className="tableColumns">
-              <TextField id="tableName" label="Column 1" placeholder='Add column name' variant="outlined" />
+              <div className="formGroup">
+                <div className='inputTop'>
+                  <label>Column 1</label>
+                  <div className="rightIcon"><RiIndeterminateCircleFill/></div>
+                </div>
+                <input placeholder='Add column name'/>
+              </div>
               <TextField id="tableName" label="Column 2" placeholder='Add column name' variant="outlined" />
               <TextField id="tableName" label="Column 3" placeholder='Add column name' variant="outlined" />
               <TextField id="tableName" label="Column 4" placeholder='Add column name' variant="outlined" />
