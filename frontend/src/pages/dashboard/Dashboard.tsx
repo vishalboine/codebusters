@@ -10,7 +10,7 @@ import Button from "../../components/ui-widgets/Button/Button";
 import DropFileInput from "../../components/DropInputFile";
 import uploadImg from "../../assets/images/upload.svg"
 import { FormControl, Select, MenuItem, IconButton } from "@mui/material";
-import { RiCloseLine } from "react-icons/ri";
+import { RiCloseLine, RiCheckboxCircleFill } from "react-icons/ri";
 import axiosInstance from "../../config/axiosInstance";
 import useAuth from "../../hooks/useAuth";
 import { BillingData, CustomerMasterData, TransactionData, data } from "../../mock/data";
@@ -135,24 +135,8 @@ const Dashboard = (props: Props) => {
   return (
     <div className="dashboardWrapper">
       <div className="topWrapper">
-        <div className="welcome-msg">
-          <h2>Welcome, {auth.user}</h2>
-          <FormControl sx={{ m: 1, minWidth: 120 }}>
-              <Select
-                onChange={(e)=>{onHandleChange(e)}}
-                displayEmpty
-                inputProps={{ 'aria-label': 'Without label' }}
-                defaultValue={'Customer Master Data'}
-              >
-                {/* this can be multiple inputs more then 10 */}
-                {
-                  Object.keys(data).map((ele: string, i: number) => (
-                    <MenuItem value={ele}>{ele}</MenuItem>
-                  ))
-                }
-
-              </Select>
-            </FormControl>
+        <div className="welcomeMsg">
+          <h2>Hello, {auth.user}</h2>
         </div>
         <div>
           <Button onClick={handleIsOpen} className="btn import-btn" title={
@@ -160,11 +144,27 @@ const Dashboard = (props: Props) => {
               <img src={uploadImg} alt="" />
               <span>Import</span>
             </>
-
           } />
         </div>
       </div>
       <section>
+        <div className="dataTypeSelector">
+          <FormControl sx={{ minWidth:226 }}>
+            <Select
+              onChange={(e)=>{onHandleChange(e)}}
+              displayEmpty
+              inputProps={{ 'aria-label': 'Without label' }}
+              defaultValue={'Customer Master Data'}
+            >
+              {/* this can be multiple inputs more then 10 */}
+              {
+                Object.keys(data).map((ele: string, i: number) => (
+                  <MenuItem value={ele}>{ele}</MenuItem>
+                ))
+              }
+            </Select>
+          </FormControl>
+        </div>
         <DataGrid
           dataSource={blotterData}
           allowColumnReordering={true}
@@ -174,6 +174,7 @@ const Dashboard = (props: Props) => {
           onExporting={handleDataGridExportToExcel}
           onToolbarPreparing={onToolbarPreparing}
           height={450}
+          className="dxTable"
         >
           <SearchPanel visible={true} highlightCaseSensitive={true} />
           {blotterColumns.map((item: any) => {
@@ -185,31 +186,39 @@ const Dashboard = (props: Props) => {
         </DataGrid>
       </section>
       <Modal isOpen={isOpen} handleClose={handleIsOpen}>
+       <div className="modalHead">
+          <h4>Import Data</h4>
         <IconButton onClick={() =>{ setisOpen(false); setExcelColumns([])}} className="closeModal" >
-          <RiCloseLine/>
-        </IconButton>
-        {/* <Button className="closeModal" onClick={handleIsOpen} aria-label="Close">  </Button> */}
+            <RiCloseLine/>
+          </IconButton>
+       </div>
         {
           excelColunms.length <= 0 ? (
             <>
               <div className="uploadWrapper">
                 <DropFileInput onFileDrop={handleFileUpload} />
-                <p>Drag & drop your files here <br /> or <br /></p>
+                <p>Drag & drop your files here or</p>
                 <div className="upload-btn-wrapper">
-                  <button className="btn btn-primary">Browse a file</button>
+                  <button className="btn btn-primary">Browse file</button>
                   <input
                     type="file"
                     accept=".xlsx, .xls"
                     onChange={handleFileUpload}
                   />
                 </div>
-
-
+                <span>Only excel files(.xlsx, .xls) with max size 10 MB.</span>
               </div>
             </>
           ) : (
             <>
-              <div style={{ display: 'flex', gap: '2rem', alignItems: 'center' }}><span>Selected File: {sheetName}</span> <button onClick={() => setExcelColumns([])} className="btn btn-primary">Change file</button></div>
+              <div className="uplodedFile">
+                <span>Selected file: {sheetName}
+                  {/* <div className="successIcon">
+                    <RiCheckboxCircleFill/>
+                  </div> */}
+                  <button onClick={() => setExcelColumns([])} className="btn-text">Change file</button>
+                </span> 
+              </div>
               <div className="matchCols">
                 {
                   blotterColumns.map((item: string, index: number) => (
@@ -217,7 +226,7 @@ const Dashboard = (props: Props) => {
                       <div className="column" key={index}>
                         <p>{item}</p>
 
-                        <FormControl sx={{ m: 1, minWidth: 120 }}>
+                        <FormControl sx={{ minWidth:200 }}>
                           <Select
                             onChange={() => console.log(item)}
                             inputProps={{ 'aria-label': 'Without label' }}
@@ -236,7 +245,10 @@ const Dashboard = (props: Props) => {
                   ))
                 }
               </div>
-              <button onClick={() => { }} className="btn btn-primary">Submit</button>
+              <div className="d-flex">
+                <button onClick={() => { }} className="btn btn-text">Reset</button>
+                <button onClick={() => { }} className="btn btn-primary">Proceed</button>
+              </div>
             </>
           )
         }

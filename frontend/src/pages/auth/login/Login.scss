@@ -26,17 +26,17 @@
 
     .loginCard {
         width:100%;
-        height:100%;
+        height:auto;
         flex-shrink:0;
         backdrop-filter:blur(4px);
         -webkit-backdrop-filter:blur(4px);
         background:rgba($white, 0.90);
         border-radius:12px;
         border:1px solid rgba(125, 149, 185, 0.3);
-        padding:2.5rem;
+        padding:2rem;
 
         .authLogo {
-            width:10rem;
+            width:12em;
             height:auto;
         }
 
@@ -52,9 +52,9 @@
             justify-content:center;
             align-items:center;
             width:50%;
-            padding:2.5rem 1rem;
+            padding: 2em 1rem 2.5em;
             caption { padding:1.5rem 0; font-size:1rem; font-weight:500; color:$blue-800; }
-            img { width:94%; }
+            img { width:86%; }
         }
 
         .right {
@@ -63,6 +63,7 @@
             padding:1.5rem;
             justify-content:center;
             width:50%;
+            transition: ease-in-out .3s;
             .input_div {
                 display:flow-root;
                 width:80%;
@@ -88,7 +89,7 @@
                     svg { color:$gray-mute; font-size:1rem; }
                 }
 
-                .loginUtility { display:flex; justify-content:space-between; align-items:center; font-size:$default-font-size; margin:.5rem 0;
+                .loginUtility { display:flex; justify-content:space-between; /*align-items:center;*/ font-size:$default-font-size; margin:.5rem 0 1rem;
                     a { color:$blue-700; font-weight:400;}
                 }
 
@@ -120,12 +121,10 @@
         height:100%;
 
         .loginCard {
-            width:100%;
-            height:100%;
-            padding:2.5rem;
+            padding:2rem;
     
             .authLogo {
-                width:10rem;
+                width:12em;
             }
     
             .loginWrapper_main {
@@ -134,18 +133,18 @@
     
             .left{
                 width:50%;
-                padding:2.5rem 1rem;
+                // padding:2.5rem 1rem;
             }
     
             .right {
-                padding:1.5rem;
+                padding:1.25rem;
                 width:50%;
                 .input_div {
-                    width:80%;
+                    width:84%;
                     height:fit-content;
-                    padding:2rem;
-                    .loginUtility { margin:.5rem 0;
-                    }
+                    padding:1.5rem;
+                    // .loginUtility { margin:.5rem 0;
+                    // }
                     .creatAccount { font-size:1rem; }
                     }
                 }
@@ -184,7 +183,7 @@
                 height:fit-content;
                 padding:1rem;
                 .authLogo {
-                    width:10rem;
+                    width:12em;
                     display:flex;
                     margin:0 auto;  
                 }

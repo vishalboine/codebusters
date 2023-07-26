@@ -1,3 +1,5 @@
+@import './iwVariables';
+
 input, select,
 [class*=-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input] {
   outline:none!important;
@@ -9,7 +11,7 @@ input, select,
   border:1px solid $blue-100!important; border-radius:.5rem!important;
   &::placeholder { color:$blue-gray!important; font-size:$medium-font-size!important; }
   &:hover { border:1px solid $blue-300!important; }
-  &:focus { box-shadow:0 0 0 .15rem rgba($blue-200, .6)!important;}
+  &:focus { box-shadow:0 0 0 1px rgba($blue-200, .6)!important;}
 }
 
 label { font-size:$default-font-size; color:$gray-mute; font-weight:500; }
@@ -23,14 +25,14 @@ option {
    }
 }
 
-button { display:flex; outline:none;  border:none; cursor:pointer;
-    &.btn { padding:12px 16px; border-radius:.5rem; font-size:1rem; justify-content:center; cursor:pointer; }
-    &.btn-primary { background:$primary-color; color:$white;
-        &:hover { background:$secondary-color; }
-    }
-    &.btn-outline { display:flex; align-items:center; background:$white; color:$primary-color; border:1px solid $primary-color; }
-    &.btn-text { background:none; font-size:1rem; font-weight:500; color:$secondary-color; }
-    svg { font-size:24px; margin-right:.25rem; }
+button { display:flex; outline:none;  border:none; cursor:pointer; text-transform:uppercase;
+  &.btn { padding:12px 16px; border-radius:.5rem; font-size:1rem; justify-content:center; cursor:pointer; }
+  &.btn-primary { background:$primary-color; color:$white;
+      &:hover { background:$secondary-color; }
+  }
+  &.btn-outline { display:flex; align-items:center; background:$white; color:$primary-color; border:1px solid $primary-color; }
+  &.btn-text { background:none; font-size:1rem; font-weight:500; color:$secondary-color; }
+  svg { font-size:24px; margin-right:.25rem; }
 }
 
 .container {
@@ -117,7 +119,7 @@ button { display:flex; outline:none;  border:none; cursor:pointer;
 }
   
 /* Form Elements */
-[class*=-MuiButtonBase-root-MuiTab-root].Mui-selected  { color:$secondary-color!important; font-weight:500; font-family:'Inter', sans-serif!important; }
+[class*=-MuiButtonBase-root-MuiTab-root].Mui-selected  { color:$secondary-color!important; }
 [class*=-MuiTabs-indicator] { background-color:$secondary-color!important; }
 
 [class*=-MuiTypography-root] { font-size:14px !important;}
@@ -144,6 +146,8 @@ button { display:flex; outline:none;  border:none; cursor:pointer;
 .Mui-error + [class*=-MuiInputBase-root-MuiFilledInput-root],
 .Mui-error.Mui-focused + [class*=-MuiInputBase-root-MuiFilledInput-root] { border-color:$red-error !important; }
 
+[class*=-MuiFormControl-root] { margin:0!important; height:46px; }
+
 [class*=-MuiInputBase-input-MuiFilledInput-input] { height:3rem !important; }
 [class*=-MuiFormControl-root-MuiTextField-root] { /*min-width:100% !important;*/ margin:0 8px 20px 0 !important; }
 [class*=-MuiFormControl-root-MuiTextField-root] input:read-only { background:#ebf0f3; border-radius:3px; }
@@ -155,7 +159,19 @@ button { display:flex; outline:none;  border:none; cursor:pointer;
 [class*=-MuiFormHelperText-root] { font-size:11px !important; line-height:1.2em !important; margin:3px 4px 0 !important; }
 
 [class*=-MuiButtonBase-root-MuiButton-root] {
-    font-family:'Open Sans', sans-serif !important;
-    text-transform:none !important;
-    margin:0 12px !important;
+  text-transform:none !important;
+  margin:0 12px !important;
 }
+
+[class*=MuiInputBase-root]{
+  &.Mui-focused { border:1px solid $blue-300!important; outline:0; box-shadow:none; border-radius:.5rem!important; }
+}
+[class*=-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input]{
+  &.Mui-disabled { border:0; }
+}
+[class*=-MuiOutlinedInput-notchedOutline] { border-color:$blue-100!important; top:0!important; border-width:0!important; }
+[class*=-MuiButtonBase-root-MuiMenuItem-root] { color:$blue-900!important; font-weight:500; }
+[class*=-MuiButtonBase-root-MuiMenuItem-root].Mui-selected { background:$blue-200!important; color:$blue-900; font-weight:500; }
+[class*=-MuiInputBase-root-MuiOutlinedInput-root-MuiSelect-root].Mui-focused .MuiOutlinedInput-notchedOutline { border-width:0px!important; }
+
+.tableResponsive { display:block; width:100%; overflow-x:auto; }
