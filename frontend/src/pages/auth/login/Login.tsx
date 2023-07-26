@@ -8,6 +8,7 @@ import Button from "../../../components/ui-widgets/Button/Button";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { axiosPrivate } from "../../../config/axiosInstance";
 import useAuth from "../../../hooks/useAuth";
+import { toast } from 'react-toastify';
 
 const Login = () => {
   const location = useLocation();
@@ -39,6 +40,9 @@ const Login = () => {
   }).then((response: any) => {
       const accessToken = response?.data?.accessToken;
       const roles = response?.data?.roles;
+      toast('Login successfull', {
+        type: 'success'
+      });
       setAuth({ user: loginForm.name, pwd: loginForm.password, roles, accessToken });
       setLoginForm({
         name:"",
@@ -47,8 +51,9 @@ const Login = () => {
       localStorage.setItem('persist', JSON.stringify(persist))
       navigate(from, { replace: true });
     }).catch((err: any) => {
-      console.log(err);
-      
+      toast('Please enter correct username and password', {
+        type: 'error'
+      });
     })
   }
 
@@ -102,7 +107,6 @@ const Login = () => {
                       <span className="checkmark"></span>
                     </label>
                   </div>
-                  <Link to="/forgetPassword">Forget password?</Link> 
                 </div>
                 <Button onClick={onHandleClick} title="Login" className="btn btn-primary" />
                 <div className="creatAccount">
