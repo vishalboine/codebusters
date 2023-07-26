@@ -145,10 +145,10 @@ export default function Admin() {
             <div className="tableColumns">
               {columnArr.map((item: any)=>  <TextBoxWithRemove showRemove ={item}/>)}
             </div>
-            <div className="addColumn">
+            <div className="addColumn" onClick={handleAddColumn}>
               <button className='btn btn-outline'>
                 <RiAddCircleFill/>
-                <span onClick={handleAddColumn}>Add Column</span>
+                <span>Add Column</span>
               </button>
             </div>
             <div className="buttonDiv">
