@@ -7,30 +7,46 @@ import Input from "../../../components/ui-widgets/Input/Input";
 import Button from "../../../components/ui-widgets/Button/Button";
 import { Link, useNavigate } from "react-router-dom";
 import { axiosPrivate } from "../../../config/axiosInstance";
+import { toast } from 'react-toastify';
 
 const Register = () => {
   const [registerForm, setRegisterForm] = useState({
     user:"",
     pwd:"",
+    cpwd:"",
   })
   
   const [togglePassword, setTogglePassword] = useState(false);
-
+  const [toggleCPassword, setToggleCPassword] = useState(false);
+  const navigate = useNavigate()
   const changePasswordVisibility = () => {
     setTogglePassword((prev) => !prev)
+  } 
+  const changeCPasswordVisibility = () => {
+    setToggleCPassword((prev) => !prev)
   } 
 
   const onHandleClick = (e: any) => {
     e.preventDefault();
-    axiosPrivate.post('/register', registerForm, {
-      headers: { 'Content-Type': 'application/json' },
-      withCredentials: true
-  }).then((res: any) => {
-      console.log(res);
-    }).catch((err: any) => {
-      console.log(err);
-      
-    })
+    if(registerForm.pwd === registerForm.cpwd) {
+
+      axiosPrivate.post('/register', registerForm, {
+        headers: { 'Content-Type': 'application/json' },
+        withCredentials: true
+      }).then((res: any) => {
+        toast('User Registered successfully', {
+          type: 'success'
+        });
+        navigate('/login')
+      }).catch((err: any) => {
+        console.log(err);
+        
+      })
+    } else {
+      toast('Password and Confirm Password should be same', {
+        type: 'error'
+      });
+    }
   }
   
   const onChangeHandler = (e: any) => {
@@ -68,6 +84,17 @@ const Register = () => {
                   type={togglePassword ? 'text' : 'password'}
                   isVisiblePassword={togglePassword}
                   onIconClick={changePasswordVisibility}
+                  onChange={onChangeHandler}
+                />
+                <Input
+                  placeholder="Confirm password"
+                  label="Confirm Password"
+                  value={registerForm.cpwd}
+                  name="cpwd"
+                  showIcon
+                  type={toggleCPassword ? 'text' : 'password'}
+                  isVisiblePassword={toggleCPassword}
+                  onIconClick={changeCPasswordVisibility}
                   onChange={onChangeHandler}
                 />
                 <br />

@@ -1,6 +1,7 @@
 const Table = require('../model/Table');
 
 const addTable = async (req, res) => {
+  console.log(req.body)
     try {
       const { tableName, columns } = req.body;
   

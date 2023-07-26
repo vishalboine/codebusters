@@ -1,10 +1,11 @@
-import * as React from 'react';
+import React, {useState} from 'react';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import "./admin.scss";
 import TextField from '@mui/material/TextField';
+import { axiosPrivate } from '../../config/axiosInstance';
 import { RiAddCircleFill,RiIndeterminateCircleFill } from "react-icons/ri";
 
 interface TabPanelProps {
@@ -41,11 +42,40 @@ function a11yProps(index: number) {
 }
 
 export default function Admin() {
-  const [value, setValue] = React.useState(0);
+  const [value, setValue] = useState(0);
+  const [newTableName, setNewTableName] = useState('');
+  const [newTableColumns, setNewTableColumns]: any = useState({});
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
   };
+
+  const handleChangeTableName = (e: any) => {
+    setNewTableName(e.target.value)
+  }
+
+  const changeColumns = (e: any, index: number) => {
+    setNewTableColumns((prev: any) => {
+      return {...prev, [index]: e.target.value}
+    })
+  }
+
+  const submitNewTable = () => {
+    const data = {
+      tableName: newTableName,
+      columns: Object.values(newTableColumns)
+    }
+    
+    axiosPrivate.post('/table/addTable', data,{
+      headers: { 'Content-Type': 'application/json' },
+      withCredentials: true
+    }).then((res: any) => {
+        console.log(res);
+      })
+      .catch((err: any) => {
+        console.log(err);
+      })
+  }
 
   return (
     <Box sx={{ width: '100%' }}>
@@ -60,12 +90,12 @@ export default function Admin() {
         <div className="addTable">
           <h3>Add Table</h3>
           <div className="formDiv">
-            <TextField id="tableName" label="Table name" variant="outlined" />
+            <TextField onChange={handleChangeTableName} id="tableName" label="Table name" variant="outlined" />
             <div className="tableColumns">
-              <TextField id="tableName" label="Column 1" placeholder='Add column name' variant="outlined" />
-              <TextField id="tableName" label="Column 2" placeholder='Add column name' variant="outlined" />
-              <TextField id="tableName" label="Column 3" placeholder='Add column name' variant="outlined" />
-              <TextField id="tableName" label="Column 4" placeholder='Add column name' variant="outlined" />
+              <TextField onChange={(e) => changeColumns(e,0)} id="tableName" label="Column 1" placeholder='Add column name' variant="outlined" />
+              <TextField onChange={(e) => changeColumns(e,1)} id="tableName" label="Column 2" placeholder='Add column name' variant="outlined" />
+              <TextField onChange={(e) => changeColumns(e,2)} id="tableName" label="Column 3" placeholder='Add column name' variant="outlined" />
+              <TextField onChange={(e) => changeColumns(e,3)} id="tableName" label="Column 4" placeholder='Add column name' variant="outlined" />
             </div>
             <div className="addColumn">
                 <button className='btn btn-outline'>
@@ -75,7 +105,7 @@ export default function Admin() {
               </div>
             <div className="buttonDiv">
               <button className='btn btn-text'>Reset</button>
-              <button className='btn btn-primary'>Submit</button>
+              <button onClick={submitNewTable} className='btn btn-primary'>Submit</button>
             </div>
           </div>
         </div>
