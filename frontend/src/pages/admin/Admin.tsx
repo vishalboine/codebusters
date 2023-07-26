@@ -7,6 +7,9 @@ import "./admin.scss";
 import TextField from '@mui/material/TextField';
 import { axiosPrivate } from '../../config/axiosInstance';
 import { RiAddCircleFill,RiIndeterminateCircleFill } from "react-icons/ri";
+import TextBoxWithRemove from '../../components/TextBoxWithRemove';
+import { TableName } from '../../mock/data';
+import AddDataTypeTable from '../../components/AddDataTypeTable';
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -45,6 +48,8 @@ export default function Admin() {
   const [value, setValue] = useState(0);
   const [newTableName, setNewTableName] = useState('');
   const [newTableColumns, setNewTableColumns]: any = useState({});
+  const [columnArr, setColumnArr]: any = useState([false, false, false, false])
+  const [showAmendForm, setAmendForm] = useState(false)
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
@@ -75,6 +80,17 @@ export default function Admin() {
       .catch((err: any) => {
         console.log(err);
       })
+  }
+  const handleAddColumn = () => {
+    setColumnArr([...columnArr, true])
+  }
+
+  const handleEditClick = () =>{
+    setAmendForm(true)
+  }
+
+  const handleCancelClick = () =>{
+    setAmendForm(false);
   }
 
   return (
@@ -119,105 +135,43 @@ export default function Admin() {
               <div className="header__item">Action</div>
             </div>
             <div className="table-content">	
-              <div className="table-row">		
-                <div className="table-data">Balance Sheet</div>
-                <div className="table-data">
-                <ul className='d-flex'>
-                  <li>Edit</li>
-                  <li>&nbsp; | &nbsp;</li>
-                  <li>Delete</li>
-                </ul>
-                </div>
-              </div>
-              <div className="table-row">
-                <div className="table-data">Opening Balance</div>
-                <div className="table-data">
-                  <ul className='d-flex'>
-                    <li>Edit</li>
-                    <li>&nbsp; | &nbsp;</li>
-                    <li>Delete</li>
-                  </ul>
-                </div>
-              </div>
-              <div className="table-row">
-                <div className="table-data">Weekly Transction</div>
-                <div className="table-data">
-                  <ul className='d-flex'>
-                    <li>Edit</li>
-                    <li>&nbsp; | &nbsp;</li>
-                    <li>Delete</li>
-                  </ul>
-                </div>
-              </div>
+            {TableName.map((item:any)=>{
+              return <AddDataTypeTable tableName={item} onEditClick ={handleEditClick}/>
+            })}
             </div>	
           </div>
-          <div className="formDiv">
+          {showAmendForm && <div className="formDiv">
             <TextField id="tableName" label="Table name" variant="outlined" />
             <div className="tableColumns">
-              <div className="formGroup">
-                <div className='inputTop'>
-                  <label>Column 1</label>
-                  <div className="rightIcon"><RiIndeterminateCircleFill/></div>
-                </div>
-                <input placeholder='Add column name'/>
-              </div>
-              <TextField id="tableName" label="Column 2" placeholder='Add column name' variant="outlined" />
-              <TextField id="tableName" label="Column 3" placeholder='Add column name' variant="outlined" />
-              <TextField id="tableName" label="Column 4" placeholder='Add column name' variant="outlined" />
+              {columnArr.map((item: any)=>  <TextBoxWithRemove showRemove ={item}/>)}
             </div>
             <div className="addColumn">
               <button className='btn btn-outline'>
                 <RiAddCircleFill/>
-                <span>Add Column</span>
+                <span onClick={handleAddColumn}>Add Column</span>
               </button>
             </div>
             <div className="buttonDiv">
               <button className='btn btn-text'>Reset</button>
+              <button className='btn btn-text' onClick={handleCancelClick}>Cancel</button>
               <button className='btn btn-primary'>Submit</button>
             </div>
-          </div>
+          </div>}
 
       </div>
       </CustomTabPanel>
       <CustomTabPanel value={value} index={2}>
       <div className="tableSec">
-        <h3> Update Table</h3>
+        <h3> Column Validation</h3>
           <div className="table">
             <div className="table-header">
               <div className="header__item">Table Name</div>
               <div className="header__item">Action</div>
             </div>
             <div className="table-content">	
-              <div className="table-row">		
-                <div className="table-data">Balance Sheet</div>
-                <div className="table-data">
-                <ul className='d-flex'>
-                  <li>Edit</li>
-                  <li>&nbsp; | &nbsp;</li>
-                  <li>Delete</li>
-                </ul>
-                </div>
-              </div>
-              <div className="table-row">
-                <div className="table-data">Opening Balance</div>
-                <div className="table-data">
-                  <ul className='d-flex'>
-                    <li>Edit</li>
-                    <li>&nbsp; | &nbsp;</li>
-                    <li>Delete</li>
-                  </ul>
-                </div>
-              </div>
-              <div className="table-row">
-                <div className="table-data">Weekly Transction</div>
-                <div className="table-data">
-                  <ul className='d-flex'>
-                    <li>Edit</li>
-                    <li>&nbsp; | &nbsp;</li>
-                    <li>Delete</li>
-                  </ul>
-                </div>
-              </div>
+            {TableName.map((item:any)=>{
+              return <AddDataTypeTable tableName={item}/>
+            })}
             </div>	
           </div>
           <div className="updateTable">
