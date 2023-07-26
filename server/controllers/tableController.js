@@ -1,7 +1,6 @@
 const Table = require('../model/Table');
 
 const addTable = async (req, res) => {
-  console.log(req.body)
     try {
       const { tableName, columns } = req.body;
   
@@ -13,38 +12,14 @@ const addTable = async (req, res) => {
       // Save the new record to the database
       const savedTable = await newTable.save();
   
-      res.status(201).json(savedTable);
+      const allTables = await Table.find({}).exec();
+      allTables.filter((item) => {
+        const {__v, _id, ...rest} = item
+        return rest
+      })
+      res.status(200).json(allTables);
     } catch (error) {
       console.error('Error adding table:', error);
-      res.status(500).json({ error: 'Internal Server Error' });
-    }
-  };
-
-const updateTable = async (req, res) => {
-    try {
-      const { tableName, newTableName } = req.body;
-  
-      // Find the existing record based on the tableName
-      const existingTable = await Table.findOne({ [tableName]: { $exists: true } });
-  
-      if (!existingTable) {
-        return res.status(404).json({ error: 'Table not found' });
-      }
-  
-      // Create a new record with the updated table name and columns
-      const updatedTable = new Table({
-        [newTableName]: existingTable[tableName],
-      });
-  
-      // Remove the old record
-      await Table.deleteOne({ [tableName]: { $exists: true } });
-  
-      // Save the updated record to the database
-      const savedTable = await updatedTable.save();
-  
-      res.status(200).json(savedTable);
-    } catch (error) {
-      console.error('Error updating table:', error);
       res.status(500).json({ error: 'Internal Server Error' });
     }
   };
@@ -54,19 +29,24 @@ const updateColumnForGivenTable = async (req, res) => {
       const { tableName, updatedColumn } = req.body;
   
       // Find the existing record based on the tableName
-      const existingTable = await Table.findOne({ [tableName]: { $exists: true } });
+      const updatedTable = await Table.findOneAndUpdate(
+        { [tableName]: { $exists: true } },
+        { $set: { [tableName]: updatedColumn } },
+        { new: true } // Return the updated document after the update
+      );
   
-      if (!existingTable) {
+      if (!updatedTable) {
         return res.status(404).json({ error: 'Table not found' });
       }
+
+      const allTables = await Table.find({}).exec();
+    allTables.filter((item) => {
+      const {__v, _id, ...rest} = item
+      return rest
+    })
   
-      // Update the columns for the existing table
-      existingTable[tableName] = updatedColumn;
+      res.status(200).json(allTables);
   
-      // Save the updated record to the database
-      const savedTable = await existingTable.save();
-  
-      res.status(200).json(savedTable);
     } catch (error) {
       console.error('Error updating column:', error);
       res.status(500).json({ error: 'Internal Server Error' });
@@ -86,8 +66,12 @@ const updateColumnForGivenTable = async (req, res) => {
   
       // Remove the table from the database
       await Table.deleteOne({ [tableName]: { $exists: true } });
-  
-      res.status(200).json({ message: 'Table deleted successfully' });
+      const allTables = await Table.find({}).exec();
+      allTables.filter((item) => {
+        const {__v, _id, ...rest} = item
+        return rest
+      })
+      res.status(200).json(allTables);
     } catch (error) {
       console.error('Error deleting table:', error);
       res.status(500).json({ error: 'Internal Server Error' });
@@ -99,7 +83,10 @@ const getAllTables = async (req, res) => {
   try {
     // Retrieve all records from the database using TableModel
     const allTables = await Table.find({}).exec();
-
+    allTables.filter((item) => {
+      const {__v, _id, ...rest} = item
+      return rest
+    })
     res.status(200).json(allTables);
   } catch (error) {
     console.error('Error fetching tables:', error);
@@ -107,4 +94,4 @@ const getAllTables = async (req, res) => {
   }
 };
 
-  module.exports = { addTable, deleteTable, updateColumnForGivenTable, updateTable, getAllTables }
+  module.exports = { addTable, deleteTable, updateColumnForGivenTable, getAllTables }
