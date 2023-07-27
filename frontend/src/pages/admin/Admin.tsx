@@ -6,12 +6,13 @@ import Box from '@mui/material/Box';
 import "./admin.scss";
 import TextField from '@mui/material/TextField';
 import axiosInstance, { axiosPrivate } from '../../config/axiosInstance';
-import { RiAddCircleFill,RiIndeterminateCircleFill } from "react-icons/ri";
+import { RiAddCircleFill } from "react-icons/ri";
 import TextBoxWithRemove from '../../components/TextBoxWithRemove';
-import { TableName } from '../../mock/data';
+import { columnTypes } from '../../mock/data';
 import AddDataTypeTable from '../../components/AddDataTypeTable';
 import { toast } from 'react-toastify';
 import { getUpdatedValues } from '../../utils/common';
+import { FormControl, Select, MenuItem } from "@mui/material";
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -50,10 +51,11 @@ export default function Admin() {
   const [value, setValue] = useState(0);
   const [newTableName, setNewTableName] = useState('');
   const [newTableColumns, setNewTableColumns]: any = useState({});
-  const [columnArr, setColumnArr]: any = useState([false, false, false, false])
   const [savedTables, setSavedTables] = useState([]);
-
+  const [showValidationForm, setShowValidationForm] = useState(false);
   const [selectedTable, setSelectedTable] = useState<{ name: string; value: string[]; }>({ name: "", value: ['','','',''] });
+  const tables = getUpdatedValues(savedTables);
+  const columnArr = Object.keys(tables)
 
   const handleAddButtonClick = () => {
     const newItem = ""; // Set the default value for the new input field
@@ -84,6 +86,15 @@ export default function Admin() {
 
   const handleChangeTableName = (e: any) => {
     setNewTableName(e.target.value)
+  }
+
+  const handleValidationClick = (item: any) =>{
+    setSelectedTable({
+      name: item,
+      value: tables[item]
+    })
+    setShowValidationForm(true);
+
   }
 
   const handleInputChange = (index: number, newValue: string) => {
@@ -159,11 +170,46 @@ export default function Admin() {
               <div className="header__item">Action</div>
             </div>
             <div className="table-content">	
-            {TableName.map((item:any)=>{
-              return <AddDataTypeTable tableName={item}/>
+            {columnArr.map((item:any)=>{
+              return <AddDataTypeTable tableName={item} showValidation={true} handleValidationClick={() => handleValidationClick(item)}/>
             })}
             </div>	
           </div>
+
+          {showValidationForm && <div className="formDiv">
+            <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+              <Typography component='h4'>Table Name:</Typography>
+              <Typography sx={{
+                fontSize: '24px'
+              }} component='h2' variant='h2'>{selectedTable.name}</Typography>
+            </div>
+            <div className="tableColumns">
+            {selectedTable.value.map((item)=>{
+              return <>
+                <label>{item}</label>
+              
+                <FormControl sx={{ minWidth:226 }}>
+                <Select
+                  onChange={(e)=>{}}
+                  inputProps={{ 'aria-label': 'Without label' }}
+                  defaultValue={'int'}
+                >
+                  {/* this can be multiple inputs more then 10 */}
+                  {
+                    columnTypes.map((ele: string, i: number) => (
+                      <MenuItem value={ele}>{ele}</MenuItem>
+                    ))
+                  }
+                </Select>
+              </FormControl>
+              </>
+          })}
+            </div>
+            <div className="buttonDiv">
+              <button className='btn btn-text' onClick={()=>{setShowValidationForm(false);}}>Cancel</button>
+              <button className='btn btn-primary' onClick={()=>{}}>Submit</button>
+            </div>
+          </div>}
           <div className="updateTable">
             
           </div>

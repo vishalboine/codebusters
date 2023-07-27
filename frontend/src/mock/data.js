@@ -10,3 +10,5 @@ export const BillingData = ["TRS", "XUS","KEJ"]
 export const TransactionData =["HEI", "UES","BJE"]
 
 export const TableName = ['Balance Sheet', 'Opening Balance', 'Weekly transaction']
+
+export const columnTypes = ['int', 'string']
