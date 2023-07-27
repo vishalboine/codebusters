@@ -53,6 +53,24 @@ export default function Admin() {
   const [columnArr, setColumnArr]: any = useState([false, false, false, false])
   const [savedTables, setSavedTables] = useState([]);
 
+  const [selectedTable, setSelectedTable] = useState<{ name: string; value: string[]; }>({ name: "", value: ['','','',''] });
+
+  const handleAddButtonClick = () => {
+    const newItem = ""; // Set the default value for the new input field
+
+    setSelectedTable(prevState => ({
+      ...prevState,
+      value: [...prevState.value, newItem],
+    }));
+  };
+
+  const handleRemoveButtonClick = (indexToRemove: number) => {
+    setSelectedTable(prevState => ({
+      ...prevState,
+      value: prevState.value.filter((_, index) => index !== indexToRemove),
+    }));
+  };
+
   useEffect(() => {
     axiosInstance.get('/table/getAllTables').then((res: any) => {
       setSavedTables(res.data)
@@ -68,23 +86,24 @@ export default function Admin() {
     setNewTableName(e.target.value)
   }
 
-  const changeColumns = (e: any, index: number) => {
-    setNewTableColumns((prev: any) => {
-      return {...prev, [index]: e.target.value}
-    })
-  }
+  const handleInputChange = (index: number, newValue: string) => {
+    setSelectedTable(prevState => {
+      const updatedValue = [...prevState.value];
+      updatedValue[index] = newValue;
+      return { ...prevState, value: updatedValue };
+    });
+  };
 
   const submitNewTable = () => {
     const data = {
       tableName: newTableName,
-      columns: Object.values(newTableColumns)
+      columns: selectedTable.value
     }
     
     axiosPrivate.post('/table/addTable', data,{
       headers: { 'Content-Type': 'application/json' },
       withCredentials: true
     }).then((res: any) => {
-      setNewTableName('')
       setNewTableColumns({})
       setSavedTables(res.data)
       toast('Table saved successfully.', {
@@ -94,9 +113,8 @@ export default function Admin() {
       .catch((err: any) => {
         console.log(err);
       })
-  }
-  const handleAddColumn = () => {
-    setColumnArr([...columnArr, true])
+      setNewTableName('')
+      setSelectedTable({name: "", value: ['','','','']});
   }
 
   return (
@@ -112,28 +130,25 @@ export default function Admin() {
         <div className="addTable">
           <h3>Add Table</h3>
           <div className="formDiv">
-            <TextField onChange={handleChangeTableName} id="tableName" label="Table name" variant="outlined" />
+            <TextField value={newTableName} onChange={handleChangeTableName} id="tableName" label="Table name" variant="outlined" />
             <div className="tableColumns">
-              <TextField onChange={(e) => changeColumns(e,0)} id="tableName" label="Column 1" placeholder='Add column name' variant="outlined" />
-              <TextField onChange={(e) => changeColumns(e,1)} id="tableName" label="Column 2" placeholder='Add column name' variant="outlined" />
-              <TextField onChange={(e) => changeColumns(e,2)} id="tableName" label="Column 3" placeholder='Add column name' variant="outlined" />
-              <TextField onChange={(e) => changeColumns(e,3)} id="tableName" label="Column 4" placeholder='Add column name' variant="outlined" />
+            {selectedTable.value.map((item: any, index:number)=>  <TextBoxWithRemove key={index} i={index} handleRemoveButtonClick={handleRemoveButtonClick} item={item} handleInputChange={handleInputChange} />)}
             </div>
             <div className="addColumn">
-                <button className='btn btn-outline'>
+                <button onClick={handleAddButtonClick} className='btn btn-outline'>
                   <RiAddCircleFill/>
                   <span>Add Column</span>
                 </button>
               </div>
             <div className="buttonDiv">
-              <button className='btn btn-text'>Reset</button>
+              <button className='btn btn-text' onClick={()=>{setNewTableName('');setSelectedTable({name: "", value: ['','','','']})}}>Reset</button>
               <button onClick={submitNewTable} className='btn btn-primary'>Submit</button>
             </div>
           </div>
         </div>
       </CustomTabPanel>
       <CustomTabPanel value={value} index={1}>
-        <UpdateTable savedTables={savedTables} handleAddColumn={handleAddColumn} setSavedTables={setSavedTables} />
+        <UpdateTable savedTables={savedTables} setSavedTables={setSavedTables} />
       </CustomTabPanel>
       <CustomTabPanel value={value} index={2}>
       <div className="tableSec">
@@ -160,13 +175,11 @@ export default function Admin() {
 
 type updateTableProps = {
   savedTables:any, 
-  handleAddColumn:any, 
   setSavedTables:any, 
 }
 
 const UpdateTable = ({
-    savedTables, 
-    handleAddColumn,
+    savedTables,
     setSavedTables
   }: updateTableProps) => {
 
