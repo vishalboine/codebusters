@@ -10,7 +10,7 @@ import Button from "../../components/ui-widgets/Button/Button";
 import DropFileInput from "../../components/DropInputFile";
 import uploadImg from "../../assets/images/upload.svg"
 import { FormControl, Select, MenuItem, IconButton } from "@mui/material";
-import { RiCloseLine } from "react-icons/ri";
+import { RiCloseLine, RiRefreshLine } from "react-icons/ri";
 import axiosInstance from "../../config/axiosInstance";
 import useAuth from "../../hooks/useAuth";
 import { CustomerMasterData, TableName } from "../../mock/data";
@@ -141,32 +141,39 @@ const Dashboard = (props: Props) => {
         <div className="welcomeMsg">
           <h2>Hello, {auth.user}</h2>
         </div>
-        <div>
           <Button onClick={handleIsOpen} className="btn import-btn" title={
             <>
               <img src={uploadImg} alt="" />
               <span>Import</span>
             </>
           } />
-        </div>
       </div>
       <section>
         <div className="dataTypeSelector">
-          <FormControl sx={{ minWidth:226 }}>
-            <Select
-              onChange={(e)=>{
-                //api call mock data
-              }}
-              inputProps={{ 'aria-label': 'Without label' }}
-            >
-              {/* this can be multiple inputs more then 10 */}
-              {
-                TableName.map((ele: string, i: number) => (
-                  <MenuItem value={ele}>{ele}</MenuItem>
-                ))
-              }
-            </Select>
-          </FormControl>
+          <div className="d-flex">
+            <FormControl sx={{ minWidth:226 }}>
+              <Select
+                onChange={(e)=>{
+                  //api call mock data
+                }}
+                inputProps={{ 'aria-label': 'Without label' }}
+              >
+                {/* this can be multiple inputs more then 10 */}
+                {
+                  TableName.map((ele: string, i: number) => (
+                    <MenuItem value={ele}>{ele}</MenuItem>
+                  ))
+                }
+              </Select>
+            </FormControl>
+            <IconButton className="resetData" >
+              <RiRefreshLine/>
+            </IconButton>
+          </div>
+          <div className="uplodedFile">
+            <span>Selected file: {sheetName}
+            </span> 
+          </div>
         </div>
         <DataGrid
           dataSource={blotterData}

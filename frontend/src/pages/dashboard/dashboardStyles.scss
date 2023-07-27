@@ -14,25 +14,25 @@
     .leftPanel {
         display:flex;
         flex-direction:column;
+        align-items:center;
         width:4%;
         min-width:80px;
         background:$blue-700;
-        padding:4rem 1rem 2rem;
+        padding:4rem 1.6rem 2rem;
         .navItems {
             display:flex;
             flex-direction:column;
             margin-top:2rem;
-
             .navItem {
                 display:flex;
                 justify-content:center;
                 align-items:center;
-                width:3rem;
-                height:3rem;
-                margin-bottom:1rem;
+                width:4.8rem;
+                height:4.8rem;
+                margin-bottom:1.6rem;
                 background:$blue-800;
                 color:$blue-200;
-                border-radius:.5rem;
+                border-radius:8px;
                 list-style-type:none;
                 transition:.6s;
                 cursor:pointer;
@@ -53,7 +53,7 @@
         margin-top:1.5rem;
         width:96%;
         border-top-left-radius:2rem;
-        padding:2% 2% 0;
+        padding:3.2rem 3.2rem 0;
         overflow-y:scroll;
         position:relative;
 
@@ -76,10 +76,10 @@
                     background:$blue-700; color:$white; transition:ease-in .3s;
                     img {
                         position:relative;
-                        margin-right:.5rem;
+                        margin-right:.8rem;
                         transition:fill .3s;
                     }
-                    caption { font-size:1rem; }
+                    caption { font-size:1.6rem; }
                     &:hover { background:$primary-color; }
                 }
             }
@@ -87,13 +87,14 @@
             section {
                 .dxTable{
                     box-shadow:0 0 6px rgba($blue-900,.20);
+                    border-radius:8px;
                 }
-                border-radius:.5rem;
-                margin-top:4rem;
+                border-radius:8px;
+                margin-top:6.4rem;
                 .dataTypeSelector {
                     display:flex;
                     justify-content:left;
-                    margin-bottom:1rem;
+                    margin-bottom:1.6rem;
                 }
             }
            
@@ -108,9 +109,9 @@
     flex-direction:column;
     align-items:center;
     text-align:center;
-    padding:1rem 4rem;
+    padding:1.6rem 4rem;
     color:$blue-900;
-    font-size:1rem;
+    font-size:1.6rem;
     .drop-file-input {
         position: relative;
         width:280px;
@@ -216,12 +217,12 @@
         }
     }
 
-    p{ margin:1rem 0; font-weight:500; }
+    p{ margin:1.6rem 0; font-weight:500; }
     span {
-        margin-top: 1rem ;
+        margin-top: 1.6rem ;
         text-align: center;
         color:$gray-mute;
-        font-size:.75rem;
+        font-size:1.2rem;
         font-weight:500;
     }  
 }
@@ -241,12 +242,12 @@
         background:aliceblue;
         color:$blue-800;
         font-weight:500;
-        padding:1rem;
+        padding:1.6rem;
         border:1px solid $blue-300;
-        border-radius:.5rem;
-        font-size:1rem;
+        border-radius:8px;
+        font-size:1.6rem;
         .successIcon {
-            margin-left:1rem;
+            margin-left:1.6rem;
             font-size:24px;
             color:$secondary-color;
         }
@@ -254,20 +255,20 @@
 }
 
 .matchCols {
-    margin:1.5rem 0; 
+    margin:1.8rem 0; 
     display:flex;
     flex-direction:row;
     .column{
         display:flex;
         align-items:center;
-        margin-right:1rem;
+        margin-right:1.6rem;
         &:last-of-type {
             margin-right:0;
         }
         p {
-            font-size:1rem;
+            font-size:1.6rem;
             font-weight:500;
-            margin-right:.5rem;
+            margin-right:.8rem;
         }
     }
 }
@@ -276,22 +277,25 @@
  /* For Tablet View */
 @media screen and (min-device-width:768px)
 and (max-device-width:1023px) {
-
     .dashboard {
         .rightPanel {
+            padding:2rem 2rem 0;
             .dashboardWrapper {
                 .topWrapper {
-                    .welcome-msg{
-                        h2 { font-size:1.25rem; }
+                    .welcomeMsg{
+                        h2 { font-size:2rem; }
+                    }
+                    .import-btn {
+                        img { margin-right:0; }
+                        span { display:none; }
                     }
                 }
-                .btn-import {
-                    img { margin-right:0; }
-                    caption { display:none;}
-                }
+                
             }
         }
     }
+    .dx-button-text { display:none; }
+    .dx-button-has-text .dx-icon { margin-right:0!important; font-size:20px!important; }
 }
 
 /* For Mobile Portrait View */
@@ -301,6 +305,12 @@ and (max-device-width:1023px) {
         justify-content:center;
         position:relative;
         .rightPanel {
+            .import-btn {
+                img { margin-right:0; }
+                span { display:none; }
+            }
+            .dx-button-text { display:none; }
+            .dx-button-has-text .dx-icon { margin-right:0!important; font-size:20px!important; }
             section{
                 padding:2% 0;
                 .dx-light-pages {
