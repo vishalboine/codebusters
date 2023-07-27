@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react"
 import { DataGrid } from 'devextreme-react';
-import { Column, Pager, Paging, SearchPanel, Selection, Export } from 'devextreme-react/data-grid';
+import { Column, Pager, Paging, SearchPanel, Export } from 'devextreme-react/data-grid';
 import "./dashboardStyles.scss"
 import ODataStore from 'devextreme/data/odata/store';
 import * as XLSX from "xlsx";
@@ -10,39 +10,17 @@ import Button from "../../components/ui-widgets/Button/Button";
 import DropFileInput from "../../components/DropInputFile";
 import uploadImg from "../../assets/images/upload.svg"
 import { FormControl, Select, MenuItem, IconButton } from "@mui/material";
-import { RiCloseLine, RiCheckboxCircleFill } from "react-icons/ri";
+import { RiCloseLine } from "react-icons/ri";
 import axiosInstance from "../../config/axiosInstance";
 import useAuth from "../../hooks/useAuth";
-import { BillingData, CustomerMasterData, TransactionData, data } from "../../mock/data";
+import { CustomerMasterData, TableName } from "../../mock/data";
+import { checkForDuplicates, getUpdatedValues } from "../../utils/common";
 
-const dataSourceOptions = {
-  store: new ODataStore({
-    url: 'https://js.devexpress.com/Demos/SalesViewer/odata/DaySaleDtoes',
-    key: 'Id',
-    beforeSend(request) {
-      const year = new Date().getFullYear() - 1;
-      request.params.startDate = `${year}-05-10`;
-      request.params.endDate = `${year}-5-15`;
-    },
-  }),
-};
 
 const pageSizes = [10, 25, 50, 100];
 
 type Props = {}
 
-let initalBlotterColumns: any = ['Product', 'Amount', 'SalesDate', 'Region', 'Sector', 'Channel', 'Customer']
-// const excelColumns:any = ['Abc', 'Xyz', "Pqr"]
-// let columnMap :any = {'Product': 'Abc', 'Amount':'Xyz', 'SalesDate': 'Pqr' }
-// console.log('columnMap',columnMap['Product'])
-
-
-// Object.keys(columnMap).map((data:any)=>{
-// let temp = initalBlotterColumns.filter((ele:any) => Object.keys(columnMap).includes(ele))
-// temp = Object.values(columnMap)
-// initalBlotterColumns = temp
-// })
-// console.log('initalBlotterColumns', initalBlotterColumns)
 
 const Dashboard = (props: Props) => {
   const [collapsed, setCollapsed] = useState(false);
@@ -50,13 +28,13 @@ const Dashboard = (props: Props) => {
   const handleDataGridExportToExcel = useDataGridExcelExport('Demo');
   const [blotterData, setBlotterData] = useState({});
   const [excelColunms, setExcelColumns] = useState([]);
-  const [blotterColumns, setBlotterColumns] = useState(CustomerMasterData);
+  const [blotterColumns, setBlotterColumns] : any = useState(CustomerMasterData);
   const [resources, setResources]: any = useState([]);
   const [sheetName, setSheetName] = useState('');
+  const [tableData, setTableData] : any = useState({});
+  const [fieldMapping, setFieldMapping] : any = useState({});
+  const [selectImportDropDownValue, setSelectImportDropDownValue] : any = useState([])
   const { auth } = useAuth();
-  useEffect(() => {
-    setBlotterData(dataSourceOptions)
-  }, [dataSourceOptions])
 
 
   const handleFileUpload = (e: any) => {
@@ -90,9 +68,7 @@ const Dashboard = (props: Props) => {
 
   useEffect(() => {
     axiosInstance.get('/table/getAllTables').then((res: any) => {
-      // setResources(res.data)
-      console.log(res);
-      
+      setTableData(getUpdatedValues(res.data))
     }).catch((err: any) => { })
 
   }, [])
@@ -122,13 +98,40 @@ const Dashboard = (props: Props) => {
   }
 
   const onHandleChange = (e: any) =>{
-    console.log(e.target.value)
-    if(e.target.value === 'Customer Master Data'){
-      setBlotterColumns(CustomerMasterData)
-    }else if(e.target.value === 'Billing Data'){
-      setBlotterColumns(BillingData)
-    }else if(e.target.value === 'Transaction Data'){
-      setBlotterColumns(TransactionData)
+    let tempArr : any= []
+    if(Object.keys(tableData).includes(e.target.value)){
+      tableData[e.target.value].map((item:any)=>{
+        tempArr = [...tempArr, {dataField: '', caption: item}]
+      })
+      setBlotterColumns(tempArr)
+    }
+  }
+
+  const handleOnFieldMappingChange = (e: any, item: any) =>{
+    fieldMapping[item] = e.target.value
+    setSelectImportDropDownValue([...selectImportDropDownValue,e.target.value])
+    setFieldMapping({...fieldMapping})
+  }
+
+  const handleImportProceed = () => {
+    const fieldMappingArrValues = Object.values(fieldMapping);
+    const fieldMappingArrKeys = Object.keys(fieldMapping);
+    if(checkForDuplicates(fieldMappingArrValues)){
+      //validation for duplicate dropdown value
+    }else{
+      const blotterColumnsArr : any= blotterColumns;
+      blotterColumnsArr.map((item:any, index: any)=>{
+        fieldMappingArrKeys.map((data:any)=>{
+          if(item.caption === data){
+            item.dataField = fieldMapping[data]
+          }
+        })
+      })
+      setBlotterColumns(blotterColumnsArr);
+      setExcelColumns([]);
+      setFieldMapping({});
+      setSelectImportDropDownValue([]);
+      setisOpen(false);
     }
   }
 
@@ -151,14 +154,14 @@ const Dashboard = (props: Props) => {
         <div className="dataTypeSelector">
           <FormControl sx={{ minWidth:226 }}>
             <Select
-              onChange={(e)=>{onHandleChange(e)}}
-              displayEmpty
+              onChange={(e)=>{
+                //api call mock data
+              }}
               inputProps={{ 'aria-label': 'Without label' }}
-              defaultValue={'Customer Master Data'}
             >
               {/* this can be multiple inputs more then 10 */}
               {
-                Object.keys(data).map((ele: string, i: number) => (
+                TableName.map((ele: string, i: number) => (
                   <MenuItem value={ele}>{ele}</MenuItem>
                 ))
               }
@@ -177,8 +180,8 @@ const Dashboard = (props: Props) => {
           className="dxTable"
         >
           <SearchPanel visible={true} highlightCaseSensitive={true} />
-          {blotterColumns.map((item: any) => {
-            return <Column dataField={item} />
+          {blotterColumns.map(({dataField, caption}: any) => {
+            return <Column dataField={dataField}  caption={caption}/>
           })}
           <Export enabled={true} />
           <Pager visible={true} allowedPageSizes={pageSizes} showPageSizeSelector={true} />
@@ -188,13 +191,28 @@ const Dashboard = (props: Props) => {
       <Modal isOpen={isOpen} handleClose={handleIsOpen}>
        <div className="modalHead">
           <h4>Import Data</h4>
-        <IconButton onClick={() =>{ setisOpen(false); setExcelColumns([])}} className="closeModal" >
+        <IconButton onClick={() =>{ setisOpen(false); setExcelColumns([]); setSelectImportDropDownValue([]); setFieldMapping({});}} className="closeModal" >
             <RiCloseLine/>
           </IconButton>
        </div>
         {
           excelColunms.length <= 0 ? (
             <>
+            <div className="dataTypeSelector">
+              <FormControl sx={{ minWidth:226 }}>
+                <Select
+                  onChange={(e)=>{onHandleChange(e)}}
+                  inputProps={{ 'aria-label': 'Without label' }}
+                >
+                  {/* this can be multiple inputs more then 10 */}
+                  {
+                    Object.keys(tableData).map((ele: string, i: number) => (
+                      <MenuItem value={ele}>{ele}</MenuItem>
+                    ))
+                  }
+                </Select>
+              </FormControl>
+            </div>
               <div className="uploadWrapper">
                 <DropFileInput onFileDrop={handleFileUpload} />
                 <p>Drag & drop your files here or</p>
@@ -216,25 +234,26 @@ const Dashboard = (props: Props) => {
                   {/* <div className="successIcon">
                     <RiCheckboxCircleFill/>
                   </div> */}
-                  <button onClick={() => setExcelColumns([])} className="btn-text">Change file</button>
+                  <button onClick={() => {setExcelColumns([]); setFieldMapping({}); setSelectImportDropDownValue([]);}} className="btn-text">Change file</button>
                 </span> 
               </div>
               <div className="matchCols">
                 {
-                  blotterColumns.map((item: string, index: number) => (
+                  blotterColumns.map((item: any, index: number) => (
                     <>
                       <div className="column" key={index}>
-                        <p>{item}</p>
+                        <p>{item.caption}</p>
 
                         <FormControl sx={{ minWidth:200 }}>
                           <Select
-                            onChange={() => console.log(item)}
+                            onChange={(e) => handleOnFieldMappingChange(e, item.caption)}
                             inputProps={{ 'aria-label': 'Without label' }}
+                            value={selectImportDropDownValue[index]}
                           >
                             {/* this can be multiple inputs more then 10 */}
                             {
                               excelColunms.map((ele: string, i: number) => (
-                                <MenuItem value={i}>{ele}</MenuItem>
+                                <MenuItem value={ele}>{ele}</MenuItem>
                               ))
                             }
 
@@ -246,8 +265,8 @@ const Dashboard = (props: Props) => {
                 }
               </div>
               <div className="d-flex">
-                <button onClick={() => { }} className="btn btn-text">Reset</button>
-                <button onClick={() => { }} className="btn btn-primary">Proceed</button>
+                <button onClick={() => {setSelectImportDropDownValue([]); }} className="btn btn-text">Reset</button>
+                <button onClick={() => { handleImportProceed()}} className="btn btn-primary">Proceed</button>
               </div>
             </>
           )

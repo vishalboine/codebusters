@@ -5,7 +5,7 @@ export const data = {
     "Transaction Data": ["HEI", "UES","BJE"]
 }
 
-export const CustomerMasterData =["ABC", "XYZ","PQR"]
+export const CustomerMasterData =[{dataField: 'XYZ', caption:'XYZ'}, {dataField: 'ABC', caption:'ABC'}, {dataField: 'PQR', caption:'PQR'}]
 export const BillingData = ["TRS", "XUS","KEJ"]
 export const TransactionData =["HEI", "UES","BJE"]
 
