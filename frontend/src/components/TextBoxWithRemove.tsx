@@ -2,23 +2,18 @@ import * as React from 'react';
 import { RiIndeterminateCircleFill } from 'react-icons/ri';
 
 export default function TextBoxWithRemove(props: any) {
-  const {showRemove} = props;
+  const {item, i , handleRemoveButtonClick, handleInputChange} = props;
 
-  const [showTextBox, setShowTextBox] = React.useState(true);
-  const handleRemoveTextBox = () => {
-    setShowTextBox(false)
-  }
     return(
-      <>
-      {showTextBox && 
+      
           <div className="formGroup">
             <div className='inputTop'>
               <label>Column</label>
-              {showRemove && <div className="rightIcon" onClick={()=>{handleRemoveTextBox()}}><RiIndeterminateCircleFill/></div>}
+              {i > 3 && <div className="rightIcon" onClick={()=>{handleRemoveButtonClick(i)}}><RiIndeterminateCircleFill/></div>}
             </div>
-            <input placeholder='Add column name'/>
+            <input onChange={(e:any) => {
+              handleInputChange(i,e.target.value)
+            } } value={item} placeholder='Add column name'/>
           </div>
-      }
-      </>
     )
 }

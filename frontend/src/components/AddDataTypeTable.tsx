@@ -1,7 +1,7 @@
 import React from "react"
 
 export default function AddDataTypeTable(props:any){
-    const {tableName, onEditClick} = props;
+    const {tableName, onEditClick, onDeleteClick} = props;
     return(
         <div className="table-row">		
             <div className="table-data">{tableName}</div>
@@ -9,7 +9,7 @@ export default function AddDataTypeTable(props:any){
                 <ul className='d-flex'>
                 <li onClick={onEditClick}>Edit</li>
                 <li>&nbsp; | &nbsp;</li>
-                <li>Delete</li>
+                <li onClick={onDeleteClick}>Delete</li>
                 </ul>
             </div>
         </div>
