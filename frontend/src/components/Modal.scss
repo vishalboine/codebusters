@@ -2,7 +2,7 @@
 
 .ReactModalPortal {
   position:relative;
-  z-index:999;
+  z-index:9999;
 }
 
 .Modal {
@@ -11,11 +11,11 @@
   left: 50%;
   background:$white;
   transform: translate(-50%,-50%);
-  padding: 1.5rem;
+  padding: 2.4rem;
   box-shadow: 0px 2px 4px rgba(0,0,0,0.2);
   width: fit-content;
   height:fit-content;
-  border-radius:.5rem;
+  border-radius:8px;
   display:flex;
   flex-direction:column;
   justify-content: center;
@@ -24,17 +24,17 @@
     display:flex;
     justify-content:space-between;
     width:100%;
-    margin-bottom:1rem;
+    margin-bottom:1.6rem;
     h4 {
       text-align:center;
       font-weight:600!important;
     }
     .closeModal {
       position: absolute;
-      top:1rem;
-      right:1rem;
+      top:1.6rem;
+      right:1.6rem;
       cursor:pointer;
-      padding:.25rem;
+      padding:.4rem;
       svg { margin-right:0; }
     }
   } 
@@ -51,20 +51,20 @@
   }
 
   .logoutWrapper {
-    width:25rem;
+    width:40rem;
     display:flex;
     align-items:center;
     flex-direction:column;
     h4 {
-      margin-bottom:1.5rem;
+      margin-bottom:2.4rem;
     }
     p{
       text-align:center;
-      margin-bottom:1.5rem;
-      font-size:1rem;
+      margin-bottom:2.4rem;
+      font-size:1.6rem;
       color:$gray-blue-50;
     }
     button {
-      margin-right:1rem;
+      margin-right:1.6rem;
     }
   }

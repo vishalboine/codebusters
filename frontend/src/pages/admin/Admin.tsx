@@ -138,22 +138,29 @@ export default function Admin() {
         </Tabs>
       </Box>
       <CustomTabPanel value={value} index={0}>
-        <div className="addTable">
+        <div className="adminWrapper">
           <h3>Add Table</h3>
-          <div className="formDiv">
-            <TextField value={newTableName} onChange={handleChangeTableName} id="tableName" label="Table name" variant="outlined" />
-            <div className="tableColumns">
-            {selectedTable.value.map((item: any, index:number)=>  <TextBoxWithRemove key={index} i={index} handleRemoveButtonClick={handleRemoveButtonClick} item={item} handleInputChange={handleInputChange} />)}
-            </div>
-            <div className="addColumn">
-                <button onClick={handleAddButtonClick} className='btn btn-outline'>
-                  <RiAddCircleFill/>
-                  <span>Add Column</span>
-                </button>
+          <div className="addtable">
+            <div className="formDiv">
+              <div className="formGroup">
+                <div className="inputTop">
+                  <label htmlFor="Table Name">Table name</label>
+                </div>
+                <input placeholder='Enter table name' value={newTableName} onChange={handleChangeTableName} id="tableName" />
               </div>
-            <div className="buttonDiv">
-              <button className='btn btn-text' onClick={()=>{setNewTableName('');setSelectedTable({name: "", value: ['','','','']})}}>Reset</button>
-              <button onClick={submitNewTable} className='btn btn-primary'>Submit</button>
+              <div className="tableColumns">
+                {selectedTable.value.map((item: any, index:number)=>  <TextBoxWithRemove key={index} i={index} handleRemoveButtonClick={handleRemoveButtonClick} item={item} handleInputChange={handleInputChange} />)}
+              </div>
+              <div className="addColumn">
+                  <button onClick={handleAddButtonClick} className='btn btn-text'>
+                    <RiAddCircleFill/>
+                    <span>Add Column</span>
+                  </button>
+                </div>
+              <div className="buttonDiv">
+                <button className='btn btn-text' onClick={()=>{setNewTableName('');setSelectedTable({name: "", value: ['','','','']})}}>Reset</button>
+                <button onClick={submitNewTable} className='btn btn-primary'>Submit</button>
+              </div>
             </div>
           </div>
         </div>
@@ -162,8 +169,44 @@ export default function Admin() {
         <UpdateTable savedTables={savedTables} setSavedTables={setSavedTables} />
       </CustomTabPanel>
       <CustomTabPanel value={value} index={2}>
-      <div className="tableSec">
-        <h3> Column Validation</h3>
+      <div className="adminWrapper">
+        <h3>Column Validation</h3>
+          <div className="columnValidation">
+          {showValidationForm && <div className="formDiv">
+            <div className='tableName' style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+              <Typography component='h4'>Table Name:</Typography>
+              <Typography sx={{
+                fontSize: '24px'
+              }} component='h2' variant='h2'>{selectedTable.name}</Typography>
+            </div>
+            <div className="validTableColumns">
+              {selectedTable.value.map((item)=>{
+                return <>
+                  <div className="validCol">
+                    <label>{item}</label>
+                    <FormControl sx={{ minWidth:226 }}>
+                    <Select
+                      onChange={(e)=>{}}
+                      inputProps={{ 'aria-label': 'Without label' }}
+                      defaultValue={'int'}
+                    >
+                      {/* this can be multiple inputs more then 10 */}
+                      {
+                        columnTypes.map((ele: string, i: number) => (
+                          <MenuItem value={ele}>{ele}</MenuItem>
+                        ))
+                      }
+                    </Select>
+                    </FormControl>
+                  </div>
+                </>
+            })}
+            </div>
+            <div className="buttonDiv">
+              <button className='btn btn-text' onClick={()=>{setShowValidationForm(false);}}>Cancel</button>
+              <button className='btn btn-primary' onClick={()=>{}}>Validate</button>
+            </div>
+          </div>}
           <div className="table">
             <div className="table-header">
               <div className="header__item">Table Name</div>
@@ -175,43 +218,6 @@ export default function Admin() {
             })}
             </div>	
           </div>
-
-          {showValidationForm && <div className="formDiv">
-            <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-              <Typography component='h4'>Table Name:</Typography>
-              <Typography sx={{
-                fontSize: '24px'
-              }} component='h2' variant='h2'>{selectedTable.name}</Typography>
-            </div>
-            <div className="tableColumns">
-            {selectedTable.value.map((item)=>{
-              return <>
-                <label>{item}</label>
-              
-                <FormControl sx={{ minWidth:226 }}>
-                <Select
-                  onChange={(e)=>{}}
-                  inputProps={{ 'aria-label': 'Without label' }}
-                  defaultValue={'int'}
-                >
-                  {/* this can be multiple inputs more then 10 */}
-                  {
-                    columnTypes.map((ele: string, i: number) => (
-                      <MenuItem value={ele}>{ele}</MenuItem>
-                    ))
-                  }
-                </Select>
-              </FormControl>
-              </>
-          })}
-            </div>
-            <div className="buttonDiv">
-              <button className='btn btn-text' onClick={()=>{setShowValidationForm(false);}}>Cancel</button>
-              <button className='btn btn-primary' onClick={()=>{}}>Submit</button>
-            </div>
-          </div>}
-          <div className="updateTable">
-            
           </div>
       </div>
       </CustomTabPanel>
@@ -316,8 +322,31 @@ const UpdateTable = ({
     
   return (
     <>
-      <h3>Update Table</h3>
-      <div className="updateTable">
+      <div className="adminWrapper">
+        <h3>Update Table</h3>
+        <div className="updateTable">
+        {showAmendForm && <div className="formDiv">
+              <div className='tableName' style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+                <label>Table Name:</label>
+                <Typography sx={{
+                  fontSize: '24px'
+                }} component='h2' variant='h2'>{selectedTable.name}</Typography>
+              </div>
+              <div className="tableColumns">
+                {selectedTable.value.map((item: any, index:number)=>  <TextBoxWithRemove key={index} i={index} handleRemoveButtonClick={handleRemoveButtonClick} item={item} handleInputChange={handleInputChange} />)}
+              </div>
+              <div className="addColumn" onClick={handleAddButtonClick}>
+                <button className='btn btn-text'>
+                  <RiAddCircleFill/>
+                  <span>Add Column</span>
+                </button>
+              </div>
+              <div className="buttonDiv">
+                <button className='btn btn-text' onClick={handleCancelClick}>Cancel</button>
+                <button className='btn btn-text' onClick={handleReset}>Reset</button>
+                <button className='btn btn-primary' onClick={handleSubmit}>Update</button>
+              </div>
+            </div>}
           <div className="table">
             <div className="table-header">
               <div className="header__item">Table Name</div>
@@ -329,28 +358,8 @@ const UpdateTable = ({
             })}
             </div>	
           </div>
-          {showAmendForm && <div className="formDiv">
-            <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-              <Typography component='h4'>Table Name:</Typography>
-              <Typography sx={{
-                fontSize: '24px'
-              }} component='h2' variant='h2'>{selectedTable.name}</Typography>
-            </div>
-            <div className="tableColumns">
-              {selectedTable.value.map((item: any, index:number)=>  <TextBoxWithRemove key={index} i={index} handleRemoveButtonClick={handleRemoveButtonClick} item={item} handleInputChange={handleInputChange} />)}
-            </div>
-            <div className="addColumn" onClick={handleAddButtonClick}>
-              <button className='btn btn-outline'>
-                <RiAddCircleFill/>
-                <span>Add Column</span>
-              </button>
-            </div>
-            <div className="buttonDiv">
-              <button className='btn btn-text' onClick={handleReset}>Reset</button>
-              <button className='btn btn-text' onClick={handleCancelClick}>Cancel</button>
-              <button className='btn btn-primary' onClick={handleSubmit}>Submit</button>
-            </div>
-          </div>}
+            
+          </div>
       </div>
     </>
   )

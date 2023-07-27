@@ -1,19 +1,28 @@
 @import "./iwVariables";
 @import "./formElemets";
 
-* {
+*, 
+*::before,
+*::after {
     margin:0;
     padding:0;
-    font-family:'Inter', sans-serif;
-    box-sizing:border-box;
-    font-weight:400;
-    &:before,
-    &:after {
-        box-sizing:border-box!important;
-    }
+    box-sizing:inherit;
 }
 
-body { box-sizing:border-box; margin:0; padding:0; color:$blue-900 }
+
+html {
+    font-size:62.5%;
+    
+}
+
+body { 
+    font-family:'Inter', sans-serif;
+    font-weight:400;
+    margin:0;
+    padding:0;
+    color:$blue-dark;
+    box-sizing:border-box; 
+}
 
 *::-webkit-scrollbar {
     width:7px!important;
@@ -51,6 +60,7 @@ h1,h2,h3 { font-weight:600!important; color:$blue-900; }
 h4,h5,h6 { font-weight:500!important; color:$blue-900; }
 
 input:-webkit-autofill {
+    font-size:1.6rem;
     &:hover,
     &:focus,
     &:active { box-shadow:0 0 0 40px transparent inset!important; -webkit-box-shadow:0 0 0 40px transparent inset!important; -webkit-text-fill-color:$black-80; }
@@ -66,7 +76,7 @@ a { text-decoration:none; }
 	width:50%;
 	border:1px solid $white-93;
     margin:0 auto;
-    border-radius:.5rem;
+    border-radius:8px;
 }
 
 .table-header {
@@ -85,6 +95,12 @@ a { text-decoration:none; }
 	&:nth-of-type(odd) {
 		background:#f0f3ff;
 	}
+}
+
+.table-data {
+    li { text-transform:uppercase; cursor: pointer; color:$blue-900; font-weight:500;
+        &:nth-of-type(2){ cursor:default; }
+    }
 }
 
 .table-data, .header__item {
