@@ -16,4 +16,8 @@ function getUpdatedValues(data: any[]): KeyValue {
     return valuesObj;
 }
 
-export { getUpdatedValues }
+function checkForDuplicates(array : any) {
+    return new Set(array).size !== array.length
+  }
+
+export { getUpdatedValues, checkForDuplicates }
