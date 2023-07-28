@@ -9,8 +9,8 @@ import Modal from "../../components/Modal";
 import Button from "../../components/ui-widgets/Button/Button";
 import DropFileInput from "../../components/DropInputFile";
 import uploadImg from "../../assets/images/upload.svg"
-import { FormControl, Select, MenuItem, IconButton } from "@mui/material";
-import { RiCloseLine, RiRefreshLine } from "react-icons/ri";
+import { FormControl, Select, MenuItem, IconButton, Tooltip } from "@mui/material";
+import { RiArrowLeftSLine, RiArrowRightSLine, RiCloseLine, RiRefreshLine } from "react-icons/ri";
 import axiosInstance from "../../config/axiosInstance";
 import useAuth from "../../hooks/useAuth";
 import { CustomerMasterData, TableName } from "../../mock/data";
@@ -202,9 +202,12 @@ const Dashboard = (props: Props) => {
                 }
               </Select>
             </FormControl>
-            <IconButton className="resetData" onClick={()=>handleResetImport()}>
-              <RiRefreshLine/>
-            </IconButton>
+            <Tooltip title="Reset data" placement="right">
+              <IconButton className="resetData" onClick={()=>handleResetImport()}>
+                <RiRefreshLine/>
+              </IconButton>
+            </Tooltip>
+            
           </div>
           <Button onClick={handleIsOpen} className="btn import-btn" title={
             <>
@@ -238,6 +241,12 @@ const Dashboard = (props: Props) => {
           <Export enabled={true} />
           <Paging defaultPageSize={10} />
         </DataGrid>
+          <div className="tableNav">
+            <div className="d-flex">
+              <button onClick={ser}><RiArrowLeftSLine/></button>
+              <button onClick={ser}><RiArrowRightSLine/></button>
+            </div>
+          </div>
       </section>
       <Modal isOpen={isOpen} handleClose={handleIsOpen}>
        <div className="modalHead">
@@ -250,6 +259,7 @@ const Dashboard = (props: Props) => {
           excelColunms.length <= 0 ? (
             <>
             <div className="dataTypeSelector">
+              <label>Data Type</label>
               <FormControl sx={{ minWidth:226 }}>
                 <Select
                   onChange={(e)=>{onHandleChange(e)}}

@@ -23,14 +23,14 @@
             position:relative;
             background:$blue-100;
             color:$blue-800;
-            font-size:2.4rem;
+            font-size:3rem;
             overflow: hidden;
             white-space: nowrap;
             text-transform:uppercase;
             width:4.8rem;
             height:4.8rem;
             border-radius:2.5rem;
-            padding:7.5px;
+            padding:12px;
             font-weight:700;
             display:flex;
             align-items:center;
@@ -130,18 +130,14 @@
                     &:hover { background:$primary-color; }
                 }
             }
-    
             section {
                 .dxTable{
                     box-shadow:0 0 6px rgba($blue-900,.20);
                     border-radius:8px;
                 }
                 border-radius:8px;
-                margin-top:3.4rem;
-                // .dataTypeSelector {
-                //     display:flex;
-                //     justify-content:left;
-                //     margin-bottom:1.6rem;
+                margin-top:2.5rem;
+
                     .uplodedFile {
                         span {
                         justify-content:center;
@@ -164,12 +160,12 @@
     flex-direction:column;
     align-items:center;
     text-align:center;
-    padding:1.6rem 4rem;
+    padding:1.6rem 2rem;
     color:$blue-900;
     font-size:1.6rem;
     .drop-file-input {
         position: relative;
-        width:280px;
+        width:326px;
         height: 200px;
         border: 2px dashed $blue-300;
         border-radius:1.25rem;
@@ -326,6 +322,14 @@
             margin-right:.8rem;
         }
     }
+}
+
+.dataTypeSelector {
+    display:flex;
+    justify-content:space-between;
+    margin-bottom:.8rem;
+    align-items:center;
+    label { font-size:1.6rem; margin-right:2rem; }
 }
 
 

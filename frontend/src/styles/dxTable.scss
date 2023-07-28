@@ -32,7 +32,7 @@
 .dx-searchbox .dx-icon-search { color:$gray-mute!important; font-size:2rem!important; padding:8px 8px 8px 12px!important; }
 .dx-searchbox .dx-icon-search::before,.dx-placeholder { color:$gray-mute!important; }
 .dx-placeholder { left:0.5rem!important; }
-.dx-show-clear-button .dx-icon-clear { background:$blue-50!important; right:6.4rem; color:$gray-mute!important; }
+.dx-show-clear-button .dx-icon-clear { background:$blue-50!important; right:4rem; color:$gray-mute!important; }
 
 .dx-texteditor.dx-state-focused.dx-editor-outlined { border:none!important; border-radius:8px; }
 .dx-texteditor.dx-state-hover { border:none!important; border-radius:8px; }
@@ -137,4 +137,10 @@
             }
         }
       }
+}
+
+.tableNav { display:flex; justify-content: flex-end; padding:1.2rem 0; 
+    button { margin-left:1.2rem; background:$blue-800; color:$blue-100; font-size:24px;  padding:6px; border-radius:8px;
+        svg { margin-right:0; }
+    }
 }
