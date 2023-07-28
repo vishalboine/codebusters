@@ -55,9 +55,9 @@ const Layout = () => {
               {item.to === pathname ? item. activeLogo : item.logo}
             </Link>
           ))}
-          <IconButton onClick={handleIsOpen} className='navItem' aria-label="logout">
+          <a onClick={handleIsOpen} className='navItem' aria-label="logout">
             <RiLogoutCircleRLine size={26} />
-          </IconButton>
+          </a>
         </div>
       </div>
       <div className="rightPanel">
