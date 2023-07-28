@@ -35,6 +35,7 @@ const Dashboard = (props: Props) => {
   const [fieldMapping, setFieldMapping] : any = useState({});
   const [selectImportDropDownValue, setSelectImportDropDownValue] : any = useState([])
   const { auth } = useAuth();
+  const [pageNumber, setPageNumber] = useState(1)
 
 
   const handleFileUpload = (e: any) => {
@@ -63,8 +64,23 @@ const Dashboard = (props: Props) => {
     axiosInstance.get('/resource').then((res: any) => {
       setResources(res.data)
     }).catch((err: any) => { })
+    axiosInstance.get(`/mock?pageNumber=${pageNumber}`).then((res: any) => {
+     console.log(res.data);
+     
+    }).catch((err: any) => { })
 
   }, [])
+
+  useEffect(() => {
+    axiosInstance.get(`/mock?pageNumber=${pageNumber}`).then((res: any) => {
+      console.log(res.data);
+      
+     }).catch((err: any) => { })
+  },[pageNumber])
+
+  const ser = () => {
+    setPageNumber((prev) => prev + 1)
+  }
 
   useEffect(() => {
     axiosInstance.get('/table/getAllTables').then((res: any) => {
@@ -140,6 +156,7 @@ const Dashboard = (props: Props) => {
       <div className="topWrapper">
         <div className="welcomeMsg">
           <h2>Hello, {auth.user}</h2>
+          <button onClick={ser}>page</button>
         </div>
           <Button onClick={handleIsOpen} className="btn import-btn" title={
             <>
