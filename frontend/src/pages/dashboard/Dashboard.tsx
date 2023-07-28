@@ -182,19 +182,10 @@ const Dashboard = (props: Props) => {
   return (
     <div className="dashboardWrapper">
       <div className="topWrapper">
-        <div className="welcomeMsg">
+        {/* <div className="welcomeMsg">
           <h2>Hello, {auth.user}</h2>
           <button onClick={ser}>page</button>
-        </div>
-          <Button onClick={handleIsOpen} className="btn import-btn" title={
-            <>
-              <img src={uploadImg} alt="" />
-              <span>Import</span>
-            </>
-          } />
-      </div>
-      <section>
-        <div className="dataTypeSelector">
+        </div> */}
           <div className="d-flex">
             <FormControl sx={{ minWidth:226 }}>
               <Select
@@ -215,6 +206,15 @@ const Dashboard = (props: Props) => {
               <RiRefreshLine/>
             </IconButton>
           </div>
+          <Button onClick={handleIsOpen} className="btn import-btn" title={
+            <>
+              <img src={uploadImg} alt="" />
+              <span>Import</span>
+            </>
+          } />
+      </div>
+      <section>
+        <div className="dataTypeSelector">
           <div className="uplodedFile">
             <span>Selected file: {sheetName}
             </span> 
