@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import React, {useState} from 'react';
 import { Link, Outlet, useLocation } from 'react-router-dom';
 import { RiHome6Line, RiHome6Fill ,RiSettings5Line, RiSettings5Fill, RiAdminLine, RiAdminFill, RiLogoutCircleRLine, RiLogoutCircleRFill } from 'react-icons/ri';
 import { HiUserGroup,HiOutlineUserGroup } from 'react-icons/hi';
@@ -52,7 +52,7 @@ const Layout = () => {
         <div className="head">
           <img src={logo} alt="" />
           <div className="userIcon">
-          {auth.user}
+          {auth.user.charAt(0)}
           <span className="tooltiptext">{auth.user}</span>
           </div>
         </div>
