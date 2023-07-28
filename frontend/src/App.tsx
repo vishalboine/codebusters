@@ -12,6 +12,7 @@ import { ROLES } from "./constants";
 import Settings from "./pages/settings/Settings";
 import Admin from "./pages/admin/Admin";
 import ToastLayout from "./components/layouts/ToastLayout";
+import Users from "./pages/admin/Users";
 
 function App() {
   // Unlocking Innovation: Where Ideas Meet Code!
@@ -25,11 +26,12 @@ function App() {
 
         {/* private routes */}
         <Route element={<PersistLogin />}>
-          <Route element={<RequireAuth allowedRoles={[ROLES.User]} />}>
+          <Route element={<RequireAuth allowedRoles={['User', 'Admin']} />}>
             <Route element={<Layout />}>
               <Route path="/" element={<Dashboard />} />
               <Route path="/settings" element={<Settings />} />
               <Route path="/admin" element={<Admin />} />
+              <Route path="/update-users" element={<Users />} />
             </Route>
           </Route>
         </Route>

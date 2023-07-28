@@ -1,6 +1,7 @@
 import {useState} from 'react';
 import { Link, Outlet, useLocation } from 'react-router-dom';
 import { RiHome6Line, RiHome6Fill ,RiSettings5Line, RiSettings5Fill, RiAdminLine, RiAdminFill, RiLogoutCircleRLine, RiLogoutCircleRFill } from 'react-icons/ri';
+import { HiUserGroup,HiOutlineUserGroup } from 'react-icons/hi';
 import logo from '../../assets/images/logo.svg';
 import {IconButton} from '@mui/material'
 import Modal from '../Modal';
@@ -33,6 +34,12 @@ const Layout = () => {
       logo: <RiAdminLine size={26} />,
       activeLogo: <RiAdminFill size={26} />,
       to: '/admin'
+    },
+    {
+      key: 4,
+      logo: <HiOutlineUserGroup size={26} />,
+      activeLogo: <HiUserGroup size={26} />,
+      to: '/update-users'
     }
   ]
 

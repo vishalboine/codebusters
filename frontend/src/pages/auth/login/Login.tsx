@@ -39,11 +39,11 @@ const Login = () => {
       withCredentials: true
   }).then((response: any) => {
       const accessToken = response?.data?.accessToken;
-      const roles = response?.data?.roles;
+      const role = response?.data?.role;
       toast('Login successfull', {
         type: 'success'
       });
-      setAuth({ user: loginForm.name, pwd: loginForm.password, roles, accessToken });
+      setAuth({ user: loginForm.name, pwd: loginForm.password, role, accessToken });
       setLoginForm({
         name:"",
         password:"",

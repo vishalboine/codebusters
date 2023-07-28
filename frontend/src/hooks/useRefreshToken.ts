@@ -12,7 +12,7 @@ const useRefreshToken = () => {
         setAuth((prev:any) => {
             return {
                 ...prev,
-                roles: response.data.roles,
+                role: response.data.role,
                 accessToken: response.data.accessToken,
                 user: response.data.user,
             }
