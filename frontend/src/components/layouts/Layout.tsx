@@ -6,6 +6,7 @@ import logo from '../../assets/images/logo.svg';
 import {IconButton} from '@mui/material'
 import Modal from '../Modal';
 import useLogout from '../../hooks/useLogout';
+import useAuth from "../../hooks/useAuth";
 
 const Layout = () => {
 
@@ -43,11 +44,17 @@ const Layout = () => {
     }
   ]
 
+  const { auth } = useAuth();
+
   return (
     <div className='dashboard'>
       <div className="leftPanel">
         <div className="head">
           <img src={logo} alt="" />
+          <div className="userIcon">
+          {auth.user}
+          <span className="tooltiptext">{auth.user}</span>
+          </div>
         </div>
         <div className="navItems">
           { navItems.map((item: any) => (

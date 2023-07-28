@@ -19,6 +19,53 @@
         min-width:80px;
         background:$blue-700;
         padding:4rem 1.6rem 2rem;
+        .userIcon {
+            position:relative;
+            background:$blue-100;
+            color:$blue-800;
+            font-size:2.4rem;
+            overflow: hidden;
+            white-space: nowrap;
+            text-transform:uppercase;
+            width:4.8rem;
+            height:4.8rem;
+            border-radius:2.5rem;
+            padding:7.5px;
+            font-weight:700;
+            display:flex;
+            align-items:center;
+            justify-content:flex-start;
+            margin:2rem 0;
+            border:3px solid $white-96;
+            letter-spacing:.1rem;
+            span {
+                visibility: hidden;
+                width:auto;
+                background-color:$blue-50;
+                color:$secondary-color;
+                border:1px solid $blue-100;
+                text-align: center;
+                border-radius:8px;
+                padding:8px;
+                font-size:1.6rem;
+                font-weight:500;
+                transition: linear .3s;
+                /* Position the tooltip */
+                position:fixed;
+                z-index: 1;
+                top:11.5rem;
+                left:7rem;
+                &::before {
+                    border-top: 6px solid transparent;
+                    border-right: 6px solid #f5f5f5;
+                    border-bottom: 6px solid transparent;
+                    margin-left: 6px; }
+              }
+              
+              &:hover span {
+                visibility: visible;
+              }
+        }
         .navItems {
             display:flex;
             flex-direction:column;
@@ -90,11 +137,19 @@
                     border-radius:8px;
                 }
                 border-radius:8px;
-                margin-top:6.4rem;
+                margin-top:3.4rem;
                 .dataTypeSelector {
                     display:flex;
                     justify-content:left;
                     margin-bottom:1.6rem;
+                    .uplodedFile {
+                        span {
+                        justify-content:center;
+                        padding:0;
+                        background:none;
+                        border:none;
+                        }
+                    }
                 }
             }
            
@@ -327,8 +382,10 @@ and (max-device-width:1023px) {
             }
         }
         .rightPanel {
+            width:100%;
+            padding: 1.6rem 1.6rem 0;
             .import-btn {
-                img { margin-right:0; }
+                img { margin-right:0!important; }
                 span { display:none; }
             }
             .dx-button-text { display:none; }
