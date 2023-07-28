@@ -21,6 +21,7 @@ const pageSizes = [10, 25, 50, 100];
 
 type Props = {}
 
+// const pageElement = document.querySelector('.dx-page');
 
 const Dashboard = (props: Props) => {
   const [collapsed, setCollapsed] = useState(false);
@@ -36,6 +37,8 @@ const Dashboard = (props: Props) => {
   const [selectImportDropDownValue, setSelectImportDropDownValue] : any = useState([])
   const { auth } = useAuth();
   const [pageNumber, setPageNumber] = useState(1)
+  const [mockData, setMockData]:any = useState({})
+  const [mockDataDropDown, setMockDataDropDown] = useState('Demo1')
 
 
   const handleFileUpload = (e: any) => {
@@ -65,11 +68,17 @@ const Dashboard = (props: Props) => {
       setResources(res.data)
     }).catch((err: any) => { })
     axiosInstance.get(`/mock?pageNumber=${pageNumber}`).then((res: any) => {
-     console.log(res.data);
-     
+      setMockData(res.data)
     }).catch((err: any) => { })
 
   }, [])
+
+  useEffect(()=>{
+    if(Object.keys(mockData).length > 0){
+      setBlotterColumns(Object.keys(mockData.Demo1[0]))
+      setBlotterData(mockData['Demo1'])
+    }
+  },[mockData])
 
   useEffect(() => {
     axiosInstance.get(`/mock?pageNumber=${pageNumber}`).then((res: any) => {
@@ -88,6 +97,7 @@ const Dashboard = (props: Props) => {
     }).catch((err: any) => { })
 
   }, [])
+
 
   const onContentReady = (e: any) => {
     if (!collapsed) {
@@ -147,8 +157,26 @@ const Dashboard = (props: Props) => {
       setExcelColumns([]);
       setFieldMapping({});
       setSelectImportDropDownValue([]);
+      setMockDataDropDown('')
       setisOpen(false);
     }
+  }
+
+  const handleChangeMockData = (e : any) => {
+    const mockTemp : any = mockData[e.target.value];
+    setMockDataDropDown(e.target.value)
+    if(Object.keys(mockData).includes(e.target.value)){
+      setBlotterColumns(Object.keys(mockTemp[0]))
+      setBlotterData(mockData[e.target.value])
+    }
+  }
+
+
+  const handleResetImport = () =>{
+    setSheetName('');
+    setMockDataDropDown('Demo1');
+    setBlotterColumns(Object.keys(mockData.Demo1[0]))
+    setBlotterData(mockData['Demo1'])
   }
 
   return (
@@ -170,20 +198,20 @@ const Dashboard = (props: Props) => {
           <div className="d-flex">
             <FormControl sx={{ minWidth:226 }}>
               <Select
-                onChange={(e)=>{
-                  //api call mock data
-                }}
+                onChange={(e)=>{handleChangeMockData(e);}}
+                value={mockDataDropDown}
                 inputProps={{ 'aria-label': 'Without label' }}
               >
                 {/* this can be multiple inputs more then 10 */}
+                <MenuItem value={''}>{''}</MenuItem>
                 {
-                  TableName.map((ele: string, i: number) => (
+                  Object.keys(mockData).map((ele: string, i: number) => (
                     <MenuItem value={ele}>{ele}</MenuItem>
                   ))
                 }
               </Select>
             </FormControl>
-            <IconButton className="resetData" >
+            <IconButton className="resetData" onClick={()=>handleResetImport()}>
               <RiRefreshLine/>
             </IconButton>
           </div>
@@ -204,11 +232,10 @@ const Dashboard = (props: Props) => {
           className="dxTable"
         >
           <SearchPanel visible={true} highlightCaseSensitive={true} />
-          {blotterColumns.map(({dataField, caption}: any) => {
-            return <Column dataField={dataField}  caption={caption}/>
+          {blotterColumns.map((data: any) => {
+            return <Column dataField={data.dataField ? data.dataField : data}  caption={data.caption ? data.caption : data}/>
           })}
           <Export enabled={true} />
-          <Pager visible={true} allowedPageSizes={pageSizes} showPageSizeSelector={true} />
           <Paging defaultPageSize={10} />
         </DataGrid>
       </section>
