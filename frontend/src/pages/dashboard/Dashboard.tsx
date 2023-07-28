@@ -82,13 +82,12 @@ const Dashboard = (props: Props) => {
 
   useEffect(() => {
     axiosInstance.get(`/mock?pageNumber=${pageNumber}`).then((res: any) => {
-      console.log(res.data);
-      
+      setMockData(res.data)
      }).catch((err: any) => { })
   },[pageNumber])
 
-  const ser = () => {
-    setPageNumber((prev) => prev + 1)
+  const ser = (setPage: number) => {
+    setPageNumber((prev) => prev + setPage)
   }
 
   useEffect(() => {
@@ -243,8 +242,8 @@ const Dashboard = (props: Props) => {
         </DataGrid>
           <div className="tableNav">
             <div className="d-flex">
-              <button onClick={ser}><RiArrowLeftSLine/></button>
-              <button onClick={ser}><RiArrowRightSLine/></button>
+              {pageNumber !== 1  && <button onClick={()=>ser(-1)}><RiArrowLeftSLine/></button>}
+              {pageNumber !== 3  && <button onClick={()=>ser(+1)}><RiArrowRightSLine/></button>}
             </div>
           </div>
       </section>
