@@ -1,5 +1,5 @@
 import { useState } from "react"
-import LongLogo from "../../../assets/images/longLogo.png";
+import LoginLogo from "../../../assets/images/LoginLogo.svg";
 import image1 from "../../../assets/images/image1.png";
 import { LOGO_ALT } from "../../../constants";
 import "./Login.scss"
@@ -67,7 +67,7 @@ const Login = () => {
     <div className='authBg'>
       <div className="loginWrapper">
         <div className="loginCard">
-          <img src={LongLogo} alt={LOGO_ALT} className="authLogo" />
+          <img src={LoginLogo} alt={LOGO_ALT} className="authLogo" />
           <div className="loginWrapper_main">
             <div className="left">
               <img src={image1} alt="" />

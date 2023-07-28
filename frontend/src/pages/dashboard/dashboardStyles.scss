@@ -304,6 +304,28 @@ and (max-device-width:1023px) {
       .dashboard {
         justify-content:center;
         position:relative;
+        .leftPanel {
+            display:inline-flex;
+            flex-direction:row;
+            justify-content: center;
+            position:fixed;
+            bottom:0;
+            width:100%;
+            height:80px;
+            padding:.5rem;
+            z-index:1;
+            .head { display:none; }
+            .navItems {
+                display:inline-flex;
+                justify-content:space-between;
+                background:none;
+                gap:5rem;
+                padding-top:0;
+                margin-top:0;
+                flex-direction:row;
+                .navItem { margin-bottom:0; background:none; }
+            }
+        }
         .rightPanel {
             .import-btn {
                 img { margin-right:0; }
@@ -320,25 +342,6 @@ and (max-device-width:1023px) {
                 }
             }
         }
-        .leftPanel {
-            display:inline-flex;
-            flex-direction:row;
-            justify-content: center;
-            position:fixed;
-            bottom:0;
-            width:100%;
-            height:60px;
-            padding:.5rem;
-            z-index:1;
-            .head { display:none; }
-            .navItems {
-                display:inline-flex;
-                justify-content:space-between;
-                gap:1rem;
-                padding-top:0;
-                margin-top:0;
-                flex-direction:row;
-            }
-        }
+        
       }
 }
