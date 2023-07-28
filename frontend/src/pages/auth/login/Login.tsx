@@ -75,7 +75,6 @@ const Login = () => {
                Unleash the power of seamless data integration with our cutting-edge import app
               </caption>
               <div className="nav-dots">
-
               </div>
             </div>
             <div className="right">
@@ -110,7 +109,7 @@ const Login = () => {
                 </div>
                 <Button onClick={onHandleClick} title="Login" className="btn btn-primary" />
                 <div className="creatAccount">
-                  Already have an account? <Link to="/register"> Sign up</Link>
+                  Not have an account? <Link to="/register"> Sign up</Link>
                 </div>
               </div>
             </div>

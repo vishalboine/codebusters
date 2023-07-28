@@ -62,48 +62,52 @@ const Register = () => {
           <img src={LoginLogo} alt={LOGO_ALT} className="authLogo" />
           <div className="loginWrapper_main">
             <div className="left">
-              <img src={image1} alt="" />
-            </div>
-            <div className="right">
-
-              <div className="input_div">
-                <h2>Create an account</h2>
-                <Input
-                  placeholder="Enter Username"
-                  label="Username"
-                  value={registerForm.user}
-                  name="user"
-                  onChange={onChangeHandler}
-                  />
-                <Input
-                  placeholder="Enter password"
-                  label="Password"
-                  value={registerForm.pwd}
-                  name="pwd"
-                  showIcon
-                  type={togglePassword ? 'text' : 'password'}
-                  isVisiblePassword={togglePassword}
-                  onIconClick={changePasswordVisibility}
-                  onChange={onChangeHandler}
-                />
-                <Input
-                  placeholder="Confirm password"
-                  label="Confirm Password"
-                  value={registerForm.cpwd}
-                  name="cpwd"
-                  showIcon
-                  type={toggleCPassword ? 'text' : 'password'}
-                  isVisiblePassword={toggleCPassword}
-                  onIconClick={changeCPasswordVisibility}
-                  onChange={onChangeHandler}
-                />
-                <br />
-                <Button onClick={onHandleClick} title="Register" className="btn btn-primary" />
-                <div className="creatAccount">
-                  Already have an account? <Link to="/login"> Login</Link>
+                <img src={image1} alt="" />
+                <caption>
+                Unleash the power of seamless data integration with our cutting-edge import app
+                </caption>
+                <div className="nav-dots">
                 </div>
               </div>
-            </div>
+              <div className="right">
+                <div className="input_div">
+                  <h3>Create an account</h3>
+                  <Input
+                    placeholder="Enter Username"
+                    label="Username"
+                    value={registerForm.user}
+                    name="user"
+                    onChange={onChangeHandler}
+                    />
+                  <Input
+                    placeholder="Enter password"
+                    label="Password"
+                    value={registerForm.pwd}
+                    name="pwd"
+                    showIcon
+                    type={togglePassword ? 'text' : 'password'}
+                    isVisiblePassword={togglePassword}
+                    onIconClick={changePasswordVisibility}
+                    onChange={onChangeHandler}
+                  />
+                  <Input
+                    placeholder="Confirm password"
+                    label="Confirm Password"
+                    value={registerForm.cpwd}
+                    name="cpwd"
+                    showIcon
+                    type={toggleCPassword ? 'text' : 'password'}
+                    isVisiblePassword={toggleCPassword}
+                    onIconClick={changeCPasswordVisibility}
+                    onChange={onChangeHandler}
+                  />
+                  <br />
+                  <Button onClick={onHandleClick} title="Register" className="btn btn-primary" />
+                  <div className="creatAccount">
+                    Already have an account? <Link to="/login"> Login</Link>
+                  </div>
+                </div>
+              </div>
           </div>
         </div>
       </div>

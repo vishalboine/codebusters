@@ -57,7 +57,7 @@
                 width:50%;
                 padding:3.2rem 1.6rem 3.6rem;
                 caption { padding:1.5rem 0; font-size:1.6rem; font-weight:500; color:$blue-800; }
-                img { width:76%; }
+                img { width:96%; }
             }
     
             .right {
@@ -74,10 +74,12 @@
                     border-radius:16px;
                     background:$white;
                     box-shadow:0px 6px 12px 0px rgba(0, 0, 0, 0.12);
-                    padding:3.2rem;
+                    padding:2.8rem;
+                    transition: ease .6s;
     
                     h3 {
                         text-align:center;
+                        margin-bottom:1.4rem;
                     }
     
                     label { font-size:1.4rem; color:$gray-mute; font-weight:500; margin-bottom:.8rem; }
@@ -88,7 +90,7 @@
                     .btn { width:100%;
                     }
                     button { 
-                        svg { color:$gray-mute; font-size:1.6rem; }
+                        svg { color:$gray-mute; font-size:2rem; }
                     }
     
                     .loginUtility { display:flex; justify-content:space-between; /*align-items:center;*/ font-size:$default-font-size; margin:.8rem 0 1.6rem;
@@ -158,14 +160,14 @@
 //     }
  
 /* For Tablet View */
-@media screen and (min-device-width:768px)
+@media screen and (min-device-width:600px)
     and (max-device-width:1024px) {
     .authBg {
         .loginWrapper {
             .loginCard {
                 height:fit-content;
                 .authLogo {
-                      width:16rem;
+                      width:20rem;
                       display:flex;
                       margin:0 auto;  
                 }
@@ -205,10 +207,13 @@
                     }
                     .right {
                         width:100%;
-                        padding:2rem;
+                        padding:0rem;
+                        h2, h3 { display:none; }
                         .input_div {
-                            width:100%;
-                            padding:1.5rem 2rem;
+                            width:320px;
+                            background:none;
+                            box-shadow:none;
+                            padding:2rem;
                             
                             .creatAccount {
                                 // font-size:.75rem;
