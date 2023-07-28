@@ -51,9 +51,6 @@ body {
     }
 }
 
-[class*=-MuiInputBase-root],
-[class*=-MuiInputLabel-root],
-[class*=-MuiTypography-root-MuiDialogTitle-root] { font-family:'Inter', sans-serif!important; }
 
 h1,h2,h3 { font-weight:600!important; color:$blue-900; }
 h4,h5,h6 { font-weight:500!important; color:$blue-900; }
@@ -122,3 +119,64 @@ a { text-decoration:none; }
     font-weight:600!important;
 }
 
+//Loader
+.loader {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .loader-circle {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background-color: #ffffff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: pulse 1.5s ease-in-out infinite;
+  }
+
+  .loader-circle:before {
+    content: "";
+    display: block;
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    border: 8px solid $primary-color;
+    border-color: $primary-color transparent $primary-color transparent;
+    animation: loader 1.2s linear infinite;
+  }
+
+  .loader-text {
+    color: $primary-color;
+    font-size: 24px;
+    font-weight: bold;
+    margin-top: 16px;
+  }
+
+  @keyframes loader {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  @keyframes pulse {
+     0% {
+       transform: scale(0.8);
+       opacity: 0.5;
+     }
+     50% {
+       transform: scale(1);
+       opacity: 1;
+     }
+     100% {
+       transform: scale(0.8);
+       opacity: 0.5;
+     }
+   }
+   
