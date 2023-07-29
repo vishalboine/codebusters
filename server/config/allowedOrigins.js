@@ -4,6 +4,8 @@ const allowedOrigins = [
     'http://localhost:3000',
     'http://codebusters.neofinancials.com',
     'http://codebusters.neofinancials.com/',
+    'https://codebusters.neofinancials.com',
+    'https://codebusters.neofinancials.com/',
 ];
 
 module.exports = allowedOrigins;
