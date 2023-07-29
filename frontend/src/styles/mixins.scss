@@ -19,19 +19,21 @@ $breakponts argument choices
 - tab-port
 - tab-land
 - big-desktop
+
+1em = 16px
 */
 
 @mixin respond($breakponts) {
     @if $breakponts == phone {
-        @media (max-width:600px) { @content };
+        @media (max-width:37.5em) { @content };    //600px
     }
     @if $breakponts == tab-port {
-        @media (max-width:900) { @content };
+        @media (max-width:56.29em) { @content };    //900px
     }
     @if $breakponts == tab-land {
-        @media (max-width:1200px) { @content };
+        @media (max-width:75em) { @content };       //1200px
     }
     @if $breakponts == big-desktop {
-        @media (min-width:1800px) { @content };
+        @media (min-width:112.5em) { @content };     //1800px
     }
 }

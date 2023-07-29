@@ -8,10 +8,10 @@ const Unauthorized = (props: Props) => {
   return (
     <div className='unauthorizedWrp'>
       <img src={unauthorizedImg} />
-      <h1>No authorization fond</h1>
-      <h4>This page is not publically available.<br/>
+      <h1>No authorization found</h1>
+      <h5>This page is not publically available.<br/>
           To access it please login first.
-      </h4>
+      </h5>
       <button className='btn'>Return to login</button>
     </div>
   )

@@ -1,4 +1,5 @@
 @import '../../styles/iwVariables.scss';
+@import '../../styles/mixins.scss';
 
 .unauthorizedWrp {
     display:flex;
@@ -6,9 +7,20 @@
     align-items:center;
     flex-direction: column;
     padding: 8rem 2rem;
-    h1 { letter-spacing:.2rem; font-weight:700!important; color:$blue-800; margin-bottom:1.6rem; }
-    h4 { text-align:center; color:$blue-800; font-weight:400!important; margin-bottom:3.2rem; }
-    img { width:40%; }
+    h1 { text-align:center; letter-spacing:.1rem; font-weight:700!important; color:$blue-800; margin-bottom:1.6rem; }
+    h5 { text-align:center; color:$blue-800; font-weight:400!important; margin-bottom:3.2rem; line-height:3.2rem; }
+    img { width:40%;
+        
+        @include respond(tab-land) {
+            width:80%;
+        }
+        @include respond(tab-land) {
+            width:75%;
+        }
+        @include respond(phone) {
+            width:100%;
+        }
+    }
     button { background:$blue-800; color:$white; }
 
 }

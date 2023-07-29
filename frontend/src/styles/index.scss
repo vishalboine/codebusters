@@ -12,29 +12,30 @@
 
 
 html {
-  font-size: 62.5%;
+  font-size: 62.5%;  //This defines value of 1rem
  
- @include respond(phone) {
-    font-size:50%;
+  @include respond(tab-land) {
+    font-size:56.25%;  //1 rem = 9px, 9/16 = 56.25%
   }
 
  @include respond(tab-port) {
-    font-size:60%;
+    font-size:50%;  //1 rem = 8px, 8/16 = 50%
   }
 
- @include respond(tab-land) {
-    font-size:70%;
+  @include respond(phone) {
+    font-size:50%;
   }
-  
+
  @include respond(big-desktop) {
-    font-size:80%;
+    font-size:62.5%; 
   }
 
 }
 
 body { 
-    font-family:'Inter', sans-serif;
+    font-family:'Inter', sans-serif!important;
     font-weight:400;
+    line-height:inherit!important;
     margin:0;
     padding:0;
     color:$blue-dark;
@@ -69,6 +70,12 @@ body {
     }
 }
 
+h1 { font-size:3.6rem!important; }
+h2 { font-size:3.2rem!important; }
+h3 { font-size:2.8rem!important; }
+h4 { font-size:2.4rem!important; }
+h5 { font-size:2rem!important; }
+h6 { font-size:1.8rem!important; }
 
 h1,h2,h3 { font-weight:600!important; color:$blue-900; }
 h4,h5,h6 { font-weight:500!important; color:$blue-900; }
