@@ -1,5 +1,6 @@
 @import "./iwVariables";
 @import "./formElemets";
+@import "./mixins.scss";
 
 *, 
 *::before,
@@ -11,7 +12,24 @@
 
 
 html {
-    font-size:62.5%!important;
+  font-size: 62.5%;
+ 
+ @include respond(phone) {
+    font-size:50%;
+  }
+
+ @include respond(tab-port) {
+    font-size:60%;
+  }
+
+ @include respond(tab-land) {
+    font-size:70%;
+  }
+  
+ @include respond(big-desktop) {
+    font-size:80%;
+  }
+
 }
 
 body { 
@@ -87,6 +105,7 @@ a { text-decoration:none; }
 	display:flex;
 	width:100%;
 	padding:12px 0;
+  align-items:center;
 	
 	&:nth-of-type(odd) {
 		background:#f0f3ff;

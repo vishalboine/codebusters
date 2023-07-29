@@ -35,12 +35,16 @@ button {
   font-family:'Inter', sans-serif;
   font-weight:500;
 
-  &.btn { padding:1.2rem 1.6rem; border-radius:.8rem; font-size:1.6rem; justify-content:center; cursor:pointer; }
+  &.btn { padding:1.2rem 1.6rem; border-radius:.8rem; font-size:1.6rem; justify-content:center; cursor:pointer;
+   &:disabled { opacity:.8; } 
+  }
   &.btn-primary { background:$primary-color; color:$white;
       &:hover { background:$secondary-color; }
   }
   &.btn-outline { display:flex; align-items:center; background:$white; color:$primary-color; border:1px solid $primary-color; }
-  &.btn-text { background:none; font-size:1.6rem; font-weight:500; color:$secondary-color; }
+  &.btn-text { background:none; font-size:1.6rem; font-weight:500; color:$secondary-color;
+    svg { margin-right:.8rem; }
+  }
   svg { font-size:2.4rem; }
 }
 

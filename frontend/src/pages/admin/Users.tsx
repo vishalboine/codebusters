@@ -35,38 +35,37 @@ const Users = () => {
     }
     
     return (
-        <Box>
-            <h2>Users</h2>
-            <div className="tableSec">
-                <h3>Update User Roles</h3>
-                <div className="table">
-                    <div className="table-header">
-                        <div className="header__item">Users</div>
-                        <div className="header__item">Roles</div>
-                    </div>
-                    <div className="table-content">
-                        {
-                            usersData.map((item: any,i: number) => (
-                                <div className="table-row">
-                                    <div className="table-data">{item.username}</div>
-                                    <div className="table-data">
-                                    <FormControl sx={{ minWidth:120 }}>
-                                        <Select
-                                            onChange={(e) => updateUserRole(item.username, e.target.value)}
-                                            inputProps={{ 'aria-label': 'Without label' }}
-                                            defaultValue={item.role}>
-                                                <MenuItem value={'User'}>{'User'}</MenuItem>
-                                                <MenuItem value={'Admin'}>{'Admin'}</MenuItem>
-                                        </Select>
-                                        </FormControl>
-                                    </div>
+        <div className="UsersWrapper">
+            <h3>User Manager</h3>
+            <div className="table">
+                <div className="table-header">
+                    <div className="header__item">Users</div>
+                    <div className="header__item">Roles</div>
+                    <div className="header__item">Action</div>
+                </div>
+                <div className="table-content">
+                    {
+                        usersData.map((item: any,i: number) => (
+                            <div className="table-row">
+                                <div className="table-data">{item.username}</div>
+                                <div className="table-data">
+                                <FormControl sx={{ minWidth:120 }}>
+                                    <Select
+                                        onChange={(e) => updateUserRole(item.username, e.target.value)}
+                                        inputProps={{ 'aria-label': 'Without label' }}
+                                        defaultValue={item.role}>
+                                            <MenuItem value={'User'}>{'User'}</MenuItem>
+                                            <MenuItem value={'Admin'}>{'Admin'}</MenuItem>
+                                    </Select>
+                                    </FormControl>
                                 </div>
-                            ))
-                        }
-                    </div>
+                                <div className="table-data"><ul><li>Delete</li></ul></div>
+                            </div>
+                        ))
+                    }
                 </div>
             </div>
-        </Box>
+        </div>
     )
 }
 

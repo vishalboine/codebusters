@@ -6,6 +6,7 @@ import 'devextreme/dist/css/dx.light.css';
 import "./styles/iwVariables.scss";
 import "./styles/dxTable.scss";
 import "./styles/formElemets.scss";
+import "./styles/mixins.scss";
 import "./styles/index.scss";
 import { AuthProvider } from "./context/AuthProvider";
 import { ThemeProvider } from '@mui/material';
