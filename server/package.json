@@ -4,7 +4,7 @@
   "description": "Hackathon",
   "main": "server.js",
   "scripts": {
-    "build": "node server",
+    "start": "node server",
     "dev": "nodemon server"
   },
   "author": "Faisal Sayyed",
