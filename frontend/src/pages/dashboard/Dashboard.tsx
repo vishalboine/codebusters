@@ -238,10 +238,10 @@ const Dashboard = (props: Props) => {
             return <Column dataField={data.dataField ? data.dataField : data}  caption={data.caption ? data.caption : data}/>
           })}
           <Export enabled={true} />
-          <Paging defaultPageSize={10} />
+          {/* <Paging defaultPageSize={10} /> */}
         </DataGrid>
           <div className="tableNav">
-            <div className="d-flex">
+            <div>
               {pageNumber !== 1  && <button onClick={()=>ser(-1)}><RiArrowLeftSLine/></button>}
               {pageNumber !== 3  && <button onClick={()=>ser(+1)}><RiArrowRightSLine/></button>}
             </div>

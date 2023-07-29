@@ -1,5 +1,6 @@
 // @import "../../styles/dxTable";
 @import "../../styles/iwVariables";
+@import "../../styles/mixins.scss";
 // @import "../../styles/formElemets";
 
 .dashboard {
@@ -30,7 +31,7 @@
             width:4.8rem;
             height:4.8rem;
             border-radius:2.5rem;
-            padding:12px;
+            padding:1.2rem;
             font-weight:700;
             display:flex;
             align-items:center;
@@ -118,7 +119,6 @@
                     }
                 }
                 .import-btn {
-                    z-index: 9999;
                     width:fit-content;
                     background:$blue-700; color:$white; transition:ease-in .3s;
                     img {
@@ -131,6 +131,7 @@
                 }
             }
             section {
+                .table { width: 100%; }
                 .dxTable{
                     box-shadow:0 0 6px rgba($blue-900,.20);
                     border-radius:8px;
@@ -358,9 +359,16 @@ and (max-device-width:1023px) {
 }
 
 /* For Mobile Portrait View */
-@media screen and (max-device-width:480px)
-    and (orientation:portrait) {
-      .dashboard {
+@include respond(tab-land) {
+    .uplodedFile {
+        span {
+            line-height:3.1rem;
+        }
+    }
+}
+
+@include respond(phone) {
+    .dashboard {
         justify-content:center;
         position:relative;
         .leftPanel {
@@ -370,7 +378,7 @@ and (max-device-width:1023px) {
             position:fixed;
             bottom:0;
             width:100%;
-            height:80px;
+            height:62px;
             padding:.5rem;
             z-index:1;
             .head { display:none; }
@@ -387,22 +395,58 @@ and (max-device-width:1023px) {
         }
         .rightPanel {
             width:100%;
-            padding: 1.6rem 1.6rem 0;
-            .import-btn {
-                img { margin-right:0!important; }
-                span { display:none; }
-            }
-            .dx-button-text { display:none; }
-            .dx-button-has-text .dx-icon { margin-right:0!important; font-size:20px!important; }
-            section{
-                padding:2% 0;
-                .dx-light-pages {
-                    input.dx-texeditor-input{
-                        padding-left:.5rem;
+            height:calc(100vh - 68px);
+            padding:3rem 1rem 0 1.8rem;
+            .dashboardWrapper{
+                .topWrapper {
+                    // flex-direction:column;
+                    .import-btn {
+                        img { margin-right:0!important; }
+                        span { display:none; }
+                    }
+                }
+                section {
+                    padding:2% 0;
+                    margin-top:1.5rem;
+                    .dxTable {
+                        box-shadow:none;
                     }
                 }
             }
+            .dx-button-text { display:none; }
+            .dx-button-has-text .dx-icon { margin-right:0!important; font-size:20px!important; }
         }
-        
-      }
+    }
+    .uplodedFile {
+       
+        span {
+            line-height:0;
+        }
+    }
+    
+        .uploadWrapper .drop-file-input {
+            width:272px;
+        }
+
+    
+
+    .matchCols { 
+        flex-direction:column;
+        margin:2rem 0 1.6rem;
+        .column {
+            flex-direction:column;
+            align-items:flex-start;
+            margin-right:0;
+            margin-bottom:1.6rem;
+            p {
+                margin-right:0;
+                margin-bottom:.8rem;
+            }
+            [class*=-MuiFormControl-root] {
+                min-width:272px;
+            }
+        }
+     }
+
+    .dataTypeSelector label { margin-right:.8rem; }
 }
