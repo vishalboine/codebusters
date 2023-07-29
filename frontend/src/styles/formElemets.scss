@@ -194,4 +194,6 @@ button {
 [class*=-MuiInputBase-root-MuiOutlinedInput-root-MuiSelect-root]
 [class*=-MuiSvgIcon-root-MuiSelect-icon ] { width:2.5rem!important; height:2.5rem!important; color:$gray-mute; top:calc(50% - 1.2rem)!important; }
 
-.tableResponsive { display:block; width:100%; overflow-x:auto; }
+[class*=-MuiList-root-MuiMenu-lis] { max-height:20rem!important; }
+
+.tableResponsive { display:block; width:100%; overflow-x:auto; -webkit-overflow-scrolling: touch; }
