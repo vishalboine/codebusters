@@ -70,6 +70,11 @@ body {
     }
 }
 
+input::-ms-reveal,
+  input::-ms-clear {
+    display: none;
+  }
+
 h1 { font-size:3.6rem!important; }
 h2 { font-size:3.2rem!important; }
 h3 { font-size:2.8rem!important; }
