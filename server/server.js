@@ -23,26 +23,7 @@ app.use(logger);
 app.use(credentials);
 
 // Cross Origin Resource Sharing
-app.use((req, res, next) => {
-    // const allowedOrigins = [
-    //     'http://127.0.0.1:5500',
-    //     'http://localhost:3500',
-    //     'http://localhost:3000',
-    //     'http://codebusters.neofinancials.com',
-    //     'http://codebusters.neofinancials.com/',
-    //     'https://codebusters.neofinancials.com',
-    //     'https://codebusters.neofinancials.com/',
-    // ];
-    // const origin = req.headers.origin;
-    // if (allowedOrigins.includes(origin)) {
-         res.setHeader('Access-Control-Allow-Origin', '*');
-    // }
-    //res.header('Access-Control-Allow-Origin', 'http://127.0.0.1:8020');
-    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
-    res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-    res.header('Access-Control-Allow-Credentials', true);
-    return next();
-  });
+app.use(cors(corsOptions));
 
 // built-in middleware to handle urlencoded form data
 app.use(express.urlencoded({ extended: false }));
