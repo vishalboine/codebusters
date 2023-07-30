@@ -1,16 +1,29 @@
 const Table = require('../model/Table');
+const ValidationsModel = require('../model/Validation');
 
 const addTable = async (req, res) => {
     try {
       const { tableName, columns } = req.body;
+
+      const schemaDefinition = {};
+      function createDynamicSchema(schemaDefinition, columns) {
+        for (const column of columns) {
+          schemaDefinition[column.trim()] = 'String';
+        }
+        return new ValidationsModel(schemaDefinition);
+      }
   
       // Create a new record using the Table
       const newTable = new Table({
         [tableName]: columns,
       });
-  
       // Save the new record to the database
-      const savedTable = await newTable.save();
+      const newValidation = new ValidationsModel({
+        [tableName]: createDynamicSchema(schemaDefinition,columns)
+      })
+
+      await newTable.save();
+      await newValidation.save();
   
       const allTables = await Table.find({}).exec();
       allTables.filter((item) => {

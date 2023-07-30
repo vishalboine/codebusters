@@ -9,7 +9,6 @@ const handleMock = async (req, res) => {
     const data = await Mock.findOne(); // Assuming you have only one document in the MockData collection
     const demo1Data = data.Demo1.slice(skipItems, skipItems + perPage);
     const demo2Data = data.Demo2.slice(skipItems, skipItems + perPage);
-    console.log(data)
     res.json({ Demo1: demo1Data, Demo2: demo2Data });
   } catch (error) {
     console.error('Error retrieving data:', error);

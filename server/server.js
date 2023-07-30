@@ -39,6 +39,7 @@ app.use('/', express.static(path.join(__dirname, '/public')));
 
 // routes
 app.use('/table', require('./routes/api/table'));
+app.use('/validations', require('./routes/api/validations'));
 app.use('/register', require('./routes/register'));
 app.use('/resource', require('./routes/api/icons'));
 app.use('/mock', require('./routes/api/mock'));

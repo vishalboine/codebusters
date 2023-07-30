@@ -50,8 +50,8 @@ function a11yProps(index: number) {
 export default function Admin() {
   const [value, setValue] = useState(0);
   const [newTableName, setNewTableName] = useState('');
-  const [newTableColumns, setNewTableColumns]: any = useState({});
   const [savedTables, setSavedTables] = useState([]);
+  const [savedFormat, setSavedFormat] = useState([]);
   const [showValidationForm, setShowValidationForm] = useState(false);
   const [selectedTable, setSelectedTable] = useState<{ name: string; value: string[]; }>({ name: "", value: ['','','',''] });
   const tables = getUpdatedValues(savedTables);
@@ -76,6 +76,13 @@ export default function Admin() {
   useEffect(() => {
     axiosInstance.get('/table/getAllTables').then((res: any) => {
       setSavedTables(res.data)
+    }).catch((err: any) => { })
+
+  }, [])
+
+  useEffect(() => {
+    axiosInstance.get('/validations/getValidations').then((res: any) => {
+      setSavedFormat(res.data)
     }).catch((err: any) => { })
 
   }, [])
@@ -115,7 +122,6 @@ export default function Admin() {
       headers: { 'Content-Type': 'application/json' },
       withCredentials: true
     }).then((res: any) => {
-      setNewTableColumns({})
       setSavedTables(res.data)
       toast('Table saved successfully.', {
         type: 'success'
