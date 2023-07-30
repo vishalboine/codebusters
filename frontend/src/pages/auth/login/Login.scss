@@ -98,6 +98,10 @@
                     .loginUtility { display:flex; justify-content:space-between; /*align-items:center;*/ font-size:$default-font-size; margin:.8rem 0 1.6rem;
                         label { 
                             margin-bottom:0;
+                            @include respond(tab-land) {
+                                line-height:2rem;
+                                padding-left:2.6rem;
+                            }
                          }
                         a { color:$blue-700; font-weight:400;}
                     }
@@ -163,6 +167,7 @@
 //     }
  
 /* For Tablet View */
+
 @include respond(tab-port) {
     .authBg {
         .loginWrapper {
@@ -184,6 +189,18 @@
                         width:380px;
                         background:none;
                         box-shadow:none;
+                        padding:2.8rem 1rem;
+                        label {
+                            font-size:1.6rem;
+                        }
+                        .loginUtility {
+                            .container {
+                                #text {
+                                    padding-top:.5rem;
+                                }
+                               padding-right:3.4rem;
+                            }
+                        }
                     }
                 }
             }
