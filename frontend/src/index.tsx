@@ -23,7 +23,6 @@ const theme = createTheme({
 const rootEl = document.getElementById("root")!;
 const root = createRoot(rootEl);
 root.render(
-  <React.StrictMode>
     <AuthProvider>
     <ThemeProvider theme={theme}>
       <BrowserRouter>
@@ -31,5 +30,4 @@ root.render(
       </BrowserRouter>
     </ThemeProvider>
     </AuthProvider>
-  </React.StrictMode>
 );
