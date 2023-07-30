@@ -1,6 +1,6 @@
 import { useState } from "react"
 import LoginLogo from "../../../assets/images/LoginLogo.svg";
-import image1 from "../../../assets/images/image1.png";
+import loginsplash from "../../../assets/images/loginsplash.svg";
 import { LOGO_ALT } from "../../../constants";
 import "./Login.scss"
 import Input from "../../../components/ui-widgets/Input/Input";
@@ -70,7 +70,7 @@ const Login = () => {
           <img src={LoginLogo} alt={LOGO_ALT} className="authLogo" />
           <div className="loginWrapper_main">
             <div className="left">
-              <img src={image1} alt="" />
+              <img src={loginsplash} alt="" />
               <caption>
                Unleash the power of seamless data integration with our cutting-edge import app
               </caption>
