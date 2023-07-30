@@ -6,7 +6,7 @@ type Props = {}
 
 const Unauthorized = (props: Props) => {
   return (
-    <div className='unauthorizedWrp'>
+    <div className='publicPgWrp'>
       <img src={unauthorizedImg} />
       <h1>No authorization found</h1>
       <h5>This page is not publically available.<br/>
