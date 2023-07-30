@@ -227,6 +227,7 @@ const Dashboard = (props: Props) => {
           allowColumnReordering={true}
           rowAlternationEnabled={true}
           showBorders={true}
+          columnAutoWidth={true}
           onContentReady={onContentReady}
           onExporting={handleDataGridExportToExcel}
           onToolbarPreparing={onToolbarPreparing}
