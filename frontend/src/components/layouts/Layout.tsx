@@ -51,12 +51,12 @@ const Layout = () => {
       <div className="leftPanel">
         <div className="head">
           <img src={logo} alt="" />
-          <div className="userIcon">
+        </div>
+        <div className="navItems">
+          <div className="userIcon desktop">
           {auth.user.charAt(0)}
           <span className="tooltiptext">{auth.user}</span>
           </div>
-        </div>
-        <div className="navItems">
           { navItems.map((item: any) => (
             <Link className={`navItem ${item.to === pathname ? 'active' : ''}`} to={item.to} key={item.key}>
               {item.to === pathname ? item. activeLogo : item.logo}
@@ -65,6 +65,10 @@ const Layout = () => {
           <a onClick={handleIsOpen} className='navItem' aria-label="logout">
             <RiLogoutCircleRLine size={26} />
           </a>
+          <div className="userIcon mobile">
+          {auth.user.charAt(0)}
+          <span className="tooltiptext">{auth.user}</span>
+          </div>
         </div>
       </div>
       <div className="rightPanel">
