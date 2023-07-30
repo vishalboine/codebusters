@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react"
 import { DataGrid } from 'devextreme-react';
-import { Column, Pager, Paging, SearchPanel, Export } from 'devextreme-react/data-grid';
+import { Column, SearchPanel, Export } from 'devextreme-react/data-grid';
 import "./dashboardStyles.scss"
-import ODataStore from 'devextreme/data/odata/store';
 import * as XLSX from "xlsx";
 import { useDataGridExcelExport } from "../../hooks/useDatagridExcelExport";
 import Modal from "../../components/Modal";
@@ -13,8 +12,8 @@ import { FormControl, Select, MenuItem, IconButton, Tooltip } from "@mui/materia
 import { RiArrowLeftSLine, RiArrowRightSLine, RiCloseLine, RiRefreshLine } from "react-icons/ri";
 import axiosInstance from "../../config/axiosInstance";
 import useAuth from "../../hooks/useAuth";
-import { CustomerMasterData, TableName } from "../../mock/data";
-import { checkForDuplicates, getUpdatedValues } from "../../utils/common";
+import { CustomerMasterData } from "../../mock/data";
+import { addDataTypeKey, areAllElementsSame, checkForDuplicates, compareValues, getObjectValueTypes, getUpdatedValues } from "../../utils/common";
 
 
 const pageSizes = [10, 25, 50, 100];
@@ -29,7 +28,9 @@ const Dashboard = (props: Props) => {
   const handleDataGridExportToExcel = useDataGridExcelExport('Demo');
   const [blotterData, setBlotterData] = useState({});
   const [excelColunms, setExcelColumns] = useState([]);
+  const [excelColunmsDataType, setExcelColumnsDataType] = useState({});
   const [blotterColumns, setBlotterColumns] : any = useState(CustomerMasterData);
+  const [tableDataType, setTableDataType] : any = useState([]);
   const [resources, setResources]: any = useState([]);
   const [sheetName, setSheetName] = useState('');
   const [tableData, setTableData] : any = useState({});
@@ -39,11 +40,13 @@ const Dashboard = (props: Props) => {
   const [pageNumber, setPageNumber] = useState(1)
   const [mockData, setMockData]:any = useState({})
   const [mockDataDropDown, setMockDataDropDown] = useState('Demo1')
+  const [currentTable, setCurrentTable] = useState({});
 
 
   const handleFileUpload = (e: any) => {
     const reader = new FileReader();
     let tempArr: any = []
+    let excelColumnsDataType :  any =[]
     reader.readAsBinaryString(e.target.files[0]);
     reader.onload = (e: any) => {
       const data = e.target.result;
@@ -56,7 +59,9 @@ const Dashboard = (props: Props) => {
       parsedData.forEach((item: any) => {
         tempArr = Object.keys(item)
       })
+      excelColumnsDataType = parsedData.map(getObjectValueTypes);
       setExcelColumns(tempArr)
+      setExcelColumnsDataType(excelColumnsDataType)
     };
   }
   const handleIsOpen = () => {
@@ -69,6 +74,13 @@ const Dashboard = (props: Props) => {
     }).catch((err: any) => { })
     axiosInstance.get(`/mock?pageNumber=${pageNumber}`).then((res: any) => {
       setMockData(res.data)
+    }).catch((err: any) => { })
+
+  }, [])
+
+  useEffect(() => {
+    axiosInstance.get('/validations/getValidations').then((res: any) => {
+      setTableDataType(getUpdatedValues(res.data))
     }).catch((err: any) => { })
 
   }, [])
@@ -124,10 +136,14 @@ const Dashboard = (props: Props) => {
 
   const onHandleChange = (e: any) =>{
     let tempArr : any= []
+    setCurrentTable(tableDataType[e.target.value]);
     if(Object.keys(tableData).includes(e.target.value)){
       tableData[e.target.value].map((item:any)=>{
         tempArr = [...tempArr, {dataField: '', caption: item}]
       })
+      if(Object.keys(tableDataType).includes(e.target.value)){
+        tempArr = addDataTypeKey(tempArr, tableDataType, e.target.value)
+      }
       setBlotterColumns(tempArr)
     }
   }
@@ -141,9 +157,17 @@ const Dashboard = (props: Props) => {
   const handleImportProceed = () => {
     const fieldMappingArrValues = Object.values(fieldMapping);
     const fieldMappingArrKeys = Object.keys(fieldMapping);
-    if(checkForDuplicates(fieldMappingArrValues)){
+
+    //returns which all columns are having valid/invalid datatype
+    const checkTableExcelDataType = compareValues(currentTable, excelColunmsDataType[0], fieldMapping)
+    if(!areAllElementsSame(excelColunmsDataType)){
+      // validation for all excel data should be of same datatype wrt column
+    }else if(checkForDuplicates(fieldMappingArrValues)){
       //validation for duplicate dropdown value
-    }else{
+    }else if (!Object.values(checkTableExcelDataType).every(value => value === true)){
+      // excel column dataType must be same as table column datatypes
+    }
+    else{
       const blotterColumnsArr : any= blotterColumns;
       blotterColumnsArr.map((item:any, index: any)=>{
         fieldMappingArrKeys.map((data:any)=>{
@@ -236,15 +260,15 @@ const Dashboard = (props: Props) => {
         >
           <SearchPanel visible={true} highlightCaseSensitive={true} />
           {blotterColumns.map((data: any) => {
-            return <Column dataField={data.dataField ? data.dataField : data}  caption={data.caption ? data.caption : data}/>
+            return <Column dataField={data.dataField ? data.dataField : data}  caption={data.caption ? data.caption : data} dataType={data.dataType ? data.dataType : 'string'}/>
           })}
           <Export enabled={true} />
           {/* <Paging defaultPageSize={10} /> */}
         </DataGrid>
           <div className="tableNav">
             <div>
-              {pageNumber !== 1  && <button onClick={()=>ser(-1)}><RiArrowLeftSLine/></button>}
-              {pageNumber !== 3  && <button onClick={()=>ser(+1)}><RiArrowRightSLine/></button>}
+              <button disabled={pageNumber !== 1} onClick={()=>ser(-1)}><RiArrowLeftSLine/></button>
+              <button disabled={pageNumber !== 3} onClick={()=>ser(+1)}><RiArrowRightSLine/></button>
             </div>
           </div>
       </section>
