@@ -1,10 +1,5 @@
 import React, {useState,useEffect} from 'react';
-import Tabs from '@mui/material/Tabs';
-import Tab from '@mui/material/Tab';
-import Typography from '@mui/material/Typography';
-import Box from '@mui/material/Box';
 import "./admin.scss";
-import TextField from '@mui/material/TextField';
 import axiosInstance, { axiosPrivate } from '../../config/axiosInstance';
 import { RiAddCircleFill } from "react-icons/ri";
 import TextBoxWithRemove from '../../components/TextBoxWithRemove';
@@ -12,7 +7,7 @@ import { columnTypes } from '../../mock/data';
 import AddDataTypeTable from '../../components/AddDataTypeTable';
 import { toast } from 'react-toastify';
 import { getUpdatedValues } from '../../utils/common';
-import { FormControl, Select, MenuItem } from "@mui/material";
+import { FormControl, Select, MenuItem, Typography, Tab, Tabs, Box } from "@mui/material";
 
 interface TabPanelProps {
   children?: React.ReactNode;

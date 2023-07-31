@@ -1,11 +1,13 @@
-import React from 'react'
 import { Outlet } from 'react-router-dom'
 import { ToastContainer } from 'react-toastify'
+import "../../styles/iwVariables.scss";
+import "../../styles/dxTable.scss";
+import "../../styles/formElemets.scss";
+import "../../styles/mixins.scss";
+import "../../styles/index.scss";
 import 'react-toastify/dist/ReactToastify.css'
 
-type Props = {}
-
-const ToastLayout = (props: Props) => {
+const ToastLayout = () => {
   return (
     <>
         <Outlet />
