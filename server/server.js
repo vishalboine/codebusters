@@ -38,15 +38,15 @@ app.use(cookieParser());
 app.use('/', express.static(path.join(__dirname, '/public')));
 
 // routes
-app.use('/table', require('./routes/api/table'));
-app.use('/validations', require('./routes/api/validations'));
-app.use('/register', require('./routes/register'));
-app.use('/resource', require('./routes/api/icons'));
-app.use('/mock', require('./routes/api/mock'));
-app.use('/auth', require('./routes/auth'));
-app.use('/refresh', require('./routes/refresh'));
-app.use('/logout', require('./routes/logout'));
-app.use('/users', require('./routes/api/user'));
+app.use('/api/table', require('./routes/api/table'));
+app.use('/api/validations', require('./routes/api/validations'));
+app.use('/api/register', require('./routes/register'));
+app.use('/api/resource', require('./routes/api/icons'));
+app.use('/api/mock', require('./routes/api/mock'));
+app.use('/api/auth', require('./routes/auth'));
+app.use('/api/refresh', require('./routes/refresh'));
+app.use('/api/logout', require('./routes/logout'));
+app.use('/api/users', require('./routes/api/user'));
 
 app.use(verifyJWT);
 
