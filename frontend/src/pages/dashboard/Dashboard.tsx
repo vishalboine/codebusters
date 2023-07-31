@@ -28,7 +28,7 @@ const Dashboard = (props: Props) => {
   const handleDataGridExportToExcel = useDataGridExcelExport('Demo');
   const [blotterData, setBlotterData] = useState({});
   const [excelColunms, setExcelColumns] = useState([]);
-  const [excelColunmsDataType, setExcelColumnsDataType] = useState({});
+  const [excelColunmsDataType, setExcelColumnsDataType] : any = useState({});
   const [blotterColumns, setBlotterColumns] : any = useState(CustomerMasterData);
   const [tableDataType, setTableDataType] : any = useState([]);
   const [resources, setResources]: any = useState([]);
