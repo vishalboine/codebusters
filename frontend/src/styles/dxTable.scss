@@ -4,7 +4,7 @@
 
 .dx-datagrid { color:$blue-900!important; border-radius:8px;  }
 .dx-datagrid-borders > .dx-datagrid-headers, .dx-datagrid-borders > .dx-datagrid-rowsview, .dx-datagrid-borders > .dx-datagrid-total-footer { border:1px solid $white-93!important; border-bottom:none!important; }
-.dx-datagrid-borders > .dx-datagrid-header-panel { position:relative; height:0; top:-29%; background:none; margin:0 136px 0 74rem; }
+.dx-datagrid-borders > .dx-datagrid-header-panel { position:relative; height:0; top:-27%; background:none; margin:0 136px 0 74rem; }
 
 .dx-datagrid-headers { background:$white-98; border-bottom:none!important; border-radius:8px 8px 0 0; overflow:hidden; }
 .dx-datagrid .dx-datagrid-headers .dx-header-row { background:$white-98; height:44px; }
@@ -76,7 +76,7 @@
 @include respond(phone) {
     
 .dx-datagrid-borders > .dx-datagrid-header-panel { height:auto; margin:0; top:0; }
-.dx-toolbar-after .dx-toolbar-item:nth-child(2) { width:26rem; right:4rem!important; }
+.dx-toolbar-after .dx-toolbar-item:nth-child(2) { width:26rem; right:60px!important; transform:inherit; }
 .dx-texteditor-input { width:26rem!important; }
 .dx-datagrid-header-panel .dx-toolbar { margin-bottom:2rem; }
 }

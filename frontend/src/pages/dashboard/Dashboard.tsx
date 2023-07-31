@@ -242,7 +242,7 @@ const Dashboard = (props: Props) => {
       <section>
         <div className="dataTypeSelector">
           <div className="uplodedFile">
-            <span>Selected file: {sheetName}
+            <span>Imported file: {sheetName}
             </span> 
           </div>
         </div>
@@ -266,10 +266,8 @@ const Dashboard = (props: Props) => {
           {/* <Paging defaultPageSize={10} /> */}
         </DataGrid>
           <div className="tableNav">
-            <div>
-              <button disabled={pageNumber !== 1} onClick={()=>ser(-1)}><RiArrowLeftSLine/></button>
-              <button disabled={pageNumber !== 3} onClick={()=>ser(+1)}><RiArrowRightSLine/></button>
-            </div>
+            <button disabled={pageNumber !== 1} onClick={()=>ser(-1)}><RiArrowLeftSLine/></button>
+            <button disabled={pageNumber !== 3} onClick={()=>ser(+1)}><RiArrowRightSLine/></button>
           </div>
       </section>
       <Modal isOpen={isOpen} handleClose={handleIsOpen}>
@@ -327,7 +325,7 @@ const Dashboard = (props: Props) => {
                   blotterColumns.map((item: any, index: number) => (
                     <>
                       <div className="column" key={index}>
-                        <p>{item.caption}</p>
+                        <label>{item.caption}</label>
 
                         <FormControl sx={{ minWidth:200 }}>
                           <Select
