@@ -9,8 +9,7 @@ import "./styles/formElemets.scss";
 import "./styles/mixins.scss";
 import "./styles/index.scss";
 import { AuthProvider } from "./context/AuthProvider";
-import { ThemeProvider } from '@mui/material';
-import { createTheme } from '@mui/material';
+import { ThemeProvider, createTheme } from '@mui/material';
 
 const theme = createTheme({
   typography: {
