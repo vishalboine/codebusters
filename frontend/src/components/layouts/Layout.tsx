@@ -24,12 +24,6 @@ const Layout = () => {
       activeLogo: <RiHome6Fill size={26} />,
       to: '/'
     },
-    // {
-    //   key: 2,
-    //   logo: <RiSettings5Line size={26} />,
-    //   activeLogo: <RiSettings5Fill size={26} />,
-    //   to: '/settings'
-    // },
     {
       key: 2,
       logo: <RiAdminLine size={26} />,
@@ -53,7 +47,7 @@ const Layout = () => {
           <img src={logo} alt="" />
         </div>
         <div className="navItems">
-          <div className="userIcon desktop">
+          <div style={{ cursor: 'default', display: 'flex', justifyContent: 'center', alignItems: 'center' }} className="userIcon desktop">
           {auth.user.charAt(0)}
           <span className="tooltiptext">{auth.user}</span>
           </div>

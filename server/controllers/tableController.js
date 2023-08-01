@@ -12,18 +12,30 @@ const addTable = async (req, res) => {
         }
         return new ValidationsModel(schemaDefinition);
       }
+      const existingTable = await Table.findOne({ [tableName]: { $exists: true } });
+      if(existingTable) {
+        return res.status(404).json({ error: 'Table already exist' });
+      }
+  
+      if (!existingTable) {
+        const newTable = new Table({
+          [tableName]: columns,
+        });
+        await newTable.save();
+      }
   
       // Create a new record using the Table
-      const newTable = new Table({
-        [tableName]: columns,
-      });
-      // Save the new record to the database
-      const newValidation = new ValidationsModel({
-        [tableName]: createDynamicSchema(schemaDefinition,columns)
-      })
+      const existingValidations = await ValidationsModel.findOne({ [tableName]: { $exists: true } });
 
-      await newTable.save();
-      await newValidation.save();
+  
+      if (!existingValidations) {
+        const newValidation = new ValidationsModel({
+          [tableName]: createDynamicSchema(schemaDefinition,columns)
+        })
+        await newValidation.save();
+      }
+      // Save the new record to the database
+
   
       const allTables = await Table.find({}).exec();
       allTables.filter((item) => {
@@ -32,7 +44,6 @@ const addTable = async (req, res) => {
       })
       res.status(200).json(allTables);
     } catch (error) {
-      console.error('Error adding table:', error);
       res.status(500).json({ error: 'Internal Server Error' });
     }
   };
@@ -72,6 +83,8 @@ const updateColumnForGivenTable = async (req, res) => {
   
       // Find the existing record based on the tableName
       const existingTable = await Table.findOne({ [tableName]: { $exists: true } });
+      const existingValidations = await ValidationsModel.findOne({ [tableName]: { $exists: true } });
+
   
       if (!existingTable) {
         return res.status(404).json({ error: 'Table not found' });
@@ -79,6 +92,10 @@ const updateColumnForGivenTable = async (req, res) => {
   
       // Remove the table from the database
       await Table.deleteOne({ [tableName]: { $exists: true } });
+      if(existingValidations) {
+
+        await ValidationsModel.deleteOne({ [tableName]: { $exists: true } });
+      }
       const allTables = await Table.find({}).exec();
       allTables.filter((item) => {
         const {__v, _id, ...rest} = item

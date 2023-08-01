@@ -11,4 +11,4 @@ export const TransactionData =["HEI", "UES","BJE"]
 
 export const TableName = ['Balance Sheet', 'Opening Balance', 'Weekly transaction']
 
-export const columnTypes = ['int', 'string']
+export const columnTypes = ['Int', 'String', 'Date']
