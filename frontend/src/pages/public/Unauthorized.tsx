@@ -1,10 +1,7 @@
-import React from 'react'
 import './public.scss';
 import unauthorizedImg from'../../assets/images/unauthorized.svg';
 
-type Props = {}
-
-const Unauthorized = (props: Props) => {
+const Unauthorized = () => {
   return (
     <div className='publicPgWrp'>
       <img src={unauthorizedImg} />

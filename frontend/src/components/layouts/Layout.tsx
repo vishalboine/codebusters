@@ -1,12 +1,12 @@
-import React, {useState} from 'react';
+import {useState} from 'react';
 import { Link, Outlet, useLocation } from 'react-router-dom';
-import { RiHome6Line, RiHome6Fill ,RiSettings5Line, RiSettings5Fill, RiAdminLine, RiAdminFill, RiLogoutCircleRLine, RiLogoutCircleRFill } from 'react-icons/ri';
+import { RiHome6Line, RiHome6Fill ,RiSettings5Line, RiSettings5Fill, RiAdminLine, RiAdminFill, RiLogoutCircleRLine } from 'react-icons/ri';
 import { HiUserGroup,HiOutlineUserGroup } from 'react-icons/hi';
 import logo from '../../assets/images/logo.svg';
-import {IconButton} from '@mui/material'
 import Modal from '../Modal';
 import useLogout from '../../hooks/useLogout';
 import useAuth from "../../hooks/useAuth";
+import 'devextreme/dist/css/dx.light.css';
 
 const Layout = () => {
 
@@ -24,12 +24,6 @@ const Layout = () => {
       activeLogo: <RiHome6Fill size={26} />,
       to: '/'
     },
-    // {
-    //   key: 2,
-    //   logo: <RiSettings5Line size={26} />,
-    //   activeLogo: <RiSettings5Fill size={26} />,
-    //   to: '/settings'
-    // },
     {
       key: 2,
       logo: <RiAdminLine size={26} />,
@@ -53,13 +47,13 @@ const Layout = () => {
           <img src={logo} alt="" />
         </div>
         <div className="navItems">
-          <div className="userIcon desktop">
+          <div style={{ cursor: 'default', display: 'flex', justifyContent: 'center', alignItems: 'center' }} className="userIcon desktop">
           {auth.user.charAt(0)}
           <span className="tooltiptext">{auth.user}</span>
           </div>
           { navItems.map((item: any) => (
             <Link className={`navItem ${item.to === pathname ? 'active' : ''}`} to={item.to} key={item.key}>
-              {item.to === pathname ? item. activeLogo : item.logo}
+              {item.to === pathname ? item.activeLogo : item.logo}
             </Link>
           ))}
           <a onClick={handleIsOpen} className='navItem' aria-label="logout">
