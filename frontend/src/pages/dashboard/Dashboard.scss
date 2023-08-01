@@ -86,7 +86,7 @@
                     margin-right:.5rem;
                     transition:fill .3s;
                 }
-                caption { font-size:1rem; }
+                p { font-size:1rem; }
                 &:hover { background:$primary-color; }
             }
         }
@@ -145,7 +145,7 @@
                     }
                     .btn-import {
                         img { margin-right:0; }
-                        caption { display:none;}
+                        p { display:none;}
                     }
                 }
             }
