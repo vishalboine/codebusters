@@ -70,9 +70,9 @@ const Login = () => {
           <div className="loginWrapper_main">
             <div className="left">
               <img src={loginsplash} alt="" />
-              <caption>
+              <p>
                Unleash the power of seamless data integration with our cutting-edge import app
-              </caption>
+              </p>
               <div className="nav-dots">
               </div>
             </div>
