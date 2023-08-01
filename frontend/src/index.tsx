@@ -134,8 +134,10 @@ const rootEl = document.getElementById("root")!;
 const root = createRoot(rootEl);
 root.render(
     <AuthProvider>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
+      <ThemeProvider theme={theme}>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </ThemeProvider>
     </AuthProvider>
 );
