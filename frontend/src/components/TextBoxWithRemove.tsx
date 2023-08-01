@@ -1,3 +1,5 @@
+import { Tooltip } from '@mui/material';
+import * as React from 'react';
 import { RiIndeterminateCircleFill } from 'react-icons/ri';
 
 export default function TextBoxWithRemove(props: any) {
@@ -8,7 +10,7 @@ export default function TextBoxWithRemove(props: any) {
           <div className="formGroup">
             <div className='inputTop'>
               <label>Column</label>
-              {i > 3 && <div className="rightIcon" onClick={()=>{handleRemoveButtonClick(i)}}><RiIndeterminateCircleFill/></div>}
+              {i > 3 &&  <Tooltip title="Remove column" placement="right"><div className="rightIcon" onClick={()=>{handleRemoveButtonClick(i)}}><RiIndeterminateCircleFill/></div></Tooltip> }
             </div>
             <input onChange={(e:any) => {
               handleInputChange(i,e.target.value)
