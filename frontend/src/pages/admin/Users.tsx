@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import './users.scss'
-import { Box, Select, MenuItem, FormControl } from '@mui/material'
+import { Select, MenuItem, FormControl } from '@mui/material'
 import axiosInstance from '../../config/axiosInstance'
-import { ROLES } from '../../constants'
 import { toast } from 'react-toastify'
 
 const Users = () => {

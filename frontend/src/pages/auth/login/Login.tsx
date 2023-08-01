@@ -1,7 +1,6 @@
 import { useState } from "react"
 import LoginLogo from "../../../assets/images/LoginLogo.svg";
 import loginsplash from "../../../assets/images/loginsplash.svg";
-import { LOGO_ALT } from "../../../constants";
 import "./Login.scss"
 import Input from "../../../components/ui-widgets/Input/Input";
 import Button from "../../../components/ui-widgets/Button/Button";
@@ -67,7 +66,7 @@ const Login = () => {
     <div className='authBg'>
       <div className="loginWrapper">
         <div className="loginCard">
-          <img src={LoginLogo} alt={LOGO_ALT} className="authLogo" />
+          <img src={LoginLogo} alt={'logo'} className="authLogo" />
           <div className="loginWrapper_main">
             <div className="left">
               <img src={loginsplash} alt="" />

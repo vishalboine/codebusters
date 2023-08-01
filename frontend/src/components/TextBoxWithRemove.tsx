@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { RiIndeterminateCircleFill } from 'react-icons/ri';
 
 export default function TextBoxWithRemove(props: any) {
