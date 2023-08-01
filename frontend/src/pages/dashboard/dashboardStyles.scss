@@ -147,7 +147,7 @@
                     box-shadow:0 0 6px rgba($blue-900,.20);
                     border-radius:8px;
                     @include respond(phone){
-                        height:calc(100vh - 32rem);
+                        height:calc(100vh - 40rem);
                     }
                 }
                 border-radius:8px;
