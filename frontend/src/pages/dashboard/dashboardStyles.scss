@@ -115,6 +115,12 @@
                 justify-content:space-between;
                 flex-direction:row;
                 align-items:center;
+                .d-flex {
+                    .resetData {
+                        color:$gray-blue;
+                        margin-left:.8rem;
+                    }
+                }
                 .welcomeMsg {
                     display:flex;
                     justify-content:left;

@@ -145,7 +145,7 @@ export default function Admin() {
       </Box>
       <CustomTabPanel value={value} index={0}>
         <div className="adminWrapper">
-          <h3>Add Table</h3>
+          <h4>Add Table</h4>
           <div className="addtable">
             <div className="formDiv">
               <div className="formGroup">
@@ -176,14 +176,12 @@ export default function Admin() {
       </CustomTabPanel>
       <CustomTabPanel value={value} index={2}>
       <div className="adminWrapper">
-        <h3>Column Validation</h3>
+        <h4>Column Validation</h4>
           <div className="columnValidation">
           {showValidationForm && <div className="formDiv">
             <div className='tableName' style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-              <Typography component='h4'>Table Name:</Typography>
-              <Typography sx={{
-                fontSize: '24px'
-              }} component='h2' variant='h2'>{selectedTable.name}</Typography>
+              <label>Table Name:</label>
+              <p>{selectedTable.name}</p>
             </div>
             <div className="validTableColumns">
               {selectedTable.value.map((item)=>{
@@ -329,14 +327,12 @@ const UpdateTable = ({
   return (
     <>
       <div className="adminWrapper">
-        <h3>Update Table</h3>
+        <h4>Update Table</h4>
         <div className="updateTable">
         {showAmendForm && <div className="formDiv">
               <div className='tableName' style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
                 <label>Table Name:</label>
-                <Typography sx={{
-                  fontSize: '24px'
-                }} component='h2' variant='h2'>{selectedTable.name}</Typography>
+                <p>{selectedTable.name}</p>
               </div>
               <div className="tableColumns">
                 {selectedTable.value.map((item: any, index:number)=>  <TextBoxWithRemove key={index} i={index} handleRemoveButtonClick={handleRemoveButtonClick} item={item} handleInputChange={handleInputChange} />)}
