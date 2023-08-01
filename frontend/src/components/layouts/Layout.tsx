@@ -24,20 +24,20 @@ const Layout = () => {
       activeLogo: <RiHome6Fill size={26} />,
       to: '/'
     },
+    // {
+    //   key: 2,
+    //   logo: <RiSettings5Line size={26} />,
+    //   activeLogo: <RiSettings5Fill size={26} />,
+    //   to: '/settings'
+    // },
     {
       key: 2,
-      logo: <RiSettings5Line size={26} />,
-      activeLogo: <RiSettings5Fill size={26} />,
-      to: '/settings'
-    },
-    {
-      key: 3,
       logo: <RiAdminLine size={26} />,
       activeLogo: <RiAdminFill size={26} />,
       to: '/admin'
     },
     {
-      key: 4,
+      key: 3,
       logo: <HiOutlineUserGroup size={26} />,
       activeLogo: <HiUserGroup size={26} />,
       to: '/update-users'

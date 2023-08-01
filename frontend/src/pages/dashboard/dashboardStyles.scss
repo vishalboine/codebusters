@@ -42,7 +42,7 @@
                 align-items:center;
                 justify-content:flex-start;
                 margin:2rem 0;
-                border:3px solid $white-96;
+                border:2px solid $white-96;
                 letter-spacing:.1rem;
                 &.mobile {
                     display:none;
@@ -137,8 +137,12 @@
             section {
                 .table { width: 100%; }
                 .dxTable{
+                    height:450px;
                     box-shadow:0 0 6px rgba($blue-900,.20);
                     border-radius:8px;
+                    @include respond(phone){
+                        height:calc(100vh - 32rem);
+                    }
                 }
                 border-radius:8px;
                 margin-top:2.5rem;
@@ -331,10 +335,11 @@
 
 .dataTypeSelector {
     display:flex;
+    width:100%;
+    flex-direction:column;
     justify-content:space-between;
-    margin-bottom:.8rem;
-    align-items:center;
-    label { font-size:1.6rem; margin-right:2rem; }
+    margin:1.6rem 0;
+    label { font-size:1.6rem; margin-bottom:.8rem; }
 }
 
 
@@ -389,7 +394,7 @@
                 display:inline-flex;
                 justify-content:space-between;
                 background:none;
-                gap:3rem;
+                gap:4rem;
                 padding-top:0;
                 margin-top:0;
                 flex-direction:row;
@@ -430,15 +435,16 @@
         }
     }
     .uplodedFile {
-       
         span {
-            line-height:0;
+            line-height:2rem;
         }
     }
     
-        .uploadWrapper .drop-file-input {
-            width:272px;
-        }
+        .uploadWrapper {
+            .drop-file-input, p {
+                display:none;
+            }
+        } 
 
     
 
