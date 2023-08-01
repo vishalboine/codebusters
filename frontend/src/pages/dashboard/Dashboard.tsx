@@ -255,7 +255,7 @@ const Dashboard = (props: Props) => {
           onContentReady={onContentReady}
           onExporting={handleDataGridExportToExcel}
           onToolbarPreparing={onToolbarPreparing}
-          height={450}
+          // height={450}
           className="dxTable"
         >
           <SearchPanel visible={true} highlightCaseSensitive={true} />
