@@ -1,10 +1,7 @@
-import React from 'react';
 import './public.scss';
 import notFoundImg from'../../assets/images/notFoundImg.svg';
 
-type Props = {}
-
-const NotFound = (props: Props) => {
+const NotFound = () => {
   return (
     <div className='publicPgWrp'>
       <img src={notFoundImg} />

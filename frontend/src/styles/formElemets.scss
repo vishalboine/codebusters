@@ -1,7 +1,6 @@
 @import './iwVariables';
 
-input, select,
-[class*=-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input] {
+input, select {
   outline:none!important;
   font-size:1.6rem!important;
   font-weight:400!important;
@@ -132,68 +131,68 @@ button {
 }
   
 /* Form Elements */
-[class*=-MuiButtonBase-root-MuiTab-root]{
-  font-size:1.6rem!important;
-  &.Mui-selected  { color:$secondary-color!important; }
-}
-[class*=-MuiTabs-indicator] { background-color:$secondary-color!important; }
+// [class*=-MuiButtonBase-root-MuiTab-root]{
+//   font-size:1.6rem!important;
+//   &.Mui-selected  { color:$secondary-color!important; }
+// }
+// [class*=-MuiTabs-indicator] { background-color:$secondary-color!important; }
 
-[class*=-MuiTypography-root] { font-size:14px !important; }
-.MuiInputLabel-formControl { font-size:14px !important; font-weight:600 !important; }
-[class*=-MuiFormLabel-root-MuiInputLabel-root].Mui-focused { color:$secondary-color !important; }
-[class*=-MuiFormLabel-root-MuiInputLabel-root].Mui-error.Mui-focused { color:$red-error !important; }
+// [class*=-MuiTypography-root] { font-size:14px !important; }
+// .MuiInputLabel-formControl { font-size:14px !important; font-weight:600 !important; }
+// [class*=-MuiFormLabel-root-MuiInputLabel-root].Mui-focused { color:$secondary-color !important; }
+// [class*=-MuiFormLabel-root-MuiInputLabel-root].Mui-error.Mui-focused { color:$red-error !important; }
 
-[class*=-MuiInputBase-root-MuiFilledInput-root] {
-	background:transparent !important;
-	border:1px solid rgba(0, 0, 0, 0.42);
-	border-radius:4px;
-	&.Mui-focused {
-		border:1px solid $secondary-color !important;
-	}
-	&::before {
-		border-bottom:none !important;
-	}
-	&::after {
-		border:1px solid $secondary-color !important;
-		transform:scale(0) !important;
-	}
-}
+// [class*=-MuiInputBase-root-MuiFilledInput-root] {
+// 	background:transparent !important;
+// 	border:1px solid rgba(0, 0, 0, 0.42);
+// 	border-radius:4px;
+// 	&.Mui-focused {
+// 		border:1px solid $secondary-color !important;
+// 	}
+// 	&::before {
+// 		border-bottom:none !important;
+// 	}
+// 	&::after {
+// 		border:1px solid $secondary-color !important;
+// 		transform:scale(0) !important;
+// 	}
+// }
 
-.Mui-error + [class*=-MuiInputBase-root-MuiFilledInput-root],
-.Mui-error.Mui-focused + [class*=-MuiInputBase-root-MuiFilledInput-root] { border-color:$red-error !important; }
+// .Mui-error + [class*=-MuiInputBase-root-MuiFilledInput-root],
+// .Mui-error.Mui-focused + [class*=-MuiInputBase-root-MuiFilledInput-root] { border-color:$red-error !important; }
 
-[class*=-MuiFormControl-root] { margin:0!important; height:46px; }
+// [class*=-MuiFormControl-root] { margin:0!important; height:46px; }
 
-[class*=-MuiInputBase-input-MuiFilledInput-input] { height:4.8rem !important; }
-[class*=-MuiFormControl-root-MuiTextField-root] { /*min-width:100% !important;*/ margin:0 8px 20px 0 !important; }
-[class*=-MuiFormControl-root-MuiTextField-root] input:read-only { background:#ebf0f3; border-radius:3px; }
-.readOnly [class*=-MuiFormLabel-root-MuiInputLabel-root].Mui-focused { color:rgba(0, 0, 0, 0.6) !important; }
-.capCase [class*=-MuiInputBase-input-MuiFilledInput-input] { text-transform:capitalize; }
+// [class*=-MuiInputBase-input-MuiFilledInput-input] { height:4.8rem !important; }
+// [class*=-MuiFormControl-root-MuiTextField-root] { /*min-width:100% !important;*/ margin:0 8px 20px 0 !important; }
+// [class*=-MuiFormControl-root-MuiTextField-root] input:read-only { background:#ebf0f3; border-radius:3px; }
+// .readOnly [class*=-MuiFormLabel-root-MuiInputLabel-root].Mui-focused { color:rgba(0, 0, 0, 0.6) !important; }
+// .capCase [class*=-MuiInputBase-input-MuiFilledInput-input] { text-transform:capitalize; }
 
-.MuiAutocomplete-popper .MuiMenuItem-root { font-size:15px !important; line-height:1.3em; min-height:auto !important; padding:5px 10px !important; }
+// .MuiAutocomplete-popper .MuiMenuItem-root { font-size:15px !important; line-height:1.3em; min-height:auto !important; padding:5px 10px !important; }
 
-[class*=-MuiFormHelperText-root] { font-size:11px !important; line-height:1.2em !important; margin:3px 4px 0 !important; }
+// [class*=-MuiFormHelperText-root] { font-size:11px !important; line-height:1.2em !important; margin:3px 4px 0 !important; }
 
-[class*=-MuiButtonBase-root-MuiButton-root] {
-  text-transform:none !important;
-  margin:0 12px !important;
-}
+// [class*=-MuiButtonBase-root-MuiButton-root] {
+//   text-transform:none !important;
+//   margin:0 12px !important;
+// }
 
-[class*=MuiInputBase-root]{
-  &.Mui-focused { border:1px solid $blue-300!important; outline:0; box-shadow:none; border-radius:8px!important; }
-}
-[class*=-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input]{
-  &.Mui-disabled { border:0; }
-}
-[class*=-MuiOutlinedInput-notchedOutline] { border-color:$blue-100!important; top:0!important; border-width:0!important; }
-[class*=-MuiButtonBase-root-MuiMenuItem-root] { color:$blue-900!important; font-weight:500; font-size:1.6rem!important; }
-[class*=-MuiButtonBase-root-MuiMenuItem-root].Mui-selected { background:$blue-200!important; color:$blue-900; font-weight:500; }
-[class*=-MuiInputBase-root-MuiOutlinedInput-root-MuiSelect-root] { font-size:1.6rem!important;
-  &.Mui-focused .MuiOutlinedInput-notchedOutline { border-width:0px!important; }
-}
-[class*=-MuiInputBase-root-MuiOutlinedInput-root-MuiSelect-root]
-[class*=-MuiSvgIcon-root-MuiSelect-icon ] { width:2.5rem!important; height:2.5rem!important; color:$gray-mute; top:calc(50% - 1.2rem)!important; }
+// [class*=MuiInputBase-root]{
+//   &.Mui-focused { border:1px solid $blue-300!important; outline:0; box-shadow:none; border-radius:8px!important; }
+// }
+// [class*=-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input]{
+//   &.Mui-disabled { border:0; }
+// }
+// [class*=-MuiOutlinedInput-notchedOutline] { border-color:$blue-100!important; top:0!important; border-width:0!important; }
+// [class*=-MuiButtonBase-root-MuiMenuItem-root] { color:$blue-900!important; font-weight:500; font-size:1.6rem!important; }
+// [class*=-MuiButtonBase-root-MuiMenuItem-root].Mui-selected { background:$blue-200!important; color:$blue-900; font-weight:500; }
+// [class*=-MuiInputBase-root-MuiOutlinedInput-root-MuiSelect-root] { font-size:1.6rem!important;
+//   &.Mui-focused .MuiOutlinedInput-notchedOutline { border-width:0px!important; }
+// }
+// [class*=-MuiInputBase-root-MuiOutlinedInput-root-MuiSelect-root]
+// [class*=-MuiSvgIcon-root-MuiSelect-icon ] { width:2.5rem!important; height:2.5rem!important; color:$gray-mute; top:calc(50% - 1.2rem)!important; }
 
-[class*=-MuiList-root-MuiMenu-lis] { max-height:20rem!important; }
+// [class*=-MuiList-root-MuiMenu-lis] { max-height:20rem!important; }
 
 .tableResponsive { display:block; width:100%; overflow-x:auto; -webkit-overflow-scrolling: touch; }

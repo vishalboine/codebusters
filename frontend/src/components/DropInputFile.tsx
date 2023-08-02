@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import { createRef, MouseEvent } from 'react'
 import uploadImg from "../assets/images/upload-big.svg"
 
 import './drop-file-input.scss';
@@ -6,24 +6,17 @@ import './drop-file-input.scss';
 const DropFileInput = ({onFileDrop}: any) => {
 
     // const wrapperRef = useRef<HTMLElement>(null);
-    const wrapperRef = React.createRef<HTMLDivElement>();
+    const wrapperRef = createRef<HTMLDivElement>();
 
     const onDragEnter = () => wrapperRef.current && wrapperRef.current.classList.add('dragover');
 
     const onDragLeave = () => wrapperRef.current && wrapperRef.current.classList.remove('dragover');
 
     const onDrop = () => wrapperRef.current && wrapperRef.current.classList.remove('dragover');
-    const onDragDropAreaClick = (event: React.MouseEvent) => {
+    const onDragDropAreaClick = (event: MouseEvent) => {
         event.preventDefault();
         event.stopPropagation();
     };
-
-    // const onFileDrop = (e: any) => {
-    //     const newFile = e.target.files[0];
-    //     if (newFile) {
-    //         setSelectedFile(newFile)
-    //     }
-    // }
 
     return (
         <>

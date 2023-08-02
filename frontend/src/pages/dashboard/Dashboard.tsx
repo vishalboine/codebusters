@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"
+import { useEffect, useState } from "react"
 import { DataGrid } from 'devextreme-react';
 import { Column, SearchPanel, Export } from 'devextreme-react/data-grid';
 import "./dashboardStyles.scss"
@@ -15,14 +15,7 @@ import useAuth from "../../hooks/useAuth";
 import { CustomerMasterData } from "../../mock/data";
 import { addDataTypeKey, areAllElementsSame, checkForDuplicates, compareValues, getObjectValueTypes, getUpdatedValues } from "../../utils/common";
 
-
-const pageSizes = [10, 25, 50, 100];
-
-type Props = {}
-
-// const pageElement = document.querySelector('.dx-page');
-
-const Dashboard = (props: Props) => {
+const Dashboard = () => {
   const [collapsed, setCollapsed] = useState(false);
   const [isOpen, setisOpen] = useState(false)
   const handleDataGridExportToExcel = useDataGridExcelExport('Demo');
@@ -36,7 +29,6 @@ const Dashboard = (props: Props) => {
   const [tableData, setTableData] : any = useState({});
   const [fieldMapping, setFieldMapping] : any = useState({});
   const [selectImportDropDownValue, setSelectImportDropDownValue] : any = useState([])
-  const { auth } = useAuth();
   const [pageNumber, setPageNumber] = useState(1)
   const [mockData, setMockData]:any = useState({})
   const [mockDataDropDown, setMockDataDropDown] = useState('Demo1')
@@ -220,7 +212,7 @@ const Dashboard = (props: Props) => {
                 <MenuItem value={''}>{''}</MenuItem>
                 {
                   Object.keys(mockData).map((ele: string, i: number) => (
-                    <MenuItem value={ele}>{ele}</MenuItem>
+                    <MenuItem key={i} value={ele}>{ele}</MenuItem>
                   ))
                 }
               </Select>
@@ -255,7 +247,7 @@ const Dashboard = (props: Props) => {
           onContentReady={onContentReady}
           onExporting={handleDataGridExportToExcel}
           onToolbarPreparing={onToolbarPreparing}
-          height={450}
+          // height={450}
           className="dxTable"
         >
           <SearchPanel visible={true} highlightCaseSensitive={true} />
@@ -290,7 +282,7 @@ const Dashboard = (props: Props) => {
                   {/* this can be multiple inputs more then 10 */}
                   {
                     Object.keys(tableData).map((ele: string, i: number) => (
-                      <MenuItem value={ele}>{ele}</MenuItem>
+                      <MenuItem key={i} value={ele}>{ele}</MenuItem>
                     ))
                   }
                 </Select>
@@ -336,7 +328,7 @@ const Dashboard = (props: Props) => {
                             {/* this can be multiple inputs more then 10 */}
                             {
                               excelColunms.map((ele: string, i: number) => (
-                                <MenuItem value={ele}>{ele}</MenuItem>
+                                <MenuItem key={i} value={ele}>{ele}</MenuItem>
                               ))
                             }
 

@@ -1,4 +1,3 @@
-import React from "react"
 
 export default function AddDataTypeTable(props:any){
     const {tableName, onEditClick, onDeleteClick, showValidation=false, handleValidationClick} = props;
