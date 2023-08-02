@@ -1,13 +1,20 @@
 @import './iwVariables';
+@import './theme-variable.scss';
 
 input, select {
   outline:none!important;
   font-size:1.6rem!important;
   font-weight:400!important;
-  background:$white-96!important;
+  @include themify($themes) {
+    background: themed(inputBg);
+  }
   margin-top:0!important;
-  padding:12px 16px!important; 
-  border:1px solid $blue-100!important; border-radius:8px!important;
+  padding:12px 16px!important;
+  border:1px solid;
+  @include themify($themes) {
+    border-color:themed(inputBrd);
+  } 
+  border-radius:12px!important;
   &::placeholder { color:$blue-gray!important; font-size:$medium-font-size!important; }
   &:hover { border:1px solid $blue-300!important; }
   &:focus { box-shadow:0 0 0 1px rgba($blue-200, .6)!important;}
@@ -34,7 +41,7 @@ button {
   font-family:'Inter', sans-serif;
   font-weight:500;
 
-  &.btn { padding:1.2rem 1.6rem; border-radius:.8rem; font-size:1.6rem; letter-spacing:.04rem; justify-content:center; cursor:pointer;
+  &.btn { padding:1.2rem 1.6rem; border-radius:12px; font-size:1.6rem; letter-spacing:.04rem; justify-content:center; cursor:pointer;
    &:disabled { opacity:.8; } 
   }
   &.btn-primary { background:$primary-color; color:$white;
@@ -179,7 +186,7 @@ button {
 // }
 
 // [class*=MuiInputBase-root]{
-//   &.Mui-focused { border:1px solid $blue-300!important; outline:0; box-shadow:none; border-radius:8px!important; }
+//   &.Mui-focused { border:1px solid $blue-300!important; outline:0; box-shadow:none; border-radius:12px!important; }
 // }
 // [class*=-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input]{
 //   &.Mui-disabled { border:0; }
