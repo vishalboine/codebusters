@@ -2,6 +2,12 @@
 @import "./iwVariables";
 @import "./formElemets";
 @import "./mixins.scss";
+@import './theme-variable.scss';
+.header {
+  @include themify($themes) {
+    background: themed('headerFooterBackground');
+  }
+}
 
 *, 
 *::before,
