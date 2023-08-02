@@ -258,8 +258,8 @@ const Dashboard = () => {
           {/* <Paging defaultPageSize={10} /> */}
         </DataGrid>
           <div className="tableNav">
-            <button disabled={pageNumber !== 1} onClick={()=>ser(-1)}><RiArrowLeftSLine/></button>
-            <button disabled={pageNumber !== 3} onClick={()=>ser(+1)}><RiArrowRightSLine/></button>
+            <button disabled={pageNumber === 1} onClick={()=>ser(-1)}><RiArrowLeftSLine/></button>
+            <button disabled={pageNumber === 3} onClick={()=>ser(+1)}><RiArrowRightSLine/></button>
           </div>
       </section>
       <Modal isOpen={isOpen} handleClose={handleIsOpen}>

@@ -16,29 +16,38 @@ const Layout = () => {
     setisLogoutModalOpen((prev:any) => !prev)
   }
   const logout = useLogout();
+  const { auth } = useAuth();
     
   const navItems = [
     {
       key: 1,
+      logo: <div className="userIcon desktop">
+      {auth.user.charAt(0)}
+      </div>,
+      activeLogo: <div className="userIcon desktop">
+      {auth.user.charAt(0)}
+      </div>,
+      to: '/settings'
+    },
+    {
+      key: 2,
       logo: <RiHome6Line size={26} />,
       activeLogo: <RiHome6Fill size={26} />,
       to: '/'
     },
     {
-      key: 2,
+      key: 3,
       logo: <RiAdminLine size={26} />,
       activeLogo: <RiAdminFill size={26} />,
       to: '/admin'
     },
     {
-      key: 3,
+      key: 4,
       logo: <HiOutlineUserGroup size={26} />,
       activeLogo: <HiUserGroup size={26} />,
       to: '/update-users'
     }
   ]
-
-  const { auth } = useAuth();
 
   return (
     <div className='dashboard'>
@@ -47,10 +56,6 @@ const Layout = () => {
           <img src={logo} alt="" />
         </div>
         <div className="navItems">
-          <div style={{ cursor: 'default', display: 'flex', justifyContent: 'center', alignItems: 'center' }} className="userIcon desktop">
-          {auth.user.charAt(0)}
-          <span className="tooltiptext">{auth.user}</span>
-          </div>
           { navItems.map((item: any) => (
             <Link className={`navItem ${item.to === pathname ? 'active' : ''}`} to={item.to} key={item.key}>
               {item.to === pathname ? item.activeLogo : item.logo}
