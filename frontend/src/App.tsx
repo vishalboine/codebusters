@@ -7,10 +7,10 @@ import Layout from "./components/layouts/Layout";
 import Unauthorized from "./pages/public/Unauthorized";
 import NotFound from "./pages/public/NotFound";
 import PersistLogin from "./config/PersistLogin";
-import Settings from "./pages/settings/Settings";
 import Admin from "./pages/admin/Admin";
 import ToastLayout from "./components/layouts/ToastLayout";
 import Users from "./pages/admin/Users";
+import Profile from "./pages/profile/Profile";
 
 function App() {
   return (
@@ -24,7 +24,7 @@ function App() {
           <Route element={<RequireAuth allowedRoles={['User', 'Admin']} />}>
             <Route element={<Layout />}>
               <Route path="/" element={<Dashboard />} />
-              <Route path="/settings" element={<Settings />} />
+              <Route path="/profile" element={<Profile />} />
               <Route path="/admin" element={<Admin />} />
               <Route path="/update-users" element={<Users />} />
             </Route>

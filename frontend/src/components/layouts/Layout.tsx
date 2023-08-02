@@ -27,7 +27,7 @@ const Layout = () => {
       activeLogo: <div className="userIcon desktop">
       {auth.user.charAt(0)}
       </div>,
-      to: '/settings'
+      to: '/profile'
     },
     {
       key: 2,
