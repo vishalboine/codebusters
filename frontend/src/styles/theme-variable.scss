@@ -1,15 +1,17 @@
+@import './iwVariables.scss';
+
 $themes: (
   light: (
-    colorHeaderFooter: #fff,
-    colorText: #000,
+    colorText:$blue-dark,
     colorBackground: #f8f8fa,
-    headerFooterBackground: #de1f1f,
+    dashboardBg:$blue-700,
+    rightPanelBg:$white,
   ),
   dark: (
-    colorHeaderFooter: #36394c,
-    colorText: #eff2f7,
+    colorText:#eff2f7,
+    dashboardBg:$blue-900,
+    rightPanelBg:$blue-dark,
     colorBackground: #222736,
-    headerFooterBackground: #36394c,
   ),
 );
 

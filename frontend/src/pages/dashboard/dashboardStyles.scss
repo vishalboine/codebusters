@@ -1,7 +1,7 @@
-// @import "../../styles/dxTable";
 @import "../../styles/iwVariables";
 @import "../../styles/mixins.scss";
-// @import "../../styles/formElemets";
+@import "../../styles/theme-variable.scss";
+
 
 .dashboard {
     width:100%;
@@ -9,7 +9,9 @@
     display:flex;
     overflow-x:hidden;
     overflow-y:hidden;
-    background:$blue-700;
+    @include themify($themes) {
+        background: themed(dashboardBg);
+    }
     position:relative;
 
     .leftPanel {
@@ -18,7 +20,9 @@
         align-items:center;
         width:4%;
         min-width:80px;
-        background:$blue-700;
+        @include themify($themes) {
+            background: themed(dashboardBg);
+        }
         padding:4rem 1.6rem 2rem;
         
         .navItems {
@@ -26,6 +30,9 @@
             flex-direction:column;
             margin-top:2rem;
             .userIcon {
+                display:flex;
+                justify-content:center;
+                align-items:center;
                 position:relative;
                 background:$blue-100;
                 color:$blue-800;
@@ -33,16 +40,12 @@
                 overflow: hidden;
                 white-space: nowrap;
                 text-transform:uppercase;
-                width:4.8rem;
-                height:4.8rem;
-                border-radius:2.5rem;
-                padding:1.2rem;
-                font-weight:700;
-                display:flex;
-                align-items:center;
-                justify-content:flex-start;
+                width:46px;
+                height:46px;
+                border-radius:8px;
+                font-weight:600;
                 margin:2rem 0;
-                border:2px solid $white-96;
+                border:2px solid transparent;
                 letter-spacing:.1rem;
                 &.mobile {
                     display:none;
@@ -70,7 +73,6 @@
                         border-bottom: 6px solid transparent;
                         margin-left: 6px; }
                   }
-                  
                   &:hover span {
                     visibility: visible;
                   }
@@ -88,6 +90,13 @@
                 list-style-type:none;
                 transition:.6s;
                 cursor:pointer;
+                &:first-of-type {
+                    background:none;
+                    border:none;
+                    &.active {
+                        border: 2px solid $white-96;
+                    }
+                }
                 &:hover{
                     border:2px solid $blue-200;
                     transition:ease-in-out .1s;
@@ -101,7 +110,9 @@
         }
     }
     .rightPanel {
-        background:$white;
+        @include themify($themes) {
+            background: themed(rightPanelBg);
+        }
         margin-top:1.5rem;
         width:96%;
         border-top-left-radius:2rem;

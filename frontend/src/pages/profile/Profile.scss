@@ -1,0 +1,12 @@
+@import '../../styles/iwVariables';
+@import '../../styles/mixins';
+
+.profileWrapper {
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+    h4 { 
+        margin-bottom:1.5rem;
+    }
+}
