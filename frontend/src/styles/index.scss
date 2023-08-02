@@ -46,7 +46,7 @@ body {
     padding:0;
     @include themify($themes) {
       color: themed(colorText);
-  }
+    } 
     box-sizing:border-box; 
 }
 
@@ -120,7 +120,7 @@ a { text-decoration:none; }
 	width:50%;
 	border:1px solid $white-93;
     margin:0 auto;
-    border-radius:8px;
+    border-radius:12px;
 }
 
 .table-header {

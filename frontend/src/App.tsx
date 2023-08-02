@@ -25,26 +25,6 @@ function App() {
   };
   const [theme, setTheme] = useState(getDefaultTheme());
 
-  const darkTheme = createTheme({
-    components: {
-      MuiButtonBase: {
-        styleOverrides: {
-          root: {
-            '&.MuiTab-root': { 
-              fontSize:'1.6rem',
-              fontWeight: '400',
-              color: '#fff',
-              '&.Mui-selected': {
-                color: '#3650B5',
-                fontWeight: '500',
-              }
-            }
-          }
-        }
-      },
-    }
-  });
-  
   const lightTheme = createTheme({
     typography: {
       fontFamily: [
@@ -89,7 +69,7 @@ function App() {
             height: '46px',
             fontSize: '1.6rem',
             backgroundColor: '#f6f7fe',
-            borderRadius: '8px!important',
+            borderRadius: '12px!important',
           }
         }
       },
@@ -153,11 +133,23 @@ function App() {
               '&.Mui-selected': {
                 color: '#3650B5',
                 fontWeight: '500',
-              }
+              },
+              
             }
           }
         }
       },
+      MuiTabs: {
+        styleOverrides: {
+          root: {
+            '&indicator': {
+              backgroundColor:'#333',
+            }
+          }
+        }
+        
+      },
+
       MuiSvgIcon: {
         styleOverrides: {
           root: {
@@ -169,6 +161,137 @@ function App() {
         }
       }
     }    
+  });
+
+  const darkTheme = createTheme({
+    typography: {
+      fontFamily: [
+        'Inter', 'sans-serif'
+      ].join(',')
+    },
+    components: {
+      MuiTypography: {
+        styleOverrides: {
+          root: {
+            fontSize: '1.6rem',
+          }
+        }
+      },
+      MuiInputBase: {
+        styleOverrides: {
+          root: {
+            '&.Mui-focused': { 
+              border: '1px solid #ADBDFF',
+              outline: 0,
+              boxShadow: '0px 0px 0px 1px #ADBDFF'
+            },
+            '&.Mui-disabled': {
+              background: '#e7e9e9',
+              border: '0px solid #e7e9e9',
+              color: '#666',
+              cursor: 'not-allowed'
+            },
+            '&.validControl': {
+              border: '2px solid #287151',
+              backgroundColor: '#F7FAF9'
+            },
+            '&.invalidControl': {
+              border: '2px solid #B2292E',
+              backgroundColor: '#FCF6F6'
+            },
+            '&.SearchPanelInput': {
+              backgroundColor:'#dbe6ec',
+              height:'5rem'
+            },
+            border: '1px solid #C8D3FF', 
+            height: '46px',
+            fontSize: '1.6rem',
+            backgroundColor: '#f6f7fe',
+            borderRadius: '12px!important',
+          }
+        }
+      },
+      MuiSelect: {
+        styleOverrides: {
+          select: {
+            padding: '10px 12px',
+            '&.Mui-disabled': {
+              "&&": {
+                background: '#e7e9e9',
+                border: '0px solid #e7e9e9',
+                cursor: 'not-allowed',
+                '-webkit-text-fill-color': '#666',
+              }
+            }
+          }
+        }
+      },
+      MuiMenuItem: {
+        styleOverrides: {
+          root: {
+            fontFamily: 'Inter',
+            fontSize: '1.6rem',
+            color: '#040a21',
+            minHeight: '40px',
+            padding: '10px 12px',
+            '&.Mui-selected': { 
+              background: '#edf1ff',
+              '&:hover': {
+                background: '#ADBDFF'
+              } 
+            }
+          }
+          
+        }
+      },
+      MuiOutlinedInput: {
+        styleOverrides: {
+          notchedOutline: {
+            display: 'none'
+          }
+        }
+      },
+      MuiTooltip: {
+        styleOverrides: {
+          tooltip: {
+            fontSize: '1.2rem',
+            color: '#040a21',
+            padding: '10px 12px',
+            background: '#EDF1FF'
+          }
+          
+        }
+      },
+      MuiButtonBase: {
+        styleOverrides: {
+          root: {
+            '&.MuiTab-root': { 
+              fontSize:'1.6rem',
+              fontWeight: '400',
+              color: '#eff2f7',
+              '&.Mui-selected': {
+                color: '#1659b6',
+                fontWeight: '500',
+              },
+              '&.MuiTabs-indicator': {
+                backgroundColor: '#1659b6',
+              }
+            }
+          }
+        }
+      },
+     
+      MuiSvgIcon: {
+        styleOverrides: {
+          root: {
+            '&.MuiSelect-icon': { 
+              fontSize:'2.5rem',
+              color: '#626D99'
+            }
+          }
+        }
+      }
+    }
   });
 
   return (

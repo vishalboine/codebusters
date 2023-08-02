@@ -34,15 +34,19 @@
                 justify-content:center;
                 align-items:center;
                 position:relative;
-                background:$blue-100;
-                color:$blue-800;
+                @include themify($themes){
+                    background:themed(userIconBg);
+                }
+                @include themify($themes){
+                    color:themed(userIconClr);
+                }
                 font-size:3rem;
                 overflow: hidden;
                 white-space: nowrap;
                 text-transform:uppercase;
                 width:46px;
                 height:46px;
-                border-radius:8px;
+                border-radius:12px;
                 font-weight:600;
                 margin:2rem 0;
                 border:2px solid transparent;
@@ -57,7 +61,7 @@
                     color:$secondary-color;
                     border:1px solid $blue-100;
                     text-align: center;
-                    border-radius:8px;
+                    border-radius:12px;
                     padding:6px 8px;
                     font-size:1.6rem;
                     font-weight:500;
@@ -84,9 +88,13 @@
                 width:4.8rem;
                 height:4.8rem;
                 margin-bottom:1.6rem;
-                background:$blue-800;
-                color:$blue-200;
-                border-radius:8px;
+                @include themify($themes) {
+                    background: themed(navItemBg);
+                }
+                @include themify($themes) {
+                    color: themed(navItemClr);
+                }
+                border-radius:12px;
                 list-style-type:none;
                 transition:.6s;
                 cursor:pointer;
@@ -102,7 +110,9 @@
                     transition:ease-in-out .1s;
                 }
                 &.active, &:focus, &:focus-visible {
-                    background:$primary-color ;
+                    @include themify($themes) {
+                        background: themed(navItemActBg);
+                    }
                     color:$white;
                     transition:.6s;
                 }
@@ -156,12 +166,12 @@
                 .dxTable{
                     height:450px;
                     box-shadow:0 0 6px rgba($blue-900,.20);
-                    border-radius:8px;
+                    border-radius:12px;
                     @include respond(phone){
                         height:calc(100vh - 40rem);
                     }
                 }
-                border-radius:8px;
+                border-radius:12px;
                 margin-top:2.5rem;
 
                     .uplodedFile {
@@ -321,7 +331,7 @@
         font-weight:500;
         padding:1.2rem;
         border:1px solid $blue-300;
-        border-radius:8px;
+        border-radius:12px;
         font-size:1.6rem;
         .successIcon {
             margin-left:1.6rem;
