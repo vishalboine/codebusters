@@ -20,7 +20,7 @@ const Dashboard = () => {
   const [isOpen, setisOpen] = useState(false)
   const handleDataGridExportToExcel = useDataGridExcelExport('Demo');
   const [blotterData, setBlotterData] = useState({});
-  const [excelColunms, setExcelColumns] = useState([]);
+  const [excelColunms, setExcelColumns] : any= useState([]);
   const [excelColunmsDataType, setExcelColumnsDataType] : any = useState({});
   const [blotterColumns, setBlotterColumns] : any = useState(CustomerMasterData);
   const [tableDataType, setTableDataType] : any = useState([]);
@@ -33,28 +33,34 @@ const Dashboard = () => {
   const [mockData, setMockData]:any = useState({})
   const [mockDataDropDown, setMockDataDropDown] = useState('Demo1')
   const [currentTable, setCurrentTable] = useState({});
+  const [importError, setImportError] = useState('');
+  const [pdfError, setPdfError] = useState('');
 
 
   const handleFileUpload = (e: any) => {
     const reader = new FileReader();
     let tempArr: any = []
-    let excelColumnsDataType :  any =[]
-    reader.readAsBinaryString(e.target.files[0]);
-    reader.onload = (e: any) => {
-      const data = e.target.result;
-      const workbook = XLSX.read(data, { type: "binary" });
-      const sheetName = workbook.SheetNames[0];
-      const sheet = workbook.Sheets[sheetName];
-      setSheetName(sheetName)
-      const parsedData = XLSX.utils.sheet_to_json(sheet);
-      setBlotterData(parsedData);
-      parsedData.forEach((item: any) => {
-        tempArr = Object.keys(item)
-      })
-      excelColumnsDataType = parsedData.map(getObjectValueTypes);
-      setExcelColumns(tempArr)
-      setExcelColumnsDataType(excelColumnsDataType)
-    };
+    let excelColumnsDataType :  any =[];
+    if(e.target.files[0].type === 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'){
+      reader.readAsBinaryString(e.target.files[0]);
+      reader.onload = (e: any) => {
+        const data = e.target.result;
+        const workbook = XLSX.read(data, { type: "binary" });
+        const sheetName = workbook.SheetNames[0];
+        const sheet = workbook.Sheets[sheetName];
+        setSheetName(sheetName)
+        const parsedData : any= XLSX.utils.sheet_to_json(sheet);
+        setBlotterData(parsedData);
+        parsedData.forEach((item: any) => {
+          tempArr = Object.keys(item)
+        })
+        excelColumnsDataType = parsedData.map(getObjectValueTypes);
+        setExcelColumns(Object.keys(parsedData[0]))
+        setExcelColumnsDataType(excelColumnsDataType)
+      };
+    }else{
+      setPdfError('Only excel file to import')
+    }
   }
   const handleIsOpen = () => {
     setisOpen((prev: any) => !prev)
@@ -152,12 +158,17 @@ const Dashboard = () => {
 
     //returns which all columns are having valid/invalid datatype
     const checkTableExcelDataType = compareValues(currentTable, excelColunmsDataType[0], fieldMapping)
-    if(!areAllElementsSame(excelColunmsDataType)){
-      // validation for all excel data should be of same datatype wrt column
-    }else if(checkForDuplicates(fieldMappingArrValues)){
+    if(checkForDuplicates(fieldMappingArrValues)){
       //validation for duplicate dropdown value
-    }else if (!Object.values(checkTableExcelDataType).every(value => value === true)){
+      setImportError('Duplicate Excel columns')
+    }
+    // else if(!areAllElementsSame(excelColunmsDataType)){
+    //   // validation for all excel data should be of same datatype wrt column
+    //   setImportError('Excel data should be of same datatype with respect to column')
+    // }
+    else if (!Object.values(checkTableExcelDataType).every(value => value === true)){
       // excel column dataType must be same as table column datatypes
+      setImportError('Excel column dataType must be same as table column datatypes')
     }
     else{
       const blotterColumnsArr : any= blotterColumns;
@@ -299,6 +310,7 @@ const Dashboard = () => {
                     onChange={handleFileUpload}
                   />
                 </div>
+                <p>{pdfError}</p>
                 <span>Only excel files(.xlsx, .xls) with max size 10 MB.</span>
               </div>
             </>
@@ -339,6 +351,7 @@ const Dashboard = () => {
                   ))
                 }
               </div>
+              <p>{importError}</p>
               <div className="d-flex">
                 <button onClick={() => {setSelectImportDropDownValue([]); }} className="btn btn-text">Reset</button>
                 <button onClick={() => { handleImportProceed()}} className="btn btn-primary">Proceed</button>
