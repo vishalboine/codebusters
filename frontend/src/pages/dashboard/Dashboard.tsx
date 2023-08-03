@@ -33,7 +33,7 @@ const Dashboard = () => {
   const [mockData, setMockData]:any = useState({})
   const [mockDataDropDown, setMockDataDropDown] = useState('Demo1')
   const [currentTable, setCurrentTable] = useState({});
-  const [importError, setImportError] = useState('');
+  const [importError, setImportError] :any = useState('');
   const [pdfError, setPdfError] = useState('');
 
 
@@ -166,9 +166,13 @@ const Dashboard = () => {
     //   // validation for all excel data should be of same datatype wrt column
     //   setImportError('Excel data should be of same datatype with respect to column')
     // }
-    else if (!Object.values(checkTableExcelDataType).every(value => value === true)){
+    else if (!Object.values(Object.values(checkTableExcelDataType)).every(value => value === true)){
       // excel column dataType must be same as table column datatypes
-      setImportError('Excel column dataType must be same as table column datatypes')
+      Object.entries(checkTableExcelDataType).map((key:any, value: any)=>{
+        if(key[1] === false){
+          setImportError(`${(key[0]).toUpperCase()} table column dataType must be same as excel column datatypes`)
+        }
+      })
     }
     else{
       const blotterColumnsArr : any= blotterColumns;
@@ -203,6 +207,7 @@ const Dashboard = () => {
     setMockDataDropDown('Demo1');
     setBlotterColumns(Object.keys(mockData.Demo1[0]))
     setBlotterData(mockData['Demo1'])
+    setImportError('');
   }
 
   return (
@@ -245,8 +250,8 @@ const Dashboard = () => {
       <section>
         <div className="dataTypeSelector">
           <div className="uplodedFile">
-            <span>Imported file: {sheetName}
-            </span> 
+          {sheetName && <span>Imported file: {sheetName}
+            </span> }
           </div>
         </div>
         <DataGrid
@@ -276,7 +281,7 @@ const Dashboard = () => {
       <Modal isOpen={isOpen} handleClose={handleIsOpen}>
        <div className="modalHead">
           <h4>Import Data</h4>
-        <IconButton onClick={() =>{ setisOpen(false); setExcelColumns([]); setSelectImportDropDownValue([]); setFieldMapping({});}} className="closeModal" >
+        <IconButton onClick={() =>{ setisOpen(false); setExcelColumns([]); setSelectImportDropDownValue([]); setFieldMapping({}); handleResetImport()}} className="closeModal" >
             <RiCloseLine/>
           </IconButton>
        </div>
