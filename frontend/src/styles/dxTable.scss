@@ -3,15 +3,15 @@
 @import "./theme-variable.scss";
 
 .dx-datagrid { @include themify($themes) {
-    color: themed(colorText)!important;
-  }  border-radius:12px;  }
-.dx-datagrid-borders > .dx-datagrid-headers, .dx-datagrid-borders > .dx-datagrid-rowsview, .dx-datagrid-borders > .dx-datagrid-total-footer { border:1px solid $white-93!important; border-bottom:none!important; }
+  color: themed(colorText)!important;
+  } @include themify($themes) { background-color: themed(rightPanelBg)!important; } border-radius:12px;  }
+.dx-datagrid-borders > .dx-datagrid-headers, .dx-datagrid-borders > .dx-datagrid-rowsview, .dx-datagrid-borders > .dx-datagrid-total-footer { border:1px solid; @include themify($themes){ border-color: themed(formDivBrd)!important; } border-bottom:none!important; }
 .dx-datagrid-borders > .dx-datagrid-header-panel { position:relative; height:0; top:-29%; background:none; margin:0 136px 0 74rem; }
 
-.dx-datagrid-headers { background:$white-98; border-bottom:none!important; border-radius:12px 8px 0 0; overflow:hidden; }
-.dx-datagrid .dx-datagrid-headers .dx-header-row { background:$white-98; height:44px; }
-.dx-header-row > td > .dx-datagrid-text-content:not(.dx-sort-indicator):not(.dx-header-filter-indicator) { color:$gray-mute!important; font-weight:500!important;  }
-.dx-datagrid .dx-datagrid-headers .dx-header-row > td { border-left:1px solid $white-98 !important; border-right:none !important; }
+.dx-datagrid-headers { border-bottom:none!important; border-radius:12px 8px 0 0; overflow:hidden; }
+.dx-datagrid .dx-datagrid-headers .dx-header-row { @include themify($themes){background: themed(tableHeaderBg)}; height:44px; }
+.dx-header-row > td > .dx-datagrid-text-content:not(.dx-sort-indicator):not(.dx-header-filter-indicator) { @include themify($themes){ color: themed(tableHeaderClr)!important; } font-weight:500!important;  }
+.dx-datagrid .dx-datagrid-headers .dx-header-row > td { border-left:none !important; border-right:none !important; }
 .dx-datagrid-content .dx-datagrid-table .dx-row > td, .dx-datagrid-content .dx-datagrid-table .dx-row > tr > td { vertical-align:middle!important; }
 .dx-datagrid-rowsview .dx-datagrid-table-fixed { table-layout:auto!important; }
 .dx-datagrid .dx-row > td { padding:10px 12px!important; }
@@ -43,9 +43,9 @@
     &:focus { box-shadow:none!important; 
     }
 }
-.dx-searchbox .dx-icon-search { color:$gray-mute!important; font-size:1.8rem!important; padding:8px 8px 8px 12px!important; }
+.dx-searchbox .dx-icon-search { @include themify($themes) { color: themed(inputPlcHd)!important } color:$gray-mute!important; font-size:1.8rem!important; padding:8px 8px 8px 12px!important; }
 .dx-searchbox .dx-placeholder::before { padding-left:36px!important; }
-.dx-searchbox .dx-icon-search::before,.dx-placeholder { color:$gray-mute!important; }
+.dx-searchbox .dx-icon-search::before,.dx-placeholder { @include themify($themes) { color: themed(inputPlcHd)!important } }
 .dx-placeholder { left:0.5rem!important; }
 .dx-show-clear-button .dx-icon-clear { @include themify($themes) {
     background: themed(inputBg)!important;
@@ -55,13 +55,13 @@
 .dx-texteditor.dx-state-focused.dx-editor-outlined { border:none!important; border-radius:12px; }
 .dx-texteditor.dx-state-hover { border:none!important; border-radius:12px; }
 .dx-datagrid-rowsview .dx-row { border-top:none!important; }
-.dx-datagrid-rowsview .dx-row:nth-of-type(odd) { background:#f0f3ff!important; }
-.dx-datagrid .dx-row-alt > td, .dx-datagrid .dx-row-alt > tr > td { background:$white!important; }
+.dx-datagrid-rowsview .dx-row:nth-of-type(odd) { @include themify($themes) { background-color: themed(tableRowOddBg)!important; } }
+.dx-datagrid .dx-row-alt > td, .dx-datagrid .dx-row-alt > tr > td { @include themify($themes) { background-color: themed(rightPanelBg)!important; } }
 
 .dx-datagrid-headers .dx-datagrid-table .dx-row > td { border-bottom:none; }
 .dx-datagrid .dx-column-lines > td { border:none!important; }
 
-.dx-button-mode-contained { border-radius:12px; border-color:$blue-700!important; background-color:$white!important; }
+.dx-button-mode-contained { border-radius:12px; border-color:$blue-700!important; @include themify($themes) { background-color: themed(rightPanelBg)!important; } }
 .dx-button-has-text .dx-icon { width:20px!important; height:20px!important; }
 .dx-button-has-text .dx-button-content { padding:12px 16px!important; }
 .dx-button { border-radius:12px!important; }

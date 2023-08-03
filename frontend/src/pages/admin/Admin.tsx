@@ -149,13 +149,11 @@ export default function Admin() {
 
   return (
     <Box sx={{ width: '100%' }}>
-      <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-        <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
-          <Tab label="Add Table" {...a11yProps(0)} />
-          <Tab label="Update Table" {...a11yProps(1)} />
-          <Tab label="Column Validation" {...a11yProps(2)} />
-        </Tabs>
-      </Box>
+      <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
+        <Tab label="Add Table" {...a11yProps(0)} />
+        <Tab label="Update Table" {...a11yProps(1)} />
+        <Tab label="Column Validation" {...a11yProps(2)} />
+      </Tabs>
       <CustomTabPanel value={value} index={0}>
         <div className="adminWrapper">
           <h4>Add Table</h4>

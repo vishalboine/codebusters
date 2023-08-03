@@ -44,8 +44,8 @@
                 overflow: hidden;
                 white-space: nowrap;
                 text-transform:uppercase;
-                width:46px;
-                height:46px;
+                width:4.8rem;
+                height:4.8rem;
                 border-radius:12px;
                 font-weight:600;
                 margin:2rem 0;
@@ -53,6 +53,9 @@
                 letter-spacing:.1rem;
                 &.mobile {
                     display:none;
+                    @include respond(phone) {
+                        display:flex;
+                    }
                 }
                 span {
                     visibility: hidden;
@@ -101,12 +104,22 @@
                 &:first-of-type {
                     background:none;
                     border:none;
-                    &.active {
-                        border: 2px solid $white-96;
+                    &:hover {
+                        border:none;
+                    }
+                    &.active,&:hover {
+                        .userIcon{
+                            border: 2px solid;
+                            @include themify($themes){ border-color:themed(userIconActBrd); }
+                        }
+                    }
+                    @include respond(phone){
+                        display:none;
                     }
                 }
                 &:hover{
-                    border:2px solid $blue-200;
+                    border:2px solid;
+                    @include themify($themes){ border-color:themed(navItemHvrBrd); }
                     transition:ease-in-out .1s;
                 }
                 &.active, &:focus, &:focus-visible {
@@ -427,12 +440,6 @@
                 flex-direction:row;
                 .userIcon {
                     margin:0;
-                    &.mobile {
-                        display:flex;
-                    }
-                    &.desktop {
-                        display:none;
-                    }
                 }
                 .navItem { margin-bottom:0; background:none; }
             }

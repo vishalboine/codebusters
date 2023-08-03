@@ -4,6 +4,7 @@ import { Box, Tab, Tabs, ToggleButton, ToggleButtonGroup } from '@mui/material';
 import '../../styles/theme-variable.scss';
 import { ThemeContext } from '../../context/theme-context';
 import './Profile.scss';
+import { RiMoonClearFill, RiSunFill } from 'react-icons/ri';
 
 const Profile = () => {
 
@@ -28,13 +29,11 @@ const Profile = () => {
   }
   return (
     <div>
-      <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-        <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
-          <Tab label="General" {...a11yProps(0)} />
-          <Tab label="Manage Password" {...a11yProps(1)} />
-          <Tab label="History" {...a11yProps(2)} />
-        </Tabs>
-      </Box>
+      <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
+        <Tab label="General" {...a11yProps(0)} />
+        <Tab label="Manage Password" {...a11yProps(1)} />
+        <Tab label="History" {...a11yProps(2)} />
+      </Tabs>
       <CustomTabPanel index={0} value ={value}>
           <div className="profileWrapper">
             <h4>Profile Info</h4>
@@ -46,8 +45,8 @@ const Profile = () => {
             onChange={handleThemeChange}
             aria-label="Platform"
           >
-            <ToggleButton value="light">Light</ToggleButton>
-            <ToggleButton value="dark">Dark</ToggleButton>
+            <ToggleButton value="light"><RiSunFill/></ToggleButton>
+            <ToggleButton value="dark"><RiMoonClearFill/></ToggleButton>
           </ToggleButtonGroup>
       </CustomTabPanel>
       <CustomTabPanel index={1} value ={value}>
