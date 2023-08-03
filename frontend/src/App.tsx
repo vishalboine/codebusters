@@ -17,7 +17,7 @@ import { ThemeProvider, createTheme } from '@mui/material';
 import { useContext } from "react";
 
 function App() {
-  const isBrowserDefaultDark = () => window.matchMedia('(prefers-color-scheme: dark)').matches;
+  const isBrowserDefaultDark = () => window.matchMedia('(prefers-color-scheme: light)').matches;
   const getDefaultTheme = (): string => {
     const localStorageTheme = localStorage.getItem('default-theme');
     const browserDefault = isBrowserDefaultDark() ? 'dark' : 'light';
@@ -131,10 +131,27 @@ function App() {
               fontSize:'1.6rem',
               fontWeight: '400',
               '&.Mui-selected': {
-                color: '#3650B5',
+                color: '#3373cc',
                 fontWeight: '500',
+              }
+            }
+          }
+        }
+      },
+      MuiToggleButton: {
+        styleOverrides: {
+          root: {
+            padding:'8px 14px',
+            fontSize:'1.6rem',
+            borderRadius:'12px',
+            borderColor:'#0000001f',
+            color:'#627497',
+            '&.Mui-selected': {
+              color: '#fff',
+              backgroundColor:'#3650b5',
+              '&:hover': {
+                backgroundColor:'#2a3e8c',
               },
-              
             }
           }
         }
@@ -142,14 +159,14 @@ function App() {
       MuiTabs: {
         styleOverrides: {
           root: {
-            '&indicator': {
-              backgroundColor:'#333',
-            }
+            borderBottom:'1px solid',
+            borderColor:'#0000001f'
+          },
+          indicator: {
+            backgroundColor: '#3373cc',
           }
         }
-        
       },
-
       MuiSvgIcon: {
         styleOverrides: {
           root: {
@@ -163,6 +180,7 @@ function App() {
     }    
   });
 
+  // Dark Theme
   const darkTheme = createTheme({
     typography: {
       fontFamily: [
@@ -203,10 +221,11 @@ function App() {
               backgroundColor:'#dbe6ec',
               height:'5rem'
             },
-            border: '1px solid #C8D3FF', 
+            border: '1px solid #2e2e2e', 
             height: '46px',
             fontSize: '1.6rem',
-            backgroundColor: '#f6f7fe',
+            color: '#c7c7c7',
+            backgroundColor: '#050505',
             borderRadius: '12px!important',
           }
         }
@@ -268,29 +287,64 @@ function App() {
             '&.MuiTab-root': { 
               fontSize:'1.6rem',
               fontWeight: '400',
-              color: '#eff2f7',
+              color: '#8f96a3',
               '&.Mui-selected': {
                 color: '#1659b6',
                 fontWeight: '500',
-              },
-              '&.MuiTabs-indicator': {
-                backgroundColor: '#1659b6',
               }
             }
           }
         }
       },
-     
+      MuiToggleButton: {
+        styleOverrides: {
+          root: {
+            padding:'8px 14px',
+            fontSize:'1.6rem',
+            borderRadius:'12px',
+            borderColor:'#0000001f',
+            color:'#cc7c00',
+            backgroundColor:'#d4d4d424',
+            '&.Mui-selected': {
+              color: '#fff',
+              backgroundColor:'#3650b5',
+            }
+          }
+        }
+      },
+      MuiTabs: {
+        styleOverrides: {
+          root: {
+            borderBottom:'1px solid',
+            borderColor:'#8f96a336'
+          },
+          indicator: {
+            backgroundColor: '#1659b6',
+          }
+        }
+      },
       MuiSvgIcon: {
         styleOverrides: {
           root: {
             '&.MuiSelect-icon': { 
               fontSize:'2.5rem',
-              color: '#626D99'
+              color: '#858585'
             }
           }
         }
-      }
+      },
+      // MuiModal: {
+      //   styleOverrides: {
+      //     root: {
+      //       position: 'absolute' as 'absolute',
+      //       top: '50%',
+      //       left: '50%',
+      //       transform: 'translate(-50%, -50%)',
+      //       width: 400,
+      //       bgcolor: '#141414',
+      //     }
+      //   }
+      // }
     }
   });
 

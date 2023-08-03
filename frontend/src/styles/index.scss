@@ -3,11 +3,6 @@
 @import "./formElemets";
 @import "./mixins.scss";
 @import './theme-variable.scss';
-.header {
-  @include themify($themes) {
-    background: themed('headerFooterBackground');
-  }
-}
 
 *, 
 *::before,
@@ -60,15 +55,11 @@ body {
   }
 
     &-track {
-        // -webkit-box-shadow:inset 0 0 6px rgba($black, .3)!important;
-        // box-shadow:inset 0 0 6px rgba($black, .3)!important;
-        // border-radius:10px!important;
         background:$white!important;
     }
     &-thumb {
-        background:$blue-100!important;
+      background:$blue-100!important;
 	    border-radius:100px!important;
-	    // box-shadow:0px 0px 1px 0px rgba($black, .5)!important;
 	    border:none!important;
     }
     &:decrement,
@@ -99,7 +90,7 @@ h4,h5,h6 { font-weight:500!important; }
 
 h1,h2,h3,h4,h5,h6 {
   @include themify($themes) {
-    color: themed(colorText);
+    color: themed(HeadTextClr);
   }
 }
 
@@ -108,6 +99,12 @@ input:-webkit-autofill {
     &:hover,
     &:focus,
     &:active { box-shadow:0 0 0 40px transparent inset!important; -webkit-box-shadow:0 0 0 40px transparent inset!important; -webkit-text-fill-color:$black-80; }
+}
+
+input:-internal-autofill-selected {
+  @include themify($themes) {
+    background-color: themed(inputBg)!important;
+  }
 }
 
 a { text-decoration:none; }
@@ -129,6 +126,7 @@ a { text-decoration:none; }
 	background:$white-98; 
     height:44px;
 	padding:12px 0;
+  border-radius:9px 9px 0 0;
 }
 
 .table-row {
@@ -136,6 +134,7 @@ a { text-decoration:none; }
 	width:100%;
 	padding:12px 0;
   align-items:center;
+  border-radius:0 0 9px 9px;
 	
 	&:nth-of-type(odd) {
 		background:#f0f3ff;

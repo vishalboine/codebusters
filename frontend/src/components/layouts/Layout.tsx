@@ -1,6 +1,6 @@
 import {useState} from 'react';
 import { Link, Outlet, useLocation } from 'react-router-dom';
-import { RiHome6Line, RiHome6Fill ,RiSettings5Line, RiSettings5Fill, RiAdminLine, RiAdminFill, RiLogoutCircleRLine } from 'react-icons/ri';
+import { RiHome6Line, RiHome6Fill, RiAdminLine, RiAdminFill, RiLogoutCircleRLine } from 'react-icons/ri';
 import { HiUserGroup,HiOutlineUserGroup } from 'react-icons/hi';
 import logo from '../../assets/images/logo.svg';
 import Modal from '../Modal';
@@ -21,10 +21,10 @@ const Layout = () => {
   const navItems = [
     {
       key: 1,
-      logo: <div className="userIcon desktop">
+      logo: <div className="userIcon">
       {auth.user.charAt(0)}
       </div>,
-      activeLogo: <div className="userIcon desktop">
+      activeLogo: <div className="userIcon">
       {auth.user.charAt(0)}
       </div>,
       to: '/profile'
@@ -46,7 +46,7 @@ const Layout = () => {
       logo: <HiOutlineUserGroup size={26} />,
       activeLogo: <HiUserGroup size={26} />,
       to: '/update-users'
-    }
+    },
   ]
 
   return (
