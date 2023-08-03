@@ -5,6 +5,8 @@ import '../../styles/theme-variable.scss';
 import { ThemeContext } from '../../context/theme-context';
 import './Profile.scss';
 import { RiMoonClearFill, RiSunFill } from 'react-icons/ri';
+import Input from "../../components/ui-widgets/Input/Input";
+import useAuth from "../../hooks/useAuth";
 
 const Profile = () => {
 
@@ -21,6 +23,8 @@ const Profile = () => {
     localStorage.setItem('theme', isCurrentDark ? 'light' : 'dark');
   };
 
+  const { auth } = useAuth();
+
   function a11yProps(index: number) {
     return {
       id: `simple-tab-${index}`,
@@ -35,24 +39,82 @@ const Profile = () => {
         <Tab label="History" {...a11yProps(2)} />
       </Tabs>
       <CustomTabPanel index={0} value ={value}>
-          <div className="profileWrapper">
-            <h4>Profile Info</h4>
+        <div className="profileWrapper">
+          <h4>Profile Info</h4>
+          <div className="formDiv">
+            <div className="profileInfo">
+              <div className="userInfo">
+                <div className="userIcon">
+                  {auth.user.charAt(0)}
+                </div>
+                <h6>Username</h6>
+              </div>
+              <span>Admin</span>
+            </div>
+            <div className="theme">
+              <div className="themeContent">
+                <p>Theme</p>
+                <ToggleButtonGroup
+                  color="primary"
+                  value={theme}
+                  exclusive
+                  onChange={handleThemeChange}
+                  aria-label="Platform"
+                >
+                  <ToggleButton value="light"><RiSunFill/></ToggleButton>
+                  <ToggleButton value="dark"><RiMoonClearFill/></ToggleButton>
+                </ToggleButtonGroup>
+              </div>
+            </div>
           </div>
-          <ToggleButtonGroup
-            color="primary"
-            value={theme}
-            exclusive
-            onChange={handleThemeChange}
-            aria-label="Platform"
-          >
-            <ToggleButton value="light"><RiSunFill/></ToggleButton>
-            <ToggleButton value="dark"><RiMoonClearFill/></ToggleButton>
-          </ToggleButtonGroup>
+        </div>
       </CustomTabPanel>
       <CustomTabPanel index={1} value ={value}>
-      <div className="profileWrapper">
-            <h4>Change Password</h4>
+        <div className="changePassWrapper">
+          <h4>Change Password</h4>
+          <div className="formDiv">
+            <div className="formGroup">
+              <Input
+                placeholder="Enter password"
+                label="Current Password"
+                // value={loginForm.password}
+                // name="password"
+                // showIcon
+                // type={togglePassword ? 'text' : 'password'}
+                // isVisiblePassword={togglePassword}
+                // onIconClick={changePasswordVisibility}
+                // onChange={onChangeHandler}
+              />
+            </div>
+            <div className="formGroup">
+              <Input
+                placeholder="Enter password"
+                label="New Password"
+                // value={loginForm.password}
+                // name="password"
+                // showIcon
+                // type={togglePassword ? 'text' : 'password'}
+                // isVisiblePassword={togglePassword}
+                // onIconClick={changePasswordVisibility}
+                // onChange={onChangeHandler}
+              />
+            </div>
+            <div className="formGroup">
+              <Input
+                placeholder="Enter password"
+                label="Confirm Password"
+                // value={loginForm.password}
+                name="password"
+                showIcon
+                // type={togglePassword ? 'text' : 'password'}
+                // isVisiblePassword={togglePassword}
+                // onIconClick={changePasswordVisibility}
+                // onChange={}
+              />
+            </div>
+            <button className='btn btn-primary'>Update</button>
           </div>
+        </div>
       </CustomTabPanel>
     </div>
   )

@@ -289,7 +289,7 @@ function App() {
               fontWeight: '400',
               color: '#8f96a3',
               '&.Mui-selected': {
-                color: '#1659b6',
+                color: '#c3cad5',
                 fontWeight: '500',
               }
             }
@@ -319,7 +319,7 @@ function App() {
             borderColor:'#8f96a336'
           },
           indicator: {
-            backgroundColor: '#1659b6',
+            backgroundColor: '#c3cad5',
           }
         }
       },
