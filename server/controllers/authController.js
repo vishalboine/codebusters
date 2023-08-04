@@ -43,4 +43,29 @@ const handleLogin = async (req, res) => {
     }
 }
 
-module.exports = { handleLogin };
+const handleChangePassword = async (req,res) => {
+    const { user, cpwd, npswd } = req.body;
+    if (!user || !cpwd) return res.status(400).json({ 'message': 'Username and password are required.' });
+
+
+    const foundUser = await User.findOne({ username: user }).exec();
+    if (!foundUser) return res.sendStatus(401); //Unauthorized 
+    // evaluate password 
+    const match = await bcrypt.compare(cpwd, foundUser.password);
+
+    if(match) {
+        const newHashedPswd = await bcrypt.hash(npswd, 10);
+        await User.findOneAndUpdate(
+            { username: user },
+           { $set: { password: newHashedPswd }},
+           { new: true }
+
+        )
+
+        res.json({message: 'Password Updated succesfully.'})
+    } else {
+        res.sendStatus(401);
+    }
+}
+
+module.exports = { handleLogin, handleChangePassword };

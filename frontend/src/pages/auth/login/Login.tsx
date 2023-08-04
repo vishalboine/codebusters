@@ -48,6 +48,7 @@ const Login = () => {
         password:"",
       })
       localStorage.setItem('persist', JSON.stringify(persist))
+      localStorage.setItem('lastLogin', JSON.stringify(new Date()))
       navigate(from, { replace: true });
     }).catch((err: any) => {
       toast('Please enter correct username and password', {
