@@ -7,14 +7,41 @@ import './Profile.scss';
 import { RiMoonClearFill, RiSunFill } from 'react-icons/ri';
 import Input from "../../components/ui-widgets/Input/Input";
 import useAuth from "../../hooks/useAuth";
+import { axiosPrivate } from '../../config/axiosInstance';
+import { toast } from 'react-toastify';
 
 const Profile = () => {
 
   const [value, setValue] = useState(0);
   const { theme, setTheme } = useContext(ThemeContext);
+  const [form, setForm] = useState({
+    currentPassword: '',
+    newPassword: '',
+    confirmNewPassword: ''
+  })
+
+  useEffect(() => {
+    return () => {
+      setForm({
+        currentPassword: '',
+        newPassword: '',
+        confirmNewPassword: ''
+      })
+    }
+  },[])
+
+  const [togglePassword, setTogglePassword] = useState({
+    newP: false,
+    confirmP: false
+  })
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
+    setForm({
+      currentPassword: '',
+      newPassword: '',
+      confirmNewPassword: ''
+    })
   };
 
   const handleThemeChange = () => {
@@ -22,6 +49,54 @@ const Profile = () => {
     setTheme(isCurrentDark ? 'light' : 'dark');
     localStorage.setItem('theme', isCurrentDark ? 'light' : 'dark');
   };
+
+  const handleFormChange = (e: any) => {
+    setForm({
+      ...form,
+      [e.target.name]: e.target.value
+    })
+  }
+
+
+  const handleSubmit= (e: any) => {
+    if(form.newPassword !== form.confirmNewPassword){
+      toast('New Password and Confirm Password should be same', {
+        type: 'error'
+      });
+    } else {
+
+    axiosPrivate.post('/auth/changePassword', {
+      user: auth.user, cpwd: form.currentPassword, npswd: form.newPassword
+    }, {
+      headers: { 'Content-Type': 'application/json' },
+      withCredentials: true
+    }).then((response) => {
+      setForm({
+        currentPassword: '',
+        newPassword: '',
+        confirmNewPassword: ''
+      })
+
+      toast(response.data.message, {
+        type: 'success'
+      });
+      
+    }).catch((err) => {
+      if(err.response.status === 401) {
+
+        toast('Please enter correct password', {
+          type: 'error'
+        });
+      } else {
+
+        toast(err.response.data.message, {
+          type: 'error'
+        });
+      }
+      
+    })
+  }
+  }
 
   const { auth } = useAuth();
 
@@ -31,6 +106,11 @@ const Profile = () => {
       'aria-controls': `simple-tabpanel-${index}`,
     };
   }
+
+  const lastLogin = JSON.parse(localStorage.getItem('lastLogin') || 'null');
+  const updatedLastLogin = new Date(lastLogin).toLocaleString();
+  
+  
   return (
     <div>
       <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
@@ -49,7 +129,11 @@ const Profile = () => {
                 </div>
                 <h6>Username</h6>
               </div>
-              <span>Admin</span>
+              <span>{auth?.role}</span>
+            </div>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '1rem 0' }}>
+              <span>Last Logged in</span>
+              <span style={{ fontWeight: 'bold' }}>{updatedLastLogin}</span>
             </div>
             <div className="theme">
               <div className="themeContent">
@@ -84,19 +168,27 @@ const Profile = () => {
                 // isVisiblePassword={togglePassword}
                 // onIconClick={changePasswordVisibility}
                 // onChange={onChangeHandler}
+                value={form.currentPassword}
+                onChange={handleFormChange}
+                name='currentPassword'
               />
             </div>
             <div className="formGroup">
               <Input
                 placeholder="Enter password"
                 label="New Password"
-                // value={loginForm.password}
-                // name="password"
-                // showIcon
-                // type={togglePassword ? 'text' : 'password'}
-                // isVisiblePassword={togglePassword}
-                // onIconClick={changePasswordVisibility}
-                // onChange={onChangeHandler}
+                type={togglePassword.newP ? 'text' : 'password'}
+                isVisiblePassword={togglePassword.newP}
+                showIcon
+                onIconClick={() => {
+                  setTogglePassword({
+                    ...togglePassword,
+                    newP: !togglePassword.newP
+                  })
+                }}
+                value={form.newPassword}
+                onChange={handleFormChange}
+                name='newPassword'
               />
             </div>
             <div className="formGroup">
@@ -104,15 +196,22 @@ const Profile = () => {
                 placeholder="Enter password"
                 label="Confirm Password"
                 // value={loginForm.password}
-                name="password"
                 showIcon
-                // type={togglePassword ? 'text' : 'password'}
-                // isVisiblePassword={togglePassword}
-                // onIconClick={changePasswordVisibility}
+                value={form.confirmNewPassword}
+                onChange={handleFormChange}
+                name='confirmNewPassword'
+                type={togglePassword.confirmP ? 'text' : 'password'}
+                isVisiblePassword={togglePassword.confirmP}
+                onIconClick={() => {
+                  setTogglePassword({
+                    ...togglePassword,
+                    confirmP: !togglePassword.confirmP
+                  })
+                }}
                 // onChange={}
               />
             </div>
-            <button className='btn btn-primary'>Update</button>
+            <button onClick={handleSubmit} className='btn btn-primary'>Update</button>
           </div>
         </div>
       </CustomTabPanel>
