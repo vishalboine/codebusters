@@ -40,8 +40,6 @@ app.use('/', express.static(path.join(__dirname, '/public')));
 // routes
 app.use('/api/table', require('./routes/api/table'));
 app.use('/api/history', require('./routes/api/history'));
-app.use('/api/history/createHistory', require('./routes/api/history'));
-app.use('/api/history/me', require('./routes/api/history/me'));
 app.use('/api/validations', require('./routes/api/validations'));
 app.use('/api/register', require('./routes/register'));
 app.use('/api/resource', require('./routes/api/icons'));
