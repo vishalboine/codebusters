@@ -4,7 +4,7 @@ import { Tab, Tabs, ToggleButton, ToggleButtonGroup } from '@mui/material';
 import '../../styles/theme-variable.scss';
 import { ThemeContext } from '../../context/theme-context';
 import './Profile.scss';
-import { RiMoonClearFill, RiSunFill } from 'react-icons/ri';
+import { RiLogoutCircleRLine, RiMoonClearFill, RiSunFill } from 'react-icons/ri';
 import Input from "../../components/ui-widgets/Input/Input";
 import useAuth from "../../hooks/useAuth";
 import { axiosPrivate } from '../../config/axiosInstance';
@@ -144,10 +144,6 @@ const Profile = () => {
               </div>
               <span>{auth?.role}</span>
             </div>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '1rem 0' }}>
-              <span>Last Logged in</span>
-              <span style={{ fontWeight: 'bold' }}>{updatedLastLogin}</span>
-            </div>
             <div className="theme">
               <div className="themeContent">
                 <p>Theme</p>
@@ -163,6 +159,13 @@ const Profile = () => {
                 </ToggleButtonGroup>
               </div>
             </div>
+            <div className='loggedDetail'>
+              <p>Last Logged in</p>
+              <span>{updatedLastLogin}</span>
+            </div>
+          </div>
+          <div className="logoutDiv">
+            <button className='btn btn-text'><RiLogoutCircleRLine/>Logout</button>
           </div>
         </div>
       </CustomTabPanel>

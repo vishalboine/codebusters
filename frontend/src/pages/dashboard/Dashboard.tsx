@@ -369,8 +369,8 @@ const Dashboard = () => {
                     </>
                   ))
                 }
+                <p>{importError}</p>
               </div>
-              <p>{importError}</p>
               <div className="d-flex">
                 <button onClick={() => {setSelectImportDropDownValue([]); }} className="btn btn-text">Reset</button>
                 <button onClick={() => { handleImportProceed()}} className="btn btn-primary">Proceed</button>
