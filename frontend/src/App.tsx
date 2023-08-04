@@ -25,6 +25,12 @@ function App() {
   };
   const [theme, setTheme] = useState(getDefaultTheme());
 
+  const handleThemeChange = () => {
+    const isCurrentDark = theme === 'dark';
+    setTheme(isCurrentDark ? 'light' : 'dark');
+    localStorage.setItem('theme', isCurrentDark ? 'light' : 'dark');
+  };
+
   const lightTheme = createTheme({
     typography: {
       fontFamily: [
@@ -45,7 +51,7 @@ function App() {
             '&.Mui-focused': { 
               border: '1px solid #ADBDFF',
               outline: 0,
-              boxShadow: '0px 0px 0px 1px #ADBDFF'
+              boxShadow: '0px 0px 0px 2px #adbdff70'
             },
             '&.Mui-disabled': {
               background: '#e7e9e9',
@@ -195,13 +201,22 @@ function App() {
           }
         }
       },
+      MuiPaper: {
+        styleOverrides: {
+          root: {
+            '&.MuiPopover-paper': {
+              backgroundColor:'#1f1f1f',
+            }
+          }
+        }
+      },
       MuiInputBase: {
         styleOverrides: {
           root: {
             '&.Mui-focused': { 
-              border: '1px solid #ADBDFF',
+              border: '1px solid #555b75',
               outline: 0,
-              boxShadow: '0px 0px 0px 1px #ADBDFF'
+              boxShadow: '0px 0px 0px 2px #555b75'
             },
             '&.Mui-disabled': {
               background: '#e7e9e9',
@@ -250,13 +265,13 @@ function App() {
           root: {
             fontFamily: 'Inter',
             fontSize: '1.6rem',
-            color: '#040a21',
+            color: '#b0b0b0',
             minHeight: '40px',
             padding: '10px 12px',
             '&.Mui-selected': { 
-              background: '#edf1ff',
+              background: '#383838',
               '&:hover': {
-                background: '#ADBDFF'
+                background: '#3e4b70'
               } 
             }
           }

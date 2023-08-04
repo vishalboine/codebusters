@@ -1,145 +1,302 @@
 @import './iwVariables';
 @import './theme-variable.scss';
 
-input, select {
-  outline:none!important;
-  font-size:1.6rem!important;
-  font-weight:400!important;
+input,
+select {
+  outline: none !important;
+  font-size: 1.6rem !important;
+  font-weight: 400 !important;
+
   @include themify($themes) {
     background: themed(inputBg);
   }
+
   @include themify($themes) {
     color: themed(colorText);
   }
+
   border:1px solid;
+
   @include themify($themes) {
-    border-color:themed(inputBrd);
-  } 
-  border-radius:12px!important;
-  margin-top:0!important;
-  padding:12px 16px!important;
-  
-  &::placeholder { @include themify($themes){ color: themed(inputPlcHd);} font-size:$medium-font-size!important; }
-  &:hover { border:1px solid $blue-300!important; }
-  &:focus { box-shadow:0 0 0 1px rgba($blue-200, .6)!important;}
+    border-color: themed(inputBrd);
+  }
+
+  border-radius:12px !important;
+  margin-top:0 !important;
+  padding:12px 16px !important;
+
+  &::placeholder {
+    @include themify($themes) {
+      color: themed(inputPlcHd);
+    }
+
+    font-size:$medium-font-size !important;
+  }
+
+  &:hover {
+    border: 1px solid;
+
+    @include themify($themes) {
+      border-color: themed(inputHvrBrd)
+    }
+  }
+
+  &:focus {
+    box-shadow: 0 0 0 2px rgba($blue-200, .6) !important;
+  }
 }
 
-label { font-size:$default-font-size; @include themify($themes){ color: themed(inputLable); }  font-weight:500; }
+label {
+  font-size: $default-font-size;
+
+  @include themify($themes) {
+    color: themed(inputLable);
+  }
+
+  font-weight:500;
+}
+
+.input_div {
+  label {
+    font-size: 1.4rem;
+
+    @include themify($themes) {
+      color: themed(inputLable);
+    }
+
+    font-weight:500;
+    margin-bottom:.8rem;
+  }
+
+  input {
+    @include themify($themes) {
+      background: themed(inputBg);
+    }
+
+    @include themify($themes) {
+      color: themed(colorText);
+    }
+
+    border:1px solid;
+
+    @include themify($themes) {
+      border-color: themed(inputBrd);
+    }
+
+    border-radius:12px;
+
+    &::placeholder {
+      @include themify($themes) {
+        color: themed(inputPlcHd);
+      }
+
+      font-size: $medium-font-size;
+    }
+
+    &:hover {
+    border: 1px solid;
+
+    @include themify($themes) {
+      border-color: themed(inputHvrBrd)
+    }
+  }
+
+  &:focus {
+    box-shadow: 0 0 0 1px rgba($blue-200, .6) !important;
+  }
+  }
+
+  .btn {
+    width: 100%;
+  }
+
+  button {
+    svg {
+      @include themify($themes) {
+        color: themed(inputIcon);
+      }
+      font-size: 2rem;
+    }
+  }
+}
 
 option {
-   padding:10px 12px;
-   color:$blue-800;
-   &:hover{
-    background:$secondary-color;
-    color:$white;
-   }
+  padding: 10px 12px;
+  color: $blue-800;
+
+  &:hover {
+    background: $secondary-color;
+    color: $white;
+  }
 }
 
-button { 
-  display:flex;
-  align-items:center;
-  outline:none;
-  border:1px solid transparent;
-  cursor:pointer; 
-  text-transform:uppercase;
-  font-family:'Inter', sans-serif;
-  font-weight:500;
+button {
+  display: flex;
+  align-items: center;
+  outline: none;
+  border: 1px solid transparent;
+  cursor: pointer;
+  text-transform: uppercase;
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
 
-  &.btn { padding:1.2rem 1.6rem; border-radius:12px; font-size:1.6rem; letter-spacing:.04rem; justify-content:center; cursor:pointer;
-   &:disabled { opacity:.8; } 
+  &.btn {
+    padding: 1.2rem 1.6rem;
+    border-radius: 12px;
+    font-size: 1.6rem;
+    letter-spacing: .04rem;
+    justify-content: center;
+    cursor: pointer;
+
+    &:disabled {
+      opacity: .8;
+    }
   }
-  &.btn-primary { background:$primary-color; color:$white;
-      &:hover { background:$secondary-color; }
+
+  &.btn-primary {
+    background: $primary-color;
+    color: $white;
+
+    &:hover {
+      background: $secondary-color;
+    }
   }
-  &.btn-outline { display:flex; align-items:center; background:$white; color:$primary-color; border:1px solid $primary-color; }
-  &.btn-text { background:none; font-size:1.6rem; font-weight:500; @include themify($themes) {color: themed(textBtnClr); }
-    svg { margin-right:.8rem; }
+
+  &.btn-outline {
+    display: flex;
+    align-items: center;
+    background: $white;
+
+    @include themify($themes) {
+      color: themed(outlineBtn)
+    }
+
+    ;
+    border:1px solid;
+
+    @include themify($themes) {
+      border-color: themed(textBtnClr)
+    }
+
+    ;
   }
-  svg { font-size:2.4rem; }
+
+  &.btn-text {
+    background: none;
+    font-size: 1.6rem;
+    font-weight: 500;
+
+    @include themify($themes) {
+      color: themed(textBtnClr);
+    }
+
+    svg {
+      margin-right: .8rem;
+    }
+  }
+
+  svg {
+    font-size: 2.4rem;
+  }
 }
 
 .container {
-    display:block;
-    position:relative;
-    padding-left:2.4rem;
-    margin-bottom:1.2rem;
-    cursor:pointer;
-    font-size:2.2rem;
-    -webkit-user-select:none;
-    -moz-user-select:none;
-    -ms-user-select:none;
-    user-select:none;
-  }
-  
-  /* Hide the browser's default checkbox */
-  .container input {
-    position:absolute;
-    opacity:0;
-    cursor:pointer;
-    height:0;
-    width:0;
-  }
-  
-  /* Create a custom checkbox */
-  .checkmark {
-    position:absolute;
-    top:0;
-    left:0;
-    height:20px;
-    width:20px;
-    background:$white;
-    border:1px solid $blue-100;
-    border-radius:4px;
-  }
-  
-  /* On mouse-over, add a grey background color */
-  .container:hover input ~ .checkmark {
-    background:$blue-50;
-  }
-  
-  /* When the checkbox is checked, add a blue background */
-  .container input:checked ~ .checkmark {
-    background:$secondary-color;
-  }
-  
-  /* Create the checkmark/indicator (hidden when not checked) */
-  .checkmark:after {
-    content:"";
-    position:absolute;
-    display:none;
-  }
-  
-  /* Show the checkmark when checked */
-  .container input:checked ~ .checkmark:after {
-    display:block;
-  }
-  
-  /* Style the checkmark/indicator */
-  .container .checkmark:after {
-    left:7px;
-    top:3px;
-    width:5px;
-    height:10px;
-    border:solid $white;
-    border-width:0 2px 2px 0;
-    -webkit-transform:rotate(45deg);
-    -ms-transform:rotate(45deg);
-    transform:rotate(45deg);
-  }
+  display: block;
+  position: relative;
+  padding-left: 2.4rem;
+  margin-bottom: 1.2rem;
+  cursor: pointer;
+  font-size: 2.2rem;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Hide the browser's default checkbox */
+.container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+/* Create a custom checkbox */
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 20px;
+  background: $white;
+  border: 1px solid $blue-100;
+  border-radius: 4px;
+}
+
+/* On mouse-over, add a grey background color */
+.container:hover input~.checkmark {
+  background: $blue-50;
+}
+
+/* When the checkbox is checked, add a blue background */
+.container input:checked~.checkmark {
+  background: $secondary-color;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the checkmark when checked */
+.container input:checked~.checkmark:after {
+  display: block;
+}
+
+/* Style the checkmark/indicator */
+.container .checkmark:after {
+  left: 7px;
+  top: 3px;
+  width: 5px;
+  height: 10px;
+  border: solid $white;
+  border-width: 0 2px 2px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
 
 .formGroup {
-  display:flex;
-  flex-direction:column;
-  width:20em;
-  margin:0 2rem 1.6rem 0;
+  display: flex;
+  flex-direction: column;
+  width: 20em;
+  margin: 0 2rem 1.6rem 0;
+
   .inputTop {
-    display:flex;
-    justify-content:space-between;
-    margin-bottom:.5rem;
-    label { font-size:14px; font-weight:500; line-height:2rem; }
-    .rightIcon { color:$red-error; font-size:2rem; line-height:2rem; }
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: .5rem;
+
+    label {
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 2rem;
+    }
+
+    .rightIcon {
+      color: $red-error;
+      font-size: 2rem;
+      line-height: 2rem;
+    }
   }
 }
 
-.tableResponsive { display:block; width:100%; overflow-x:auto; -webkit-overflow-scrolling: touch; }
-
+.tableResponsive {
+  display: block;
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
