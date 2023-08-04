@@ -2,7 +2,7 @@
 @import "./iwVariables";
 @import "./formElemets";
 @import "./mixins.scss";
-@import './theme-variable.scss';
+@import './themeVariable';
 
 *, 
 *::before,
@@ -115,16 +115,25 @@ a { text-decoration:none; }
 
 .table {
 	width:50%;
-	border:1px solid $white-93;
-    margin:0 auto;
-    border-radius:12px;
+  @include themify($themes) {
+    color: themed(colorText) !important;
+  }
+  border: 1px solid;
+  @include themify($themes) {
+    border-color: themed(formDivBrd) !important;
+  }
+  margin:0 auto;
+  border-radius:12px;
 }
 
 .table-header {
 	display:flex;
 	width:100%;
-	background:$white-98; 
-    height:44px;
+  @include themify($themes) {
+    background: themed(tableHeaderBg);
+  }
+
+  height:40px;
 	padding:12px 0;
   border-radius:9px 9px 0 0;
 }
@@ -137,12 +146,14 @@ a { text-decoration:none; }
   border-radius:0 0 9px 9px;
 	
 	&:nth-of-type(odd) {
-		background:#f0f3ff;
+		@include themify($themes) {
+      background-color: themed(tableRowOddBg) !important;
+    }
 	}
 }
 
 .table-data {
-    li { text-transform:uppercase; cursor: pointer; color:$blue-900; font-weight:500;
+    li { text-transform:uppercase; cursor: pointer; @include themify($themes){ color: themed(tableActionClr); } font-weight:500;
         &:nth-of-type(2){ cursor:default; }
     }
 }
@@ -163,8 +174,10 @@ a { text-decoration:none; }
 
 .header__item {
 	text-transform:capitalize;
-    color:$gray-mute!important; 
-    font-weight:600!important;
+  @include themify($themes){
+    color: themed(tableHeaderClr); 
+ }
+    font-weight:500!important;
 }
 
 //Loader

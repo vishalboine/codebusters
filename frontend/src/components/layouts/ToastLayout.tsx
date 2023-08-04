@@ -5,6 +5,7 @@ import "../../styles/dxTable.scss";
 import "../../styles/formElemets.scss";
 import "../../styles/mixins.scss";
 import "../../styles/index.scss";
+import "../../styles/themeVariable.scss";
 import 'react-toastify/dist/ReactToastify.css'
 
 const ToastLayout = () => {

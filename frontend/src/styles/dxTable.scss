@@ -1,6 +1,6 @@
 @import "./iwVariables";
 @import "./mixins";
-@import "./theme-variable.scss";
+@import "./themeVariable";
 
 .dx-datagrid {
   @include themify($themes) {
@@ -201,7 +201,7 @@
 .dx-button-mode-contained {
   border-radius: 12px;
   @include themify($themes) {
-    border-color: themed(textBtnClr) !important;
+    border-color: themed(outlineBtn) !important;
   }
   @include themify($themes) {
     background-color: themed(rightPanelBg) !important;

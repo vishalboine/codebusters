@@ -1,5 +1,7 @@
 import ReactModal from 'react-modal'
 import './Modal.scss'
+import '../styles/iwVariables.scss';
+import '../styles/themeVariable.scss';
 
 const Modal = ({isOpen, handleClose,children, overlayClick = false}: any) => {
   return (
