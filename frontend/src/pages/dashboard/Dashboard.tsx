@@ -34,7 +34,9 @@ const Dashboard = () => {
   const [mockDataDropDown, setMockDataDropDown] = useState('Demo1')
   const [currentTable, setCurrentTable] = useState({});
   const [importError, setImportError] :any = useState('');
-  const [pdfError, setPdfError] = useState('');
+  const [importFileError, setImportFileError] = useState('');
+  const [isExcelImported, setExcelImported] = useState(false);
+  const [dataTypeValue, setDataTypeValue] = useState('');
   const {auth} = useAuth()
 
 
@@ -42,7 +44,11 @@ const Dashboard = () => {
     const reader = new FileReader();
     let tempArr: any = []
     let excelColumnsDataType :  any =[];
-    if(e.target.files[0].type === 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'){
+    if(dataTypeValue === ''){
+      setImportFileError('Please select Data type to import')
+    }else if (e.target.files[0].type !== 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'){
+      setImportFileError('Only excel file to import')
+    }else{
       reader.readAsBinaryString(e.target.files[0]);
       reader.onload = (e: any) => {
         const data = e.target.result;
@@ -58,9 +64,8 @@ const Dashboard = () => {
         excelColumnsDataType = parsedData.map(getObjectValueTypes);
         setExcelColumns(Object.keys(parsedData[0]))
         setExcelColumnsDataType(excelColumnsDataType)
+        setImportFileError('')
       };
-    }else{
-      setPdfError('Only excel file to import')
     }
   }
   const handleIsOpen = () => {
@@ -147,6 +152,7 @@ const Dashboard = () => {
 
   const onHandleChange = (e: any) =>{
     let tempArr : any= []
+    setDataTypeValue(e.target.value)
     setCurrentTable(tableDataType[e.target.value]);
     if(Object.keys(tableData).includes(e.target.value)){
       tableData[e.target.value].map((item:any)=>{
@@ -166,8 +172,8 @@ const Dashboard = () => {
   }
 
   const handleImportProceed = () => {
-    const fieldMappingArrValues = Object.values(fieldMapping);
-    const fieldMappingArrKeys = Object.keys(fieldMapping);
+    const fieldMappingArrValues : any= Object.values(fieldMapping);
+    const fieldMappingArrKeys : any= Object.keys(fieldMapping);
 
     //returns which all columns are having valid/invalid datatype
     const checkTableExcelDataType = compareValues(currentTable, excelColunmsDataType[0], fieldMapping)
@@ -188,7 +194,8 @@ const Dashboard = () => {
       })
     }
     else{
-      const blotterColumnsArr : any= blotterColumns;
+      const array2Captions : any= new Set(fieldMappingArrKeys);
+      const blotterColumnsArr : any= blotterColumns.filter((item :any) => array2Captions.has(item.caption));
       blotterColumnsArr.map((item:any, index: any)=>{
         fieldMappingArrKeys.map((data:any)=>{
           if(item.caption === data){
@@ -196,7 +203,7 @@ const Dashboard = () => {
           }
         })
       })
-
+      setExcelImported(true)
       uploadHistory(sheetName,Object.keys(tableDataType)[0])
       setBlotterColumns(blotterColumnsArr);
       setExcelColumns([]);
@@ -220,8 +227,10 @@ const Dashboard = () => {
   const handleResetImport = () =>{
     setSheetName('');
     setMockDataDropDown('Demo1');
-    setBlotterColumns(Object.keys(mockData.Demo1[0]))
-    setBlotterData(mockData['Demo1'])
+    setBlotterColumns(Object.keys(mockData.Demo1[0]));
+    setBlotterData(mockData['Demo1']);
+    setExcelImported(false);
+    setDataTypeValue('');
     setImportError('');
   }
 
@@ -288,10 +297,10 @@ const Dashboard = () => {
           <Export enabled={true} />
           {/* <Paging defaultPageSize={10} /> */}
         </DataGrid>
-          <div className="tableNav">
+          {!isExcelImported && <div className="tableNav">
             <button disabled={pageNumber === 1} onClick={()=>ser(-1)}><RiArrowLeftSLine/></button>
             <button disabled={pageNumber === 3} onClick={()=>ser(+1)}><RiArrowRightSLine/></button>
-          </div>
+          </div>}
       </section>
       <Modal isOpen={isOpen} handleClose={handleIsOpen}>
        <div className="modalHead">
@@ -309,8 +318,10 @@ const Dashboard = () => {
                 <Select
                   onChange={(e)=>{onHandleChange(e)}}
                   inputProps={{ 'aria-label': 'Without label' }}
+                  value={dataTypeValue}
                 >
                   {/* this can be multiple inputs more then 10 */}
+                  <MenuItem key={0} value={''}>{''}</MenuItem>
                   {
                     Object.keys(tableData).map((ele: string, i: number) => (
                       <MenuItem key={i} value={ele}>{ele}</MenuItem>
@@ -322,15 +333,15 @@ const Dashboard = () => {
               <div className="uploadWrapper">
                 <DropFileInput onFileDrop={handleFileUpload} />
                 <p>Drag & drop your files here or</p>
-                <div className="upload-btn-wrapper">
+                <div className="upload-btn-wrapper" >
                   <button className="btn btn-primary">Browse file</button>
                   <input
                     type="file"
                     accept=".xlsx, .xls"
-                    onChange={handleFileUpload}
+                    onInput={(e)=>handleFileUpload(e)}
                   />
                 </div>
-                <p>{pdfError}</p>
+                <p>{importFileError}</p>
                 <span>Only excel files(.xlsx, .xls) with max size 10 MB.</span>
               </div>
             </>
@@ -341,7 +352,7 @@ const Dashboard = () => {
                   {/* <div className="successIcon">
                     <RiCheckboxCircleFill/>
                   </div> */}
-                  <button onClick={() => {setExcelColumns([]); setFieldMapping({}); setSelectImportDropDownValue([]);}} className="btn-text">Change file</button>
+                  <button onClick={() => {setExcelColumns([]); setFieldMapping({}); setSelectImportDropDownValue([]); setDataTypeValue(''); setImportFileError('')}} className="btn-text">Change file</button>
                 </span> 
               </div>
               <div className="matchCols">
