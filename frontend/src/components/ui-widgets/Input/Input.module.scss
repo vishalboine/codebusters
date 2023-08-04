@@ -1,3 +1,5 @@
+@import '../../../styles/themeVariable.scss';
+
 .inputContainer {
     display: flex;
     flex-direction: column;
@@ -26,6 +28,9 @@
         border: none !important;
         outline: none;
         cursor: pointer;
+        @include themify($themes) {
+            color: themed(inputIcon);
+          }
     }
 }
 

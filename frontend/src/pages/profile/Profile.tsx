@@ -1,7 +1,7 @@
 import React, {useState,useEffect, useContext} from 'react';
 import CustomTabPanel from '../../components/layouts/CustomTabPanel';
 import { Tab, Tabs, ToggleButton, ToggleButtonGroup } from '@mui/material';
-import '../../styles/theme-variable.scss';
+import '../../styles/themeVariable.scss';
 import { ThemeContext } from '../../context/theme-context';
 import './Profile.scss';
 import { RiLogoutCircleRLine, RiMoonClearFill, RiSunFill } from 'react-icons/ri';

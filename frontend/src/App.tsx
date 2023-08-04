@@ -14,10 +14,9 @@ import Profile from "./pages/profile/Profile";
 import { ThemeContext } from '../src/context/theme-context';
 import { useState } from "react";
 import { ThemeProvider, createTheme } from '@mui/material';
-import { useContext } from "react";
 
 function App() {
-  const isBrowserDefaultDark = () => window.matchMedia('(prefers-color-scheme: light)').matches;
+  const isBrowserDefaultDark = () => window.matchMedia('(prefers-color-scheme: dark)').matches;
   const getDefaultTheme = (): string => {
     const localStorageTheme = localStorage.getItem('default-theme');
     const browserDefault = isBrowserDefaultDark() ? 'dark' : 'light';

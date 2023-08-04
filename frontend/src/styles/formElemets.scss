@@ -1,5 +1,5 @@
 @import './iwVariables';
-@import './theme-variable.scss';
+@import './themeVariable';
 
 input,
 select {
@@ -56,69 +56,69 @@ label {
   font-weight:500;
 }
 
-.input_div {
-  label {
-    font-size: 1.4rem;
+// .input_div {
+//   label {
+//     font-size: 1.4rem;
 
-    @include themify($themes) {
-      color: themed(inputLable);
-    }
+//     @include themify($themes) {
+//       color: themed(inputLable);
+//     }
 
-    font-weight:500;
-    margin-bottom:.8rem;
-  }
+//     font-weight:500;
+//     margin-bottom:.8rem;
+//   }
 
-  input {
-    @include themify($themes) {
-      background: themed(inputBg);
-    }
+//   input {
+//     @include themify($themes) {
+//       background: themed(inputBg);
+//     }
 
-    @include themify($themes) {
-      color: themed(colorText);
-    }
+//     @include themify($themes) {
+//       color: themed(colorText);
+//     }
 
-    border:1px solid;
+//     border:1px solid;
 
-    @include themify($themes) {
-      border-color: themed(inputBrd);
-    }
+//     @include themify($themes) {
+//       border-color: themed(inputBrd);
+//     }
 
-    border-radius:12px;
+//     border-radius:12px;
 
-    &::placeholder {
-      @include themify($themes) {
-        color: themed(inputPlcHd);
-      }
+//     &::placeholder {
+//       @include themify($themes) {
+//         color: themed(inputPlcHd);
+//       }
 
-      font-size: $medium-font-size;
-    }
+//       font-size: $medium-font-size;
+//     }
 
-    &:hover {
-    border: 1px solid;
+//     &:hover {
+//     border: 1px solid;
 
-    @include themify($themes) {
-      border-color: themed(inputHvrBrd)
-    }
-  }
+//     @include themify($themes) {
+//       border-color: themed(inputHvrBrd)
+//     }
+//   }
 
-  &:focus {
-    box-shadow: 0 0 0 1px rgba($blue-200, .6) !important;
-  }
-  }
+//   &:focus {
+//     box-shadow: 0 0 0 1px rgba($blue-200, .6) !important;
+//   }
+//   }
 
-  .btn {
-    width: 100%;
-  }
+//   .btn {
+//     width: 100%;
+//   }
 
-  button {
-    svg {
-      @include themify($themes) {
-        color: themed(inputIcon);
-      }
-      font-size: 2rem;
-    }
-  }
-}
+//   button {
+//     svg {
+//       @include themify($themes) {
+//         color: themed(inputIcon);
+//       }
+//       font-size: 2rem;
+//     }
+//   }
+// }
 
 option {
   padding: 10px 12px;
@@ -197,6 +197,9 @@ button {
 
   svg {
     font-size: 2.4rem;
+    @include themify($themes) {
+      color: themed(inputIcon);
+    }
   }
 }
 

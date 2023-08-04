@@ -1,6 +1,6 @@
 @import '../../styles/iwVariables';
 @import '../../styles/mixins';
-@import '../../styles/theme-variable.scss';
+@import '../../styles/themeVariable';
 
 .adminWrapper {
     display:flex;
@@ -57,10 +57,11 @@
     border-radius:12px;
     border:1px solid;
     @include themify($themes){ border-color: themed(formDivBrd); }
-    // box-shadow:0 0 12px 4px rgba($blue-900, .15);
     .tableName {
         padding:0 0 2rem;
-        p { font-weight:500; color:$blue-900; }
+        p { font-weight:500;
+            @include themify($themes){ color: themed(HeadTextClr); }
+        }
     }
     .tableColumns {
         display:flex;
