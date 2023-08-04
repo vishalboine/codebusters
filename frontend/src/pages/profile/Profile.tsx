@@ -1,6 +1,6 @@
 import React, {useState,useEffect, useContext} from 'react';
 import CustomTabPanel from '../../components/layouts/CustomTabPanel';
-import { Box, Tab, Tabs, ToggleButton, ToggleButtonGroup } from '@mui/material';
+import { Tab, Tabs, ToggleButton, ToggleButtonGroup } from '@mui/material';
 import '../../styles/theme-variable.scss';
 import { ThemeContext } from '../../context/theme-context';
 import './Profile.scss';
@@ -14,6 +14,7 @@ const Profile = () => {
 
   const [value, setValue] = useState(0);
   const { theme, setTheme } = useContext(ThemeContext);
+  const [historyData, setHistoryData] = useState([])
   const [form, setForm] = useState({
     currentPassword: '',
     newPassword: '',
@@ -34,6 +35,18 @@ const Profile = () => {
     newP: false,
     confirmP: false
   })
+
+  useEffect(() => {
+    axiosPrivate.post('/history/me', {
+      user: auth.user
+    }, {
+      headers: { 'Content-Type': 'application/json' },
+      withCredentials: true
+    }).then((res: any) => {
+      setHistoryData(res.data)
+    }).catch((err: any) => { })
+
+  }, [])
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
@@ -213,6 +226,22 @@ const Profile = () => {
             </div>
             <button onClick={handleSubmit} className='btn btn-primary'>Update</button>
           </div>
+        </div>
+      </CustomTabPanel>
+      <CustomTabPanel index={2} value ={value}>
+        <h4>My History</h4>
+        <div>
+          {
+            historyData.length > 0 ? (
+              historyData.map((item:any) => (
+                <div key={item._id} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                  <span>{item.user}</span>
+                  <span>{item.tableName}</span>
+                  <span>{item.fileName}</span>
+                </div>
+              ))
+            ) : (<h3>No History Found</h3>)
+          }
         </div>
       </CustomTabPanel>
     </div>
