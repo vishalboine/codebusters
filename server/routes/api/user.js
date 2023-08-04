@@ -4,6 +4,6 @@ const userController = require('../../controllers/userController');
 
 router.get('/getAllUsers', userController.getAllUsers);
 router.post('/updateUserRole', userController.updateUserRoleByUsername);
-router.delete('/deleteUser', userController.deleteUser);
+router.post('/deleteUser', userController.deleteUser);
 
 module.exports = router;

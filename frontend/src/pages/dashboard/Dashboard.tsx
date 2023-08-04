@@ -10,7 +10,7 @@ import DropFileInput from "../../components/DropInputFile";
 import uploadImg from "../../assets/images/upload.svg"
 import { FormControl, Select, MenuItem, IconButton, Tooltip } from "@mui/material";
 import { RiArrowLeftSLine, RiArrowRightSLine, RiCloseLine, RiRefreshLine } from "react-icons/ri";
-import axiosInstance from "../../config/axiosInstance";
+import axiosInstance, { axiosPrivate } from "../../config/axiosInstance";
 import useAuth from "../../hooks/useAuth";
 import { CustomerMasterData } from "../../mock/data";
 import { addDataTypeKey, areAllElementsSame, checkForDuplicates, compareValues, getObjectValueTypes, getUpdatedValues } from "../../utils/common";
@@ -35,6 +35,7 @@ const Dashboard = () => {
   const [currentTable, setCurrentTable] = useState({});
   const [importError, setImportError] :any = useState('');
   const [pdfError, setPdfError] = useState('');
+  const {auth} = useAuth()
 
 
   const handleFileUpload = (e: any) => {
@@ -115,6 +116,18 @@ const Dashboard = () => {
     }
   }
 
+  const uploadHistory = (fileName, tableName) => {
+    axiosPrivate.post('/history/createHistory', {
+      user: auth.user, fileName, tableName
+    }, {
+      headers: { 'Content-Type': 'application/json' },
+      withCredentials: true
+    }).then((response) => {
+    }).catch((err) => {
+      console.log(err);
+    })
+  }
+
 
   function onToolbarPreparing(e: any) {
     const items = e.toolbarOptions.items;
@@ -183,6 +196,8 @@ const Dashboard = () => {
           }
         })
       })
+
+      uploadHistory(sheetName,Object.keys(tableDataType)[0])
       setBlotterColumns(blotterColumnsArr);
       setExcelColumns([]);
       setFieldMapping({});
