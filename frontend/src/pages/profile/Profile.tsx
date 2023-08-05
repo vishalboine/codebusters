@@ -140,7 +140,7 @@ const Profile = () => {
                 <div className="userIcon">
                   {auth.user.charAt(0)}
                 </div>
-                <h6>Username</h6>
+                <h6 style={{ textTransform: 'capitalize' }} >{auth.user}</h6>
               </div>
               <span>{auth?.role}</span>
             </div>
