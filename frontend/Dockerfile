@@ -3,9 +3,12 @@ WORKDIR /app
 COPY package*.json ./
 RUN npm install
 COPY . .
+RUN cd ..
 RUN cd testing
 RUN npm install
+COPY . .
 RUN npm run playright
+RUN cd ..
 RUN cd frontend
 RUN npm run build
 FROM nginx:1.23.3-alpine
