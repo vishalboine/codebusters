@@ -4,11 +4,18 @@ import { Select, MenuItem, FormControl, Tab, Tabs } from '@mui/material'
 import axiosInstance, { axiosPrivate } from '../../config/axiosInstance'
 import { toast } from 'react-toastify'
 import CustomTabPanel from '../../components/layouts/CustomTabPanel'
+import Modal from '../../components/Modal'
 
 const Users = () => {
     const [usersData, setUsersData] = useState([]);
     const [value, setValue] = useState(0);
     const [historyData, setHistoryData] = useState([])
+    const [isLogoutModalOpen, setisLogoutModalOpen] = useState(false);
+    const [selectedUser, setSelectedUser] = useState('')
+    const handleIsOpen = () => {
+        setisLogoutModalOpen((prev:any) => !prev)
+        setSelectedUser('')
+    }
 
     useEffect(() => {
         axiosInstance.get('/users/getAllUsers').then((res: any) => {
@@ -42,8 +49,8 @@ const Users = () => {
             });
         })
     }
-    const handleDeleteUser = (id) => {
-        axiosInstance.post('/users/deleteUser', { id }, {
+    const handleDeleteUser = () => {
+        axiosInstance.post('/users/deleteUser', { id: selectedUser }, {
             headers: { 'Content-Type': 'application/json' },
             withCredentials: true
         }).then((res: any) => {
@@ -51,6 +58,8 @@ const Users = () => {
             toast('User deleted successfully.', {
                 type: 'success'
             });
+            setSelectedUser('')
+            setisLogoutModalOpen(false)
         }).catch((err: any) => {
             toast('Error updating role', {
                 type: 'error'
@@ -68,6 +77,15 @@ const Users = () => {
     const handleChange = (event: React.SyntheticEvent, newValue: number) => {
         setValue(newValue);
     };
+
+    const openModal = (id) => {
+        setSelectedUser(id)
+        setisLogoutModalOpen(true)
+    }
+    const closeModal = () => {
+        setSelectedUser('')
+        setisLogoutModalOpen(false)
+    }
 
     return (
         <div>
@@ -100,7 +118,7 @@ const Users = () => {
                                                 </Select>
                                             </FormControl>
                                         </div>
-                                        <div onClick={() => handleDeleteUser(item._id)} className="table-data"><ul><li>Delete</li></ul></div>
+                                        <div onClick={() => {openModal(item._id)}} className="table-data"><ul><li>Delete</li></ul></div>
                                     </div>
                                 ))
                             }
@@ -135,6 +153,15 @@ const Users = () => {
                     </div>
                 </div>
             </CustomTabPanel>
+            <Modal className="wd25" overlayClick={true} isOpen={isLogoutModalOpen} handleClose={handleIsOpen}>
+                <div className="logoutWrapper">
+                <h5>Are you sure you want to delete this user?</h5>
+                <div className="d-flex">
+                    <button onClick={closeModal} className='btn btn-text'>Cancel</button>
+                    <button onClick={handleDeleteUser} className='btn btn-primary'>Delete</button>
+                </div>
+                </div>  
+            </Modal>
         </div>
     )
 }

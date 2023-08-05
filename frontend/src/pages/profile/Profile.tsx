@@ -9,6 +9,8 @@ import Input from "../../components/ui-widgets/Input/Input";
 import useAuth from "../../hooks/useAuth";
 import { axiosPrivate } from '../../config/axiosInstance';
 import { toast } from 'react-toastify';
+import Modal from '../../components/Modal';
+import useLogout from '../../hooks/useLogout';
 
 const Profile = () => {
 
@@ -20,6 +22,11 @@ const Profile = () => {
     newPassword: '',
     confirmNewPassword: ''
   })
+  const [isLogoutModalOpen, setisLogoutModalOpen] = useState(false);
+  const logout = useLogout();
+  const handleIsOpen = () => {
+    setisLogoutModalOpen((prev:any) => !prev)
+  }
 
   useEffect(() => {
     return () => {
@@ -165,7 +172,7 @@ const Profile = () => {
             </div>
           </div>
           <div className="logoutDiv">
-            <button className='btn btn-text'><RiLogoutCircleRLine/>Logout</button>
+            <button onClick={()=> setisLogoutModalOpen(true)} className='btn btn-text'><RiLogoutCircleRLine/>Logout</button>
           </div>
         </div>
       </CustomTabPanel>
@@ -258,6 +265,17 @@ const Profile = () => {
         </div>
       </div>
       </CustomTabPanel>
+      <Modal className="wd25" overlayClick={true} isOpen={isLogoutModalOpen} handleClose={handleIsOpen}>
+        <div className="logoutWrapper">
+          <h5>Are you sure you want to log out?</h5>
+          <p>Logging out will end your current session and you'll need to sign in again.</p>
+          <div className="d-flex">
+            <button onClick={()=> setisLogoutModalOpen(false)} className='btn btn-text'>Cancel</button>
+            <button onClick={logout} className='btn btn-primary'>Logout</button>
+          </div>
+        </div>
+        
+      </Modal>
     </div>
   )
 }

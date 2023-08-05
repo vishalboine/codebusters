@@ -9,6 +9,7 @@ import { toast } from 'react-toastify';
 import { getUpdatedValues } from '../../utils/common';
 import { FormControl, Select, MenuItem, Typography, Tab, Tabs, Box } from "@mui/material";
 import CustomTabPanel from '../../components/layouts/CustomTabPanel';
+import Modal from '../../components/Modal';
 
 function a11yProps(index: number) {
   return {
@@ -256,6 +257,11 @@ const UpdateTable = ({
   const [showAmendForm, setAmendForm] = useState(false)
   const [selectedTable, setSelectedTable] = useState<{ name: string; value: string[]; }>({ name: "", value: [] });
   const [selectedInitialValue, setSelectedInitialValue] = useState<{ name: string; value: string[]; }>({ name: "", value: [] });
+  const [isLogoutModalOpen, setisLogoutModalOpen] = useState(false);
+  const [selectedTableId, setselectedTableId] = useState('')
+  const handleIsOpen = () => {
+    setisLogoutModalOpen((prev:any) => !prev)
+  }
 
   const handleAddButtonClick = () => {
     const newItem = ""; // Set the default value for the new input field
@@ -312,9 +318,9 @@ const UpdateTable = ({
       })
       setAmendForm(true)
     }
-    const handleDeleteClick = (item: any) =>{
+    const handleDeleteClick = () =>{
       axiosPrivate.post('/table/deleteTable', {
-        tableName: item
+        tableName: selectedTableId
       },{
         headers: { 'Content-Type': 'application/json' },
         withCredentials: true
@@ -323,6 +329,8 @@ const UpdateTable = ({
         toast('Table Updated successfully.', {
           type: 'success'
         });
+        setisLogoutModalOpen(false)
+        setselectedTableId('')
         })
         .catch((err: any) => {
           console.log(err);
@@ -336,6 +344,15 @@ const UpdateTable = ({
         return { ...prevState, value: updatedValue };
       });
     };
+
+    const openModal = (id) => {
+      setselectedTableId  (id)
+      setisLogoutModalOpen(true)
+  }
+  const closeModal = () => {
+      setselectedTableId('')
+      setisLogoutModalOpen(false)
+  }
     
   return (
     <>
@@ -369,12 +386,21 @@ const UpdateTable = ({
             </div>
             <div className="table-content">	
             {columnArr.map((item:any)=>{
-              return <AddDataTypeTable tableName={item} onDeleteClick={() => handleDeleteClick(item)} onEditClick ={() => handleEditClick(item)}/>
+              return <AddDataTypeTable tableName={item} onDeleteClick={() => openModal(item)} onEditClick ={() => handleEditClick(item)}/>
             })}
             </div>	
           </div>
             
           </div>
+          <Modal className="wd25" overlayClick={true} isOpen={isLogoutModalOpen} handleClose={handleIsOpen}>
+            <div className="logoutWrapper">
+              <h5>Are you sure you want to delete this table?</h5>
+              <div className="d-flex">
+                <button onClick={closeModal} className='btn btn-text'>Cancel</button>
+                <button onClick={handleDeleteClick} className='btn btn-primary'>Delete</button>
+              </div>
+            </div>
+          </Modal>
       </div>
     </>
   )
