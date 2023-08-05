@@ -1,48 +1,9 @@
 @import '../styles/iwVariables';
-@import '../styles/themeVariable';
+@import '../styles/themeVariable.scss';
 
 .ReactModalPortal {
   position:relative;
   z-index:999;
-}
-
-.Modal {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  @include themify($themes) { 
-    background-color: themed(modalBg);
-  }
-  transform: translate(-50%,-50%);
-  padding: 2.4rem;
-  box-shadow: 0px 2px 4px rgba(0,0,0,0.2);
-  width: fit-content;
-  height:fit-content;
-  border-radius:12px;
-  display:flex;
-  flex-direction:column;
-  justify-content: center;
-  align-items: center;
-  .modalHead{
-    display:flex;
-    justify-content:space-between;
-    width:100%;
-    margin-bottom:1.6rem;
-    h4 {
-      text-align:center;
-      font-weight:600!important;
-    }
-    .closeModal {
-      position: absolute;
-      top:1.6rem;
-      right:1.6rem;
-      cursor:pointer;
-      padding:.4rem;
-      svg { margin-right:0; }
-    }
-  } 
-}
-
   .Overlay {
     position: fixed;
     top: 0;
@@ -52,22 +13,64 @@
     backdrop-filter:blur(2px);
     background-color: rgba($blue-900,0.5);
   }
-
-  .logoutWrapper {
-    width:40rem;
+  .Modal {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    background:$white;
+    @include themify($themes) { 
+      background-color: themed(modalBg);
+    }
+    transform: translate(-50%,-50%);
+    padding: 2.4rem;
+    box-shadow: 0px 2px 4px rgba(0,0,0,0.2);
+    width: fit-content;
+    height:fit-content;
+    border-radius:12px;
     display:flex;
-    align-items:center;
     flex-direction:column;
-    h5 {
-      margin-bottom:2.4rem;
+    justify-content: center;
+    align-items: center;
+    .logoutWrapper {
+      width:40rem;
+      display:flex;
+      align-items:center;
+      flex-direction:column;
+      h5 {
+        margin-bottom:2.4rem;
+      }
+      p{
+        text-align:center;
+        margin-bottom:2.4rem;
+        font-size:1.6rem;
+        color:$gray-blue-50;
+      }
+      button {
+        margin-right:1.6rem;
+      }
     }
-    p{
-      text-align:center;
-      margin-bottom:2.4rem;
-      font-size:1.6rem;
-      color:$gray-blue-50;
-    }
-    button {
-      margin-right:1.6rem;
-    }
+    .modalHead{
+      display:flex;
+      justify-content:space-between;
+      width:100%;
+      margin-bottom:1.6rem;
+      h4 {
+        text-align:center;
+        font-weight:600!important;
+      }
+      .closeModal {
+        position: absolute;
+        top:1.6rem;
+        right:1.6rem;
+        cursor:pointer;
+        padding:.4rem;
+        svg { margin-right:0; }
+      }
+    } 
   }
+}
+
+
+
+
+

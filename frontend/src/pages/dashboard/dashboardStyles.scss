@@ -140,7 +140,7 @@
         width:96%;
         border-top-left-radius:2rem;
         padding:3.2rem 3.2rem 0;
-        overflow-y:scroll;
+        overflow-y:auto;
         position:relative;
 
         .dashboardWrapper {
@@ -196,11 +196,8 @@
                         border:none;
                         }
                     }
-                
             }
-           
         }
-
     }
 }
 
@@ -358,18 +355,20 @@
 .matchCols {
     margin:1.8rem 0 3rem; 
     display:flex;
-    flex-direction:row;
-    .column{
-        display:flex;
-        flex-direction:column;
-        margin-right:1.6rem;
-        &:last-of-type {
-            margin-right:0;
-        }
-        label {
-            font-size:1.6rem;
-            font-weight:500;
-            margin-bottom:.8rem;
+    .columnRow {
+        display:inline-flex;
+        .column{
+            display:flex;
+            flex-direction:column;
+            margin-right:1.6rem;
+            &:last-of-type {
+                margin-right:0;
+            }
+            label {
+                font-size:1.6rem;
+                font-weight:500;
+                margin-bottom:.8rem;
+            }
         }
     }
 }

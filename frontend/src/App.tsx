@@ -72,6 +72,7 @@ function App() {
             },
             border: '1px solid #C8D3FF', 
             height: '46px',
+            minHeight: '40px',
             fontSize: '1.6rem',
             backgroundColor: '#f6f7fe',
             borderRadius: '12px!important',
@@ -101,6 +102,9 @@ function App() {
             color: '#040a21',
             minHeight: '40px',
             padding: '10px 12px',
+            '&:hover': {
+              background: '#ADBDFF'
+            },
             '&.Mui-selected': { 
               background: '#edf1ff',
               '&:hover': {
@@ -237,6 +241,7 @@ function App() {
             },
             border: '1px solid #2e2e2e', 
             height: '46px',
+            minHeight: '40px',
             fontSize: '1.6rem',
             color: '#c7c7c7',
             backgroundColor: '#050505',
@@ -267,6 +272,9 @@ function App() {
             color: '#b0b0b0',
             minHeight: '40px',
             padding: '10px 12px',
+            '&:hover': {
+              background: '#3e4b70'
+            }, 
             '&.Mui-selected': { 
               background: '#383838',
               '&:hover': {

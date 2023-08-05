@@ -329,6 +329,7 @@ const Dashboard = () => {
                   }
                 </Select>
               </FormControl>
+              <p className="errorMsg">{importFileError}</p>
             </div>
               <div className="uploadWrapper">
                 <DropFileInput onFileDrop={handleFileUpload} />
@@ -341,7 +342,7 @@ const Dashboard = () => {
                     onInput={(e)=>handleFileUpload(e)}
                   />
                 </div>
-                <p>{importFileError}</p>
+                
                 <span>Only excel files(.xlsx, .xls) with max size 10 MB.</span>
               </div>
             </>
@@ -356,6 +357,7 @@ const Dashboard = () => {
                 </span> 
               </div>
               <div className="matchCols">
+                <div className="columnRow">
                 {
                   blotterColumns.map((item: any, index: number) => (
                     <>
@@ -380,7 +382,8 @@ const Dashboard = () => {
                     </>
                   ))
                 }
-                <p>{importError}</p>
+                </div>
+                <p className="errorMsg">{importError}</p>
               </div>
               <div className="d-flex">
                 <button onClick={() => {setSelectImportDropDownValue([]); }} className="btn btn-text">Reset</button>
