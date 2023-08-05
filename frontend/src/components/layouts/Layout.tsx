@@ -65,8 +65,10 @@ const Layout = () => {
             <RiLogoutCircleRLine size={26} />
           </a>
           <div className="userIcon mobile">
-          {auth.user.charAt(0)}
-          <span className="tooltiptext">{auth.user}</span>
+          <Link to='/profile'>
+            {auth.user.charAt(0)}
+            <span className="tooltiptext">{auth.user}</span>
+          </Link>
           </div>
         </div>
       </div>
