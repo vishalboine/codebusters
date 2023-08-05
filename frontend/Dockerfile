@@ -3,6 +3,10 @@ WORKDIR /app
 COPY package*.json ./
 RUN npm install
 COPY . .
+RUN cd testing
+RUN npm install
+RUN npm run playright
+RUN cd frontend
 RUN npm run build
 FROM nginx:1.23.3-alpine
 RUN mkdir /usr/share/logs
