@@ -73,11 +73,11 @@ const Users = () => {
         <div>
             <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
                 <Tab label="User Manager" {...a11yProps(0)} />
-                <Tab label="Users History" {...a11yProps(1)} />
+                <Tab label="Activity" {...a11yProps(1)} />
             </Tabs>
             <CustomTabPanel index={0} value={value}>
-                <div className="UsersWrapper">
-                    <h3>User Manager</h3>
+                <div className="UsersWrapper logs">
+                    <h4>User Manager</h4>
                     <div className="table">
                         <div className="table-header">
                             <div className="header__item">Users</div>
@@ -90,13 +90,13 @@ const Users = () => {
                                     <div className="table-row">
                                         <div className="table-data">{item.username}</div>
                                         <div className="table-data">
-                                            <FormControl sx={{ minWidth: 120 }}>
+                                            <FormControl sx={{ width: 112, height: 40 }}>
                                                 <Select
-                                                    onChange={(e) => updateUserRole(item.username, e.target.value)}
-                                                    inputProps={{ 'aria-label': 'Without label' }}
-                                                    defaultValue={item.role}>
-                                                    <MenuItem value={'User'}>{'User'}</MenuItem>
-                                                    <MenuItem value={'Admin'}>{'Admin'}</MenuItem>
+                                                onChange={(e) => updateUserRole(item.username, e.target.value)}
+                                                inputProps={{ 'aria-label': 'Without label' }}
+                                                defaultValue={item.role}>
+                                                <MenuItem value={'User'}>{'User'}</MenuItem>
+                                                <MenuItem value={'Admin'}>{'Admin'}</MenuItem>
                                                 </Select>
                                             </FormControl>
                                         </div>
@@ -109,19 +109,30 @@ const Users = () => {
                 </div>
             </CustomTabPanel>
             <CustomTabPanel index={1} value={value}>
-                <h4>Users History</h4>
-                <div>
-                    {
-                        historyData.length > 0 ? (
-                            historyData.map((item: any) => (
-                                <div key={item._id} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                                    <span>{item.user}</span>
-                                    <span>{item.tableName}</span>
-                                    <span>{item.fileName}</span>
+                <div className="UsersWrapper">
+                    <h4>Activity Log</h4>
+                    <div className='table logs'>
+                        <div className="table-header">
+                            <div className="header__item">Date & Time</div>
+                            <div className="header__item">User</div>
+                            <div className="header__item">Data Type</div>
+                            <div className="header__item">Imported File</div>
+                        </div>
+                        <div className="table-content logs">
+                            {
+                            historyData.length > 0 ? (
+                                historyData.map((item:any) => (
+                                <div key={item._id} className='table-row'>
+                                    <div className='table-data'>05/08/23 14:51</div>
+                                    <div className='table-data'>{item.user}</div>
+                                    <div className='table-data'>{item.tableName}</div>
+                                    <div className='table-data'>{item.fileName}</div>
                                 </div>
-                            ))
-                        ) : (<h3>No History Found</h3>)
-                    }
+                                ))
+                            ) : (<h6>No History Found</h6>)
+                            }
+                        </div>	
+                    </div>
                 </div>
             </CustomTabPanel>
         </div>

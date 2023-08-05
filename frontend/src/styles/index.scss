@@ -4,240 +4,318 @@
 @import "./mixins.scss";
 @import './themeVariable';
 
-*, 
+*,
 *::before,
 *::after {
-    margin:0;
-    padding:0;
-    box-sizing:inherit;
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
 }
 
 html {
-  font-size: 62.5%;  //This defines value of 1rem
- 
+  font-size: 62.5%; //This defines value of 1rem
+
   @include respond(tab-land) {
-    font-size:56.25%;  //1 rem = 9px, 9/16 = 56.25%
+    font-size: 56.25%; //1 rem = 9px, 9/16 = 56.25%
   }
 
- @include respond(tab-port) {
-    font-size:50%;  //1 rem = 8px, 8/16 = 50%
+  @include respond(tab-port) {
+    font-size: 50%; //1 rem = 8px, 8/16 = 50%
   }
 
   @include respond(phone) {
-    font-size:50%;
+    font-size: 50%;
   }
 
- @include respond(big-desktop) {
-    font-size:62.5%; 
+  @include respond(big-desktop) {
+    font-size: 62.5%;
   }
 
 }
 
-body { 
-    font-family:'Inter', sans-serif!important;
-    font-weight:400;
-    line-height:inherit!important;
-    margin:0;
-    padding:0;
-    @include themify($themes) {
-      color: themed(colorText);
-    } 
-    box-sizing:border-box; 
+body {
+  font-family: 'Inter', sans-serif !important;
+  font-weight: 400;
+  line-height: inherit !important;
+  margin: 0;
+  padding: 0;
+
+  @include themify($themes) {
+    color: themed(colorText);
+  }
+
+  box-sizing:border-box;
 }
 
 *::-webkit-scrollbar {
-  width:6px;
-	height:6px;
-	background:$gray-76!important;
-  @include respond(phone){
-    width:4px;
-    height:4px;
+  width: 6px;
+  height: 6px;
+  background: $gray-76 !important;
+
+  @include respond(phone) {
+    width: 4px;
+    height: 4px;
   }
 
-    &-track {
-        background:$white!important;
+  &-track {
+    @include themify($themes) {
+      background: themed(rightPanelBg);
     }
-    &-thumb {
-      background:$blue-100!important;
-	    border-radius:100px!important;
-	    border:none!important;
+    
+  }
+
+  &-thumb {
+    @include themify($themes) {
+      background: themed(inputBrd);
     }
-    &:decrement,
-    &:increment {
-        width:0px!important;
-        height:0px!important;
-    }
-    &-button {
-    	width:0px!important;
-    	height:0px!important;
-    }
+    border-radius: 100px !important;
+    border: none !important;
+  }
+
+  &:decrement,
+  &:increment {
+    width: 0px !important;
+    height: 0px !important;
+  }
+
+  &-button {
+    width: 0px !important;
+    height: 0px !important;
+  }
 }
 
 input::-ms-reveal,
-  input::-ms-clear {
-    display: none;
-  }
+input::-ms-clear {
+  display: none;
+}
 
-h1 { font-size:3.6rem!important; }
-h2 { font-size:3.2rem!important; }
-h3 { font-size:2.8rem!important; }
-h4 { font-size:2.4rem!important; }
-h5 { font-size:2rem!important; }
-h6 { font-size:1.8rem!important; }
+h1 {
+  font-size: 3.6rem !important;
+}
 
-h1,h2,h3 { font-weight:600!important; }
-h4,h5,h6 { font-weight:500!important; }
+h2 {
+  font-size: 3.2rem !important;
+}
 
-h1,h2,h3,h4,h5,h6 {
+h3 {
+  font-size: 2.8rem !important;
+}
+
+h4 {
+  font-size: 2.4rem !important;
+}
+
+h5 {
+  font-size: 2rem !important;
+}
+
+h6 {
+  font-size: 1.8rem !important;
+}
+
+h1,
+h2,
+h3 {
+  font-weight: 600 !important;
+}
+
+h4,
+h5,
+h6 {
+  font-weight: 500 !important;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   @include themify($themes) {
     color: themed(HeadTextClr);
   }
 }
 
 input:-webkit-autofill {
-    font-size:1.6rem;
-    &:hover,
-    &:focus,
-    &:active { box-shadow:0 0 0 40px transparent inset!important; -webkit-box-shadow:0 0 0 40px transparent inset!important; -webkit-text-fill-color:$black-80; }
+  font-size: 1.6rem;
+
+  &:hover,
+  &:focus,
+  &:active {
+    box-shadow: 0 0 0 40px transparent inset !important;
+    -webkit-box-shadow: 0 0 0 40px transparent inset !important;
+    -webkit-text-fill-color: $black-80;
+  }
 }
 
 input:-internal-autofill-selected {
   @include themify($themes) {
-    background-color: themed(inputBg)!important;
+    background-color: themed(inputBg) !important;
   }
 }
 
-a { text-decoration:none; }
+a {
+  text-decoration: none;
+}
 
-.d-flex { display:flex; }
+.d-flex {
+  display: flex;
+}
 
-.wd25 { width:25%!important; }
+.wd25 {
+  width: 25% !important;
+}
 
 .table {
-	width:50%;
+  width: 50%;
+
   @include themify($themes) {
     color: themed(colorText) !important;
   }
+
   border: 1px solid;
+
   @include themify($themes) {
     border-color: themed(formDivBrd) !important;
   }
+
   margin:0 auto;
   border-radius:12px;
 }
 
 .table-header {
-	display:flex;
-	width:100%;
+  display: flex;
+  align-items: center;
+  width: 100%;
   @include themify($themes) {
     background: themed(tableHeaderBg);
   }
-
   height:40px;
-	padding:12px 0;
-  border-radius:9px 9px 0 0;
+  padding:10px 12px;
+  border-radius:12px 12px 0 0;
 }
 
 .table-row {
-	display:flex;
-	width:100%;
-	padding:12px 0;
-  align-items:center;
-  border-radius:0 0 9px 9px;
-	
-	&:nth-of-type(odd) {
-		@include themify($themes) {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 10px 12px;
+  align-items: center;
+  &:last-child {
+    border-radius: 0 0 12px 12px;
+  }
+
+  &:nth-of-type(odd) {
+    @include themify($themes) {
       background-color: themed(tableRowOddBg) !important;
     }
-	}
+  }
 }
 
 .table-data {
-    li { text-transform:uppercase; cursor: pointer; @include themify($themes){ color: themed(tableActionClr); } font-weight:500;
-        &:nth-of-type(2){ cursor:default; }
+  li {
+    text-transform: uppercase;
+    cursor: pointer;
+
+    @include themify($themes) {
+      color: themed(tableActionClr);
     }
+
+    font-weight:500;
+
+    &:nth-of-type(2) {
+      cursor: default;
+    }
+  }
 }
 
-.table-data, .header__item {
-	flex: 1 1 20%;
-	text-align:center;
-    ul {
-        display:inline-flex;
-        list-style-type:none;
-    }
+.table-data,
+.header__item {
+  flex: 1 1 20%;
+  text-align: center;
+
+  ul {
+    display: inline-flex;
+    list-style-type: none;
+  }
 }
 
-.table-data:first-child,.header__item:first-child {
-    text-align:left;
-    padding-left:4.5rem;
+.table-data:first-child,
+.header__item:first-child {
+  text-align: left;
+  // padding-left: 4.5rem;
 }
 
 .header__item {
-	text-transform:capitalize;
-  @include themify($themes){
-    color: themed(tableHeaderClr); 
- }
-    font-weight:500!important;
+  text-transform: capitalize;
+
+  @include themify($themes) {
+    color: themed(tableHeaderClr);
+  }
+
+  font-weight:500 !important;
 }
 
 //Loader
 .loader {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.loader-circle {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background-color: #ffffff;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+.loader-circle:before {
+  content: "";
+  display: block;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  border: 8px solid $primary-color;
+  border-color: $primary-color transparent $primary-color transparent;
+  animation: loader 1.2s linear infinite;
+}
+
+.loader-text {
+  color: $primary-color;
+  font-size: 24px;
+  font-weight: bold;
+  margin-top: 16px;
+}
+
+@keyframes loader {
+  0% {
+    transform: rotate(0deg);
   }
 
-  .loader-circle {
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
-    background-color: #ffffff;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    animation: pulse 1.5s ease-in-out infinite;
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(0.8);
+    opacity: 0.5;
   }
 
-  .loader-circle:before {
-    content: "";
-    display: block;
-    width: 70px;
-    height: 70px;
-    border-radius: 50%;
-    border: 8px solid $primary-color;
-    border-color: $primary-color transparent $primary-color transparent;
-    animation: loader 1.2s linear infinite;
+  50% {
+    transform: scale(1);
+    opacity: 1;
   }
 
-  .loader-text {
-    color: $primary-color;
-    font-size: 24px;
-    font-weight: bold;
-    margin-top: 16px;
+  100% {
+    transform: scale(0.8);
+    opacity: 0.5;
   }
-
-  @keyframes loader {
-    0% {
-      transform: rotate(0deg);
-    }
-    100% {
-      transform: rotate(360deg);
-    }
-  }
-
-  @keyframes pulse {
-     0% {
-       transform: scale(0.8);
-       opacity: 0.5;
-     }
-     50% {
-       transform: scale(1);
-       opacity: 1;
-     }
-     100% {
-       transform: scale(0.8);
-       opacity: 0.5;
-     }
-   }
-   
+}

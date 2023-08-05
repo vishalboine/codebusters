@@ -14,7 +14,7 @@
     h4 { 
         margin-bottom:1.5rem;
     }
-    .formDiv {
+    .formDiv, .logs {
         width:48rem;
         padding:2rem;
         border-radius:12px 12px 0 0;
@@ -109,6 +109,22 @@
         text-align:center;
         @include themify($themes){ border-color: themed(formDivBrd); }
         border-radius:0 0 12px 12px;
+    }
+    .logs {
+        h6 {
+            display:flex;
+            justify-content: center;
+            align-items:center;
+            opacity:.5;
+            font-weight:400;
+        }
+    }
+
+    .table-data, .header__item {
+        text-align:left;
+        &:first-child {
+            width:20rem;
+        }
     }
 }
 

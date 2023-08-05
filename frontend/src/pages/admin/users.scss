@@ -5,15 +5,47 @@
     justify-content:center;
     align-items:center;
     flex-direction:column;
-    padding-top:4%;
-    h3{ 
+    h4 { 
         margin-bottom:2.5rem;
+    }
+     .table {
+        max-height:50vh;
+        overflow-x:auto;
+     }
+    
+    .table-data, .header__item {
+        text-align:left;
+        width:20rem;
+        
+        &:last-child {
+            text-align:center;
+            padding-left:1rem;
+        }
+    }
+    .logs {
+        // .table {
+        //     width:fit-content;
+        // }
+        .table-data, .header__item {
+            text-align:left;
+            white-space:nowrap;
+            &:nth-child(2) {
+                width:5rem;
+            }
+        }
     }
 
 }
 
 @include respond(phone) {
+   .UsersWrapper {
     .table {
-        width:44rem!important;
-     }
+        width:100%!important;
+        max-height:70vh;
+        overflow-x: auto!important;
+        .table-header, .table-row {
+            width:fit-content;
+        }
+    }
+   }
 }

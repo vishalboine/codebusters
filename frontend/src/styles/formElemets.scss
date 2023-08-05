@@ -56,70 +56,6 @@ label {
   font-weight:500;
 }
 
-// .input_div {
-//   label {
-//     font-size: 1.4rem;
-
-//     @include themify($themes) {
-//       color: themed(inputLable);
-//     }
-
-//     font-weight:500;
-//     margin-bottom:.8rem;
-//   }
-
-//   input {
-//     @include themify($themes) {
-//       background: themed(inputBg);
-//     }
-
-//     @include themify($themes) {
-//       color: themed(colorText);
-//     }
-
-//     border:1px solid;
-
-//     @include themify($themes) {
-//       border-color: themed(inputBrd);
-//     }
-
-//     border-radius:12px;
-
-//     &::placeholder {
-//       @include themify($themes) {
-//         color: themed(inputPlcHd);
-//       }
-
-//       font-size: $medium-font-size;
-//     }
-
-//     &:hover {
-//     border: 1px solid;
-
-//     @include themify($themes) {
-//       border-color: themed(inputHvrBrd)
-//     }
-//   }
-
-//   &:focus {
-//     box-shadow: 0 0 0 1px rgba($blue-200, .6) !important;
-//   }
-//   }
-
-//   .btn {
-//     width: 100%;
-//   }
-
-//   button {
-//     svg {
-//       @include themify($themes) {
-//         color: themed(inputIcon);
-//       }
-//       font-size: 2rem;
-//     }
-//   }
-// }
-
 option {
   padding: 10px 12px;
   color: $blue-800;
@@ -302,4 +238,11 @@ button {
   width: 100%;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
+}
+
+.errorMsg {
+  color:$red-error;
+  font-size:14px;
+  font-weight:400;
+  padding:.8rem 0;
 }

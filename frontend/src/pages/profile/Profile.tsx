@@ -129,7 +129,7 @@ const Profile = () => {
       <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
         <Tab label="General" {...a11yProps(0)} />
         <Tab label="Manage Password" {...a11yProps(1)} />
-        <Tab label="History" {...a11yProps(2)} />
+        <Tab label="Activity" {...a11yProps(2)} />
       </Tabs>
       <CustomTabPanel index={0} value ={value}>
         <div className="profileWrapper">
@@ -160,7 +160,7 @@ const Profile = () => {
               </div>
             </div>
             <div className='loggedDetail'>
-              <p>Last Logged in</p>
+              <p>Last login</p>
               <span>{updatedLastLogin}</span>
             </div>
           </div>
@@ -171,7 +171,7 @@ const Profile = () => {
       </CustomTabPanel>
       <CustomTabPanel index={1} value ={value}>
         <div className="changePassWrapper">
-          <h4>Change Password</h4>
+          <h4>Reset Password</h4>
           <div className="formDiv">
             <div className="formGroup">
               <Input
@@ -232,20 +232,31 @@ const Profile = () => {
         </div>
       </CustomTabPanel>
       <CustomTabPanel index={2} value ={value}>
-        <h4>My History</h4>
-        <div>
-          {
-            historyData.length > 0 ? (
-              historyData.map((item:any) => (
-                <div key={item._id} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                  <span>{item.user}</span>
-                  <span>{item.tableName}</span>
-                  <span>{item.fileName}</span>
-                </div>
-              ))
-            ) : (<h3>No History Found</h3>)
-          }
+      <div className="profileWrapper">
+        <h4>Activity Log</h4>
+        <div className='table'>
+          <div className="table-header">
+            <div className="header__item">Date & Time</div>
+            <div className="header__item">User</div>
+            <div className="header__item">Data Type</div>
+            <div className="header__item">Imported File</div>
+          </div>
+          <div className="table-content">
+            {
+              historyData.length > 0 ? (
+                historyData.map((item:any) => (
+                  <div key={item._id} className='table-row'>
+                    <div className='table-data'>05/08/23 14:51</div>
+                    <div className='table-data'>{item.user}</div>
+                    <div className='table-data'>{item.tableName}</div>
+                    <div className='table-data'>{item.fileName}</div>
+                  </div>
+                ))
+              ) : (<h6>No History Found</h6>)
+            }
+          </div>	
         </div>
+      </div>
       </CustomTabPanel>
     </div>
   )
