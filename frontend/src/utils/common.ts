@@ -72,7 +72,7 @@ function getObjectValueTypes(obj: any) {
   function compareValues(json1 : any, json2 : any, mapping : any) {
     const obj : any= {};
       Object.entries(mapping).forEach(([key1, key2] : any) => {
-        if(json1[key1].toLowerCase() === json2[key2].toLowerCase()){
+        if(json1[key1]?.toLowerCase() === json2[key2]?.toLowerCase()){
             obj[key1] = true;
         }else{
             obj[key1] = false;
