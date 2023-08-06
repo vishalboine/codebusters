@@ -55,7 +55,7 @@ const Dashboard = () => {
       reader.readAsBinaryString(e.target.files[0]);
       reader.onload = (e: any) => {
         const data = e.target.result;
-        const workbook = XLSX.read(data, { type: "binary" });
+        const workbook = XLSX.read(data, { type: "binary" , raw:false, cellDates: true, dateNF: 'dd-MM-yyyy' });
         const sheetName = workbook.SheetNames[0];
         const sheet = workbook.Sheets[sheetName];
         setSheetName(sheetName)
@@ -298,7 +298,7 @@ const Dashboard = () => {
         >
           <SearchPanel visible={true} highlightCaseSensitive={true} />
           {blotterColumns.map((data: any) => {
-            return <Column dataField={data.dataField ? data.dataField : data}  caption={data.caption ? data.caption : data} dataType={data.dataType ? data.dataType : 'string'}/>
+            return <Column dataField={data.dataField ? data.dataField : data}  caption={data.caption ? data.caption : data} dataType={data.dataType ? data.dataType : 'string'} format={data.dataType === 'date' ? 'dd MMM yy' : ''}/>
           })}
           <Export enabled={true} />
           {/* <Paging defaultPageSize={10} /> */}
