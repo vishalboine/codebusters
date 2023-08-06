@@ -28,7 +28,7 @@ const Dashboard = () => {
   const [sheetName, setSheetName] = useState('');
   const [tableData, setTableData] : any = useState({});
   const [fieldMapping, setFieldMapping] : any = useState({});
-  const [selectImportDropDownValue, setSelectImportDropDownValue] : any = useState([])
+  const [selectImportDropDownValue, setSelectImportDropDownValue] : any = useState({})
   const [pageNumber, setPageNumber] = useState(1)
   const [mockData, setMockData]:any = useState({})
   const [mockDataDropDown, setMockDataDropDown] = useState('Demo1')
@@ -171,7 +171,7 @@ const Dashboard = () => {
 
   const handleOnFieldMappingChange = (e: any, item: any) =>{
     fieldMapping[item] = e.target.value
-    setSelectImportDropDownValue([...selectImportDropDownValue,e.target.value])
+    setSelectImportDropDownValue({...selectImportDropDownValue,[item]:e.target.value})
     setFieldMapping({...fieldMapping})
   }
 
@@ -181,7 +181,10 @@ const Dashboard = () => {
 
     //returns which all columns are having valid/invalid datatype
     const checkTableExcelDataType = compareValues(currentTable, excelColunmsDataType[0], fieldMapping)
-    if(checkForDuplicates(fieldMappingArrValues)){
+    if(!Object.values(selectImportDropDownValue).some(value => value !== null && value !== undefined && value !== '')){
+      setImportError('Choose at least one mapper for table')
+    }
+    else if(checkForDuplicates(fieldMappingArrValues)){
       //validation for duplicate dropdown value
       setImportError('Duplicate Excel columns')
     }
@@ -193,7 +196,7 @@ const Dashboard = () => {
       // excel column dataType must be same as table column datatypes
       Object.entries(checkTableExcelDataType).map((key:any, value: any)=>{
         if(key[1] === false){
-          setImportError(`${(key[0]).toUpperCase()} table column dataType must be same as excel column datatypes`)
+          setImportError(`${(key[0]).toUpperCase()} table column dataType must be same as excel column datatype`)
         }
       })
     }
@@ -378,9 +381,9 @@ const Dashboard = () => {
                           <Select
                             onChange={(e) => handleOnFieldMappingChange(e, item.caption)}
                             inputProps={{ 'aria-label': 'Without label' }}
-                            value={selectImportDropDownValue[index]}
                           >
                             {/* this can be multiple inputs more then 10 */}
+                            <MenuItem value={''}>{''}</MenuItem>
                             {
                               excelColunms.map((ele: string, i: number) => (
                                 <MenuItem key={i} value={ele}>{ele}</MenuItem>
@@ -396,7 +399,6 @@ const Dashboard = () => {
                 <p className="errorMsg">{importError}</p>
               </div>
               <div className="d-flex">
-                <button onClick={() => {setSelectImportDropDownValue([]); }} className="btn btn-text">Reset</button>
                 <button onClick={() => { handleImportProceed()}} className="btn btn-primary">Proceed</button>
               </div>
             </>
