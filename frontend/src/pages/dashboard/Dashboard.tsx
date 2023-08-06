@@ -9,7 +9,7 @@ import Button from "../../components/ui-widgets/Button/Button";
 import DropFileInput from "../../components/DropInputFile";
 import uploadImg from "../../assets/images/upload.svg"
 import { FormControl, Select, MenuItem, IconButton, Tooltip } from "@mui/material";
-import { RiArrowLeftSLine, RiArrowRightSLine, RiCloseLine, RiRefreshLine } from "react-icons/ri";
+import { RiArrowLeftSLine, RiArrowRightSLine, RiCheckboxCircleFill, RiCloseLine, RiRefreshLine } from "react-icons/ri";
 import axiosInstance, { axiosPrivate } from "../../config/axiosInstance";
 import useAuth from "../../hooks/useAuth";
 import { CustomerMasterData } from "../../mock/data";
@@ -246,27 +246,29 @@ const Dashboard = () => {
           <button onClick={ser}>page</button>
         </div> */}
           <div className="d-flex">
-            <FormControl sx={{ minWidth:226 }}>
-              <Select
-                onChange={(e)=>{handleChangeMockData(e);}}
-                value={mockDataDropDown}
-                inputProps={{ 'aria-label': 'Without label' }}
-              >
-                {/* this can be multiple inputs more then 10 */}
-                <MenuItem value={''}>{''}</MenuItem>
-                {
-                  Object.keys(mockData).map((ele: string, i: number) => (
-                    <MenuItem key={i} value={ele}>{ele}</MenuItem>
-                  ))
-                }
-              </Select>
-            </FormControl>
+            <div className="selectMockData">
+            <label>Mock Data Type</label>
+              <FormControl sx={{ width:220 }}>
+                <Select
+                  onChange={(e)=>{handleChangeMockData(e);}}
+                  value={mockDataDropDown}
+                  inputProps={{ 'aria-label': 'Without label' }}
+                >
+                  {/* this can be multiple inputs more then 10 */}
+                  <MenuItem value={''}>{''}</MenuItem>
+                  {
+                    Object.keys(mockData).map((ele: string, i: number) => (
+                      <MenuItem key={i} value={ele}>{ele}</MenuItem>
+                    ))
+                  }
+                </Select>
+              </FormControl>
+            </div>
             <Tooltip title="Reset data" placement="right">
               <IconButton className="resetData" onClick={()=>handleResetImport()}>
                 <RiRefreshLine/>
               </IconButton>
             </Tooltip>
-            
           </div>
           <Button onClick={handleIsOpen} className="btn import-btn" title={
             <>
@@ -354,14 +356,17 @@ const Dashboard = () => {
           ) : (
             <>
               <div className="uplodedFile">
-                <span>Selected file: {sheetName}
-                  {/* <div className="successIcon">
+                  <span>
+                    <div className="successIcon">
                     <RiCheckboxCircleFill/>
-                  </div> */}
-                  <button onClick={() => {setExcelColumns([]); setFieldMapping({}); setSelectImportDropDownValue([]); setDataTypeValue(''); setImportFileError('')}} className="btn-text">Change file</button>
+                    File name: {sheetName}
+                  </div> 
+                  
+                  <button onClick={() => {setExcelColumns([]); setFieldMapping({}); setSelectImportDropDownValue([]); setDataTypeValue(''); setImportFileError('')}} className="btn-text ml-2">Change</button>
                 </span> 
               </div>
               <div className="matchCols">
+                <h5>Column matcher</h5>
                 <div className="columnRow">
                 {
                   blotterColumns.map((item: any, index: number) => (

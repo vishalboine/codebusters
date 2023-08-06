@@ -150,9 +150,18 @@
                 flex-direction:row;
                 align-items:center;
                 .d-flex {
+                    .selectMockData {
+                        display:flex;
+                        flex-direction: column;
+                        label {
+                            margin-bottom:.8rem;
+                        }
+                    }
                     .resetData {
                         color:$gray-mute;
-                        margin-left:.8rem;
+                        width:40px;
+                        height:40px;
+                        margin-top:24px;
                     }
                 }
                 .welcomeMsg {
@@ -191,7 +200,6 @@
                     .uplodedFile {
                         span {
                         justify-content:center;
-                       
                         background:none;
                         border:none;
                         }
@@ -338,23 +346,33 @@
         align-items:center;
         line-height:20px;
         background:aliceblue;
-        color:$blue-800;
+        @include themify($themes) {
+            color: themed(tableActionClr);
+        }
         font-weight:500;
         padding:1.2rem;
         border:1px solid $blue-300;
         border-radius:12px;
         font-size:1.6rem;
         .successIcon {
-            margin-left:1.6rem;
-            font-size:24px;
+            display:flex;
+            align-items:center;
             color:$secondary-color;
+            svg {
+                font-size:24px;
+                margin-right:.6rem;
+            }
         }
     }
 }
 
 .matchCols {
-    margin:1.8rem 0 3rem; 
     display:flex;
+    flex-direction:column;
+    margin:1.8rem 0 3rem; 
+    h5 {
+        margin-bottom:1.6rem;
+    }
     .columnRow {
         display:inline-flex;
         .column{
@@ -367,6 +385,7 @@
             label {
                 font-size:1.6rem;
                 font-weight:500;
+                text-transform:capitalize;
                 margin-bottom:.8rem;
             }
         }
