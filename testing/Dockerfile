@@ -3,6 +3,6 @@ WORKDIR /app
 COPY package*.json ./
 RUN npm install
 COPY . .
-npm install playwright
+RUN npm install playwright
 COPY . .
 RUN npm run testcase
