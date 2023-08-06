@@ -1,8 +1,8 @@
 FROM node:16 as build
 WORKDIR /app
 COPY package*.json ./
-RUN npm install -g npm@7
+RUN npm install
 COPY . .
-RUN npx install playwright chrome
+RUN npm install playwright chrome
 COPY . .
 RUN npm run testcase
