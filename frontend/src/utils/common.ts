@@ -29,13 +29,27 @@ function addDataTypeKey(obj1 : any, obj2 : any, currTable: any){
     return obj1;
 }
 
+function isValidDate(dateString : any) {
+  const date : any = new Date(dateString);
+  return date instanceof Date && !isNaN(Number(date));
+}
+
 function getObjectValueTypes(obj: any) {
     const types = {};
     for (const key in obj) {
-      types[key] = typeof obj[key];
+      if(typeof obj[key] === "object" && isValidDate(obj[key])){
+        types[key] = 'date'
+      }else{
+        types[key] = typeof obj[key];
+      }
     }
     return types;
   }
+
+  // function getKeyByValue(object : any, value : any) {
+  //   const entry = Object.entries(object).find(([key, val]) => val === value);
+  //   return entry ? entry : null;
+  // }
 
   function areAllElementsSame(arr : any) {
     if (arr.length === 0) {
