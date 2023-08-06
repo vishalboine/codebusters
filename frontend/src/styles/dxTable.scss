@@ -23,7 +23,7 @@
 .dx-datagrid-borders > .dx-datagrid-header-panel {
   position: relative;
   height: 0;
-  top: -29%;
+  top: -31.5%;
   background: none;
   margin: 0 136px 0 74rem;
 }
@@ -37,7 +37,8 @@
   @include themify($themes) {
     background: themed(tableHeaderBg);
   }
-  height: 44px;
+  height:44px;
+  text-transform:capitalize;
 }
 .dx-header-row
   > td

@@ -48,11 +48,9 @@ select {
 
 label {
   font-size: $default-font-size;
-
   @include themify($themes) {
     color: themed(inputLable);
   }
-
   font-weight:500;
 }
 
