@@ -58,7 +58,10 @@ const Register = () => {
     <div className='authBg'>
       <div className="loginWrapper">
         <div className="loginCard">
-          <img src={LoginLogo} alt={'logo'} className="authLogo" />
+          <div className="authLogo">
+              <img src={LoginLogo} alt={'logo'} />
+              <h6>ImportWizard</h6>
+            </div>
           <div className="loginWrapper_main">
             <div className="left">
                 <img src={loginsplash} alt="" />
@@ -70,7 +73,7 @@ const Register = () => {
               </div>
               <div className="right">
                 <div className="input_div">
-                  <h3>Create account</h3>
+                  <h4>Create account</h4>
                   <Input
                     placeholder="Enter Username"
                     label="Username"

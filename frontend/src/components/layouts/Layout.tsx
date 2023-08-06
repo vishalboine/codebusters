@@ -67,7 +67,7 @@ const Layout = () => {
           <div className="userIcon mobile">
           <Link to='/profile'>
             {auth.user.charAt(0)}
-            <span className="tooltiptext">{auth.user}</span>
+            <span>{auth.user}</span>
           </Link>
           </div>
         </div>

@@ -76,6 +76,10 @@ button {
   font-family: 'Inter', sans-serif;
   font-weight: 500;
 
+  &:disabled {
+    opacity: .5;
+  }
+
   &.btn {
     padding: 1.2rem 1.6rem;
     border-radius: 12px;
@@ -95,6 +99,14 @@ button {
 
     &:hover {
       background: $secondary-color;
+    }
+  }
+  &.btn-danger {
+    background: $red-error;
+    color: $white;
+
+    &:hover {
+      background:$red-error-hover;
     }
   }
 
@@ -168,14 +180,22 @@ button {
   left: 0;
   height: 20px;
   width: 20px;
-  background: $white;
-  border: 1px solid $blue-100;
+  @include themify($themes) {
+    background: themed(inputBg);
+  }
+  border: 1px solid;
+  @include themify($themes) {
+    border-color: themed(inputBrd);
+  }
+  
   border-radius: 4px;
 }
 
 /* On mouse-over, add a grey background color */
 .container:hover input~.checkmark {
-  background: $blue-50;
+  @include themify($themes) {
+    background: themed(inputBg);
+  }
 }
 
 /* When the checkbox is checked, add a blue background */

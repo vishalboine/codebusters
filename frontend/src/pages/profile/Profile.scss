@@ -85,7 +85,7 @@
                 @include themify($themes){
                     color:themed(userIconClr);
                 }
-                font-weight:500;
+                // font-weight:500;
             }
         }    
         .themeContent{
