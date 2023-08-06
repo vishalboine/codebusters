@@ -172,6 +172,9 @@ const Dashboard = () => {
   const handleOnFieldMappingChange = (e: any, item: any) =>{
     fieldMapping[item] = e.target.value
     setSelectImportDropDownValue({...selectImportDropDownValue,[item]:e.target.value})
+    if(!fieldMapping[item]){
+      delete fieldMapping[item]
+    }
     setFieldMapping({...fieldMapping})
   }
 
@@ -218,6 +221,7 @@ const Dashboard = () => {
       setSelectImportDropDownValue([]);
       setMockDataDropDown('')
       setisOpen(false);
+      setDataTypeValue('');
     }
   }
 
