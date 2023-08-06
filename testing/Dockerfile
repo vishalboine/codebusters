@@ -3,5 +3,6 @@ WORKDIR /app
 COPY package*.json ./
 RUN npm install
 COPY . .
-CMD ["npx", "playwright", "install", "chromium"]
+npm install playwright
+COPY . .
 RUN npm run testcase
