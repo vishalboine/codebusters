@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { DataGrid } from 'devextreme-react';
 import { Column, SearchPanel, Export } from 'devextreme-react/data-grid';
 import "./dashboardStyles.scss"
@@ -38,6 +38,7 @@ const Dashboard = () => {
   const [isExcelImported, setExcelImported] = useState(false);
   const [dataTypeValue, setDataTypeValue] = useState('');
   const {auth} = useAuth()
+  const inputFileRef : any = useRef(null)
 
 
   const handleFileUpload = (e: any) => {
@@ -46,8 +47,10 @@ const Dashboard = () => {
     let excelColumnsDataType :  any =[];
     if(dataTypeValue === ''){
       setImportFileError('Please select Data type to import')
+      inputFileRef.current.value ='';
     }else if (e.target.files[0].type !== 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'){
       setImportFileError('Only excel file to import')
+      inputFileRef.current.value ='';
     }else{
       reader.readAsBinaryString(e.target.files[0]);
       reader.onload = (e: any) => {
@@ -65,6 +68,7 @@ const Dashboard = () => {
         setExcelColumns(Object.keys(parsedData[0]))
         setExcelColumnsDataType(excelColumnsDataType)
         setImportFileError('')
+        inputFileRef.current.value ='';
       };
     }
   }
@@ -340,6 +344,7 @@ const Dashboard = () => {
                     type="file"
                     accept=".xlsx, .xls"
                     onInput={(e)=>handleFileUpload(e)}
+                    ref = {inputFileRef}
                   />
                 </div>
                 
