@@ -6,7 +6,9 @@
     display:flex;
     justify-content: center;
     align-items: center;
-    background:#EDF1FF;
+    @include themify($themes) {
+        background: themed(authRightBg);
+    }
     width:100vw;
     height:100vh;
     // padding:6rem 20rem;
@@ -15,7 +17,9 @@
         content:"";
         width:50vw;
         height:100vh;
-        background-color:$primary-color;
+        @include themify($themes) {
+            background: themed(authLeftBg);
+        }
         position:absolute;
         top:0;
         left:0;
@@ -34,14 +38,28 @@
             flex-shrink:0;
             backdrop-filter:blur(4px);
             -webkit-backdrop-filter:blur(4px);
-            background:rgba($white, 0.90);
+            @include themify($themes) {
+                background: themed(loginCardBg);
+            }
             border-radius:12px;
             border:1px solid rgba(125, 149, 185, 0.3);
             padding:3.2rem;
+            transition: ease .6s;
     
             .authLogo {
-                width:18rem;
-                height:auto;
+                display:inline-flex;
+                align-items:center;
+                img {
+                    width:3.2rem;
+                    height:auto;
+                }
+                h6 {
+                    margin-left:1rem;
+                    font-weight:600!important;
+                    @include themify($themes) {
+                        color: themed(HeadTextClr)
+                    }
+                }
             }
     
             .loginWrapper_main {
@@ -57,9 +75,9 @@
                 align-items:center;
                 width:50%;
                 padding:3.2rem 1.6rem 3.6rem;
-                p { padding:1.5rem 0; font-size:1.6rem; font-weight:500; color:$blue-800; }
+                p { text-align:center; padding:3.5rem 0 0; font-size:1.6rem; font-weight:500; @include themify($themes) { color: themed(userIconClr) }; }
                 line-height:2.4rem;
-                img { width:96%; }
+                img { width:100%; }
             }
     
             .right {
@@ -74,25 +92,27 @@
                     width:80%;
                     height:fit-content;
                     border-radius:12px;
-                    background:$white;
+                    @include themify($themes) {
+                        background: themed(loginInputBg);
+                    }
                     box-shadow:0px 6px 12px 0px rgba(0, 0, 0, 0.12);
-                    padding:2.8rem;
-                    transition: ease .6s;
+                    padding:2.4rem;
+                    transition: ease-in .6s;
     
-                    h3 {
+                    h4 {
                         text-align:center;
                         margin-bottom:1.4rem;
                     }
     
-                    label { font-size:1.4rem; color:$gray-mute; font-weight:500; margin-bottom:.8rem; }
-                    input { background:$blue-50; padding:1rem 1.2rem; border:1px solid $blue-100; border-radius:12px;
-                        &::placeholder { color:$blue-gray; font-size:$medium-font-size; }
-                        &:hover { border:1px solid $blue-300; }
-                    }
+                    label { font-size:1.4rem; @include themify($themes) { color: themed(inputLable) } font-weight:500; margin-bottom:.8rem; }
+                    // input { background:$blue-50; padding:1rem 1.2rem; border:1px solid $blue-100; border-radius:12px;
+                    //     &::placeholder { color:$blue-gray; font-size:$medium-font-size; }
+                    //     &:hover { border:1px solid $blue-300; }
+                    // }
                     .btn { width:100%;
                     }
                     button { 
-                        svg { color:$gray-mute; font-size:2rem; }
+                        svg { @include themify($themes) { color: themed(inputIconClr) } font-size:2rem; }
                     }
     
                     .loginUtility { display:flex; justify-content:space-between; /*align-items:center;*/ font-size:$default-font-size; margin:.8rem 0 1.6rem;
@@ -103,16 +123,45 @@
                                 padding-left:2.6rem;
                             }
                          }
-                        a { color:$blue-700; font-weight:400;}
+                        a { @include themify($themes) { color: themed(authLink) } font-weight:400; }
                     }
     
-                    .creatAccount { font-size:1.6rem; color:$blue-900;font-weight:400; text-align:center; margin-top:2.4rem;
-                        a { color:$blue-700; font-weight:500; }
+                    .creatAccount { font-size:1.6rem; @include themify($themes) { color: themed(HeadTextClr) }; font-weight:400; text-align:center; margin-top:2.4rem;
+                        a {  @include themify($themes) { color: themed(authLink) }; font-weight:500; }
     
                     }
                 }
             }
         }
+    }
+}
+
+//Carousel
+
+.carousel {
+    height: 100%;
+    .carousel-indicators {
+        bottom:0;
+        .carousel-indicators [data-coreui-target] {
+            width:48px;
+            height:4px;
+            border-radius:8px;
+            background-color:$primary-color;
+        }
+    }
+    .carousel-inner {
+        height:100%;
+        .carousel-item {
+            height:100%;
+            .carousel-caption {
+                width:100%;
+                padding:0;
+                left:0;
+                right:0;  
+                bottom:20px;
+            }
+        }
+        
     }
 }
 
@@ -173,11 +222,11 @@
         .loginWrapper {
             .loginCard {
                 height:fit-content;
-                .authLogo {
-                      width:20rem;
-                      display:flex;
-                      margin:0 auto;  
-                }
+                // .authLogo {
+                //       width:20rem;
+                //       display:flex;
+                //       margin:0 auto;  
+                // }
                 .left {
                     display:none;
                     

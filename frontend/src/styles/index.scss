@@ -145,6 +145,9 @@ input:-webkit-autofill {
     box-shadow: 0 0 0 40px transparent inset !important;
     -webkit-box-shadow: 0 0 0 40px transparent inset !important;
     -webkit-text-fill-color: $black-80;
+    @include themify($themes) {
+      background-color: themed(inputBg) !important;
+    }
   }
 }
 

@@ -16,6 +16,7 @@ $themes: (
     inputBxShwd:rgba($blue-200, .6),
     inputPlcHd:$blue-gray,
     inputIconClr:$blue-gray,
+    authLink:$blue-700,
     dashboardBg:$blue-700,
     rightPanelBg:$white,
     navItemHvrBrd:$blue-200,
@@ -37,6 +38,10 @@ $themes: (
     profileRoleClr:$blue-800,
     profileRoleBrd:$blue-100,
     profileTxt:$blue-dark,
+    authLeftBg: $primary-color,
+    authRightBg:#EDF1FF,
+    loginCardBg:rgba($white,.9),
+    loginInputBg:$white,
   ),
   dark: (
     colorText:#c7c7c7,
@@ -53,6 +58,7 @@ $themes: (
     inputBxShwd:#adbdff70,
     inputPlcHd:#797979,
     inputIconClr:#858585,
+    authLink:#728cf3,
     dashboardBg:#141414,
     rightPanelBg:#050505,
     navItemHvrBrd:#65697b,
@@ -74,6 +80,10 @@ $themes: (
     profileRoleClr:#a8adc2,
     profileRoleBrd:#252737,
     profileTxt:#b3b3b3,
+    authLeftBg:#000207,
+    authRightBg:#242630,
+    loginCardBg:rgba(0, 0, 0, 0.8),
+    loginInputBg:#0f0f0f,
   ),
 );
 

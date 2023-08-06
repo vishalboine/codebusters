@@ -397,7 +397,7 @@ const UpdateTable = ({
               <h5>Are you sure you want to delete this table?</h5>
               <div className="d-flex">
                 <button onClick={closeModal} className='btn btn-text'>Cancel</button>
-                <button onClick={handleDeleteClick} className='btn btn-primary'>Delete</button>
+                <button onClick={handleDeleteClick} className='btn btn-danger'>Delete</button>
               </div>
             </div>
           </Modal>

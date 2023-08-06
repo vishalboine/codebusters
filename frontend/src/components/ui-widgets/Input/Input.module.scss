@@ -28,6 +28,7 @@
         border: none !important;
         outline: none;
         cursor: pointer;
+        color:$gray-mute;
         @include themify($themes) {
             color: themed(inputIcon);
           }
