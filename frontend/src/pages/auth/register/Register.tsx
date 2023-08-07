@@ -1,7 +1,6 @@
 import { useState } from "react"
 import LoginLogo from "../../../assets/images/LoginLogo.svg";
 import loginsplash from "../../../assets/images/loginsplash.svg";
-import "./Register.scss"
 import Input from "../../../components/ui-widgets/Input/Input";
 import Button from "../../../components/ui-widgets/Button/Button";
 import { Link, useNavigate } from "react-router-dom";
