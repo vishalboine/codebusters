@@ -1,6 +1,5 @@
 import { useEffect } from "react"
-import { DataGrid } from 'devextreme-react';
-import { Column, SearchPanel, Export } from 'devextreme-react/data-grid';
+import DataGrid, { Column, SearchPanel, Export } from 'devextreme-react/data-grid';
 import "./dashboardStyles.scss"
 import Modal from "../../components/Modal";
 import Button from "../../components/ui-widgets/Button/Button";
