@@ -21,27 +21,27 @@ test('Username Field', async ({ page }) => {
 test('Password Field', async ({ page }) => {
     const passwordInput = page.getByPlaceholder('Enter password');
 
-    await passwordInput.fill('123456');
+    await passwordInput.fill('New12345@');
     await passwordInput.press('Enter');
 
     // Expect a title "to contain" a substring.
-    await expect(page.getByPlaceholder('Enter Password')).toHaveValue('123456')
+    await expect(page.getByPlaceholder('Enter Password')).toHaveValue('New12345@')
 });
 test('Confirm Password Field', async ({ page }) => {
     const passwordInput = page.getByPlaceholder('Confirm password');
 
-    await passwordInput.fill('123456');
+    await passwordInput.fill('New12345@');
     await passwordInput.press('Enter');
 
     // Expect a title "to contain" a substring.
-    await expect(page.getByPlaceholder('Confirm Password')).toHaveValue('123456')
+    await expect(page.getByPlaceholder('Confirm Password')).toHaveValue('New12345@')
 });
 test('Password and Confirm Password Field', async ({ page }) => {
     const passwordInput = page.getByPlaceholder('Enter password');
     const cpasswordInput = page.getByPlaceholder('Confirm password');
     // Enter values into the password and confirm password fields
-    const passwordValue = '123456';
-    const confirmPasswordValue = '123456';
+    const passwordValue = 'New12345@';
+    const confirmPasswordValue = 'New12345@';
     await passwordInput.type(passwordValue);
     await cpasswordInput.type(confirmPasswordValue);
 
@@ -52,19 +52,3 @@ test('Password and Confirm Password Field', async ({ page }) => {
     // Check if the entered values are the same
     expect(enteredPassword).toEqual(enteredConfirmPassword);
 });
-
-// test('Redirect after register', async ({ page }) => {
-//     const usernameInput = page.getByPlaceholder('Enter Username');
-//     const passwordInput = page.getByPlaceholder('Enter password');
-//     const cpasswordInput = page.getByPlaceholder('Confirm password');
-
-//     await usernameInput.fill('demo');
-//     await usernameInput.press('Enter');
-//     await passwordInput.fill('123456');
-//     await passwordInput.press('Enter');
-//     await cpasswordInput.fill('123456');
-//     await cpasswordInput.press('Enter');
-//     await page.getByRole('button', { name: 'Register' }).click();
-
-//     await expect(page).toHaveURL('https://codebusters.neofinancials.com/login');
-// });

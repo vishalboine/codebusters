@@ -1,7 +1,10 @@
 import './public.scss';
 import unauthorizedImg from'../../assets/images/unauthorized.svg';
+import { useNavigate } from 'react-router-dom';
 
 const Unauthorized = () => {
+  const navigate = useNavigate();
+  const goBack = () => navigate(-1)
   return (
     <div className='publicPgWrp'>
       <img src={unauthorizedImg} />
@@ -9,7 +12,7 @@ const Unauthorized = () => {
       <h5>This page is not publically available.<br/>
           To access it please login first.
       </h5>
-      <button className='btn'>Return to login</button>
+      <button className='btn' onClick={goBack}>Go Back</button>
     </div>
   )
 }
