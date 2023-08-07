@@ -130,7 +130,11 @@
         .table-header {
             width:100%;
         }
+        .table-data, .header__item {
+            text-align:left;
+        }
     }
+
 }
 
 .changePassWrapper {
@@ -140,6 +144,9 @@
         width:fit-content;
         justify-content: center;
         @include themify($themes){ border-color: themed(formDivBrd); }
+        .inputTop {
+            margin-bottom:0;
+        }
         .formGroup {
             margin-right:0;
             label { margin:0 0 .8rem; }

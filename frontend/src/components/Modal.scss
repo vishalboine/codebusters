@@ -28,6 +28,11 @@
     flex-direction:column;
     justify-content: center;
     align-items: center;
+    .uplodedFile span {
+      .btn-text {
+        color:$secondary-color;
+      }
+    }
     .logoutWrapper {
       width:40rem;
       display:flex;
@@ -36,6 +41,8 @@
       h5 {
         margin-bottom:2.4rem;
         color:$blue-900;
+        line-height:2.8rem;
+        text-align:center;
       }
       p{
         text-align:center;
@@ -48,6 +55,11 @@
       }
       .btn-text {
         color:$secondary-color;
+      }
+    }
+    .matchCols{
+      h5{
+        color:$blue-900;
       }
     }
     .modalHead{
