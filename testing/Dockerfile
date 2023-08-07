@@ -4,6 +4,7 @@ COPY package*.json ./
 RUN npm install
 COPY . .
 RUN npm install playwright
+ENV PLAYWRIGHT_BROWSERS none
 RUN apt-get update && \
     apt-get install -y \
         libnss3 \
