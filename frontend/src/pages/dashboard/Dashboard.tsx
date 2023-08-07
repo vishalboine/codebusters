@@ -187,21 +187,21 @@ const Dashboard = () => {
     //returns which all columns are having valid/invalid datatype
     const checkTableExcelDataType = compareValues(currentTable, excelColunmsDataType[0], fieldMapping)
     if(!Object.values(selectImportDropDownValue).some(value => value !== null && value !== undefined && value !== '')){
-      setImportError('Choose at least one mapper for table')
+      setImportError('Select at least one mapper for table')
     }
     else if(checkForDuplicates(fieldMappingArrValues)){
       //validation for duplicate dropdown value
-      setImportError('Duplicate Excel columns')
+      setImportError('Duplicate selection of excel columns')
     }
     else if(!flag){
       // validation for all excel data should be of same datatype wrt column
-      setImportError(`${itemKey.toUpperCase()}: Excel data should be of same datatype with respect to column`)
+      setImportError(`${itemKey.toUpperCase()}: Ensure consistent data types across columns in Excel.`)
     }
     else if (!Object.values(Object.values(checkTableExcelDataType)).every(value => value === true)){
       // excel column dataType must be same as table column datatypes
       Object.entries(checkTableExcelDataType).map((key:any, value: any)=>{
         if(key[1] === false){
-          setImportError(`${(key[0]).toUpperCase()} (Datatype: ${currentTable[key[0]]}) table column dataType must be same as excel column datatype`)
+          setImportError(`${(key[0]).toUpperCase()} (Datatype: ${currentTable[key[0]]}) Table column datatype must match with excel`)
         }
       })
     }

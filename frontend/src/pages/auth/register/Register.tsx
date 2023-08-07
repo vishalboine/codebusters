@@ -67,6 +67,22 @@ const Register = () => {
     })
   }
 
+  const firstTemplate = () => {
+    return (
+        <ul className="passReq">
+          <li>The password should be at least 5 characters long.</li>
+          <li>It should include at least one special character (e.g. @, #, $, etc.).</li>
+          <li>Needs to contain at least one uppercase letter (A-Z).</li>
+          <li>Additionally, it should incorporate at least one digit (0-9).</li>
+        </ul>
+    );
+}
+const secondTemplate = () => {
+    return (
+        <p>Password should match with create password to confirm.</p>
+    );
+}
+
   return (
     <div className='authBg'>
       <div className="loginWrapper">
@@ -96,7 +112,7 @@ const Register = () => {
                     />
                   <Input
                     placeholder="Enter password"
-                    label="Password"
+                    label="Create Password"
                     value={registerForm.pwd}
                     name="pwd"
                     showIcon
@@ -104,6 +120,9 @@ const Register = () => {
                     isVisiblePassword={togglePassword}
                     onIconClick={changePasswordVisibility}
                     onChange={onChangeHandler}
+                    showNote={true}
+                    tooltipTitle={firstTemplate}
+                    id="createPassword"
                   />
                   <Input
                     placeholder="Confirm password"
@@ -115,9 +134,12 @@ const Register = () => {
                     isVisiblePassword={toggleCPassword}
                     onIconClick={changeCPasswordVisibility}
                     onChange={onChangeHandler}
+                    showNote={true}
+                    tooltipTitle={secondTemplate}
+                    id="confirmPassword"
                   />
                   <br />
-                  <Button onClick={onHandleClick} title="Register" className="btn btn-primary" />
+                  <Button onClick={onHandleClick} title="Sign Up" className="btn btn-primary" />
                   <div className="creatAccount">
                     Already have an account? <Link to="/login"> Login</Link>
                   </div>

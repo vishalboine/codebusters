@@ -20,6 +20,9 @@
         border-radius:12px 12px 0 0;
         border:1px solid;
         @include themify($themes){ border-color: themed(formDivBrd); }
+        @include respond (phone) {
+            width:42rem;
+        }
         .userIcon {
             display:flex;
             justify-content:center;
@@ -85,7 +88,7 @@
                 @include themify($themes){
                     color:themed(userIconClr);
                 }
-                // font-weight:500;
+                font-weight:500;
             }
         }    
         .themeContent{
@@ -109,21 +112,23 @@
         text-align:center;
         @include themify($themes){ border-color: themed(formDivBrd); }
         border-radius:0 0 12px 12px;
+        @include respond (phone) {
+            width:42rem;
+        }
     }
     .logs {
-        h6 {
-            display:flex;
-            justify-content: center;
-            align-items:center;
+        display:flex;
+        flex-direction:column;
+        justify-content: center;
+        align-items:center;
+        .h6 {
             opacity:.5;
             font-weight:400;
         }
     }
-
-    .table-data, .header__item {
-        text-align:left;
-        &:first-child {
-            width:20rem;
+    .table {
+        .table-header {
+            width:100%;
         }
     }
 }
@@ -138,6 +143,24 @@
         .formGroup {
             margin-right:0;
             label { margin:0 0 .8rem; }
+        }
+    }
+}
+
+@include respond(phone) {
+    .table {
+        width:100%;
+        overflow-x: auto;
+        
+        .table-header, .table-row {
+            width:fit-content!important;
+            white-space:nowrap;
+        }
+
+        .table-data, .header__item {
+            text-align:left;
+                width:20rem;
+
         }
     }
 }

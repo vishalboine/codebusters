@@ -251,6 +251,33 @@ button {
   }
 }
 
+.inputTop {
+  display: flex;
+  justify-content:space-between;
+  align-items:center;
+  position:relative;
+  svg {
+    position:absolute;
+    right:0;
+    bottom:0;
+    @include themify($themes) {
+      color: themed(noteIcon)
+    }
+    margin:.8rem;
+    font-size:18px;
+  }
+}
+
+.passReq {
+  padding:0 .8rem;
+  text-align:left;
+  list-style-type: disc;
+  li{
+    font-size:1.2rem;
+    font-family:'Inter'sans-serif!important;
+  }
+}
+
 .tableResponsive {
   display: block;
   width: 100%;
