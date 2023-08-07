@@ -51,22 +51,33 @@ function getObjectValueTypes(obj: any) {
   //   return entry ? entry : null;
   // }
 
-  function areAllElementsSame(arr : any) {
-    if (arr.length === 0) {
-      return true;
-    }
-  
+  function areAllDateElementsSame(arr : any, fieldMapping: any) {
+    let flag : any= true;
+    let itemKey : any= '';
     const firstElement = arr[0];
-    for (let i = 1; i < arr.length; i++) {
-      const currentElement = arr[i];
-      for (const key in firstElement) {
-        if (firstElement[key] !== currentElement[key]) {
-          return false;
-        }
+    const dateKeys : any= Object.keys(firstElement).filter(key => firstElement[key] === 'date')
+    const fieldMappingValues : any = Object.values(fieldMapping)
+    const commonElements = dateKeys.filter((element : any) => fieldMappingValues.includes(element));
+
+    if (arr.length === 0) {
+      return flag;
+    }
+
+    if(commonElements.length !== 0){
+      console.log('arr--->', arr)
+      for (let i = 1; i < arr.length; i++) {
+        const currentElement = arr[i];
+        commonElements.forEach((item: any)=>{
+          if (currentElement[item] && (firstElement[item] !== currentElement[item])) {
+            flag = false;
+            console.log('item-->',item)
+            itemKey = item
+            return
+          }
+        }) 
       }
     }
-  
-    return true;
+    return {flag, itemKey};
   }
 
   function compareValues(json1 : any, json2 : any, mapping : any) {
@@ -82,4 +93,4 @@ function getObjectValueTypes(obj: any) {
   }
   
 
-export { getUpdatedValues, checkForDuplicates, addDataTypeKey, getObjectValueTypes, areAllElementsSame, compareValues }
+export { getUpdatedValues, checkForDuplicates, addDataTypeKey, getObjectValueTypes, areAllDateElementsSame, compareValues }
