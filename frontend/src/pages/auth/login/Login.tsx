@@ -69,7 +69,7 @@ const Login = () => {
         <div className="loginCard">
           <div className="authLogo">
             <img src={LoginLogo} alt={'logo'} />
-            <h6>ImportWizard</h6>
+            <h5>ImportWizard</h5>
           </div>
           <div className="loginWrapper_main">
             <div className="left">

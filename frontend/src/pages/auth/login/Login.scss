@@ -50,12 +50,12 @@
                 display:inline-flex;
                 align-items:center;
                 img {
-                    width:3.2rem;
+                    width:4rem;
                     height:auto;
                 }
-                h6 {
-                    margin-left:1rem;
-                    font-weight:600!important;
+                h5 {
+                    margin-left:.6rem;
+                    font-weight:700!important;
                     @include themify($themes) {
                         color: themed(HeadTextClr)
                     }

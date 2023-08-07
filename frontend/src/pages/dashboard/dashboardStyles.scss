@@ -24,6 +24,22 @@
             background: themed(dashboardBg);
         }
         padding:4rem 1.6rem 2rem;
+
+        .head {
+           img{
+            width:5.2rem;
+            border-radius:8px;
+            transition: ease-in .3s;
+            &:hover {
+                transform:scale(1.1);
+                transition: ease-in-out .6s;
+                color: #111; 
+                background: linear-gradient(55.51deg, #4C70FF -3.93%, rgba(187, 76, 255, 0.67) 99.69%); 
+                box-shadow: 0 0 100px rgba(187, 76, 255, 0.67);
+                border-radius:12px; 
+            }
+           }
+        }
         
         .navItems {
             display:flex;

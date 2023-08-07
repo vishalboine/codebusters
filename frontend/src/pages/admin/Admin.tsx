@@ -414,7 +414,8 @@ const UpdateTable = ({
           </div>
           <Modal className="wd25" overlayClick={true} isOpen={isLogoutModalOpen} handleClose={handleIsOpen}>
             <div className="logoutWrapper">
-              <h5>Are you sure you want to delete this table?</h5>
+              <h5>Are you sure you want to delete table?</h5>
+              <p>After deleting the table, it cannot be recovered.</p>
               <div className="d-flex">
                 <button onClick={closeModal} className='btn btn-text'>Cancel</button>
                 <button onClick={handleDeleteClick} className='btn btn-danger'>Delete</button>
