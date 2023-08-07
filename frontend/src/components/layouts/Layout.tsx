@@ -6,7 +6,6 @@ import logo from '../../assets/images/logo.svg';
 import Modal from '../Modal';
 import useLogout from '../../hooks/useLogout';
 import useAuth from "../../hooks/useAuth";
-import 'devextreme/dist/css/dx.light.css';
 
 const Layout = () => {
 
