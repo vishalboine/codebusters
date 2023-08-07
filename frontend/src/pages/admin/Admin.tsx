@@ -96,12 +96,14 @@ export default function Admin() {
   };
 
   const submitNewTable = () => {
+    const updatedCols = selectedTable.value.map((ele: string) => ele.replace(/\s/g,''))
+
     const data = {
       tableName: newTableName,
-      columns: selectedTable.value
+      columns: updatedCols
     }
 
-    const isAllTableFilled = selectedTable.value.every((item) => item !== '')
+    const isAllTableFilled = updatedCols.every((item) => item !== '')
 
     if(isAllTableFilled && newTableName !== '') {
 
@@ -297,11 +299,12 @@ const UpdateTable = ({
     }
 
     const handleSubmit = () => {
+      const updatedCols = selectedTable.value.map((ele: string) => ele.replace(/\s/g,''))
       const data = {
-        tableName: selectedTable.name, updatedColumn: selectedTable.value
+        tableName: selectedTable.name, updatedColumn: updatedCols
       }
 
-      const isAllTableFilled = selectedTable.value.every((item) => item !== '')
+      const isAllTableFilled = updatedCols.every((item) => item !== '')
 
       if(isAllTableFilled) {
 
@@ -313,6 +316,7 @@ const UpdateTable = ({
           toast('Table Updated successfully.', {
             type: 'success'
           });
+          setAmendForm(false)
           })
           .catch((err: any) => {
             console.log(err);
