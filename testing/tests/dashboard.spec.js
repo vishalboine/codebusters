@@ -41,3 +41,11 @@ test('download excel on export click', async ({ page }) => {
     const download = await downloadPromise;
     await download.saveAs('/path/to/save/download/at.txt');
 });
+
+test('check if logout modal opens', async ({page}) => {
+    const elementWithAriaLabel = await page.locator(`[aria-label="logout"]`);
+    await elementWithAriaLabel.click()
+
+    const modalTitle = await page.textContent('.logoutWrapper >> h5');
+  expect(modalTitle).toContain('Are you sure you want to log out?');
+})
