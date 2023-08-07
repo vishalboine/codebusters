@@ -24,6 +24,22 @@
             background: themed(dashboardBg);
         }
         padding:4rem 1.6rem 2rem;
+
+        .head {
+           img{
+            width:5.2rem;
+            border-radius:8px;
+            transition: ease-in .3s;
+            &:hover {
+                transform:scale(1.1);
+                transition: ease-in-out .6s;
+                color: #111; 
+                background: linear-gradient(55.51deg, #4C70FF -3.93%, rgba(187, 76, 255, 0.67) 99.69%); 
+                box-shadow: 0 0 100px rgba(187, 76, 255, 0.67);
+                border-radius:12px; 
+            }
+           }
+        }
         
         .navItems {
             display:flex;
@@ -371,9 +387,12 @@
     flex-direction:column;
     margin:1.8rem 0 3rem; 
     h5 {
-        margin-bottom:1.6rem;
+        margin:1.6rem 0;
     }
     .columnRow {
+        flex-wrap: wrap;
+        max-width: 860px;
+        height: max-content;
         display:inline-flex;
         @include respond(phone) {
             display:flex;
@@ -382,15 +401,15 @@
         .column{
             display:flex;
             flex-direction:column;
-            margin-right:1.6rem;
-            &:last-of-type {
+            margin:0 1.6rem 1.2rem 0;
+            &:nth-child(4),&:nth-child(8),&:nth-child(12) {
                 margin-right:0;
             }
             label {
                 font-size:1.6rem;
                 font-weight:500;
                 text-transform:capitalize;
-                margin-bottom:.8rem;
+                margin:1.8rem 0 1rem;
             }
         }
     }
