@@ -47,7 +47,6 @@ const useDashboard = () => {
         withCredentials: true
         }).then((response) => {
         }).catch((err) => {
-        console.log(err);
         })
     }
 

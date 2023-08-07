@@ -105,10 +105,6 @@
                     }
     
                     label { font-size:1.4rem; @include themify($themes) { color: themed(inputLable) } font-weight:500; margin-bottom:.8rem; }
-                    // input { background:$blue-50; padding:1rem 1.2rem; border:1px solid $blue-100; border-radius:12px;
-                    //     &::placeholder { color:$blue-gray; font-size:$medium-font-size; }
-                    //     &:hover { border:1px solid $blue-300; }
-                    // }
                     .btn { width:100%;
                     }
                     button { 

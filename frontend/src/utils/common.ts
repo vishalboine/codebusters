@@ -46,11 +46,6 @@ function getObjectValueTypes(obj: any) {
     return types;
   }
 
-  // function getKeyByValue(object : any, value : any) {
-  //   const entry = Object.entries(object).find(([key, val]) => val === value);
-  //   return entry ? entry : null;
-  // }
-
   function areAllDateElementsSame(arr : any, fieldMapping: any) {
     let flag : any= true;
     let itemKey : any= '';
@@ -64,13 +59,11 @@ function getObjectValueTypes(obj: any) {
     }
 
     if(commonElements.length !== 0){
-      console.log('arr--->', arr)
       for (let i = 1; i < arr.length; i++) {
         const currentElement = arr[i];
         commonElements.forEach((item: any)=>{
           if (currentElement[item] && (firstElement[item] !== currentElement[item])) {
             flag = false;
-            console.log('item-->',item)
             itemKey = item
             return
           }

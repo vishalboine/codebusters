@@ -117,7 +117,6 @@ export default function Admin() {
         });
         })
         .catch((err: any) => {
-          console.log(err);
         })
         setNewTableName('')
         setSelectedTable({name: "", value: ['','','','']});
@@ -153,10 +152,6 @@ export default function Admin() {
       })
       })
       .catch((err: any) => {
-        console.log(err);
-        toast('Something went wrong', {
-          type: 'error'
-        });
       })
   }
 
@@ -319,7 +314,6 @@ const UpdateTable = ({
           setAmendForm(false)
           })
           .catch((err: any) => {
-            console.log(err);
           })
       } else {
         toast('Please fill all details.', {
@@ -357,7 +351,6 @@ const UpdateTable = ({
         setselectedTableId('')
         })
         .catch((err: any) => {
-          console.log(err);
         }) 
     }
 

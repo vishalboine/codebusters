@@ -5,7 +5,6 @@ import './drop-file-input.scss';
  
 const DropFileInput = ({onFileDrop}: any) => {
 
-    // const wrapperRef = useRef<HTMLElement>(null);
     const wrapperRef = createRef<HTMLDivElement>();
 
     const onDragEnter = () => wrapperRef.current && wrapperRef.current.classList.add('dragover');
