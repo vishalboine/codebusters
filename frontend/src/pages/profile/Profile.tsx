@@ -12,6 +12,7 @@ import { toast } from 'react-toastify';
 import Modal from '../../components/Modal';
 import useLogout from '../../hooks/useLogout';
 import { getFormattedDate } from '../../utils/common';
+import { passwordRegex, usernameRegex } from '../../constant';
 
 const Profile = () => {
 
@@ -80,6 +81,11 @@ const Profile = () => {
 
 
   const handleSubmit= (e: any) => {
+    if(!passwordRegex.test(form.newPassword) || !passwordRegex.test(form.confirmNewPassword)){
+      toast('Password is invalid', {
+        type: 'error'
+      });
+    }
     if(form.newPassword !== form.confirmNewPassword){
       toast('New Password and Confirm Password should be same', {
         type: 'error'
@@ -131,6 +137,21 @@ const Profile = () => {
   const lastLogin = JSON.parse(localStorage.getItem('lastLogin') || 'null');
   const updatedLastLogin = new Date(lastLogin).toLocaleString();
   
+  const firstTemplate = () => {
+    return (
+        <ul className="passReq">
+          <li>The password should be at least 5 characters long.</li>
+          <li>It should include at least one special character (e.g. @, #, $, etc.).</li>
+          <li>Needs to contain at least one uppercase letter (A-Z).</li>
+          <li>Additionally, it should incorporate at least one digit (0-9).</li>
+        </ul>
+    );
+}
+const secondTemplate = () => {
+    return (
+        <p>Password should match with create password to confirm.</p>
+    );
+}
   
   return (
     <div>
@@ -185,13 +206,6 @@ const Profile = () => {
               <Input
                 placeholder="Enter password"
                 label="Current Password"
-                // value={loginForm.password}
-                // name="password"
-                // showIcon
-                // type={togglePassword ? 'text' : 'password'}
-                // isVisiblePassword={togglePassword}
-                // onIconClick={changePasswordVisibility}
-                // onChange={onChangeHandler}
                 value={form.currentPassword}
                 onChange={handleFormChange}
                 name='currentPassword'
@@ -204,6 +218,8 @@ const Profile = () => {
                 type={togglePassword.newP ? 'text' : 'password'}
                 isVisiblePassword={togglePassword.newP}
                 showIcon
+                showNote={true}
+                tooltipTitle={firstTemplate}
                 onIconClick={() => {
                   setTogglePassword({
                     ...togglePassword,
@@ -213,13 +229,16 @@ const Profile = () => {
                 value={form.newPassword}
                 onChange={handleFormChange}
                 name='newPassword'
+                id="newPassword"
               />
             </div>
             <div className="formGroup">
               <Input
                 placeholder="Enter password"
                 label="Confirm Password"
-                // value={loginForm.password}
+                showNote={true}
+                tooltipTitle={secondTemplate}
+                id="confirmPassword"
                 showIcon
                 value={form.confirmNewPassword}
                 onChange={handleFormChange}
@@ -232,7 +251,6 @@ const Profile = () => {
                     confirmP: !togglePassword.confirmP
                   })
                 }}
-                // onChange={}
               />
             </div>
             <button onClick={handleSubmit} className='btn btn-primary'>Update</button>

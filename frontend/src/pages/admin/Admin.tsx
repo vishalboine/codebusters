@@ -10,6 +10,7 @@ import { getUpdatedValues } from '../../utils/common';
 import { FormControl, Select, MenuItem, Typography, Tab, Tabs, Box } from "@mui/material";
 import CustomTabPanel from '../../components/layouts/CustomTabPanel';
 import Modal from '../../components/Modal';
+import { usernameRegex } from '../../constant';
 
 function a11yProps(index: number) {
   return {
@@ -103,7 +104,7 @@ export default function Admin() {
       columns: updatedCols
     }
 
-    const isAllTableFilled = updatedCols.every((item) => item !== '')
+    const isAllTableFilled = updatedCols.every((item) => item !== '' && usernameRegex.test(item))
 
     if(isAllTableFilled && newTableName !== '') {
 
@@ -122,7 +123,7 @@ export default function Admin() {
         setNewTableName('')
         setSelectedTable({name: "", value: ['','','','']});
     } else {
-      toast('Please fill all details.', {
+      toast('Please fill valid column name.', {
         type: 'error'
       });
     }
@@ -304,7 +305,7 @@ const UpdateTable = ({
         tableName: selectedTable.name, updatedColumn: updatedCols
       }
 
-      const isAllTableFilled = updatedCols.every((item) => item !== '')
+      const isAllTableFilled = updatedCols.every((item) => item !== '' && usernameRegex.test(item))
 
       if(isAllTableFilled) {
 
@@ -322,7 +323,7 @@ const UpdateTable = ({
             console.log(err);
           })
       } else {
-        toast('Please fill all details.', {
+        toast('Please fill valid column name.', {
           type: 'error'
         });
       }

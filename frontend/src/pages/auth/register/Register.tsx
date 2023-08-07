@@ -33,7 +33,7 @@ const Register = () => {
         type: 'error'
       });
     } else if(!passwordRegex.test(registerForm.pwd)){
-      toast('Password should be minimum 5 characters', {
+      toast('Password is invalid', {
         type: 'error'
       });
     } else {
