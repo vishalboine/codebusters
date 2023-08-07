@@ -2,6 +2,7 @@ FROM node:16 as build
 WORKDIR /app
 COPY package*.json ./
 RUN npm install
+RUN npm install -g npx
 COPY . .
 RUN npm install playwright
 RUN apt-get update && \
