@@ -14,6 +14,8 @@ const HistorySchema = Schema({
         type: String,
         required: true
     }
+},{
+    timestamps: true
 })
 
 const HistoryModel = mongoose.model('History', HistorySchema);
