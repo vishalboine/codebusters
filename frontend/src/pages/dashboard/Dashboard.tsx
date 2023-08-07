@@ -13,7 +13,7 @@ import { RiArrowLeftSLine, RiArrowRightSLine, RiCheckboxCircleFill, RiCloseLine,
 import axiosInstance, { axiosPrivate } from "../../config/axiosInstance";
 import useAuth from "../../hooks/useAuth";
 import { CustomerMasterData } from "../../mock/data";
-import { addDataTypeKey, areAllElementsSame, checkForDuplicates, compareValues, getObjectValueTypes, getUpdatedValues } from "../../utils/common";
+import { addDataTypeKey, areAllDateElementsSame, checkForDuplicates, compareValues, getObjectValueTypes, getUpdatedValues } from "../../utils/common";
 
 const Dashboard = () => {
   const [collapsed, setCollapsed] = useState(false);
@@ -182,6 +182,8 @@ const Dashboard = () => {
     const fieldMappingArrValues : any= Object.values(fieldMapping);
     const fieldMappingArrKeys : any= Object.keys(fieldMapping);
 
+    let {flag, itemKey} = areAllDateElementsSame(excelColunmsDataType, fieldMapping)
+
     //returns which all columns are having valid/invalid datatype
     const checkTableExcelDataType = compareValues(currentTable, excelColunmsDataType[0], fieldMapping)
     if(!Object.values(selectImportDropDownValue).some(value => value !== null && value !== undefined && value !== '')){
@@ -191,15 +193,15 @@ const Dashboard = () => {
       //validation for duplicate dropdown value
       setImportError('Duplicate Excel columns')
     }
-    // else if(!areAllElementsSame(excelColunmsDataType)){
-    //   // validation for all excel data should be of same datatype wrt column
-    //   setImportError('Excel data should be of same datatype with respect to column')
-    // }
+    else if(!flag){
+      // validation for all excel data should be of same datatype wrt column
+      setImportError(`${itemKey.toUpperCase()}: Excel data should be of same datatype with respect to column`)
+    }
     else if (!Object.values(Object.values(checkTableExcelDataType)).every(value => value === true)){
       // excel column dataType must be same as table column datatypes
       Object.entries(checkTableExcelDataType).map((key:any, value: any)=>{
         if(key[1] === false){
-          setImportError(`${(key[0]).toUpperCase()} table column dataType must be same as excel column datatype`)
+          setImportError(`${(key[0]).toUpperCase()} (Datatype: ${currentTable[key[0]]}) table column dataType must be same as excel column datatype`)
         }
       })
     }
