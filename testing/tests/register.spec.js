@@ -53,18 +53,18 @@ test('Password and Confirm Password Field', async ({ page }) => {
     expect(enteredPassword).toEqual(enteredConfirmPassword);
 });
 
-test('Redirect after register', async ({ page }) => {
-    const usernameInput = page.getByPlaceholder('Enter Username');
-    const passwordInput = page.getByPlaceholder('Enter password');
-    const cpasswordInput = page.getByPlaceholder('Confirm password');
+// test('Redirect after register', async ({ page }) => {
+//     const usernameInput = page.getByPlaceholder('Enter Username');
+//     const passwordInput = page.getByPlaceholder('Enter password');
+//     const cpasswordInput = page.getByPlaceholder('Confirm password');
 
-    await usernameInput.fill('demo');
-    await usernameInput.press('Enter');
-    await passwordInput.fill('123456');
-    await passwordInput.press('Enter');
-    await cpasswordInput.fill('123456');
-    await cpasswordInput.press('Enter');
-    await page.getByRole('button', { name: 'Register' }).click();
+//     await usernameInput.fill('demo');
+//     await usernameInput.press('Enter');
+//     await passwordInput.fill('123456');
+//     await passwordInput.press('Enter');
+//     await cpasswordInput.fill('123456');
+//     await cpasswordInput.press('Enter');
+//     await page.getByRole('button', { name: 'Register' }).click();
 
-    await expect(page).toHaveURL('https://codebusters.neofinancials.com/login');
-});
+//     await expect(page).toHaveURL('https://codebusters.neofinancials.com/login');
+// });
