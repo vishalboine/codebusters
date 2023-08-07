@@ -35,7 +35,7 @@ const Layout = () => {
       logo: <RiHome6Line size={26} />,
       activeLogo: <RiHome6Fill size={26} />,
       to: '/',
-      toShow: ['Admin'].includes(auth.role)
+      toShow: ['User','Admin'].includes(auth.role)
     },
     {
       key: 3,
