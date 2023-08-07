@@ -385,6 +385,10 @@ function App() {
                 <Route element={<Layout />}>
                   <Route path="/" element={<Dashboard />} />
                   <Route path="/profile" element={<Profile />} />
+                </Route>
+              </Route>
+              <Route element={<RequireAuth allowedRoles={['Admin']} />}>
+                <Route element={<Layout />}>
                   <Route path="/admin" element={<Admin />} />
                   <Route path="/update-users" element={<Users />} />
                 </Route>
