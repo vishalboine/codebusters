@@ -100,21 +100,31 @@ export default function Admin() {
       tableName: newTableName,
       columns: selectedTable.value
     }
-    
-    axiosPrivate.post('/table/addTable', data,{
-      headers: { 'Content-Type': 'application/json' },
-      withCredentials: true
-    }).then((res: any) => {
-      setSavedTables(res.data)
-      toast('Table saved successfully.', {
-        type: 'success'
+
+    const isAllTableFilled = selectedTable.value.every((item) => item !== '')
+
+    if(isAllTableFilled && newTableName !== '') {
+
+      axiosPrivate.post('/table/addTable', data,{
+        headers: { 'Content-Type': 'application/json' },
+        withCredentials: true
+      }).then((res: any) => {
+        setSavedTables(res.data)
+        toast('Table saved successfully.', {
+          type: 'success'
+        });
+        })
+        .catch((err: any) => {
+          console.log(err);
+        })
+        setNewTableName('')
+        setSelectedTable({name: "", value: ['','','','']});
+    } else {
+      toast('Please fill all details.', {
+        type: 'error'
       });
-      })
-      .catch((err: any) => {
-        console.log(err);
-      })
-      setNewTableName('')
-      setSelectedTable({name: "", value: ['','','','']});
+    }
+    
   }
 
   const getDefaultValue = (obj, val) => {
@@ -290,19 +300,29 @@ const UpdateTable = ({
       const data = {
         tableName: selectedTable.name, updatedColumn: selectedTable.value
       }
-      
-      axiosPrivate.post('/table/updateTable', data,{
-        headers: { 'Content-Type': 'application/json' },
-        withCredentials: true
-      }).then((res: any) => {
-        setSavedTables(res.data)
-        toast('Table Updated successfully.', {
-          type: 'success'
+
+      const isAllTableFilled = selectedTable.value.every((item) => item !== '')
+
+      if(isAllTableFilled) {
+
+        axiosPrivate.post('/table/updateTable', data,{
+          headers: { 'Content-Type': 'application/json' },
+          withCredentials: true
+        }).then((res: any) => {
+          setSavedTables(res.data)
+          toast('Table Updated successfully.', {
+            type: 'success'
+          });
+          })
+          .catch((err: any) => {
+            console.log(err);
+          })
+      } else {
+        toast('Please fill all details.', {
+          type: 'error'
         });
-        })
-        .catch((err: any) => {
-          console.log(err);
-        })
+      }
+      
     }
 
     const tables = getUpdatedValues(savedTables);

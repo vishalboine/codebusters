@@ -27,25 +27,29 @@ const Layout = () => {
       activeLogo: <div className="userIcon">
       {auth.user.charAt(0)}
       </div>,
-      to: '/profile'
+      to: '/profile',
+      toShow: ['User', 'Admin'].includes(auth.role)
     },
     {
       key: 2,
       logo: <RiHome6Line size={26} />,
       activeLogo: <RiHome6Fill size={26} />,
-      to: '/'
+      to: '/',
+      toShow: ['Admin'].includes(auth.role)
     },
     {
       key: 3,
       logo: <RiAdminLine size={26} />,
       activeLogo: <RiAdminFill size={26} />,
-      to: '/admin'
+      to: '/admin',
+      toShow: ['Admin'].includes(auth.role)
     },
     {
       key: 4,
       logo: <HiOutlineUserGroup size={26} />,
       activeLogo: <HiUserGroup size={26} />,
-      to: '/update-users'
+      to: '/update-users',
+      toShow: ['Admin'].includes(auth.role)
     },
   ]
 
@@ -53,13 +57,15 @@ const Layout = () => {
     <div className='dashboard'>
       <div className="leftPanel">
         <div className="head">
-          <img src={logo} alt="" />
+          <Link to='/'>
+            <img src={logo} alt="" />
+          </Link>
         </div>
         <div className="navItems">
           { navItems.map((item: any) => (
-            <Link className={`navItem ${item.to === pathname ? 'active' : ''}`} to={item.to} key={item.key}>
-              {item.to === pathname ? item.activeLogo : item.logo}
-            </Link>
+            item.toShow && <Link className={`navItem ${item.to === pathname ? 'active' : ''}`} to={item.to} key={item.key}>
+            {item.to === pathname ? item.activeLogo : item.logo}
+          </Link>
           ))}
           <a onClick={handleIsOpen} className='navItem' aria-label="logout">
             <RiLogoutCircleRLine size={26} />
