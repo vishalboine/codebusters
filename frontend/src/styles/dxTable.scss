@@ -48,7 +48,7 @@
   @include themify($themes) {
     color: themed(tableHeaderClr) !important;
   }
-  font-weight: 500 !important;
+  font-weight:700 !important;
 }
 .dx-datagrid .dx-datagrid-headers .dx-header-row > td {
   border-left: none !important;
@@ -214,6 +214,9 @@
 }
 .dx-button-has-text .dx-button-content {
   padding: 12px 16px !important;
+  @include respond(phone) {
+    padding:10px 14px!important;
+  }
 }
 .dx-button {
   border-radius: 12px !important;
@@ -267,6 +270,8 @@
     width: 36rem !important;
   }
 }
+
+.dx-popup-content { padding:10 12px!important; }
 
 /* For Mobile Portrait View */
 @include respond(phone) {

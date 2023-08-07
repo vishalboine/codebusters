@@ -42,7 +42,9 @@ $themes: (
     authRightBg:#EDF1FF,
     loginCardBg:rgba($white,.9),
     loginInputBg:$white,
+    noteIcon:#7384c8,
   ),
+
   dark: (
     colorText:#c7c7c7,
     HeadTextClr:#d6d6d6,
@@ -71,7 +73,7 @@ $themes: (
     userIconActBrd:#7a82b8,
     formDivBrd:#2f2f2f,
     modalBg:#141414,
-    tableHeaderBg:#141414,
+    tableHeaderBg:#1a1a1a,
     tableHeaderClr:#B3B3B3,
     tableActionClr:#7a82b8,
     tableRowOddBg:#0f0f0f,
@@ -84,6 +86,7 @@ $themes: (
     authRightBg:#242630,
     loginCardBg:rgba(0, 0, 0, 0.8),
     loginInputBg:#0f0f0f,
+    noteIcon:$blue-50,
   ),
 );
 

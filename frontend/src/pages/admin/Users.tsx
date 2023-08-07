@@ -129,14 +129,14 @@ const Users = () => {
             <CustomTabPanel index={1} value={value}>
                 <div className="UsersWrapper">
                     <h4>Activity Log</h4>
-                    <div className='table logs'>
+                    <div className='table' id="logs">
                         <div className="table-header">
                             <div className="header__item">Date & Time</div>
                             <div className="header__item">User</div>
                             <div className="header__item">Data Type</div>
                             <div className="header__item">Imported File</div>
                         </div>
-                        <div className="table-content logs">
+                        <div className="table-content">
                             {
                             historyData.length > 0 ? (
                                 historyData.map((item:any) => (

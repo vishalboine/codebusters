@@ -136,107 +136,22 @@
     }
 }
 
-//Carousel
-
-.carousel {
-    height: 100%;
-    .carousel-indicators {
-        bottom:0;
-        .carousel-indicators [data-coreui-target] {
-            width:48px;
-            height:4px;
-            border-radius:8px;
-            background-color:$primary-color;
-        }
-    }
-    .carousel-inner {
-        height:100%;
-        .carousel-item {
-            height:100%;
-            .carousel-caption {
-                width:100%;
-                padding:0;
-                left:0;
-                right:0;  
-                bottom:20px;
-            }
-        }
-        
-    }
-}
-
-// /* For Desktop View */
-// @media screen and (min-width:1024px) {
-//     .authBg {
-//         width:100vw;
-//         height:100vh;
-//         padding:6% 20%;
-//     }
-//     .authBg::before {
-//         content:"";
-//         width:50vw;
-//         height:100vh;
-
-//     }
-    
-//     .loginWrapper {
-//         width:100%;
-//         height:100%;
-
-//         .loginCard {
-//             padding:2rem;
-    
-//             .authLogo {
-//                 width:12em;
-//             }
-    
-//             .loginWrapper_main {
-//                 width:100%;
-//             }
-    
-//             .left{
-//                 width:50%;
-//                 // padding:2.5rem 1rem;
-//             }
-    
-//             .right {
-//                 padding:1.25rem;
-//                 width:50%;
-//                 .input_div {
-//                     width:84%;
-//                     height:fit-content;
-//                     padding:1.5rem;
-//                     // .loginUtility { margin:.5rem 0;
-//                     // }
-//                     .creatAccount { font-size:1rem; }
-//                     }
-//                 }
-//             }
-//         }
-//     }
  
 /* For Tablet View */
-
 @include respond(tab-port) {
     .authBg {
         .loginWrapper {
             .loginCard {
                 height:fit-content;
-                // .authLogo {
-                //       width:20rem;
-                //       display:flex;
-                //       margin:0 auto;  
-                // }
                 .left {
                     display:none;
-                    
                 }
                 .right {
                     width:100%;
                     padding:0;
                     .input_div {
                         width:380px;
-                        background:none;
+                        background:transparent!important;
                         box-shadow:none;
                         padding:2.8rem 1rem;
                         label {
@@ -276,7 +191,7 @@
                     h2, h3 { display:none; }
                     .input_div {
                         width:320px;
-                        background:none;
+                        background:transparent!Important;
                         box-shadow:none;
                         padding:2rem;
                         .loginUtility {
@@ -291,25 +206,3 @@
         }
     }     
 }
- 
-// /* For Mobile Landscape View */
-// @media screen and (max-device-width:640px)
-//     and (orientation:landscape) {
-//     .gfg-div {
-//         width:400px;
-//         height:200px;
-//         background-color:cyan;
-//         color:black;
-//     }
-// }
- 
-// /* For Mobile Phones Portrait or Landscape View */
-// @media screen
-//     and (max-device-width:640px) {
-//     .gfg-div {
-//         width:400px;
-//         height:200px;
-//         background-color:chartreuse;
-//         color:black;
-//     }
-// }
