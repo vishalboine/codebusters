@@ -146,6 +146,8 @@ const useDashboard = () => {
         if(Object.keys(mockData).includes(e.target.value)){
         setBlotterColumns(Object.keys(mockTemp[0]))
         setBlotterData(mockData[e.target.value])
+        setSheetName('');
+        setExcelImported(false);
         }
     }
 
