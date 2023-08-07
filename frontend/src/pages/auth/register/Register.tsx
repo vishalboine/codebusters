@@ -7,6 +7,7 @@ import Button from "../../../components/ui-widgets/Button/Button";
 import { Link, useNavigate } from "react-router-dom";
 import { axiosPrivate } from "../../../config/axiosInstance";
 import { toast } from 'react-toastify';
+import { passwordRegex, usernameRegex } from "../../../constant";
 
 const Register = () => {
   const [registerForm, setRegisterForm] = useState({
@@ -27,6 +28,17 @@ const Register = () => {
 
   const onHandleClick = (e: any) => {
     e.preventDefault();
+    if(!usernameRegex.test(registerForm.user)){
+      toast('Username can only have letters and numbers', {
+        type: 'error'
+      });
+    } else if(!passwordRegex.test(registerForm.pwd)){
+      toast('Password should be minimum 5 characters', {
+        type: 'error'
+      });
+    } else {
+
+    
     if(registerForm.pwd === registerForm.cpwd) {
 
       axiosPrivate.post('/register', registerForm, {
@@ -46,6 +58,7 @@ const Register = () => {
         type: 'error'
       });
     }
+  }
   }
   
   const onChangeHandler = (e: any) => {
