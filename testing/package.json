@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "testcase": "npx playwright test --project=chromium"
+    "testcase": "npm playwright test --project=chromium"
   },
   "keywords": [],
   "author": "",
