@@ -194,6 +194,8 @@ a {
   display: flex;
   align-items: center;
   width: 100%;
+  position:sticky;
+  top:0;
   @include themify($themes) {
     background: themed(tableHeaderBg);
   }
