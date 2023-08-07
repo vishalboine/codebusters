@@ -5,6 +5,7 @@ import axiosInstance, { axiosPrivate } from '../../config/axiosInstance'
 import { toast } from 'react-toastify'
 import CustomTabPanel from '../../components/layouts/CustomTabPanel'
 import Modal from '../../components/Modal'
+import { getFormattedDate } from '../../utils/common'
 
 const Users = () => {
     const [usersData, setUsersData] = useState([]);
@@ -141,7 +142,7 @@ const Users = () => {
                             historyData.length > 0 ? (
                                 historyData.map((item:any) => (
                                 <div key={item._id} className='table-row'>
-                                    <div className='table-data'>05/08/23 14:51</div>
+                                    <div className='table-data'>{getFormattedDate(item.createdAt)}</div>
                                     <div className='table-data'>{item.user}</div>
                                     <div className='table-data'>{item.tableName}</div>
                                     <div className='table-data'>{item.fileName}</div>

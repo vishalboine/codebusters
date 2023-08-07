@@ -91,6 +91,21 @@ function getObjectValueTypes(obj: any) {
       });
       return obj;
   }
+
+  const getFormattedDate = (date) => {
+    const currentDate = new Date(date);
+
+    const day = String(currentDate.getDate()).padStart(2, '0');
+    const month = String(currentDate.getMonth() + 1).padStart(2, '0');
+    const year = String(currentDate.getFullYear()).slice(-2);
+    const hours = String(currentDate.getHours() % 12 || 12).padStart(2, '0');
+    const minutes = String(currentDate.getMinutes()).padStart(2, '0');
+    const ampm = currentDate.getHours() >= 12 ? 'PM' : 'AM';
+
+    const currentDateTime12Hours = `${day}/${month}/${year} ${hours}:${minutes} ${ampm}`;
+
+    return currentDateTime12Hours
+  }
   
 
-export { getUpdatedValues, checkForDuplicates, addDataTypeKey, getObjectValueTypes, areAllDateElementsSame, compareValues }
+export { getUpdatedValues, checkForDuplicates, addDataTypeKey, getObjectValueTypes, areAllDateElementsSame, compareValues, getFormattedDate }
