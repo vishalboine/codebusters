@@ -13,7 +13,6 @@ const useLogout = () => {
             });
             navigate('/login' , { replace: true })
         } catch (err) {
-            console.error(err);
         }
     }
 

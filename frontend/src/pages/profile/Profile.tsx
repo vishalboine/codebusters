@@ -185,13 +185,6 @@ const Profile = () => {
               <Input
                 placeholder="Enter password"
                 label="Current Password"
-                // value={loginForm.password}
-                // name="password"
-                // showIcon
-                // type={togglePassword ? 'text' : 'password'}
-                // isVisiblePassword={togglePassword}
-                // onIconClick={changePasswordVisibility}
-                // onChange={onChangeHandler}
                 value={form.currentPassword}
                 onChange={handleFormChange}
                 name='currentPassword'

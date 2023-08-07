@@ -50,7 +50,6 @@ const Register = () => {
         });
         navigate('/login')
       }).catch((err: any) => {
-        console.log(err);
         
       })
     } else {
