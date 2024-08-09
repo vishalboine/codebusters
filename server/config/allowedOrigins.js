@@ -8,6 +8,7 @@ const allowedOrigins = [
     'http://codebusters.neofinancials.com/',
     'https://codebusters.neofinancials.com',
     'https://codebusters.neofinancials.com/',
+    'https://importwizard.netlify.app',
     'https://importwizard.netlify.app/',
     'https://importwizard.netlify.app/api'
 ];
