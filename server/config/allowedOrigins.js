@@ -13,7 +13,13 @@ const allowedOrigins = [
     'https://importwizard.netlify.app/api',
     'https://importwizards.netlify.app',
     'https://importwizards.netlify.app/',
-    'https://importwizards.netlify.app/api'
+    'https://importwizards.netlify.app/api',
+    'http://importwizard.netlify.app',
+    'http://importwizard.netlify.app/',
+    'http://importwizard.netlify.app/api',
+    'http://importwizards.netlify.app',
+    'http://importwizards.netlify.app/',
+    'http://importwizards.netlify.app/api'
 ];
 
 module.exports = allowedOrigins;
