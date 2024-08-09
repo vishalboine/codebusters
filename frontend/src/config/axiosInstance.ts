@@ -1,5 +1,5 @@
 import axios from 'axios';
-const BASE_URL = 'https://importwizard.netlify.app/api';
+const BASE_URL = 'https://importwizard.netlify.app';
 
 export default axios.create({
     baseURL: BASE_URL
