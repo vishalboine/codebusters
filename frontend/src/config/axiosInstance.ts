@@ -1,5 +1,5 @@
 import axios from 'axios';
-const BASE_URL = 'https://codebusters.neofinancials.com/api';
+const BASE_URL = 'https://importwizard.netlify.app/api';
 
 export default axios.create({
     baseURL: BASE_URL
