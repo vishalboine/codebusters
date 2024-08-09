@@ -10,7 +10,10 @@ const allowedOrigins = [
     'https://codebusters.neofinancials.com/',
     'https://importwizard.netlify.app',
     'https://importwizard.netlify.app/',
-    'https://importwizard.netlify.app/api'
+    'https://importwizard.netlify.app/api',
+    'https://importwizards.netlify.app',
+    'https://importwizards.netlify.app/',
+    'https://importwizards.netlify.app/api'
 ];
 
 module.exports = allowedOrigins;
