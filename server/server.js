@@ -11,7 +11,27 @@ const cookieParser = require('cookie-parser');
 const credentials = require('./middleware/credentials');
 const mongoose = require('mongoose');
 const connectDB = require('./config/dbConn');
+const stream = require('stream');
 const PORT = process.env.PORT || 3500;
+
+const {Readable, Writable} = stream;
+
+const inStream = new Readable({
+    read() {}
+})
+
+inStream.push('Hello World')
+
+inStream.pipe(process.stdout)
+
+const outStream = new Writable({
+    write(chunk, encoding, callback){
+        console.log(chunk.toString());
+        callback();
+    }
+});
+
+process.stdin.pipe(outStream);
 
 // Connect to MongoDB
 connectDB();
